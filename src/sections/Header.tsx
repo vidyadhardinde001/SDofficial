@@ -15,7 +15,7 @@ export const Header = () => {
           <ArrowRight className="h-4 w-4 inline-flex justify-center items-center" />
         </div>
       </div> */}
-      <div className="py-5">
+      <div className="py-3">
         <div className="container">
           <div className="flex items-center justify-between">
             <Image src={logo} alt="Saas Logo" height={30} width={130} />

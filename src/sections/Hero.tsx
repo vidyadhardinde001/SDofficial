@@ -40,7 +40,7 @@ export const Hero = () => {
           <h1 className="text-3xl md:text-7xl font-medium tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2">
             Siddhivinayak Engineers
           </h1>
-          <p className="text-lg md:text-xl text-[#ffffff] tracking-tight mt-6">
+          <p className="text-lg md:text-xl text-[#ffffff] tracking-tight mt-6 ">
             One Stop Solution for All your Electric & Automation Needs.
           </p>
           <div className="flex flex-row justify-center gap-2 items-center mt-[30px]">

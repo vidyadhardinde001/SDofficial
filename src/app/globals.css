@@ -45,4 +45,9 @@
     padding: 1rem; /* Adjust padding as needed */
     border-radius: 0.5rem; /* Optional: for rounded corners */
   }
+  .logo-ticker-image {
+    width: auto;
+    height: 40px; /* or any size you prefer */
+  }
+  
 }

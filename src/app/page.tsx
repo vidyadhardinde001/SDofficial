@@ -6,12 +6,14 @@ import { Pricing } from "@/sections/Pricing";
 import { Testimonials } from "@/sections/Testimonials";
 import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
+import IndustriesWeServe from "@/sections/IndustriesWeServe";
 
 export default function Home() {
   return (
     <>
       <Header />
       <Hero />
+      <IndustriesWeServe/>
       <LogoTicker />
       <ProductShowcase />
       <Pricing />

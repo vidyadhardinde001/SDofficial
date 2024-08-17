@@ -3,8 +3,8 @@ import React from 'react';
 const ValuetoProduct = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6">
-      <h1 className="text-2xl font-bold mb-6">How we Add value to our Products</h1>
-      <div className="grid grid-cols-3 gap-4">
+      <h1 className="text-4xl font-medium mb-14 mt-10">How we Add value to our Products</h1>
+      <div className="w-[70%] sm:w-10/11 grid grid-cols-3 gap-4">
         {/* First row */}
         <div className="bg-white text-gray-700 border border-gray-300 p-6 rounded-xl flex items-center justify-center h-32">
           Hardware

@@ -38,4 +38,11 @@
   .card {
     @apply p-10 border border-[#222222]/10 rounded-3xl shadow-[0_7px_14px_#EAEAEA] max-w-xs w-full;
   }
+
+  .blur-background {
+    backdrop-filter: blur(7px); /* Adjust blur radius as needed */
+    background: rgba(255, 255, 255, 0.3); /* Optional: semi-transparent background for better contrast */
+    padding: 1rem; /* Adjust padding as needed */
+    border-radius: 0.5rem; /* Optional: for rounded corners */
+  }
 }

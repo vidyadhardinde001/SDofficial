@@ -6,7 +6,11 @@ import { Pricing } from "@/sections/Pricing";
 import { Testimonials } from "@/sections/Testimonials";
 import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
+import gridSection from "@/sections/gridSection";
 import IndustriesWeServe from "@/sections/IndustriesWeServe";
+import ContactSection from "@/sections/ContactSection";
+import QuoteSection from "@/sections/QuoteSection";
+
 
 export default function Home() {
   return (
@@ -19,6 +23,9 @@ export default function Home() {
       <Pricing />
       <Testimonials />
       <CallToAction />
+      <gridSection />
+      <ContactSection />
+      <QuoteSection />
       <Footer />
     </>
   );

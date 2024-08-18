@@ -11,15 +11,17 @@ import ContactSection from "@/sections/ContactSection";
 import QuoteSection from "@/sections/QuoteSection";
 import ValuetoProduct from "@/sections/ValuetoProduct";
 import TestimonialSection from "@/sections/TestimonialSection";
-
+import ServicesSection from "@/sections/ServicesSection";
+import Scene from "@/components/Scene";
 
 export default function Home() {
   return (
     <>
       <Header />
       <Hero />
-      <ValuetoProduct/>
-      <IndustriesWeServe/>
+      <ServicesSection />
+      <ValuetoProduct />
+      <IndustriesWeServe />
       <LogoTicker />
       {/* <ProductShowcase /> */}
       {/* <Pricing /> */}

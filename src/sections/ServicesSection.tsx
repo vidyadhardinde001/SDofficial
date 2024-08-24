@@ -5,7 +5,7 @@ import Scene2 from "@/components/Scene2";
 
 const ServicesSection: React.FC = () => {
   return (
-    <div className="bg-black text-white py-10 px-5">
+    <div className="bg-[#263142] text-white py-10 px-5">
       <h1 className="text-center text-4xl font-bold mb-10">Our Services</h1>
       <div className="flex flex-col gap-8 w-full md:w-3/4 mx-auto">
         

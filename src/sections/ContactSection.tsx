@@ -29,34 +29,34 @@ const ContactSection: React.FC = () => {
             <input
               type="email"
               placeholder="E-mail Address"
-              className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#fb845d]"
+              className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
             />
             <input
               type="text"
               placeholder="Phone Number"
-              className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#fb845d]"
+              className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
             />
             <input
               type="text"
               placeholder="Your Name"
-              className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#fb845d]"
+              className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
             />
             <textarea
               placeholder="Message...."
               rows={4}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#fb845d]"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
             ></textarea>
             
             <div className="flex items-start space-x-2 mt-4">
               <input type="checkbox" className="mt-1" />
               <p className="text-sm text-gray-500">
-                I consent to the processing of my personal data by the Administrator in accordance with the Privacy Policy <span className="text-[#fb845d]">*</span>
+                I consent to the processing of my personal data by the Administrator in accordance with the Privacy Policy <span className="text-[#0074F5]">*</span>
               </p>
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 mt-4 text-white bg-[#fb845d] hover:bg-black rounded-full font-semibold tracking-wide flex items-center justify-center"
+              className="w-full py-3 mt-4 text-white bg-[#0074F5] hover:bg-black rounded-full font-semibold tracking-wide flex items-center justify-center"
             >
               Send <span className="ml-2">➔</span>
             </button>

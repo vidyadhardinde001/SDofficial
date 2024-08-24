@@ -2,7 +2,7 @@ import React from 'react';
 
 const ValuetoProduct = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6">
+    <div className="min-h-screen bg-[#F5F5F5] flex flex-col items-center justify-center p-6">
       <h1 className="text-4xl font-medium mb-14 mt-10">How we Add value to our Products</h1>
       <div className="w-[70%] sm:w-10/11 grid grid-cols-3 gap-4">
         {/* First row */}

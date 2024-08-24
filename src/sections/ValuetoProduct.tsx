@@ -3,11 +3,17 @@ import 'animate.css'; // Make sure to install this library: npm install animate.
 
 const ValuetoProduct = () => {
   return (
+
     <div className="min-h-screen bg-black flex flex-col items-center justify-center p-6">
       <h1 className="text-5xl font-medium mb-10 mt-8 text-white animate__animated animate__fadeIn">
         How we Add value to our Products
       </h1>
       <div className="w-[80%] sm:w-11/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate__animated animate__fadeIn animate__delay-1s">
+
+        {/*<div className="min-h-screen bg-[#F5F5F5] flex flex-col items-center justify-center p-6">
+      <h1 className="text-4xl font-medium mb-14 mt-10">How we Add value to our Products</h1>
+      <div className="w-[70%] sm:w-10/11 grid grid-cols-3 gap-4">*/}
+
         {/* First row */}
         <div className="bg-gray-800 text-gray-100 border border-gray-600 p-4 md:p-6 rounded-xl flex items-center justify-center h-32 hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-95 text-lg md:text-2xl">
           Hardware

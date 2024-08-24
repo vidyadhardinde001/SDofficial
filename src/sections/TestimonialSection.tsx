@@ -36,7 +36,7 @@ const TestimonialsSection = () => {
         >
           {testimonials.map((testimonial, index) => (
             <div key={index} className="w-[700px] h-70 flex-shrink-0 p-4">
-              <div className="bg-[#fb845d] text-white p-8 rounded-xl flex items-center justify-center h-[300px]"> 
+              <div className="bg-[#0074F5] text-white p-8 rounded-xl flex items-center justify-center h-[300px]"> 
                 <p className="text-lg text-center">
                   <span className="text-2xl">“</span>
                   {testimonial}

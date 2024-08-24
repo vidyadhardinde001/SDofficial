@@ -13,6 +13,7 @@ import ValuetoProduct from "@/sections/ValuetoProduct";
 import TestimonialSection from "@/sections/TestimonialSection";
 import ServicesSection from "@/sections/ServicesSection";
 import Scene from "@/components/Scene";
+import Projects from "@/sections/Projects";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <ValuetoProduct />
       <IndustriesWeServe />
       <LogoTicker />
+      <Projects />
       {/* <ProductShowcase /> */}
       {/* <Pricing /> */}
       {/* <Testimonials /> */}

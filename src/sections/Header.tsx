@@ -1,9 +1,18 @@
+"use client";
 import ArrowRight from "@/assets/arrow-right.svg";
 import logo from "@/assets/logo.png";
 import Image from "next/image";
 import MenuIcon from "@/assets/menu.svg";
+import { motion } from "framer-motion";
+import Link from 'next/link';
+
+
 
 export const Header = () => {
+  const navVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0 },
+  };
   return (
     <header className="sticky top-0 backdrop-blur-lg z-20">
       {/* <div className="flex justify-center items-center py-3 bg-black text-white text-sm gap-3">
@@ -23,26 +32,26 @@ export const Header = () => {
               <MenuIcon className="h-5 w-5" />
             </div>
             <nav className="hidden md:flex lg:gap-14 md:gap-8 text-black/60 justify-center items-center bg-white px-4 py-2 rounded-full sm:w-[320px] md:w-[500px] lg:w-[700px] xl:w-[1200px] max-w-screen-md mx-auto">
-              <a href="#" className="relative group hover:text-black">
+            <Link href="/" className="relative group hover:text-black">
                 Home
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#fb845d] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
-              </a>
-              <a href="#" className="relative group hover:text-black">
+              </Link>
+              <Link href="/projects" className="relative group hover:text-black">
                 Projects
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#fb845d] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
-              </a>
-              <a href="#" className="relative group hover:text-black">
+              </Link>
+              <Link href="/gallery" className="relative group hover:text-black">
                 Gallery
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#fb845d] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
-              </a>
-              <a href="#" className="relative group hover:text-black">
+              </Link>
+              <Link href="/contact" className="relative group hover:text-black">
                 Contact
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#fb845d] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
-              </a>
-              <a href="#" className="relative group hover:text-black">
+              </Link>
+              <Link href="/about" className="relative group hover:text-black">
                 About Us
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#fb845d] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
-              </a>
+              </Link>
             </nav>
             <button className="bg-[#fb845d] hover:bg-black text-white px-4 py-2 rounded-full font-medium inline-flex align-items justify-center tracking-tight ml-auto hidden md:block">
               Call Us

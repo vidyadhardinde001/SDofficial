@@ -72,6 +72,22 @@ const ServicesSection: React.FC = () => {
           </div>
         </div>
 
+        {/* fifth Card */}
+        <div className="flex flex-col md:flex-row-reverse bg-[#121212] p-5 border border-gray-600 shadow-lg hover:shadow-xl transition-shadow duration-300 h-[300px]">
+          <div className="flex-1 flex items-center justify-center md:justify-center">
+            <Scene />
+          </div>
+          <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-4">
+            <h2 className="text-xl font-semibold">Field Wiring</h2>
+            <p>
+              In general, field wiring is wiring that is connected between equipment items or equipment components that are connected upon installation in the field.
+            </p>
+            <a href="#" className="text-blue-400">READ MORE &gt;</a>
+          </div>
+        </div>
+
+     
+
       </div>
     </div>
   );

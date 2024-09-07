@@ -15,20 +15,21 @@ const industries = [
 const IndustriesWeServe: React.FC = () => {
   return (
     <section className="bg-[#263142] text-white py-12">
-      <h2 className="text-center text-4xl font-normal mb-12">Industries we serve</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+      <h2 className="text-center text-4xl font-normal mb-8">Industries we serve</h2>
+      <div className="flex justify-between items-center max-w-7xl mx-auto px-4">
         {industries.map((industry) => (
           <div key={industry.name} className="flex flex-col items-center text-center">
-            <img
-              src={industry.imagePath}
-              alt={industry.name}
-              className="w-20 h-20 sm:w-15 sm:h-15 mb-4 object-contain"
-            />
-            <p className="text-lg font-regular">{industry.name}</p>
+            <div className="bg-[#fff] rounded-full p-2 mb-2">
+              <img
+                src={industry.imagePath}
+                alt={industry.name}
+                className="w-12 h-12 object-contain"
+              />
+            </div>
+            <p className="text-sm font-medium">{industry.name}</p>
           </div>
         ))}
       </div>
-
     </section>
   );
 };

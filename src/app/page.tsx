@@ -24,6 +24,7 @@ export default function Home() {
       <ServicesSection />
       <ValuetoProduct />
       <IndustriesWeServe />
+      
       <LogoTicker />
       <Projects />
       {/* <ProductShowcase /> */}

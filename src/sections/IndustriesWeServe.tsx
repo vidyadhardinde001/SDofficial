@@ -1,86 +1,89 @@
 'use client';
-import dynamic from 'next/dynamic';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link'; // Import the Link component from Next.js
 
 const industries = [
-  { name: 'Automobile', imagePath: '/assets/car.png', details: 'Details about Automobile industry...' },
-  { name: 'Metal Industry', imagePath: '/assets/metal.png', details: 'Details about Metal industry...' },
-  { name: 'Wire Industry', imagePath: '/assets/wire.png', details: 'Details about Wire industry...' },
-  { name: 'Cold Storage', imagePath: '/assets/cold.png', details: 'Details about Cold Storage industry...' },
-  { name: 'Animal Feed', imagePath: '/assets/animal.png', details: 'Details about Animal Feed industry...' },
-  { name: 'Food Industries', imagePath: '/assets/food.png', details: 'Details about Food industry...' },
-  { name: 'Water Treatment & Distribution', imagePath: '/assets/water.png', details: 'Details about Water Treatment & Distribution industry...' },
-  { name: 'Environmental', imagePath: '/assets/plant.png', details: 'Details about Environmental industry...' },
-  { name: 'Plastic Pipe Industry', imagePath: '/assets/pipe.png', details: 'Details about Plastic Pipe industry...' },
+  { name: 'Automobile', icon: '✔️' },
+  { name: 'Metal Industry', icon: '✔️' },
+  { name: 'Wire Industry', icon: '✔️' },
+  { name: 'Plastic Pipe Industry', icon: '✔️' },
+  { name: 'Water Treatment & Distribution', icon: '✔️' },
+  { name: 'Food Industries', icon: '✔️' },
+  { name: 'Cold Storage', icon: '✔️' },
+  { name: 'Environmental', icon: '✔️' },
+  { name: 'Animal Feed', icon: '✔️' },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-  hover: { scale: 1.05 },
+// Animation variants for the rows
+const rowVariants = {
+  hiddenLeft: { opacity: 0, x: -100 },
+  hiddenRight: { opacity: 0, x: 100 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
 };
 
 const IndustriesWeServe: React.FC = () => {
-  const [activeIndustry, setActiveIndustry] = useState<string | null>(null);
+  const [inView, setInView] = useState(false); // Track if section is in view
+  const sectionRef = useRef(null); // Create a reference for the section
 
-  const toggleDetails = (name: string) => {
-    setActiveIndustry(activeIndustry === name ? null : name);
-  };
+  // Intersection Observer for triggering animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setInView(true); // Trigger animation when in view
+          } else {
+            setInView(false); // Reset when out of view
+          }
+        });
+      },
+      { threshold: 0.1 } // Trigger when 10% of the section is in view
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <section className="bg-[#263142] text-white py-12">
-      <h2 className="text-center text-4xl font-normal mb-12">Industries we serve</h2>
-      <motion.div 
-        className="flex justify-between items-center gap-20 max-w-6xl mx-auto px-4"
-        initial="hidden"
-        animate="visible"
-        variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
-      >
-        {industries.map((industry) => (
-          <motion.div
-            key={industry.name}
-            className="flex flex-col items-center text-center"
-            variants={cardVariants}
-            whileHover="hover"
-          >
-            {/* Wrapper to keep plus symbol, image, and industry name aligned */}
-            <div className="flex flex-col items-center" style={{ minHeight: '200px' }}>
-              {/* Plus/Minus symbol with a circle around it */}
-              <button 
-                onClick={() => toggleDetails(industry.name)} 
-                className="flex items-center justify-center w-8 h-8 mb-4 text-white text-2xl rounded-full bg-[#1c2733] border border-white hover:bg-white hover:text-[#1c2733] focus:outline-none"
-              >
-                {activeIndustry === industry.name ? '−' : '+'}
-              </button>
+    <section className="py-12 bg-gray-900" ref={sectionRef}>
+      <div className="max-w-6xl mx-auto px-4">
+        {/* Centered Title */}
+        <h2 className="text-center text-3xl font-semibold text-white mb-8">
+          Industries We Serve
+        </h2>
 
-              {/* Industry image */}
-              <motion.img
-                src={industry.imagePath}
-                alt={industry.name}
-                className="w-24 h-24 sm:w-20 sm:h-20 mb-4 object-contain"
-                whileHover={{ scale: 1.1 }}
-              />
-
-              <p className="text-lg font-regular mt-2">{industry.name}</p>
-            </div>
-
-            {/* Details section */}
-            {activeIndustry === industry.name && (
-              <motion.div 
-                className="mt-4 text-sm text-left bg-[#1c2733] p-4 rounded-lg"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                {industry.details}
-              </motion.div>
-            )}
-          </motion.div>
-        ))}
-      </motion.div>
+        {/* Grid with two rows, 5 items per row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          {/* Industry Cards */}
+          {industries.map((industry, index) => (
+            <motion.div
+              key={industry.name}
+              className="border border-gray-700 p-4 w-full min-h-[160px] md:min-h-[200px] rounded-lg text-left bg-gray-800 text-white shadow-lg flex flex-col justify-between"
+              whileHover={{ scale: 1.05 }}
+              initial={index % 2 === 0 ? 'hiddenLeft' : 'hiddenRight'}
+              animate={inView ? 'visible' : index % 2 === 0 ? 'hiddenLeft' : 'hiddenRight'}
+              variants={rowVariants}
+            >
+              <div className="text-3xl mb-2 text-green-400">{industry.icon}</div>
+              <h3 className="text-lg font-semibold mb-2">
+                {industry.name}
+              </h3>
+              <Link href="#" className="text-green-400 mt-2 inline-block hover:underline">
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };
 
-// Export with dynamic import and client-side rendering
-export default dynamic(() => Promise.resolve(IndustriesWeServe), { ssr: false });
+export default IndustriesWeServe;

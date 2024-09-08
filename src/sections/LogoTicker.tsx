@@ -15,11 +15,11 @@ const logoStyle = {
 
 export const LogoTicker = () => {
   return (
-    <div className="py-8 md:py-12 bg-white">
+    <div className="py-8 md:py-12 bg-gray-900">
       <div className="container">
         {/* Heading Section */}
         <div className="text-center mb-8">
-          <h2 className="text-4xl font-medium mb-[50px]">Our Clients</h2>
+          <h2 className="text-4xl font-medium mb-[50px] text-[#FFFFFF]">Our Clients</h2>
         </div>
         
         {/* Logo Ticker Section */}

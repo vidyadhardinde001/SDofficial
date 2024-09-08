@@ -1,48 +1,62 @@
-import React from 'react';
-import 'animate.css'; // Make sure to install this library: npm install animate.css
+"use client";
+
+import React, { useState } from 'react';
 
 const ValuetoProduct = () => {
-  return (
+  // State to track the index of the expanded card
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center p-6">
-      <h1 className="text-5xl font-medium mb-10 mt-8 text-white animate__animated animate__fadeIn">
+  // Function to handle card click
+  const handleCardClick = (index: number) => {
+    setExpandedCard(expandedCard === index ? null : index);
+  };
+
+  // Card data for easier mapping
+  const cards = [
+    'Hardware',
+    'Selection of Right Products',
+    'Engineering Products',
+    'Instrumentation & System Integration',
+    'Energy Monitoring Systems',
+    'Safety Sensor Solutions',
+    'Corrective & Preventive Maintenance',
+    'Custom Programming for PLC, HMI, SCADA, VFD, Servo'
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#121212] flex flex-col items-center justify-center p-6">
+      <h1 className="text-5xl font-medium mb-6 mt-6 text-[#FFFFFF]">
         How we Add value to our Products
       </h1>
-      <div className="w-[80%] sm:w-11/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate__animated animate__fadeIn animate__delay-1s">
 
-        {/*<div className="min-h-screen bg-[#F5F5F5] flex flex-col items-center justify-center p-6">
-      <h1 className="text-4xl font-medium mb-14 mt-10">How we Add value to our Products</h1>
-      <div className="w-[70%] sm:w-10/11 grid grid-cols-3 gap-4">*/}
-
-        {/* First row */}
-        <div className="bg-gray-800 text-gray-100 border border-gray-600 p-4 md:p-6 rounded-xl flex items-center justify-center h-32 hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-95 text-lg md:text-2xl">
-          Hardware
-        </div>
-        <div className="bg-gray-800 text-gray-100 border border-gray-600 p-4 md:p-6 rounded-xl flex items-center justify-center h-32 hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-95 text-lg md:text-2xl">
-          Selection Of right Products
-        </div>
-        <div className="bg-gray-800 text-gray-100 border border-gray-600 p-4 md:p-6 rounded-xl flex items-center justify-center h-32 hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-95 text-lg md:text-2xl">
-          Engineering Products
-        </div>
-        
-        {/* Second row */}
-        <div className="bg-gray-800 text-gray-100 border border-gray-600 p-4 md:p-6 rounded-xl flex items-center justify-center h-48 lg:col-span-2 hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-95 text-lg md:text-2xl">
-          Instrumentation & System Integration
-        </div>
-        <div className="bg-gray-800 text-gray-100 border border-gray-600 p-4 md:p-6 rounded-xl flex items-center justify-center h-38 hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-95 text-lg md:text-2xl">
-          Energy Monitoring Systems
-        </div>
-        <div className="bg-gray-800 text-gray-100 border border-gray-600 p-4 md:p-6 rounded-xl flex items-center justify-center h-34 hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-95 text-lg md:text-2xl">
-          Safety Sensor Solutions
-        </div>
-        
-        {/* Third row */}
-        <div className="bg-gray-800 text-gray-100 border border-gray-600 p-4 md:p-6 rounded-xl flex items-center justify-center h-48 lg:col-span-2 hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-95 text-lg md:text-2xl">
-          Corrective & Preventive Maintenance
-        </div>
-        <div className="bg-gray-800 text-gray-100 border border-gray-600 p-4 md:p-6 rounded-xl flex items-center justify-center h-32 lg:col-span-3 hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-95 text-lg md:text-2xl">
-          Custom Programming for PLC, HMI, SCADA, VFD, Servo
-        </div>
+      {/* Main Content Section */}
+      <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {cards.map((item, index) => (
+          <div
+            key={index}
+            className={`bg-[#282828] text-[#AAAAAA] p-6 rounded-xl text-lg md:text-2xl flex flex-col transition-all duration-300 ease-in-out overflow-hidden border border-[#282828] ${
+              expandedCard === index ? 'h-[150px]' : 'h-24'
+            }`}
+            onClick={() => handleCardClick(index)}
+          >
+            <div className="flex justify-between items-center">
+              <span>{item}</span>
+              <span
+                className={`flex items-center justify-center w-8 h-8 rounded-full text-2xl font-bold cursor-pointer ${
+                  expandedCard === index ? 'bg-[#A259FF] text-[#FFFFFF]' : 'bg-[#CCCCCC] text-[#121212]'
+                }`}
+              >
+                +
+              </span>
+            </div>
+            {expandedCard === index && (
+              <div className="mt-2 text-[#AAAAAA]">
+                {/* Additional content here */}
+                <p>More details about {item}...</p>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

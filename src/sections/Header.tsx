@@ -14,7 +14,7 @@ export const Header = () => {
     visible: { opacity: 1, y: 0 },
   };
   return (
-    <header className="sticky top-0 backdrop-blur-lg z-20">
+    <header className="sticky top-0 backdrop-blur-lg z-50 bg-white">
       {/* <div className="flex justify-center items-center py-3 bg-black text-white text-sm gap-3">
         <p className="text-white/60 hidden md:block">
           Streamline your workflow and boost your productivity
@@ -32,30 +32,8 @@ export const Header = () => {
               <MenuIcon className="h-5 w-5" />
             </div>
 
-            {/*<nav className="hidden md:flex lg:gap-14 md:gap-8 text-black/60 justify-center items-center bg-white px-4 py-2 rounded-full sm:w-[320px] md:w-[500px] lg:w-[700px] xl:w-[1200px] max-w-screen-md mx-auto">
-            <Link href="/" className="relative group hover:text-black">
-                Home
-                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#fb845d] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
-              </Link>
-              <Link href="/projects" className="relative group hover:text-black">
-                Projects
-                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#fb845d] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
-              </Link>
-              <Link href="/gallery" className="relative group hover:text-black">
-                Gallery
-                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#fb845d] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
-              </Link>
-              <Link href="/contact" className="relative group hover:text-black">
-                Contact
-                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#fb845d] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
-              </Link>
-              <Link href="/about" className="relative group hover:text-black">
-                About Us
-                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#fb845d] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
-              </Link>*/}
-
-            <nav className="hidden md:flex lg:gap-14 md:gap-8 text-black/60 justify-center items-center bg-[#F5F5F5] px-4 py-2 rounded-full sm:w-[320px] md:w-[500px] lg:w-[700px] xl:w-[1200px] max-w-screen-md mx-auto">
-              <Link href="/" className="relative group hover:text-black">
+            <nav className="hidden md:flex lg:gap-14 md:gap-8 text-black/60 justify-center items-center bg-white px-4 py-2 rounded-full sm:w-[320px] md:w-[500px] lg:w-[700px] xl:w-[1200px] max-w-screen-md mx-auto">
+              <Link href="#" className="relative group hover:text-black">
                 Home
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>

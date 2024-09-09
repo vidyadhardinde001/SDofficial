@@ -1,68 +1,82 @@
-"use client"; // Ensure this is marked as a Client Component
+"use client";
 
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 
-const testimonials = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  "Another testimonial here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "One more testimonial to showcase. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Fourth testimonial just to add more content.",
-  "Fifth testimonial as an extra card."
-];
+const TestimonialSection: React.FC = () => {
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  let isDragging = false;
+  let startX: number;
+  let scrollLeft: number;
 
-const TestimonialsSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handlePrevClick = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-    );
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDragging = true;
+    startX = e.pageX - (scrollContainerRef.current?.offsetLeft || 0);
+    scrollLeft = scrollContainerRef.current?.scrollLeft || 0;
   };
 
-  const handleNextClick = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-    );
+  const handleMouseLeave = () => {
+    isDragging = false;
+  };
+
+  const handleMouseUp = () => {
+    isDragging = false;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - (scrollContainerRef.current.offsetLeft || 0);
+    const walk = (x - startX) * 2;
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
   };
 
   return (
-    <div className="min-h-[500px] bg-white flex flex-col items-center justify-center p-6">
-      <h1 className="text-4xl font-medium mb-10">Hear what they have to say about our professional services.</h1>
-
-      <div className="relative w-full max-w-screen-lg overflow-hidden">
+    <>
+      <div className="py-10 px-5">
+        <h2 className="text-3xl font-bold text-center mb-10">Testimonials</h2>
         <div
-          className="flex transition-transform duration-500"
-          style={{ transform: `translateX(-${currentIndex * (100 / 2)}%)` }} // Adjust to show two cards at once
+          ref={scrollContainerRef}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+          className="flex gap-6 overflow-x-scroll cursor-grab select-none custom-scrollbar"
         >
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="w-[700px] h-70 flex-shrink-0 p-4">
-              <div className="bg-[#0074F5] text-white p-8 rounded-xl flex items-center justify-center h-[300px]"> 
-                <p className="text-lg text-center">
-                  <span className="text-2xl">“</span>
-                  {testimonial}
-                  <span className="text-2xl">”</span>
-                </p>
+          {[...Array(5)].map((_, index) => (
+            <div
+              key={index}
+              className="min-w-[300px] max-w-[300px] bg-white shadow-md rounded-lg p-6 flex-shrink-0"
+            >
+              <p className="text-gray-600 mb-4">
+                "This product exceeded my expectations! The quality is top-notch and the service was excellent."
+              </p>
+              <div className="flex items-center">
+                <img
+                  src={`https://i.pravatar.cc/100?img=${index + 1}`}
+                  alt="User Avatar"
+                  className="w-12 h-12 rounded-full mr-4"
+                />
+                <div>
+                  <p className="font-bold">John Doe {index + 1}</p>
+                  <p className="text-sm text-gray-500">Customer</p>
+                </div>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Arrows */}
-        <button
-          onClick={handlePrevClick}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-orange-500 text-white p-3 rounded-full shadow-lg hover:bg-orange-600 transition"
-        >
-          «
-        </button>
-        <button
-          onClick={handleNextClick}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-orange-500 text-white p-3 rounded-full shadow-lg hover:bg-orange-600 transition"
-        >
-          »
-        </button>
       </div>
-    </div>
+      
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .custom-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;     /* Firefox */
+        }
+      `}</style>
+    </>
   );
 };
 
-export default TestimonialsSection;
+export default TestimonialSection;

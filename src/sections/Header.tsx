@@ -32,7 +32,7 @@ export const Header = () => {
               <MenuIcon className="h-5 w-5" />
             </div>
 
-            <nav className="hidden md:flex lg:gap-14 md:gap-8 text-black/60 justify-center items-center bg-[#F5F5F5] px-4 py-2 rounded-full sm:w-[320px] md:w-[500px] lg:w-[700px] xl:w-[1200px] max-w-screen-md mx-auto">
+            <nav className="hidden md:flex lg:gap-14 md:gap-8 text-black/60 justify-center items-center bg-white px-4 py-2 rounded-full sm:w-[320px] md:w-[500px] lg:w-[700px] xl:w-[1200px] max-w-screen-md mx-auto">
               <Link href="/" className="relative group hover:text-black">
                 Home
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>

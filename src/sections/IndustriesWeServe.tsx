@@ -1,19 +1,19 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link'; // Import the Link component from Next.js
+import Link from 'next/link';
 
+// Define the industries with symbols instead of icons
 const industries = [
-  { name: 'Automobile', icon: '✔️' },
-  { name: 'Metal Industry', icon: '✔️' },
-  { name: 'Wire Industry', icon: '✔️' },
-  { name: 'Plastic Pipe Industry', icon: '✔️' },
-  { name: 'Water Treatment & Distribution', icon: '✔️' },
-  { name: 'Food Industries', icon: '✔️' },
-  { name: 'Cold Storage', icon: '✔️' },
-  { name: 'Environmental', icon: '✔️' },
-  { name: 'Animal Feed', icon: '✔️' },
-];
+  { name: 'Automobile', symbol: '🚗' },
+  { name: 'Metal Industry', symbol: '⚙️' },
+  { name: 'Wire Industry', symbol: '🔧' },
+  { name: 'Plastic Pipe Industry', symbol: '🛠️' },
+  { name: 'Water Treatment & Distribution', symbol: '💧' },
+  { name: 'Food Industries', symbol: '🍔' },
+  { name: 'Cold Storage', symbol: '❄️' },
+  { name: 'Environmental', symbol: '🌿' },
+  { name: 'Animal Feed', symbol: '🐄' },];
 
 // Animation variants for the rows
 const rowVariants = {
@@ -53,31 +53,37 @@ const IndustriesWeServe: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-12 bg-gray-900" ref={sectionRef}>
+    <section className="py-12 bg-white" ref={sectionRef}>
       <div className="max-w-6xl mx-auto px-4">
         {/* Centered Title */}
-        <h2 className="text-center text-3xl font-semibold text-white mb-8">
+        <h2 className="text-center text-3xl font-semibold text-black mb-8">
           Industries We Serve
         </h2>
 
         {/* Grid with dynamic number of rows */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {/* Industry Cards */}
           {industries.map((industry, index) => (
             <motion.div
               key={industry.name}
-              className="border border-gray-700 p-4 w-full min-h-[160px] md:min-h-[200px] rounded-lg text-left bg-gray-800 text-white shadow-lg flex flex-col justify-between"
+              className="border border-gray-200 p-4 rounded-lg text-center bg-white shadow-md hover:shadow-lg transition-shadow duration-300"
               whileHover={{ scale: 1.05 }}
               initial={index % 2 === 0 ? 'hiddenLeft' : 'hiddenRight'}
               animate={inView ? 'visible' : index % 2 === 0 ? 'hiddenLeft' : 'hiddenRight'}
               variants={rowVariants}
             >
-              <div className="text-3xl mb-2 text-green-400">{industry.icon}</div>
-              <h3 className="text-lg font-semibold mb-2">
+              <div className="flex justify-center mb-4">
+                {/* Render the symbol */}
+                <div className="text-4xl text-blue-500">
+                  {industry.symbol}
+                </div>
+              </div>
+              <h3 className="text-lg font-semibold text-black mb-2">
                 {industry.name}
               </h3>
-              <Link href="#" className="text-green-400 mt-2 inline-block hover:underline">
-              </Link>
+              <p className="text-sm text-gray-500">
+                {industry.jobs}
+              </p>
             </motion.div>
           ))}
         </div>

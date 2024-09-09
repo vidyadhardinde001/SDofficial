@@ -28,7 +28,6 @@ export default function Home() {
       
       <LogoTicker />
       <Projects />
-      <Gallery />
       {/* <ProductShowcase /> */}
       {/* <Pricing /> */}
       {/* <Testimonials /> */}

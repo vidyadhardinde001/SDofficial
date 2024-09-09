@@ -70,7 +70,7 @@ const projectsData: Project[] = [
 
 const Projects: React.FC = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div id="projects-section" className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-medium mb-8 text-center text-black">
         Our Projects
       </h1>

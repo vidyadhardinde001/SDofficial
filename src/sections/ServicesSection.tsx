@@ -5,14 +5,14 @@ import Scene2 from "@/components/Scene2";
 
 const ServicesSection: React.FC = () => {
   return (
-    <div className="bg-[#263142] text-white py-10 px-5">
+    <div className="bg-white text-black py-10 px-5">
       <h1 className="text-center text-4xl font-bold mb-10">Our Services</h1>
       <div className="flex flex-col gap-8 w-full md:w-3/4 mx-auto">
         
-        {/* First Card */}
-        <div className="flex flex-col md:flex-row bg-[#121212] p-5 border border-gray-600 shadow-lg hover:shadow-xl transition-shadow duration-300 h-[300px]">
-          <div className="flex-1 flex items-center justify-center md:justify-center">
-            <Scene />
+        {/* First Section */}
+        <div className="flex flex-col md:flex-row">
+          <div className="flex-1 flex items-center justify-center">
+          <Scene />
           </div>
           <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-4">
             <h2 className="text-xl font-semibold">PLC, HMI, SCADA Software Development</h2>
@@ -26,10 +26,12 @@ const ServicesSection: React.FC = () => {
           </div>
         </div>
         
-        {/* Second Card */}
-        <div className="flex flex-col md:flex-row-reverse bg-[#121212] p-5 border border-gray-600 shadow-lg hover:shadow-xl transition-shadow duration-300 h-[300px]">
-          <div className="flex-1 flex items-center justify-center md:justify-center">
-            <Scene />
+        <hr className="border-gray-500 my-8" />
+        
+        {/* Second Section */}
+        <div className="flex flex-col md:flex-row-reverse">
+          <div className="flex-1 flex items-center justify-center">
+            
           </div>
           <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-4">
             <h2 className="text-xl font-semibold">Maintenance Services</h2>
@@ -43,10 +45,12 @@ const ServicesSection: React.FC = () => {
             <a href="#" className="text-blue-400">READ MORE &gt;</a>
           </div>
         </div>
+        
+        <hr className="border-gray-500 my-8" />
 
-        {/* Third Card */}
-        <div className="flex flex-col md:flex-row bg-[#121212] p-5 border border-gray-600 shadow-lg hover:shadow-xl transition-shadow duration-300 h-[300px]">
-          <div className="flex-1 flex items-center justify-center md:justify-center h-64">
+        {/* Third Section */}
+        <div className="flex flex-col md:flex-row">
+          <div className="flex-1 flex items-center justify-center h-64">
             <Scene2 />
           </div>
           <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-4">
@@ -58,10 +62,12 @@ const ServicesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Fourth Card */}
-        <div className="flex flex-col md:flex-row-reverse bg-[#121212] p-5 border border-gray-600 shadow-lg hover:shadow-xl transition-shadow duration-300 h-[300px]">
-          <div className="flex-1 flex items-center justify-center md:justify-center">
-            <Scene />
+        <hr className="border-gray-500 my-8" />
+
+        {/* Fourth Section */}
+        <div className="flex flex-col md:flex-row-reverse">
+          <div className="flex-1 flex items-center justify-center">
+            
           </div>
           <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-4">
             <h2 className="text-xl font-semibold">Field Wiring</h2>
@@ -71,22 +77,6 @@ const ServicesSection: React.FC = () => {
             <a href="#" className="text-blue-400">READ MORE &gt;</a>
           </div>
         </div>
-
-        {/* fifth Card */}
-        <div className="flex flex-col md:flex-row-reverse bg-[#121212] p-5 border border-gray-600 shadow-lg hover:shadow-xl transition-shadow duration-300 h-[300px]">
-          <div className="flex-1 flex items-center justify-center md:justify-center">
-            <Scene />
-          </div>
-          <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-4">
-            <h2 className="text-xl font-semibold">Field Wiring</h2>
-            <p>
-              In general, field wiring is wiring that is connected between equipment items or equipment components that are connected upon installation in the field.
-            </p>
-            <a href="#" className="text-blue-400">READ MORE &gt;</a>
-          </div>
-        </div>
-
-     
 
       </div>
     </div>

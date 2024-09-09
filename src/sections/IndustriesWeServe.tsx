@@ -24,7 +24,6 @@ const rowVariants = {
 
 const IndustriesWeServe: React.FC = () => {
   const [inView, setInView] = useState(false); // Track if section is in view
-  const [viewAll, setViewAll] = useState(false); // Track if "View All" is clicked
   const sectionRef = useRef(null); // Create a reference for the section
 
   // Intersection Observer for triggering animations
@@ -53,9 +52,6 @@ const IndustriesWeServe: React.FC = () => {
     };
   }, []);
 
-  // Limit the number of industries displayed based on viewAll state
-  const visibleIndustries = viewAll ? industries : industries.slice(0, 5);
-
   return (
     <section className="py-12 bg-gray-900" ref={sectionRef}>
       <div className="max-w-6xl mx-auto px-4">
@@ -64,10 +60,10 @@ const IndustriesWeServe: React.FC = () => {
           Industries We Serve
         </h2>
 
-        {/* Grid with dynamic number of rows based on viewAll state */}
+        {/* Grid with dynamic number of rows */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {/* Industry Cards */}
-          {visibleIndustries.map((industry, index) => (
+          {industries.map((industry, index) => (
             <motion.div
               key={industry.name}
               className="border border-gray-700 p-4 w-full min-h-[160px] md:min-h-[200px] rounded-lg text-left bg-gray-800 text-white shadow-lg flex flex-col justify-between"
@@ -84,16 +80,6 @@ const IndustriesWeServe: React.FC = () => {
               </Link>
             </motion.div>
           ))}
-        </div>
-
-        {/* "View All" Button */}
-        <div className="text-center mt-8">
-          <button
-            className="px-6 py-2 bg-gray-500 text-white rounded-full hover:bg-gray-600 transition"
-            onClick={() => setViewAll(!viewAll)}
-          >
-            {viewAll ? 'Show Less' : 'View All'}
-          </button>
         </div>
       </div>
     </section>

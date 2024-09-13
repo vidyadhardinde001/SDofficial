@@ -15,6 +15,7 @@ import ServicesSection from "@/sections/ServicesSection";
 import Scene from "@/components/Scene";
 import Projects from "@/sections/Projects";
 import Gallery from "@/sections/gallery";
+import AboutUs from "@/sections/aboutus";
 
 
 export default function Home() {
@@ -32,6 +33,8 @@ export default function Home() {
       {/* <Testimonials /> */}
       {/* <CallToAction /> */}
       <TestimonialSection />
+      <Gallery />
+      <AboutUs/>
       <ContactSection />
       <QuoteSection />
       <Footer />

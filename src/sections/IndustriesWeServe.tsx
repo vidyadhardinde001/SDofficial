@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 
 // Define the industries with symbols instead of icons
 const industries = [
@@ -13,7 +12,8 @@ const industries = [
   { name: 'Food Industries', symbol: '🍔' },
   { name: 'Cold Storage', symbol: '❄️' },
   { name: 'Environmental', symbol: '🌿' },
-  { name: 'Animal Feed', symbol: '🐄' },];
+  { name: 'Animal Feed', symbol: '🐄' },
+];
 
 // Animation variants for the rows
 const rowVariants = {
@@ -61,7 +61,7 @@ const IndustriesWeServe: React.FC = () => {
         </h2>
 
         {/* Grid with dynamic number of rows */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
           {/* Industry Cards */}
           {industries.map((industry, index) => (
             <motion.div
@@ -81,9 +81,6 @@ const IndustriesWeServe: React.FC = () => {
               <h3 className="text-lg font-semibold text-black mb-2">
                 {industry.name}
               </h3>
-              <p className="text-sm text-gray-500">
-                {industry.jobs}
-              </p>
             </motion.div>
           ))}
         </div>

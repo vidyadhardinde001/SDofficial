@@ -53,12 +53,12 @@ const IndustriesWeServe: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-12 bg-white" ref={sectionRef}>
-      <div className="max-w-6xl mx-auto px-4">
+    <section className="py-12 bg-[white]" ref={sectionRef}>
+      <div className="max-w-6xl mx-auto px-4 ">
         {/* Centered Title */}
-        <h2 className="text-center text-3xl font-semibold text-black mb-8">
+        <h1 className="text-5xl font-medium mb-6 mt-6 text-[black] ">
           Industries We Serve
-        </h2>
+        </h1>
 
         {/* Grid with dynamic number of rows */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
@@ -66,7 +66,7 @@ const IndustriesWeServe: React.FC = () => {
           {industries.map((industry, index) => (
             <motion.div
               key={industry.name}
-              className="border border-gray-200 p-4 rounded-lg text-center bg-white shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="border border-[black] p-4 rounded-lg text-center bg-white shadow-md hover:shadow-lg transition-shadow duration-300"
               whileHover={{ scale: 1.05 }}
               initial={index % 2 === 0 ? 'hiddenLeft' : 'hiddenRight'}
               animate={inView ? 'visible' : index % 2 === 0 ? 'hiddenLeft' : 'hiddenRight'}

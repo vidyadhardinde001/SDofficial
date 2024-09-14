@@ -12,8 +12,7 @@ const industries = [
   { name: 'Food Industries', symbol: '🍔' },
   { name: 'Cold Storage', symbol: '❄️' },
   { name: 'Environmental', symbol: '🌿' },
-  { name: 'Animal Feed', symbol: '🐄' },
-];
+  { name: 'Animal Feed', symbol: '🐄' },];
 
 // Updated animation variants for fade-in effect only
 const fadeInVariants = {
@@ -59,7 +58,7 @@ const IndustriesWeServe: React.FC = () => {
         </h2>
 
         {/* Grid with dynamic number of rows */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
           {/* Industry Cards */}
           {industries.map((industry) => (
             <motion.div

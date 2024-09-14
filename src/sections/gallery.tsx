@@ -1,68 +1,43 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 const Gallery: React.FC = () => {
-  const galleryImages = [
-    { id: 1, src: "/assets/mixer.png", alt: "Image 1" },
-    { id: 2, src: "/assets/robo.png", alt: "Image 2" },
-    { id: 3, src: "/assets/foundary.png", alt: "Image 3" },
-    { id: 4, src: "/assets/incernator.png", alt: "Image 4" },
-    { id: 5, src: "/assets/treatment.png", alt: "Image 5" },
-    { id: 6, src: "/assets/wirestranding.png", alt: "Image 6" },
-    { id: 7, src: "/assets/specialpurpose.png", alt: "Image 7" },
-  ];
+  // State for storing gallery images
+  const [galleryImages, setGalleryImages] = useState([
+    { id: 1, src: "/assets/mixer.png", alt: "Mixer" },
+    { id: 2, src: "/assets/robo.png", alt: "Robo" },
+    { id: 3, src: "/assets/foundary.png", alt: "Foundary" },
+    { id: 4, src: "/assets/incernator.png", alt: "Incernator" },
+    { id: 5, src: "/assets/treatment.png", alt: "Treatment" },
+    { id: 6, src: "/assets/wirestranding.png", alt: "Wire Stranding" },
+    { id: 7, src: "/assets/specialpurpose.png", alt: "Special Purpose" },
+    { id: 8, src: "/assets/mixer.png", alt: "Mixer" },
+    { id: 9, src: "/assets/robo.png", alt: "Robo" },
+  ]);
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <div className="col-span-2 row-span-2">
-          <img
-            src={galleryImages[0].src}
-            alt={galleryImages[0].alt}
-            className="w-full h-full object-cover rounded-lg"
-          />
-        </div>
-        <div className="col-span-1 row-span-1">
-          <img
-            src={galleryImages[1].src}
-            alt={galleryImages[1].alt}
-            className="w-full h-full object-cover rounded-lg"
-          />
-        </div>
-        <div className="col-span-1 row-span-2">
-          <img
-            src={galleryImages[2].src}
-            alt={galleryImages[2].alt}
-            className="w-full h-full object-cover rounded-lg"
-          />
-        </div>
-        <div className="col-span-1 row-span-1">
-          <img
-            src={galleryImages[3].src}
-            alt={galleryImages[3].alt}
-            className="w-full h-full object-cover rounded-lg"
-          />
-        </div>
-        <div className="col-span-2 row-span-1">
-          <img
-            src={galleryImages[4].src}
-            alt={galleryImages[4].alt}
-            className="w-full h-full object-cover rounded-lg"
-          />
-        </div>
-        <div className="col-span-1 row-span-1">
-          <img
-            src={galleryImages[5].src}
-            alt={galleryImages[5].alt}
-            className="w-full h-full object-cover rounded-lg"
-          />
-        </div>
-        <div className="col-span-1 row-span-1">
-          <img
-            src={galleryImages[6].src}
-            alt={galleryImages[6].alt}
-            className="w-full h-full object-cover rounded-lg"
-          />
-        </div>
+      {/* Gallery Title */}
+      <h2 className="text-3xl font-bold text-center mb-6">Gallery</h2>
+
+      {/* Gallery Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {galleryImages.map((image) => (
+          <div
+            key={image.id}
+            className="relative group overflow-hidden rounded-lg"
+          >
+            <img
+              src={image.src}
+              alt={image.alt}
+              className="w-full h-full object-cover rounded-lg transform transition-transform duration-300 ease-in-out hover:scale-105"
+              style={{ width: '300px', height: '300px' }}  // Set width and height
+            />
+            <p className="text-center text-lg font-medium mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {image.alt}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );

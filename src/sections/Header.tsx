@@ -54,7 +54,7 @@ export const Header = () => {
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
             </nav>
-            <button className="bg-[#0074F5] hover:bg-black text-white px-4 py-2 rounded-full font-medium inline-flex align-items justify-center tracking-tight ml-auto hidden md:block">
+            <button className="bg-[#0074F5] hover:bg-black text-white px-4 py-2 rounded-md font-medium inline-flex align-items justify-center tracking-tight ml-auto hidden md:block">
               Call Us
             </button>
           </div>

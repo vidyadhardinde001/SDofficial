@@ -2,7 +2,7 @@ import React from 'react';
 
 const ContactSection: React.FC = () => {
   return (
-    <section className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-gradient-to-r from-white via-white to-white">
+    <section className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-gradient-to-r bg-white">
       <div className="flex flex-col md:flex-row justify-between items-start md:mx-0 lg:mx-[200px] mb-[100px]">
         {/* Left Side: Contact Info */}
         <div className="w-full md:w-6/12 md:mt-0">
@@ -29,22 +29,22 @@ const ContactSection: React.FC = () => {
             <input
               type="email"
               placeholder="E-mail Address"
-              className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
+              className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
             />
             <input
               type="text"
               placeholder="Phone Number"
-              className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
+              className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
             />
             <input
               type="text"
               placeholder="Your Name"
-              className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
+              className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
             />
             <textarea
               placeholder="Message...."
               rows={4}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
+              className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
             ></textarea>
             
             <div className="flex items-start space-x-2 mt-4">
@@ -56,7 +56,7 @@ const ContactSection: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full py-3 mt-4 text-white bg-[#0074F5] hover:bg-black rounded-full font-semibold tracking-wide flex items-center justify-center"
+              className="w-full py-3 mt-4 text-white bg-[#0074F5] hover:bg-black rounded-md font-semibold tracking-wide flex items-center justify-center"
             >
               Send <span className="ml-2">➔</span>
             </button>

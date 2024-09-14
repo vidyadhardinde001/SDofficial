@@ -72,13 +72,13 @@ export const Hero = () => {
 
           <div className="flex flex-row justify-center gap-2 items-center mt-[30px]">
 
-            <button className="btn btn-primary rounded-full bg-[#fb845d]">
+            <button className="btn btn-primary rounded-md bg-[#fb845d]">
               Go to Projects
             </button>
 
             {/*<button className="btn btn-primary rounded-full bg-[#0074F5]">Go to Projects</button>*/}
 
-            <button className="btn rounded-full bg-white gap-1 flex items-center">
+            <button className="btn rounded-md bg-white gap-1 flex items-center">
               <span>Contact Us</span>
               <ArrowIcon className="h-5 w-5 ml-2" />
             </button>

@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 
 // Define the industries with symbols instead of icons
 const industries = [
@@ -13,28 +12,27 @@ const industries = [
   { name: 'Food Industries', symbol: '🍔' },
   { name: 'Cold Storage', symbol: '❄️' },
   { name: 'Environmental', symbol: '🌿' },
-  { name: 'Animal Feed', symbol: '🐄' },];
+  { name: 'Animal Feed', symbol: '🐄' },
+];
 
-// Animation variants for the rows
-const rowVariants = {
-  hiddenLeft: { opacity: 0, x: -100 },
-  hiddenRight: { opacity: 0, x: 100 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
+// Updated animation variants for fade-in effect only
+const fadeInVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8 } },
 };
 
 const IndustriesWeServe: React.FC = () => {
   const [inView, setInView] = useState(false); // Track if section is in view
   const sectionRef = useRef(null); // Create a reference for the section
 
-  // Intersection Observer for triggering animations
+  // Intersection Observer for triggering animations once
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setInView(true); // Trigger animation when in view
-          } else {
-            setInView(false); // Reset when out of view
+            observer.unobserve(entry.target); // Unobserve once animation is triggered
           }
         });
       },
@@ -63,14 +61,14 @@ const IndustriesWeServe: React.FC = () => {
         {/* Grid with dynamic number of rows */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {/* Industry Cards */}
-          {industries.map((industry, index) => (
+          {industries.map((industry) => (
             <motion.div
               key={industry.name}
               className="border border-gray-200 p-4 rounded-lg text-center bg-white shadow-md hover:shadow-lg transition-shadow duration-300"
               whileHover={{ scale: 1.05 }}
-              initial={index % 2 === 0 ? 'hiddenLeft' : 'hiddenRight'}
-              animate={inView ? 'visible' : index % 2 === 0 ? 'hiddenLeft' : 'hiddenRight'}
-              variants={rowVariants}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'} // Fade-in effect
+              variants={fadeInVariants}
             >
               <div className="flex justify-center mb-4">
                 {/* Render the symbol */}
@@ -81,9 +79,7 @@ const IndustriesWeServe: React.FC = () => {
               <h3 className="text-lg font-semibold text-black mb-2">
                 {industry.name}
               </h3>
-              <p className="text-sm text-gray-500">
-                {industry.jobs}
-              </p>
+          
             </motion.div>
           ))}
         </div>

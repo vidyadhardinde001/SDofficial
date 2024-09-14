@@ -32,7 +32,7 @@ const TestimonialSection: React.FC = () => {
 
   return (
     <>
-      <div className="py-10 px-5">
+      <div className="py-10 px-5 bg-[#EAEEFE]">
         <h2 className="text-3xl font-bold text-center mb-10">Testimonials</h2>
         <div
           ref={scrollContainerRef}

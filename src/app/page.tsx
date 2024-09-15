@@ -26,14 +26,8 @@ export default function Home() {
       <ServicesSection />
       <ValuetoProduct />
       <IndustriesWeServe />
-      
       <LogoTicker />
-      {/* <ProductShowcase /> */}
-      {/* <Pricing /> */}
-      {/* <Testimonials /> */}
-      {/* <CallToAction /> */}
       <TestimonialSection />
-      <Gallery />
       <AboutUs/>
       <ContactSection />
       <QuoteSection />

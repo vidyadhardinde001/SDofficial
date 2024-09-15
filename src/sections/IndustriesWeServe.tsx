@@ -1,18 +1,18 @@
-'use client';
-import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+"use client";
+import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 // Define the industries with symbols instead of icons
 const industries = [
-  { name: 'Automobile', symbol: '🚗' },
-  { name: 'Metal Industry', symbol: '⚙️' },
-  { name: 'Wire Industry', symbol: '🔧' },
-  { name: 'Plastic Pipe Industry', symbol: '🛠️' },
-  { name: 'Water Treatment & Distribution', symbol: '💧' },
-  { name: 'Food Industries', symbol: '🍔' },
-  { name: 'Cold Storage', symbol: '❄️' },
-  { name: 'Environmental', symbol: '🌿' },
-  { name: 'Animal Feed', symbol: '🐄' },
+  { name: "Automobile", symbol: "🚗" },
+  { name: "Metal Industry", symbol: "⚙️" },
+  { name: "Wire Industry", symbol: "🔧" },
+  { name: "Plastic Pipe Industry", symbol: "🛠️" },
+  { name: "Water Treatment & Distribution", symbol: "💧" },
+  { name: "Food Industries", symbol: "🍔" },
+  { name: "Cold Storage", symbol: "❄️" },
+  { name: "Environmental", symbol: "🌿" },
+  { name: "Animal Feed", symbol: "🐄" },
 ];
 
 // Animation variants for the rows
@@ -56,7 +56,7 @@ const IndustriesWeServe: React.FC = () => {
     <section className="py-12 bg-[white]" ref={sectionRef}>
       <div className="max-w-6xl mx-auto px-4 ">
         {/* Centered Title */}
-        <h1 className="text-5xl font-medium mb-6 mt-6 text-[black] ">
+        <h1 className="text-5xl font-medium mb-6 mt-6 text-[black] text-center">
           Industries We Serve
         </h1>
 
@@ -68,15 +68,19 @@ const IndustriesWeServe: React.FC = () => {
               key={industry.name}
               className="border border-[black] p-4 rounded-lg text-center bg-white shadow-md hover:shadow-lg transition-shadow duration-300"
               whileHover={{ scale: 1.05 }}
-              initial={index % 2 === 0 ? 'hiddenLeft' : 'hiddenRight'}
-              animate={inView ? 'visible' : index % 2 === 0 ? 'hiddenLeft' : 'hiddenRight'}
+              initial={index % 2 === 0 ? "hiddenLeft" : "hiddenRight"}
+              animate={
+                inView
+                  ? "visible"
+                  : index % 2 === 0
+                  ? "hiddenLeft"
+                  : "hiddenRight"
+              }
               variants={rowVariants}
             >
               <div className="flex justify-center mb-4">
                 {/* Render the symbol */}
-                <div className="text-4xl text-blue-500">
-                  {industry.symbol}
-                </div>
+                <div className="text-4xl text-blue-500">{industry.symbol}</div>
               </div>
               <h3 className="text-lg font-semibold text-black mb-2">
                 {industry.name}

@@ -1,38 +1,51 @@
-import React from 'react';
+import React from "react";
 
 const LearningTransformation = () => {
   return (
-    <section className="bg-[white] py-12">
+    <section className="bg-[gray-600] py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Left Section: Text */}
           <div className="bg-white p-8 rounded-lg shadow-md">
-            <p className="text-4xl font-bold text-black mb-2 leading-tight">About Us</p>
-            <br />
-            <p className="text-gray-600 text-lg">
-            We Are Manufacturers Of Custom made Industrial Control Panels And Industrial Automation Expertise over 3 Years with System Integration, Plant Automation, Turnkey Projects & Corrective and Preventive maintenance.
+            <p className="text-4xl font-bold text-black mb-2 leading-tight">
+              About Us
             </p>
             <br />
             <p className="text-gray-600 text-lg">
-            We Offer Factory Automation Products (PLC,SCADA, HMI,VFD, AC Servo ) of world renowned brands. Custom Software development & On site commissioning services, Energy Monitoring, Industrial Safety Products & solutions, Distribution Panel for low Voltage & MCC Panels.
+              We Are Manufacturers Of Custom made Industrial Control Panels And
+              Industrial Automation Expertise over 3 Years with System
+              Integration, Plant Automation, Turnkey Projects & Corrective and
+              Preventive maintenance.
             </p>
             <br />
             <p className="text-gray-600 text-lg">
-            Our products & services ’ high quality is the result of constant leverage in know-how as well as in technologies which are essential characteristics for offering solutions that perfectly meet our Customer's specific needs in terms of technology and efficiency.
+              We Offer Factory Automation Products (PLC, SCADA, HMI, VFD, AC
+              Servo) of world-renowned brands. Custom Software development &
+              On-site commissioning services, Energy Monitoring, Industrial
+              Safety Products & solutions, Distribution Panel for low Voltage &
+              MCC Panels.
+            </p>
+            <br />
+            <p className="text-gray-600 text-lg">
+              Our products & services ’ high quality is the result of constant
+              leverage in know-how as well as in technologies which are
+              essential characteristics for offering solutions that perfectly
+              meet our Customer's specific needs in terms of technology and
+              efficiency.
             </p>
           </div>
 
           {/* Right Section: Image and Stats */}
           <div className="flex flex-col items-center">
             {/* Image Section */}
-            <div className="w-full h-64 mb-6">
-              <img 
-                src="/assets/" 
-                alt="Logo" 
-                className="w-full h-full object-cover rounded-lg shadow-md"
+            <div className="w-full mb-6 flex justify-center">
+              <img
+                src="/assets/SDlogo.png"
+                alt="Logo"
+                className="max-w-[200px] max-h-[200px] object-contain rounded-lg shadow-md" // Adjusted width and height
               />
             </div>
-            
+
             {/* Stats Section */}
             <div className="grid grid-cols-2 gap-6 w-full">
               <div className="bg-white p-4 rounded-lg shadow-md text-center">

@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Light Saas Landing Page",
+  title: "Siddhivinayak Engineers",
   description: "Template created by Frontend Tribe",
 };
 

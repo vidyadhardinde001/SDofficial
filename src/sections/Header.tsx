@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import Link from 'next/link';
 import { useState } from "react";
 
-
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -45,7 +44,7 @@ export const Header = () => {
                 Projects
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
-              <Link href="/gallary" className="relative group hover:text-black">
+              <Link href="/gallery" className="relative group hover:text-black">
                 Gallery
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
@@ -58,9 +57,12 @@ export const Header = () => {
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
             </nav>
-            <button className="bg-[#0074F5] hover:bg-black text-white px-4 py-2 rounded-md font-medium inline-flex align-items justify-center tracking-tight ml-auto hidden md:block">
+            <a
+              href="tel:+91 7558341063" // Replace with your actual phone number
+              className="bg-[#0074F5] hover:bg-black text-white px-4 py-2 rounded-md font-medium inline-flex align-items justify-center tracking-tight ml-auto hidden md:block"
+            >
               Call Us
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -80,21 +82,25 @@ export const Header = () => {
             Projects
             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
           </Link>
-          <Link href="#" className="relative group text-lg py-2" onClick={() => setIsMenuOpen(false)}>
+          <Link href="/gallery" className="relative group text-lg py-2" onClick={() => setIsMenuOpen(false)}>
             Gallery
             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
           </Link>
-          <Link href="#" className="relative group text-lg py-2" onClick={() => setIsMenuOpen(false)}>
+          <Link href="/contactus" className="relative group text-lg py-2" onClick={() => setIsMenuOpen(false)}>
             Contact
             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
           </Link>
-          <Link href="#" className="relative group text-lg py-2" onClick={() => setIsMenuOpen(false)}>
+          <Link href="/aboutus" className="relative group text-lg py-2" onClick={() => setIsMenuOpen(false)}>
             About Us
             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
           </Link>
-          <button className="bg-[#575FF2] hover:bg-[#2E38F2] text-white px-4 py-2 rounded-full font-medium mt-4" onClick={() => setIsMenuOpen(false)}>
+          <a
+            href="tel:+91 7558341063" // Replace with your actual phone number
+            className="bg-[#575FF2] hover:bg-[#2E38F2] text-white px-4 py-2 rounded-full font-medium mt-4"
+            onClick={() => setIsMenuOpen(false)}
+          >
             Call Us
-          </button>
+          </a>
         </div>
       </nav>
     </header>

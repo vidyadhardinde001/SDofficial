@@ -1,6 +1,6 @@
 "use client";
 import ArrowRight from "@/assets/arrow-right.svg";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo1.png";
 import Image from "next/image";
 import MenuIcon from "@/assets/menu.svg";
 import { motion } from "framer-motion";
@@ -17,10 +17,10 @@ export const Header = () => {
   return (
     <header className="sticky top-0 backdrop-blur-lg z-50 bg-white">
 
-      <div className="py-3">
+      <div className="py-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            <Image src={logo} alt="Saas Logo" height={30} width={130} />
+            <Image src={logo} alt="Saas Logo" height={10} width={80} />
 
             {/* Mobile Menu Button */}
             <button

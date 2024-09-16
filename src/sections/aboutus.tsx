@@ -42,7 +42,7 @@ const LearningTransformation = () => {
               <img
                 src="/assets/SDfinallogo.jpg"
                 alt="Logo"
-                className="max-w-[200px] max-h-[200px] object-contain rounded-lg shadow-md" // Adjusted width and height
+                className="w-[1500px] h-[1500px] max-w-[1200px] max-h-[360px] object-contain rounded-lg shadow-md bg-[#f7f7f7]" // Adjusted width and height
               />
             </div>
 

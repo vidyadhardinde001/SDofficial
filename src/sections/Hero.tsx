@@ -61,14 +61,20 @@ export const Hero = () => {
           </motion.h1>
 
           <motion.p
-            className="text-lg md:text-xl text-[#ffffff] tracking-tight mt-6"
-            initial="hidden"
-            animate="visible"
-            variants={flipVariant}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
-            One Stop Solution for All your Electric & Automation Needs.
-          </motion.p>
+  className="text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl text-[#ffffff] tracking-tight mt-4 sm:mt-6 lg:mt-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full text-center mx-auto leading-tight"
+  initial="hidden"
+  animate="visible"
+  variants={flipVariant}
+  transition={{ duration: 1, delay: 0.4 }}
+>
+  One Stop Solution for All your Electric & Automation Needs.
+</motion.p>
+
+
+
+
+
+
 
           {/*<div className="flex flex-row justify-center gap-2 items-center mt-[30px]">
 

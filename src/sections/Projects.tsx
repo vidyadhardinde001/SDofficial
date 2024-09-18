@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 interface Project {
   id: number;
@@ -69,6 +71,28 @@ const projectsData: Project[] = [
 ];
 
 const Projects: React.FC = () => {
+  // const [projectsData, setProjectsData] = useState<Project[]>([]); // State to store fetched projects
+  // const [loading, setLoading] = useState<boolean>(true); // State for loading
+
+  // // Fetch project data from the API
+  // useEffect(() => {
+  //   const fetchProjects = async () => {
+  //     try {
+  //       const response = await axios.get("/api/content/projects");
+  //       setProjectsData(response.data.content.projectsList); // Access the 'projectsList' inside 'content'
+  //       setLoading(false); // Turn off loading once data is fetched
+  //     } catch (error) {
+  //       console.error("Error fetching projects data:", error);
+  //       setLoading(false); // Turn off loading in case of error
+  //     }
+  //   };
+
+  //   fetchProjects();
+  // }, []);
+
+  // if (loading) {
+  //   return <div>Loading projects...</div>; // Loading state
+  // }
   return (
     <div id="projects-section" className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-medium mb-8 text-center text-black">

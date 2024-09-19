@@ -20,77 +20,59 @@ export const Hero = () => {
 
   return (
     <section
-      ref={heroRef}
-      className="relative overflow-hidden h-[80vh] flex items-center justify-center"
-    >
-      {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
-        <video
-          className="w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src="/assets/bg-video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-
-      <div className="container relative z-10 flex flex-col items-center text-center">
-        {/* Blurred Background */}
-        <div className="blr-background w-[1000px]">
-          <motion.h1
-            className="text-2xl md:text-5xl font-regular text-shadow mt-6 tracking-tighter bg-[#cfcfcf] text-transparent bg-clip-text"
-            initial="hidden"
-            animate="visible"
-            variants={flipVariant}
-            transition={{ duration: 0.8 }}
-          >
-            Welcome to
-          </motion.h1>
-
-          <motion.h1
-            className="text-3xl md:text-7xl font-medium tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2"
-            initial="hidden"
-            animate="visible"
-            variants={flipVariant}
-            transition={{ duration: 1, delay: 0.2 }}
-          >
-            Siddhivinayak Engineers
-          </motion.h1>
-
-          <motion.p
-  className="text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl text-[#ffffff] tracking-tight mt-4 sm:mt-6 lg:mt-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full text-center mx-auto leading-tight"
-  initial="hidden"
-  animate="visible"
-  variants={flipVariant}
-  transition={{ duration: 1, delay: 0.4 }}
+  ref={heroRef}
+  className="relative overflow-hidden h-[80vh] flex items-center justify-center"
 >
-  One Stop Solution for All your Electric & Automation Needs.
-</motion.p>
+  {/* Video Background */}
+  <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
+    <video
+      className="w-full h-full object-cover"
+      autoPlay
+      loop
+      muted
+      playsInline
+    >
+      <source src="/assets/bg-video.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
+  {/* Black Box with Blurred Edges */}
+  <div className="absolute inset-x-0 top-1/2 transform -translate-y-1/2 w-full max-w-[100%] h-[300px] bg-black opacity-40 blur-sm rounded-lg"></div>
 
+  <div className="container relative z-10 flex flex-col items-center text-center">
+    {/* Text content */}
+    <motion.h1
+      className="text-2xl md:text-5xl font-regular text-shadow mt-6 tracking-tighter bg-[#cfcfcf] text-transparent bg-clip-text"
+      initial="hidden"
+      animate="visible"
+      variants={flipVariant}
+      transition={{ duration: 0.8 }}
+    >
+      Welcome to
+    </motion.h1>
 
+    <motion.h1
+      className="text-3xl md:text-7xl font-medium tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2"
+      initial="hidden"
+      animate="visible"
+      variants={flipVariant}
+      transition={{ duration: 1, delay: 0.2 }}
+    >
+      Siddhivinayak Engineers
+    </motion.h1>
 
+    <motion.p
+      className="text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl text-[#ffffff] tracking-tight mt-4 sm:mt-6 lg:mt-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full text-center mx-auto leading-tight"
+      initial="hidden"
+      animate="visible"
+      variants={flipVariant}
+      transition={{ duration: 1, delay: 0.4 }}
+    >
+      One Stop Solution for All your Electric & Automation Needs.
+    </motion.p>
+  </div>
+</section>
 
-
-
-          {/*<div className="flex flex-row justify-center gap-2 items-center mt-[30px]">
-
-            <button className="btn btn-primary rounded-md bg-[#fb845d]">
-              Go to Projects
-            </button>
-
-            <button className="btn btn-primary rounded-full bg-[#0074F5]">Go to Projects</button>
-
-            <button className="btn rounded-md bg-white gap-1 flex items-center">
-              <span>Contact Us</span>
-              <ArrowIcon className="h-5 w-5 ml-2" />
-            </button>
-          </div>*/}
-        </div>
-      </div>
-    </section>
   );
 };

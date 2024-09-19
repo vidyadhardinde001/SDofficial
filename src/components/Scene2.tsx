@@ -10,10 +10,10 @@ const Scene = () => {
   return (
     <Canvas
       style={{ height: "300px", width: "100%" }}
-      camera={{ position: [10, 0, 0] }} // Adjust the camera position here
+      camera={{ position: [11, 0, 0] }} // Adjust the camera position here
     >
       <ambientLight intensity={1} />
-      <directionalLight position={[-5, -5, 5]} intensity={1} />
+      <directionalLight position={[-5, -5, 5]} intensity={2} />
       <Suspense fallback={null}>
         <Model />
       </Suspense>

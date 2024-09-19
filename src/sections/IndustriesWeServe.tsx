@@ -1,18 +1,20 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image"; // Import Next.js Image component
 
-// Define the industries with symbols instead of icons
+// Define the industries with paths to your custom icons
 const industries = [
-  { name: 'Automobile', symbol: '🚗' },
-  { name: 'Metal Industry', symbol: '⚙️' },
-  { name: 'Wire Industry', symbol: '🔧' },
-  { name: 'Plastic Pipe Industry', symbol: '🛠️' },
-  { name: 'Water Treatment & Distribution', symbol: '💧' },
-  { name: 'Food Industries', symbol: '🍔' },
-  { name: 'Cold Storage', symbol: '❄️' },
-  { name: 'Environmental', symbol: '🌿' },
-  { name: 'Animal Feed', symbol: '🐄' },];
+  { name: 'Automobile', icon: '/assets/car.png' },
+  { name: 'Metal Industry', icon: '/assets/metal.png' },
+  { name: 'Wire Industry', icon: '/assets/wire.png' },
+  { name: 'Plastic Pipe Industry', icon: '/assets/pipe.png' },
+  { name: 'Water Treatment & Distribution', icon: '/assets/water.png' },
+  { name: 'Food Industries', icon: '/assets/food.png' },
+  { name: 'Cold Storage', icon: '/assets/cold.png' },
+  { name: 'Environmental', icon: '/assets/plant.png' },
+  { name: 'Animal Feed', icon: '/assets/animal.png' },
+];
 
 // Updated animation variants for fade-in effect only
 const fadeInVariants = {
@@ -21,8 +23,8 @@ const fadeInVariants = {
 };
 
 const IndustriesWeServe: React.FC = () => {
-  const [inView, setInView] = useState(false); // Track if section is in view
-  const sectionRef = useRef(null); // Create a reference for the section
+  const [inView, setInView] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   // Intersection Observer for triggering animations once
   useEffect(() => {
@@ -30,12 +32,12 @@ const IndustriesWeServe: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setInView(true); // Trigger animation when in view
-            observer.unobserve(entry.target); // Unobserve once animation is triggered
+            setInView(true);
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 } // Trigger when 10% of the section is in view
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
@@ -50,33 +52,37 @@ const IndustriesWeServe: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-12 bg-[white]" ref={sectionRef}>
-      <div className="max-w-6xl mx-auto px-4 ">
-        {/* Centered Title */}
-        <h1 className="text-5xl font-medium mb-6 mt-6 text-[black] text-center">
+    <section className="py-1 bg-white" ref={sectionRef}>
+      <div className="max-w-6xl mx-auto px-4">
+        <h1 className="text-5xl font-medium mb-12 mt-6 text-black text-center">
           Industries We Serve
         </h1>
 
-        {/* Grid with dynamic number of rows */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
-          {/* Industry Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {industries.map((industry) => (
             <motion.div
               key={industry.name}
-              className="border border-[black] p-4 rounded-lg text-center bg-white shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="bg-white p-6 rounded-lg text-center shadow-md transition-transform duration-300 transform hover:scale-105 border border-gray-200 hover:border-blue-500"
               whileHover={{ scale: 1.05 }}
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'} // Fade-in effect
+              animate={inView ? 'visible' : 'hidden'}
               variants={fadeInVariants}
             >
+              {/* Icon */}
               <div className="flex justify-center mb-4">
-                {/* Render the symbol */}
-                <div className="text-4xl text-blue-500">{industry.symbol}</div>
+                <Image
+                  src={industry.icon} // Use the icon path from the industries array
+                  alt={industry.name} // Provide alt text for accessibility
+                  width={80} // Set appropriate width for the icon
+                  height={80} // Set appropriate height for the icon
+                  className="object-contain" // Removed filter invert if not needed
+                />
               </div>
-              <h3 className="text-lg font-semibold text-black mb-2">
+
+              {/* Industry Name */}
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 {industry.name}
               </h3>
-          
             </motion.div>
           ))}
         </div>

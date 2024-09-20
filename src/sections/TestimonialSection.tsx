@@ -50,7 +50,7 @@ const TestimonialSection: React.FC = () => {
               className="min-w-[300px] max-w-[300px] bg-white shadow-md rounded-lg p-6 flex-shrink-0"
             >
               <p className="text-gray-600 mb-4">
-                "This product exceeded my expectations! The quality is top-notch and the service was excellent."
+              &quot;This product exceeded my expectations! The quality is top-notch and the service was excellent.&quot;
               </p>
               <div className="flex items-center">
                 <Image

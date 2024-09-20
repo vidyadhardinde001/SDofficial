@@ -24,9 +24,9 @@ const LearningTransformation: React.FC = () => {
               and solutions, and distribution panels for low voltage & MCC panels.
             </p>
             <p className="text-gray-600 text-lg">
-              Our products and services' high quality is the result of constant 
+              Our products and services&apos; high quality is the result of constant 
               leverage in know-how and technologies, which are essential for offering 
-              solutions that perfectly meet our customers' specific needs in terms 
+              solutions that perfectly meet our customers&apos; specific needs in terms 
               of technology and efficiency.
             </p>
           </div>

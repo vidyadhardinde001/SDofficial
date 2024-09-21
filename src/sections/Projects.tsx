@@ -10,89 +10,89 @@ interface Project {
   category: string;
 }
 
-const projectsData: Project[] = [
-  {
-    id: 1,
-    title: "Mixer Plant Automation",
-    description:
-      "Scope of Work: Control Panel, PLC, VFD, Programming, SCADA Software Development, Commissioning of Plant. Integration of Instrumentation like Temperature, Weight etc.PID loop for temperature control.",
-    image: "/assets/mixer.png",
-    category: "Market research",
-  },
-  {
-    id: 2,
-    title: "Incinerators Plant Automation",
-    description:
-      "Scope Of Work : Turnkey Electric Project including Distribution Panel, Control Panel, Field wiring, PLC, VFD, SCADA with IOT functions Instrumentation integrated like Temperature , Pressure, Flow, Burner Control System etc. VFD Synchronization with change in temperature.",
-    image: "/assets/incernator.png",
-    category: "Market research",
-  },
-  {
-    id: 3,
-    title: "Water Treatment Plant Automation",
-    description:
-      "Scope Of Work: Turn Key Electrical Project, Distribution Panels, Control Panels, MCC Panels, Field wiring, PLC, VFD, SCADA, Remote I/O Instrumentation Integrated: Actuators for Valves, Ultrasonic Level Sensors, Ph, Turbidity, Flow, Pressure etc.",
-    image: "/assets/treatment.png",
-    category: "Branding strategies",
-  },
-  {
-    id: 4,
-    title: "Wire Stranding Machine",
-    description:
-      "Scope OF Supply: Control Panel, PLC, VFD, Field Wiring etc., Giving and Taking Command & Feedback to Robot ",
-    image: "/assets/wirestranding.png",
-    category: "Branding strategies",
-  },
-  {
-    id: 5,
-    title: "Special Purpose Machines",
-    description:
-      "Scope OF Supply: Control Panel, PLC, Servo, etc., Control Panel, Field wiring, PLC, VFD .Instrumentation integrated like Temperature , Pressure, Flow, Servo Motion Control System etc.",
-    image: "/assets/specialpurpose.png",
-    category: "Branding strategies",
-  },
-  {
-    id: 6,
-    title: "Robo Interfacing With SPMs",
-    description:
-      "Scope OF Supply: Control Panel, PLC, VFD, etc., VVFD Synchronization With Respect to Speed By Taking Encoder feedback .Instrumentation integrated like Temperature , Pressure,. ",
-    image: "/assets/robo.png",
-    category: "Branding strategies",
-  },
-  {
-    id: 7,
-    title: "Foundry Core Making Machine",
-    description:
-      "Scope OF Supply: Control Panel, PLC, VFD, etc., VVFD Synchronization With Respect to Speed By Taking Encoder feedback .Instrumentation integrated like Temperature , Pressure,. ",
-    image: "/assets/foundary.png",
-    category: "Branding strategies",
-  },
-  // You can add more projects here
-];
+// const projectsData: Project[] = [
+//   {
+//     id: 1,
+//     title: "Mixer Plant Automation",
+//     description:
+//       "Scope of Work: Control Panel, PLC, VFD, Programming, SCADA Software Development, Commissioning of Plant. Integration of Instrumentation like Temperature, Weight etc.PID loop for temperature control.",
+//     image: "/assets/mixer.png",
+//     category: "Market research",
+//   },
+//   {
+//     id: 2,
+//     title: "Incinerators Plant Automation",
+//     description:
+//       "Scope Of Work : Turnkey Electric Project including Distribution Panel, Control Panel, Field wiring, PLC, VFD, SCADA with IOT functions Instrumentation integrated like Temperature , Pressure, Flow, Burner Control System etc. VFD Synchronization with change in temperature.",
+//     image: "/assets/incernator.png",
+//     category: "Market research",
+//   },
+//   {
+//     id: 3,
+//     title: "Water Treatment Plant Automation",
+//     description:
+//       "Scope Of Work: Turn Key Electrical Project, Distribution Panels, Control Panels, MCC Panels, Field wiring, PLC, VFD, SCADA, Remote I/O Instrumentation Integrated: Actuators for Valves, Ultrasonic Level Sensors, Ph, Turbidity, Flow, Pressure etc.",
+//     image: "/assets/treatment.png",
+//     category: "Branding strategies",
+//   },
+//   {
+//     id: 4,
+//     title: "Wire Stranding Machine",
+//     description:
+//       "Scope OF Supply: Control Panel, PLC, VFD, Field Wiring etc., Giving and Taking Command & Feedback to Robot ",
+//     image: "/assets/wirestranding.png",
+//     category: "Branding strategies",
+//   },
+//   {
+//     id: 5,
+//     title: "Special Purpose Machines",
+//     description:
+//       "Scope OF Supply: Control Panel, PLC, Servo, etc., Control Panel, Field wiring, PLC, VFD .Instrumentation integrated like Temperature , Pressure, Flow, Servo Motion Control System etc.",
+//     image: "/assets/specialpurpose.png",
+//     category: "Branding strategies",
+//   },
+//   {
+//     id: 6,
+//     title: "Robo Interfacing With SPMs",
+//     description:
+//       "Scope OF Supply: Control Panel, PLC, VFD, etc., VVFD Synchronization With Respect to Speed By Taking Encoder feedback .Instrumentation integrated like Temperature , Pressure,. ",
+//     image: "/assets/robo.png",
+//     category: "Branding strategies",
+//   },
+//   {
+//     id: 7,
+//     title: "Foundry Core Making Machine",
+//     description:
+//       "Scope OF Supply: Control Panel, PLC, VFD, etc., VVFD Synchronization With Respect to Speed By Taking Encoder feedback .Instrumentation integrated like Temperature , Pressure,. ",
+//     image: "/assets/foundary.png",
+//     category: "Branding strategies",
+//   },
+//   // You can add more projects here
+// ];
 
 const Projects: React.FC = () => {
-  // const [projectsData, setProjectsData] = useState<Project[]>([]); // State to store fetched projects
-  // const [loading, setLoading] = useState<boolean>(true); // State for loading
+  const [projectsData, setProjectsData] = useState<Project[]>([]); // State to store fetched projects
+  const [loading, setLoading] = useState<boolean>(true); // State for loading
 
-  // // Fetch project data from the API
-  // useEffect(() => {
-  //   const fetchProjects = async () => {
-  //     try {
-  //       const response = await axios.get("/api/content/projects");
-  //       setProjectsData(response.data.content.projectsList); // Access the 'projectsList' inside 'content'
-  //       setLoading(false); // Turn off loading once data is fetched
-  //     } catch (error) {
-  //       console.error("Error fetching projects data:", error);
-  //       setLoading(false); // Turn off loading in case of error
-  //     }
-  //   };
+  // Fetch project data from the API
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await axios.get("/api/content/projects");
+        setProjectsData(response.data.content.projectsList); // Access the 'projectsList' inside 'content'
+        setLoading(false); // Turn off loading once data is fetched
+      } catch (error) {
+        console.error("Error fetching projects data:", error);
+        setLoading(false); // Turn off loading in case of error
+      }
+    };
 
-  //   fetchProjects();
-  // }, []);
+    fetchProjects();
+  }, []);
 
-  // if (loading) {
-  //   return <div>Loading projects...</div>; // Loading state
-  // }
+  if (loading) {
+    return <div>Loading projects...</div>; // Loading state
+  }
   return (
     <div id="projects-section" className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-medium mb-8 text-center text-black">

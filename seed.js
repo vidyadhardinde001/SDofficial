@@ -55,18 +55,60 @@ const seedData = [
     content: {
       projectsList: [
         {
+          id: 1,
           title: "Mixer Plant Automation",
           description:
-            "Scope of Work: Control Panel, PLC, VFD, Programming, SCADA Software Development, Commissioning of Plant. Integration of Instrumentation like Temperature, Weight etc. PID loop for temperature control.",
-          imageUrl: "public/assets/mixer.png",
-          category: "Industrial Automation",
+            "Scope of Work: Control Panel, PLC, VFD, Programming, SCADA Software Development, Commissioning of Plant. Integration of Instrumentation like Temperature, Weight etc.PID loop for temperature control.",
+          image: "/assets/mixer.png",
+          category: "Market research",
         },
         {
+          id: 2,
           title: "Incinerators Plant Automation",
           description:
-            "Scope Of Work: Turnkey Electric Project including Distribution Panel, Control Panel, Field wiring, PLC, VFD, SCADA with IOT functions. Instrumentation integrated like Temperature, Pressure, Flow, Burner Control System, etc.",
-          imageUrl: "public/assets/incernator.png",
-          category: "Waste Management",
+            "Scope Of Work : Turnkey Electric Project including Distribution Panel, Control Panel, Field wiring, PLC, VFD, SCADA with IOT functions Instrumentation integrated like Temperature , Pressure, Flow, Burner Control System etc. VFD Synchronization with change in temperature.",
+          image: "/assets/incernator.png",
+          category: "Market research",
+        },
+        {
+          id: 3,
+          title: "Water Treatment Plant Automation",
+          description:
+            "Scope Of Work: Turn Key Electrical Project, Distribution Panels, Control Panels, MCC Panels, Field wiring, PLC, VFD, SCADA, Remote I/O Instrumentation Integrated: Actuators for Valves, Ultrasonic Level Sensors, Ph, Turbidity, Flow, Pressure etc.",
+          image: "/assets/treatment.png",
+          category: "Branding strategies",
+        },
+        {
+          id: 4,
+          title: "Wire Stranding Machine",
+          description:
+            "Scope OF Supply: Control Panel, PLC, VFD, Field Wiring etc., Giving and Taking Command & Feedback to Robot ",
+          image: "/assets/wirestranding.png",
+          category: "Branding strategies",
+        },
+        {
+          id: 5,
+          title: "Special Purpose Machines",
+          description:
+            "Scope OF Supply: Control Panel, PLC, Servo, etc., Control Panel, Field wiring, PLC, VFD .Instrumentation integrated like Temperature , Pressure, Flow, Servo Motion Control System etc.",
+          image: "/assets/specialpurpose.png",
+          category: "Branding strategies",
+        },
+        {
+          id: 6,
+          title: "Robo Interfacing With SPMs",
+          description:
+            "Scope OF Supply: Control Panel, PLC, VFD, etc., VVFD Synchronization With Respect to Speed By Taking Encoder feedback .Instrumentation integrated like Temperature , Pressure,. ",
+          image: "/assets/robo.png",
+          category: "Branding strategies",
+        },
+        {
+          id: 7,
+          title: "Foundry Core Making Machine",
+          description:
+            "Scope OF Supply: Control Panel, PLC, VFD, etc., VVFD Synchronization With Respect to Speed By Taking Encoder feedback .Instrumentation integrated like Temperature , Pressure,. ",
+          image: "/assets/foundary.png",
+          category: "Branding strategies",
         },
         // Add more projects as needed
       ],

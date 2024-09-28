@@ -21,7 +21,7 @@ const seedData = [
     section: 'header',
     content: {
       logoUrl: '/assets/logo1.png', // Ensure this matches the path you use
-      phone: '+91 7558341063',
+      phone: '+91 7057272626',
       menuItems: [
         { href: '/', text: 'Home' },
         { href: '/projects', text: 'Projects' },

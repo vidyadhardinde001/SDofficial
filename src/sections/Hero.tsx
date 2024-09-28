@@ -1,6 +1,5 @@
 "use client";
 import ArrowIcon from "@/assets/arrow-right.svg";
-import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
@@ -37,59 +36,40 @@ export const Hero = () => {
         </video>
       </div>
 
-      <div className="container relative z-10 flex flex-col items-center text-center">
-        {/* Blurred Background */}
-        <div className="blr-background w-[1000px]">
-          <motion.h1
-            className="text-2xl md:text-5xl font-regular text-shadow mt-6 tracking-tighter bg-[#cfcfcf] text-transparent bg-clip-text"
-            initial="hidden"
-            animate="visible"
-            variants={flipVariant}
-            transition={{ duration: 0.8 }}
-          >
-            Welcome to
-          </motion.h1>
+      {/* Text Content with Higher z-index */}
+      <div className="container relative z-[20] flex flex-col items-center text-center">
+        {/* Removed Blurred Background Container */}
 
-          <motion.h1
-            className="text-3xl md:text-7xl font-medium tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2"
-            initial="hidden"
-            animate="visible"
-            variants={flipVariant}
-            transition={{ duration: 1, delay: 0.2 }}
-          >
-            Siddhivinayak Engineers
-          </motion.h1>
+        {/* Main Heading */}
+        <motion.h1
+          className="text-2xl md:text-6xl font-regular text-shadow mt-6 tracking-tighter bg-[#cfcfcf] text-white bg-clip-text"
+          initial="hidden"
+          animate="visible"
+          variants={flipVariant}
+          transition={{ duration: 0.8 }}
+        >
+          Welcome to
+        </motion.h1>
 
-          <motion.p
-  className="text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl text-[#ffffff] tracking-tight mt-4 sm:mt-6 lg:mt-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full text-center mx-auto leading-tight"
-  initial="hidden"
-  animate="visible"
-  variants={flipVariant}
-  transition={{ duration: 1, delay: 0.4 }}
->
-  One Stop Solution for All your Electric & Automation Needs.
-</motion.p>
+        <motion.h1
+          className="text-3xl md:text-7xl font-medium tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-white bg-clip-text mt-2"
+          initial="hidden"
+          animate="visible"
+          variants={flipVariant}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          Siddhivinayak Engineers
+        </motion.h1>
 
-
-
-
-
-
-
-          {/*<div className="flex flex-row justify-center gap-2 items-center mt-[30px]">
-
-            <button className="btn btn-primary rounded-md bg-[#fb845d]">
-              Go to Projects
-            </button>
-
-            <button className="btn btn-primary rounded-full bg-[#0074F5]">Go to Projects</button>
-
-            <button className="btn rounded-md bg-white gap-1 flex items-center">
-              <span>Contact Us</span>
-              <ArrowIcon className="h-5 w-5 ml-2" />
-            </button>
-          </div>*/}
-        </div>
+        <motion.p
+          className="text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl text-[#ffffff] tracking-tight mt-4 sm:mt-6 lg:mt-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full text-center mx-auto leading-tight"
+          initial="hidden"
+          animate="visible"
+          variants={flipVariant}
+          transition={{ duration: 1, delay: 0.4 }}
+        >
+          One Stop Solution for All your Electric & Automation Needs.
+        </motion.p>
       </div>
     </section>
   );

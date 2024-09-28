@@ -114,6 +114,28 @@ const seedData = [
       ],
     },
   },
+  {
+    section: 'contact',
+    content: {
+      heading: [
+        "Any Questions?",
+        "Write or call us.",
+        "We will write back",
+        "within 12hrs :)"
+      ],
+      phone: '+91 7057272626',
+      email: 'siddhivinayakengineers19@gmail.com',
+      formFields: [
+        { type: 'email', placeholder: 'E-mail Address' },
+        { type: 'text', placeholder: 'Phone Number' },
+        { type: 'text', placeholder: 'Your Name' },
+        { type: 'textarea', placeholder: 'Message....', rows: 4 },
+      ],
+      consentText: 'I consent to the processing of my personal data by the Administrator in accordance with the Privacy Policy *',
+      buttonText: 'Send ➔',
+      buttonColor: '#0074F5', // Button color for the submit button
+    },
+  },
 
 ];
 

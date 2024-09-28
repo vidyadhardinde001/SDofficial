@@ -20,6 +20,7 @@ export default function Home() {
     <>
       <Header />
       <Hero />
+      
       <ValuetoProduct />
       <IndustriesWeServe />
       <ServicesSection />

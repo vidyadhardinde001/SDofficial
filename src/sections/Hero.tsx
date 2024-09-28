@@ -1,9 +1,9 @@
 "use client";
+import ArrowIcon from "@/assets/arrow-right.svg";
 import { useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
-import ArrowIcon from "@/assets/arrow-right.svg";
 
 declare global {
   interface Window {
@@ -35,16 +35,15 @@ export const Hero = () => {
       enableReset: true,
       startOpen: false, // Keep the bot closed initially
       styles: {
-        // Customize the appearance
-        botMessageColor: "#9A90E2", // Bot message background color
-        botMessageBackground: "#EAEAEA", // Bot message text color
-        userMessageColor: "#FFFFFF", // User message background color
-        userMessageBackground: "#000000", // User message text color
-        headerBackground: "#FF5733", // Header background color
-        headerTextColor: "#000000", // Header text color
-        primaryColor: "#3498db", // Primary button and highlight color
-        messageTextColor: "#333333", // Default message text color
-        botAvatarUrl: "https://example.com/avatar.png", // URL for a custom bot avatar
+        botMessageColor: "#9A90E2",
+        botMessageBackground: "#EAEAEA",
+        userMessageColor: "#FFFFFF",
+        userMessageBackground: "#000000",
+        headerBackground: "#FF5733",
+        headerTextColor: "#000000",
+        primaryColor: "#3498db",
+        messageTextColor: "#333333",
+        botAvatarUrl: "https://example.com/avatar.png",
       }
     };
 
@@ -54,14 +53,12 @@ export const Hero = () => {
     script.async = true;
     document.body.appendChild(script);
 
-    // Dynamically add the Botpress configuration script
     const configScript = document.createElement("script");
     configScript.src = "https://mediafiles.botpress.cloud/1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9/webchat/v2.1/config.js";
     configScript.async = true;
     document.body.appendChild(configScript);
 
     return () => {
-      // Cleanup the scripts when the component unmounts
       document.body.removeChild(script);
       document.body.removeChild(configScript);
     };
@@ -80,6 +77,8 @@ export const Hero = () => {
           loop
           muted
           playsInline
+          loading="lazy" // Lazy loading for performance
+
         >
           <source src="/assets/bg-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.

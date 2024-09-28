@@ -94,9 +94,9 @@ export const Footer = () => {
           {footerContent.socialLinks &&
             Object.entries(footerContent.socialLinks).map(([platform, url]) => (
               <a key={platform} href={url} target="_blank" rel="noopener noreferrer">
-                {platform === "twitter" && <SocialX />}
-                {platform === "instagram" && <SocialInsta />}
-                {platform === "linkedin" && <SocialLinkedIn />}
+                {platform === "twitter" && <SocialX className="hover:text-blue-500" />}
+                {platform === "instagram" && <SocialInsta className="hover:text-blue-500"/>}
+                {platform === "linkedin" && <SocialLinkedIn className="hover:text-blue-500" />}
               </a>
             ))}
           

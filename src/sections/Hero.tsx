@@ -38,38 +38,39 @@ export const Hero = () => {
 
       {/* Text Content with Higher z-index */}
       <div className="container relative z-[20] flex flex-col items-center text-center">
-        {/* Removed Blurred Background Container */}
+        {/* Glass-like Background Container for Text */}
+        <div className="glass-effect p-8 rounded-lg text-white w-full max-w-4xl mx-auto">
+          {/* Main Heading */}
+          <motion.h1
+            className="text-2xl md:text-6xl font-regular text-shadow tracking-tighter"
+            initial="hidden"
+            animate="visible"
+            variants={flipVariant}
+            transition={{ duration: 0.8 }}
+          >
+            Welcome to
+          </motion.h1>
 
-        {/* Main Heading */}
-        <motion.h1
-          className="text-2xl md:text-6xl font-regular text-shadow mt-6 tracking-tighter bg-[#cfcfcf] text-white bg-clip-text"
-          initial="hidden"
-          animate="visible"
-          variants={flipVariant}
-          transition={{ duration: 0.8 }}
-        >
-          Welcome to
-        </motion.h1>
+          <motion.h1
+            className="text-3xl md:text-7xl font-medium tracking-tighter mt-2"
+            initial="hidden"
+            animate="visible"
+            variants={flipVariant}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            Siddhivinayak Engineers
+          </motion.h1>
 
-        <motion.h1
-          className="text-3xl md:text-7xl font-medium tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-white bg-clip-text mt-2"
-          initial="hidden"
-          animate="visible"
-          variants={flipVariant}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          Siddhivinayak Engineers
-        </motion.h1>
-
-        <motion.p
-          className="text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl text-[#ffffff] tracking-tight mt-4 sm:mt-6 lg:mt-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full text-center mx-auto leading-tight"
-          initial="hidden"
-          animate="visible"
-          variants={flipVariant}
-          transition={{ duration: 1, delay: 0.4 }}
-        >
-          One Stop Solution for All your Electric & Automation Needs.
-        </motion.p>
+          <motion.p
+            className="text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl mt-4 sm:mt-6 lg:mt-8 text-center mx-auto leading-tight"
+            initial="hidden"
+            animate="visible"
+            variants={flipVariant}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
+            One Stop Solution for All your Electric & Automation Needs.
+          </motion.p>
+        </div>
       </div>
     </section>
   );

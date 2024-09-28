@@ -1,16 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 
 const ValuetoProduct = () => {
-  // State to track the index of the expanded card
-  const [expandedCard, setExpandedCard] = useState<number | null>(null);
-
-  // Function to handle card click
-  const handleCardClick = (index: number) => {
-    setExpandedCard(expandedCard === index ? null : index);
-  };
-
   // Card data for easier mapping
   const cards = [
     'Hardware',
@@ -34,20 +26,11 @@ const ValuetoProduct = () => {
         {cards.map((item, index) => (
           <div
             key={index}
-            className={`bg-[transparent] text-[black] p-6 rounded-xl text-lg md:text-2xl flex flex-col transition-all duration-300 ease-in-out overflow-hidden border border-[black] ${
-              expandedCard === index ? 'h-[150px]' : 'h-24'
-            }`}
-            onClick={() => handleCardClick(index)}
+            className="bg-[transparent] text-[black] p-6 rounded-xl text-lg md:text-2xl flex flex-col transition-all duration-300 ease-in-out overflow-hidden border border-[black] h-24"
           >
             <div className="flex justify-between items-center">
               <span>{item}</span>
             </div>
-            {expandedCard === index && (
-              <div className="mt-2 text-[#AAAAAA]">
-                {/* Additional content here */}
-                <p>More details about {item}...</p>
-              </div>
-            )}
           </div>
         ))}
       </div>

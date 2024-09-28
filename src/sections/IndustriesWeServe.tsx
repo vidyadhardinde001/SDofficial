@@ -52,9 +52,9 @@ const IndustriesWeServe: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-1 bg-white" ref={sectionRef}>
+    <section className="py-10 bg-[#EAEEFE]" ref={sectionRef}>
       <div className="max-w-6xl mx-auto px-4">
-        <h1 className="text-5xl font-medium mb-12 mt-6 text-black text-center">
+        <h1 className="text-5xl font-medium mb-12 mt-3 text-black text-center">
           Industries We Serve
         </h1>
 
@@ -68,14 +68,14 @@ const IndustriesWeServe: React.FC = () => {
               animate={inView ? 'visible' : 'hidden'}
               variants={fadeInVariants}
             >
-              {/* Icon */}
-              <div className="flex justify-center mb-4">
+              {/* Icon Container */}
+              <div className="flex justify-center mb-4 p-2 rounded">
                 <Image
                   src={industry.icon} // Use the icon path from the industries array
                   alt={industry.name} // Provide alt text for accessibility
                   width={80} // Set appropriate width for the icon
                   height={80} // Set appropriate height for the icon
-                  className="object-contain" // Removed filter invert if not needed
+                  className="object-contain filter invert-0 sepia-1 saturate-100 hue-rotate-0 brightness-0 contrast-100"
                 />
               </div>
 

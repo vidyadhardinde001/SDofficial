@@ -28,6 +28,20 @@ const nextConfig = {
     return config;
   },
 
+  // Adding domains for next/image
+  images: {
+    domains: ['i.pravatar.cc'], // Add external image domains here
+  },
+
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:5000/api/:path*', // Proxy to Express server
+      },
+    ];
+  },
+
   // ...other config
 };
 

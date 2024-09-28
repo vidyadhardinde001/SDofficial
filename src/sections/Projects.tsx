@@ -1,6 +1,8 @@
 "use client";
-import React from "react";
+
 import Image from "next/image"; // Import Next.js Image component
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 interface Project {
   id: number;

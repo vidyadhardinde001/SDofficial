@@ -13,7 +13,20 @@ interface HeaderContent {
   phone: string;
   menuItems: { href: string; text: string }[];
 }
+// export async function getStaticProps() {
+//   const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=hdWxvDOxAo37f14rks_1dhsJmxVl1lBzB2yQvp32pZdmoY4K2aBMR5x5WHTBxlKJBj0WQAEHDYpXRt0OjiWck7rn6Xkdb0HYm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBnV1TslBD8CxlmVE9u3evWfF1GXw_KHyfXkWYYt9CYFVnR92-qieb8jHbj1wsQVfR9afHfui3JKrJxwE5HGcJYXJ5K4j08g4g&lib=MdeKoPvhrvM-qhZvace2Bf_Z1uKL4_q0K');
+//   if (!response.ok) {
+//     throw new Error('Network response was not ok');
+//   }
+//   const data = await response.json();
 
+//   return {
+//     props: {
+//       headerContent: data.content || null,
+//     },
+//     revalidate: 60, // Re-fetch the data every 60 seconds
+//   };
+// }
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [headerContent, setHeaderContent] = useState<HeaderContent | null>(null);
@@ -21,13 +34,21 @@ export const Header = () => {
   useEffect(() => {
     async function fetchContent() {
       try {
+      //   const cachedContent = localStorage.getItem('headerContent');
+      // if (cachedContent) {
+      //   setHeaderContent(JSON.parse(cachedContent));
+      //   return;
+      // }
+        // const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=hdWxvDOxAo37f14rks_1dhsJmxVl1lBzB2yQvp32pZdmoY4K2aBMR5x5WHTBxlKJBj0WQAEHDYpXRt0OjiWck7rn6Xkdb0HYm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBnV1TslBD8CxlmVE9u3evWfF1GXw_KHyfXkWYYt9CYFVnR92-qieb8jHbj1wsQVfR9afHfui3JKrJxwE5HGcJYXJ5K4j08g4g&lib=MdeKoPvhrvM-qhZvace2Bf_Z1uKL4_q0K');
         const response = await fetch('/api/content/header');
+
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
         console.log('Fetched data:', data); // Check if this logs the correct data
         setHeaderContent(data.content); // Ensure this matches the structure
+        // localStorage.setItem('headerContent', JSON.stringify(data.content));
       } catch (error) {
         console.error('Error fetching header content:', error);
       }

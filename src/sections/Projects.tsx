@@ -90,9 +90,7 @@ const Projects: React.FC = () => {
     fetchProjects();
   }, []);
 
-  if (loading) {
-    return <div>Loading projects...</div>; // Loading state
-  }
+ 
   return (
     <div id="projects-section" className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-medium mb-8 text-center text-black">

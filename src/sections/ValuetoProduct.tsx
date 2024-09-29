@@ -17,7 +17,7 @@ const ValuetoProduct = () => {
 
   return (
     <div className="min-h-screen bg-[white] flex flex-col items-center justify-center p-6">
-      <h1 className="text-5xl font-medium mb-6 mt-6 text-[black]">
+      <h1 className="text-5xl font-medium mb-6 mt-6 text-[black] pb-14">
         How We Add Value to Our Products
       </h1>
 

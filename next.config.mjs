@@ -27,6 +27,12 @@ const nextConfig = {
 
     return config;
   },
+
+  // Adding domains for next/image
+  images: {
+    domains: ['i.pravatar.cc'], // Add external image domains here
+  },
+
   async rewrites() {
     return [
       {

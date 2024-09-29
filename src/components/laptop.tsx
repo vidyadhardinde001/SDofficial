@@ -11,13 +11,13 @@ const Scene = () => {
   return (
     <Canvas
       camera={{
-        position: [0, 8, 7], // Camera at 45-degree angle from the model
-        fov: 35, // Field of view
+        position: [9, 4, 5], // Camera at 45-degree angle from the model
+        fov: 25, // Field of view
       }}
       style={{ height: "300px", width: "100%" }}
     >
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[-5, -5, 5]} intensity={2} />
+      <ambientLight intensity={5} />
+      <directionalLight position={[-5, -5, 5]} intensity={3} />
       
       <Suspense fallback={null}>
         <Model />

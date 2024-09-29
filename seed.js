@@ -120,8 +120,6 @@ const seedData = [
       heading: [
         "Any Questions?",
         "Write or call us.",
-        "We will write back",
-        "within 12hrs :)"
       ],
       phone: '+91 7057272626',
       email: 'siddhivinayakengineers19@gmail.com',

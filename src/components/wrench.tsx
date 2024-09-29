@@ -4,11 +4,11 @@ import { useRef } from "react";
 import { Group } from "three";
 import { useFrame } from "@react-three/fiber";
 
-useGLTF.preload('/2.glb')
+useGLTF.preload('/try.glb')
 
 export default function Model(){
     const group = useRef<Group>(null);
-    const { nodes, materials, animations, scene } = useGLTF('/2.glb')
+    const { nodes, materials, animations, scene } = useGLTF('/wrench.glb')
 
     useFrame(() => {
         if (group.current) {

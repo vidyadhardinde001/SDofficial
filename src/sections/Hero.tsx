@@ -77,8 +77,6 @@ export const Hero = () => {
           loop
           muted
           playsInline
-          loading="lazy" // Lazy loading for performance
-
         >
           <source src="/assets/bg-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.

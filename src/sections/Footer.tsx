@@ -5,15 +5,7 @@ import SocialInsta from "@/assets/social-insta.svg";
 import SocialLinkedIn from "@/assets/social-linkedin.svg";
 import { useEffect, useState } from "react";
 
-// interface FooterContent {
-//   socialLinks: {
-//     twitter: string;
-//     instagram: string;
-//     linkedin: string;
-//   };
-//   copyrightText: string;
-// }
-
+// Define the structure of the footer content
 interface FooterContent {
   socialLinks: {
     twitter: string;
@@ -27,12 +19,11 @@ interface FooterContent {
   copyrightText: string;
 }
 
-
 export const Footer = () => {
   const [footerContent, setFooterContent] = useState<FooterContent | null>(null);
-  // const [headerContent, setHeaderContent] = useState<HeaderContent | null>(null);
 
   useEffect(() => {
+    // Fetch the footer content from the API
     async function fetchFooterContent() {
       try {
         const response = await fetch('/api/content/footer');
@@ -45,64 +36,40 @@ export const Footer = () => {
         console.error('Error fetching footer content:', error);
       }
     }
-    // async function fetchHeaderContent() {
-    //   try {
-    //     const response = await fetch("/api/content/header");
-    //     if (!response.ok) {
-    //       throw new Error("Network response was not ok");
-    //     }
-    //     const data = await response.json();
-    //     setHeaderContent(data);
-    //   } catch (error) {
-    //     console.error("Error fetching header content:", error);
-    //   }
-    // }
 
     fetchFooterContent();
-    // fetchHeaderContent();
   }, []);
 
   if (!footerContent) {
     return <div>Loading...</div>;
   }
+
   return (
-    <footer className="bg-[#121825] text-[#BCBCBC] text-sm py-10 text-center">
+    <footer className="bg-[#121825] text-[#BCBCBC] text-sm py-20 text-center">
       <div className="container">
+        {/* Navigation Links */}
         <nav className="flex flex-col md:flex-row md:justify-center gap-6 mt-6">
-          {/* <a href="#">Home</a>
-          <a href="#">Projects</a>
-          <a href="#">Gallery</a>
-          <a href="#">Contact</a>
-          <a href="#">About Us</a> */}
           {footerContent.navigationLinks.map((item) => (
             <Link key={item.href} href={item.href}>
-              <a>{item.text}</a> {/* Use Link for client-side navigation */}
+              <a>{item.text}</a> {/* Client-side navigation */}
             </Link>
           ))}
         </nav>
+
+        {/* Social Media Links */}
         <div className="flex justify-center gap-6 mt-6">
-          {/* Social Media Icons with Links */}
-          {/* <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
-            <SocialX />
-          </a>
-          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
-            <SocialInsta />
-          </a>
-          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
-            <SocialLinkedIn />
-          </a> */}
           {footerContent.socialLinks &&
             Object.entries(footerContent.socialLinks).map(([platform, url]) => (
               <a key={platform} href={url} target="_blank" rel="noopener noreferrer">
                 {platform === "twitter" && <SocialX className="hover:text-blue-500" />}
-                {platform === "instagram" && <SocialInsta className="hover:text-blue-500"/>}
+                {platform === "instagram" && <SocialInsta className="hover:text-blue-500" />}
                 {platform === "linkedin" && <SocialLinkedIn className="hover:text-blue-500" />}
               </a>
             ))}
-          
         </div>
+
+        {/* Copyright Text */}
         <p className="mt-6">
-          {/* &copy; 2024 Siddhivinayak Engineers, Inc. All rights reserved. */}
           &copy; {new Date().getFullYear()} {footerContent.copyrightText}
         </p>
       </div>

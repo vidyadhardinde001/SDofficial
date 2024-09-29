@@ -2,7 +2,7 @@ import React from 'react';
 
 const FooterSection: React.FC = () => {
   return (
-    <section className="relative bg-[white] text-white py-12 px-4 sm:px-6 lg:px-8 mt-0 mb-0">
+    <section className="relative bg-[white] text-white py-0 px-4 sm:px-6 lg:px-8 mt-0 mb-0">
       {/* Top Section */}
       <div className="relative max-w-screen-xl mx-auto">
         <div className="bg-[#0074F5] rounded-[30px] p-4 md:p-8 text-center absolute inset-x-0 -top-2 transform -translate-y-1/2 mx-auto w-11/12 md:w-10/12 lg:w-8/12">

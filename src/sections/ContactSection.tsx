@@ -68,6 +68,22 @@ const ContactSection: React.FC = () => {
             <p className="flex items-center">
               <span className="mr-2">📧</span> {content?.content?.email}
             </p>
+            <p className="flex items-center">
+              <span className="mr-2">📍   Arjunwad</span> {content?.content?.location}
+            </p>
+          </div>
+
+          <div className="mt-8 md:mt-0">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d122237.18993477206!2d74.628396!3d16.781044!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc12102e1214d0b%3A0x1527ff323ff45359!2sSiddhivinayak%20Engineers!5e0!3m2!1sen!2sus!4v1727588966231!5m2!1sen!2sus"
+              width="100%"
+              height="300"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="border border-gray-300 rounded-lg"
+            />
           </div>
         </div>
 

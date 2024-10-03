@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef } from 'react';
+import Image from 'next/image'; // Import Next.js Image component
 
 const TestimonialSection: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
@@ -9,9 +10,10 @@ const TestimonialSection: React.FC = () => {
   let scrollLeft: number;
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollContainerRef.current) return;
     isDragging = true;
-    startX = e.pageX - (scrollContainerRef.current?.offsetLeft || 0);
-    scrollLeft = scrollContainerRef.current?.scrollLeft || 0;
+    startX = e.pageX - (scrollContainerRef.current.offsetLeft || 0);
+    scrollLeft = scrollContainerRef.current.scrollLeft || 0;
   };
 
   const handleMouseLeave = () => {
@@ -33,7 +35,7 @@ const TestimonialSection: React.FC = () => {
   return (
     <>
       <div className="py-10 px-5 bg-[#EAEEFE]">
-        <h2 className="text-3xl font-bold text-center mb-10">Testimonials</h2>
+        <h2 className="text-5xl font-medium mb-6 text-black pb-5 text-center">Testimonials</h2>
         <div
           ref={scrollContainerRef}
           onMouseDown={handleMouseDown}
@@ -48,12 +50,14 @@ const TestimonialSection: React.FC = () => {
               className="min-w-[300px] max-w-[300px] bg-white shadow-md rounded-lg p-6 flex-shrink-0"
             >
               <p className="text-gray-600 mb-4">
-                "This product exceeded my expectations! The quality is top-notch and the service was excellent."
+              &quot;This product exceeded my expectations! The quality is top-notch and the service was excellent.&quot;
               </p>
               <div className="flex items-center">
-                <img
+                <Image
                   src={`https://i.pravatar.cc/100?img=${index + 1}`}
                   alt="User Avatar"
+                  width={48} // Width for the image
+                  height={48} // Height for the image
                   className="w-12 h-12 rounded-full mr-4"
                 />
                 <div>
@@ -65,7 +69,7 @@ const TestimonialSection: React.FC = () => {
           ))}
         </div>
       </div>
-      
+
       <style jsx>{`
         .custom-scrollbar::-webkit-scrollbar {
           display: none;

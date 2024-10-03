@@ -1,7 +1,8 @@
 "use client";
+
+import Image from "next/image"; // Import Next.js Image component
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Image from "next/image";
 
 interface Project {
   id: number;
@@ -124,7 +125,7 @@ const Projects: React.FC = () => {
                 <p className="text-gray-400">{project.description}</p>
               </div>
               <a href="#" className="mt-4 text-white text-xl self-end">
-                →
+                → {/* Update this link to point to the actual project details if available */}
               </a>
             </div>
           </div>

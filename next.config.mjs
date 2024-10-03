@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['drive.google.com'], // Add your image source domains here
+    domains: ['drive.google.com','i.pravatar.cc'], // Add your image source domains here
   },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
@@ -30,6 +30,10 @@ const nextConfig = {
 
     return config;
   },
+
+  // Adding domains for next/image
+  
+
   async rewrites() {
     return [
       {

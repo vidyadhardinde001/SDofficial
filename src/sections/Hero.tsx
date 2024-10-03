@@ -1,8 +1,15 @@
 "use client";
 import ArrowIcon from "@/assets/arrow-right.svg";
-import Image from "next/image";
+import { useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
+
+declare global {
+  interface Window {
+    botpressWebChat: any; // Declare the botpressWebChat property
+  }
+}
 
 export const Hero = () => {
   const heroRef = useRef(null);
@@ -17,6 +24,45 @@ export const Hero = () => {
     hidden: { rotateX: 90, opacity: 0 },
     visible: { rotateX: 0, opacity: 1 },
   };
+
+  // Load Botpress script and configuration
+  useEffect(() => {
+    window.botpressWebChat = {
+      botId: "1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9", // Your bot ID
+      host: "https://cdn.botpress.cloud",
+      botName: "SupportBot", // Optional: customize the bot name
+      showMessageHistory: true,
+      enableReset: true,
+      startOpen: false, // Keep the bot closed initially
+      styles: {
+        botMessageColor: "#9A90E2",
+        botMessageBackground: "#EAEAEA",
+        userMessageColor: "#FFFFFF",
+        userMessageBackground: "#000000",
+        headerBackground: "#FF5733",
+        headerTextColor: "#000000",
+        primaryColor: "#3498db",
+        messageTextColor: "#333333",
+        botAvatarUrl: "https://example.com/avatar.png",
+      }
+    };
+
+    // Dynamically add the Botpress Webchat script
+    const script = document.createElement("script");
+    script.src = "https://cdn.botpress.cloud/webchat/v2.1/inject.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    const configScript = document.createElement("script");
+    configScript.src = "https://mediafiles.botpress.cloud/1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9/webchat/v2.1/config.js";
+    configScript.async = true;
+    document.body.appendChild(configScript);
+
+    return () => {
+      document.body.removeChild(script);
+      document.body.removeChild(configScript);
+    };
+  }, []);
 
   return (
     <section
@@ -37,59 +83,40 @@ export const Hero = () => {
         </video>
       </div>
 
+      {/* Black Box with Blurred Edges */}
+      <div className="absolute inset-x-0 top-1/2 transform -translate-y-1/2 w-full max-w-[100%] h-[300px] bg-black opacity-40 blur-sm rounded-lg"></div>
+
       <div className="container relative z-10 flex flex-col items-center text-center">
-        {/* Blurred Background */}
-        <div className="blr-background w-[1000px]">
-          <motion.h1
-            className="text-2xl md:text-5xl font-regular text-shadow mt-6 tracking-tighter bg-[#cfcfcf] text-transparent bg-clip-text"
-            initial="hidden"
-            animate="visible"
-            variants={flipVariant}
-            transition={{ duration: 0.8 }}
-          >
-            Welcome to
-          </motion.h1>
+        {/* Text content */}
+        <motion.h1
+          className="text-2xl md:text-5xl font-regular text-shadow mt-6 tracking-tighter bg-[#cfcfcf] text-transparent bg-clip-text"
+          initial="hidden"
+          animate="visible"
+          variants={flipVariant}
+          transition={{ duration: 0.8 }}
+        >
+          Welcome to
+        </motion.h1>
 
-          <motion.h1
-            className="text-3xl md:text-7xl font-medium tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2"
-            initial="hidden"
-            animate="visible"
-            variants={flipVariant}
-            transition={{ duration: 1, delay: 0.2 }}
-          >
-            Siddhivinayak Engineers
-          </motion.h1>
+        <motion.h1
+          className="text-3xl md:text-7xl font-medium tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2"
+          initial="hidden"
+          animate="visible"
+          variants={flipVariant}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          Siddhivinayak Engineers
+        </motion.h1>
 
-          <motion.p
-  className="text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl text-[#ffffff] tracking-tight mt-4 sm:mt-6 lg:mt-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full text-center mx-auto leading-tight"
-  initial="hidden"
-  animate="visible"
-  variants={flipVariant}
-  transition={{ duration: 1, delay: 0.4 }}
->
-  One Stop Solution for All your Electric & Automation Needs.
-</motion.p>
-
-
-
-
-
-
-
-          {/*<div className="flex flex-row justify-center gap-2 items-center mt-[30px]">
-
-            <button className="btn btn-primary rounded-md bg-[#fb845d]">
-              Go to Projects
-            </button>
-
-            <button className="btn btn-primary rounded-full bg-[#0074F5]">Go to Projects</button>
-
-            <button className="btn rounded-md bg-white gap-1 flex items-center">
-              <span>Contact Us</span>
-              <ArrowIcon className="h-5 w-5 ml-2" />
-            </button>
-          </div>*/}
-        </div>
+        <motion.p
+          className="text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl text-[#ffffff] tracking-tight mt-4 sm:mt-6 lg:mt-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full text-center mx-auto leading-tight"
+          initial="hidden"
+          animate="visible"
+          variants={flipVariant}
+          transition={{ duration: 1, delay: 0.4 }}
+        >
+          One Stop Solution for All your Electric & Automation Needs.
+        </motion.p>
       </div>
     </section>
   );

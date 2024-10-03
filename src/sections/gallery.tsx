@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image"; // Import Next.js Image component
 import axios from "axios";
-import Image from "next/image";
 
 const Gallery: React.FC = () => {
   // State for storing gallery images
@@ -37,7 +37,7 @@ const Gallery: React.FC = () => {
   }, []);
 
   return (
-    <div className="container  mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
       {/* Gallery Title */}
       <h2 className="text-3xl font-bold text-center mb-6">Gallery</h2>
 
@@ -51,10 +51,12 @@ const Gallery: React.FC = () => {
             <Image
               src={image.src}
               alt={image.alt}
+              width={300} // Set width for Image component
+              height={300} // Set height for Image component
               className="w-full h-full object-cover rounded-lg transform transition-transform duration-300 ease-in-out hover:scale-105"
               style={{ width: '300px', height: '300px' }}  // Set width and height
-              width={600}
-              height={600}
+              
+              
             />
             <p className="text-center text-lg font-medium mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               {image.alt}

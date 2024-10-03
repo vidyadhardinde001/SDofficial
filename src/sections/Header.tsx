@@ -5,29 +5,9 @@ import logo1 from "@/assets/alpha.png";
 import Image from "next/image";
 import MenuIcon from "@/assets/menu.svg";
 import { motion } from "framer-motion";
-import Link from 'next/link';
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useState } from "react";
 
-
-interface HeaderContent {
-  logoUrl: string;
-  phone: string;
-  menuItems: { href: string; text: string }[];
-}
-// export async function getStaticProps() {
-//   const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=hdWxvDOxAo37f14rks_1dhsJmxVl1lBzB2yQvp32pZdmoY4K2aBMR5x5WHTBxlKJBj0WQAEHDYpXRt0OjiWck7rn6Xkdb0HYm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBnV1TslBD8CxlmVE9u3evWfF1GXw_KHyfXkWYYt9CYFVnR92-qieb8jHbj1wsQVfR9afHfui3JKrJxwE5HGcJYXJ5K4j08g4g&lib=MdeKoPvhrvM-qhZvace2Bf_Z1uKL4_q0K');
-//   if (!response.ok) {
-//     throw new Error('Network response was not ok');
-//   }
-//   const data = await response.json();
-
-//   return {
-//     props: {
-//       headerContent: data.content || null,
-//     },
-//     revalidate: 60, // Re-fetch the data every 60 seconds
-//   };
-// }
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // const [headerContent, setHeaderContent] = useState<HeaderContent | null>(null);
@@ -70,7 +50,6 @@ export const Header = () => {
 
   return (
     <header className="sticky top-0 backdrop-blur-lg z-50 bg-white">
-
       <div className="py-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
@@ -83,17 +62,14 @@ export const Header = () => {
 
 
             {/* Mobile Menu Button */}
-            <button
-              className="md:hidden ml-auto"
-              onClick={handleMenuToggle}
-            >
+            <button className="md:hidden ml-auto" onClick={handleMenuToggle}>
               <MenuIcon className="h-5 w-5" />
             </button>
 
             {/* Navigation Links */}
             <nav
               className={`${
-                isMenuOpen ? 'block' : 'hidden'
+                isMenuOpen ? "block" : "hidden"
               } md:flex lg:gap-14 md:gap-8 text-black/60 justify-center items-center bg-white px-4 py-2 rounded-full sm:w-[320px] md:w-[500px] lg:w-[700px] xl:w-[1200px] max-w-screen-md mx-auto`}
             >
               <Link href="/" className="relative group hover:text-black">
@@ -144,7 +120,7 @@ export const Header = () => {
       {/* Mobile Menu */}
       <nav
         className={`${
-          isMenuOpen ? 'block' : 'hidden'
+          isMenuOpen ? "block" : "hidden"
         } md:hidden fixed top-0 left-0 w-full bg-white z-40`}
       >
         <div className="flex flex-col items-center py-6">

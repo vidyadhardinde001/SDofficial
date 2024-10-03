@@ -10,7 +10,7 @@ import QuoteSection from "@/sections/QuoteSection";
 import ValuetoProduct from "@/sections/ValuetoProduct";
 import TestimonialSection from "@/sections/TestimonialSection";
 import ServicesSection from "@/sections/ServicesSection";
-import Scene from "@/components/Scene";
+import Scene from "@/components/laptop";
 import Projects from "@/sections/Projects";
 import Gallery from "@/sections/gallery";
 import AboutUs from "@/sections/aboutus";
@@ -20,9 +20,10 @@ export default function Home() {
     <>
       <Header />
       <Hero />
-      <ServicesSection />
+      
       <ValuetoProduct />
       <IndustriesWeServe />
+      <ServicesSection />
       <LogoTicker />
       <TestimonialSection />
       <ContactSection />

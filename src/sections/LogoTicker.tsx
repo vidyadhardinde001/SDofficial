@@ -19,7 +19,7 @@ export const LogoTicker = () => {
       <div className="container">
         {/* Heading Section */}
         <div className="text-center mb-8">
-          <h2 className="text-4xl font-medium mb-[50px] text-black">Our Clients</h2>
+          <h2 className="text-5xl font-medium mb-6 mt-6 text-[black] pb-14">Our Clients</h2>
         </div>
         
         {/* Logo Ticker Section */}

@@ -21,7 +21,7 @@ const seedData = [
     section: 'header',
     content: {
       logoUrl: '/assets/logo1.png', // Ensure this matches the path you use
-      phone: '+91 7558341063',
+      phone: '+91 7057272626',
       menuItems: [
         { href: '/', text: 'Home' },
         { href: '/projects', text: 'Projects' },
@@ -120,8 +120,6 @@ const seedData = [
       heading: [
         "Any Questions?",
         "Write or call us.",
-        "We will write back",
-        "within 12hrs :)"
       ],
       phone: '+91 7057272626',
       email: 'siddhivinayakengineers19@gmail.com',

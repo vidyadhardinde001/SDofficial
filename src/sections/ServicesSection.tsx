@@ -1,12 +1,14 @@
 // src/sections/ServicesSection.tsx
 import React from "react";
-import Scene from "@/components/Scene";
-import Scene2 from "@/components/Scene2";
+import Scene from "@/components/laptop";
+import Scene2 from "@/components/controlpanel";
+import Wrench from "@/components/wrenchscene";
+import Fieldscene from "@/components/Fieldscene";
 
 const ServicesSection: React.FC = () => {
   return (
-    <div className="bg-white text-black py-10 px-5">
-      <h1 className="text-center text-4xl font-bold mb-10">Our Services</h1>
+    <div className="bg-white text-black py-20 px-5">
+      <h1 className="text-5xl font-medium mb-12 mt-6 text-black text-center pb-12">Our Services</h1>
       <div className="flex flex-col gap-8 w-full md:w-3/4 mx-auto">
         
         {/* First Section */}
@@ -31,7 +33,7 @@ const ServicesSection: React.FC = () => {
         {/* Second Section */}
         <div className="flex flex-col md:flex-row-reverse">
           <div className="flex-1 flex items-center justify-center">
-            
+          <Wrench />
           </div>
           <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-4">
             <h2 className="text-xl font-semibold">Maintenance Services</h2>
@@ -67,7 +69,7 @@ const ServicesSection: React.FC = () => {
         {/* Fourth Section */}
         <div className="flex flex-col md:flex-row-reverse">
           <div className="flex-1 flex items-center justify-center">
-            
+          <Fieldscene />
           </div>
           <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-4">
             <h2 className="text-xl font-semibold">Field Wiring</h2>

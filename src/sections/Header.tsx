@@ -1,6 +1,7 @@
 "use client";
 import ArrowRight from "@/assets/arrow-right.svg";
 import logo from "@/assets/logo1.png";
+import logo1 from "@/assets/alpha.png";
 import Image from "next/image";
 import MenuIcon from "@/assets/menu.svg";
 import { motion } from "framer-motion";
@@ -29,33 +30,34 @@ interface HeaderContent {
 // }
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [headerContent, setHeaderContent] = useState<HeaderContent | null>(null);
+  // const [headerContent, setHeaderContent] = useState<HeaderContent | null>(null);
 
-  useEffect(() => {
-    async function fetchContent() {
-      try {
-      //   const cachedContent = localStorage.getItem('headerContent');
-      // if (cachedContent) {
-      //   setHeaderContent(JSON.parse(cachedContent));
-      //   return;
-      // }
-        // const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=hdWxvDOxAo37f14rks_1dhsJmxVl1lBzB2yQvp32pZdmoY4K2aBMR5x5WHTBxlKJBj0WQAEHDYpXRt0OjiWck7rn6Xkdb0HYm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBnV1TslBD8CxlmVE9u3evWfF1GXw_KHyfXkWYYt9CYFVnR92-qieb8jHbj1wsQVfR9afHfui3JKrJxwE5HGcJYXJ5K4j08g4g&lib=MdeKoPvhrvM-qhZvace2Bf_Z1uKL4_q0K');
-        const response = await fetch('/api/content/header');
+  // useEffect(() => {
+  //   async function fetchContent() {
+  //     try {
+  //     //   const cachedContent = localStorage.getItem('headerContent');
+  //     // if (cachedContent) {
+  //     //   setHeaderContent(JSON.parse(cachedContent));
+  //     //   return;
+  //     // }
+  //       // const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=hdWxvDOxAo37f14rks_1dhsJmxVl1lBzB2yQvp32pZdmoY4K2aBMR5x5WHTBxlKJBj0WQAEHDYpXRt0OjiWck7rn6Xkdb0HYm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBnV1TslBD8CxlmVE9u3evWfF1GXw_KHyfXkWYYt9CYFVnR92-qieb8jHbj1wsQVfR9afHfui3JKrJxwE5HGcJYXJ5K4j08g4g&lib=MdeKoPvhrvM-qhZvace2Bf_Z1uKL4_q0K');
+  //       const response = await fetch('/api/content/header');
 
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        console.log('Fetched data:', data); // Check if this logs the correct data
-        setHeaderContent(data.content); // Ensure this matches the structure
-        // localStorage.setItem('headerContent', JSON.stringify(data.content));
-      } catch (error) {
-        console.error('Error fetching header content:', error);
-      }
-    }
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       const data = await response.json();
+  //       console.log('Fetched data:', data); // Check if this logs the correct data
+  //       // data.content.logoUrl = "https://drive.google.com/uc?export=view&id=1F_9eMigSKMiIWycfJdSEVmycBdNMz_mY";
+  //       setHeaderContent(data.content); // Ensure this matches the structure
+  //       // localStorage.setItem('headerContent', JSON.stringify(data.content));
+  //     } catch (error) {
+  //       console.error('Error fetching header content:', error);
+  //     }
+  //   }
   
-    fetchContent();
-  }, []);
+  //   fetchContent();
+  // }, []);
   // if (headerContent==null) {
   //   console.log("Header data is still null or undefined");
   //   return <div>Loading...</div>;
@@ -72,12 +74,12 @@ export const Header = () => {
       <div className="py-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            <Image src={logo} alt="Saas Logo" height={10} width={80} />
-            {/* {headerContent ? (
-              <Image src={headerContent.logoUrl} alt="Saas Logo" height={10} width={80} />
-            ) : (
-              <p>Loading...</p>
-            )} */}
+            <Image src={logo} alt="Saas Logo" width={80} height={10} />
+            {/* {headerContent ? ( */}
+              {/* <Image src={headerContent?.logoUrl || logo1} alt="Saas Logo" height={10} width={80} /> */}
+            {/* ) : ( */}
+              {/* <p>Loading...</p> */}
+            {/* )} */}
 
 
             {/* Mobile Menu Button */}
@@ -94,7 +96,7 @@ export const Header = () => {
                 isMenuOpen ? 'block' : 'hidden'
               } md:flex lg:gap-14 md:gap-8 text-black/60 justify-center items-center bg-white px-4 py-2 rounded-full sm:w-[320px] md:w-[500px] lg:w-[700px] xl:w-[1200px] max-w-screen-md mx-auto`}
             >
-              {/* <Link href="/" className="relative group hover:text-black">
+              <Link href="/" className="relative group hover:text-black">
                 Home
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
@@ -113,28 +115,28 @@ export const Header = () => {
               <Link href="/aboutus" className="relative group hover:text-black">
                 About Us
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
-              </Link> */}
-              {headerContent?.menuItems.map((link) => (
+              </Link>
+              {/* {headerContent?.menuItems.map((link) => (
                 <Link key={link.href} href={link.href} className="relative group hover:text-black">
                   {link.text}
                   <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
                 </Link>
-              ))}
+              ))} */}
             </nav>
-            {/* <a
+            <a
               href="tel:+91 7558341063" // Replace with your actual phone number
               className="bg-[#0074F5] hover:bg-black text-white px-4 py-2 rounded-md font-medium inline-flex align-items justify-center tracking-tight ml-auto hidden md:block"
             >
               Call Us
-            </a> */}
-            {headerContent && (
+            </a>
+            {/* {headerContent && (
               <a
                 href={`tel:${headerContent.phone}`}
                 className="bg-[#0074F5] hover:bg-black text-white px-4 py-2 rounded-md font-medium inline-flex align-items justify-center tracking-tight ml-auto hidden md:block"
               >
                 Call Us
               </a>
-            )}
+            )} */}
           </div>
         </div>
       </div>
@@ -146,7 +148,7 @@ export const Header = () => {
         } md:hidden fixed top-0 left-0 w-full bg-white z-40`}
       >
         <div className="flex flex-col items-center py-6">
-          {/* <Link href="/" className="relative group text-lg py-2" onClick={() => setIsMenuOpen(false)}>
+          <Link href="/" className="relative group text-lg py-2" onClick={() => setIsMenuOpen(false)}>
             Home
             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
           </Link>
@@ -172,8 +174,8 @@ export const Header = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             Call Us
-          </a> */}
-          {headerContent?.menuItems.map((link) => (
+          </a>
+          {/* {headerContent?.menuItems.map((link) => (
             <Link key={link.href} href={link.href} className="relative group text-lg py-2" onClick={() => setIsMenuOpen(false)}>
               {link.text}
               <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
@@ -187,7 +189,7 @@ export const Header = () => {
             >
               Call Us
             </a>
-          )}
+          )} */}
         </div>
       </nav>
     </header>

@@ -62,27 +62,27 @@ export const Footer = () => {
     // fetchHeaderContent();
   }, []);
 
-  if (!footerContent) {
-    return <div>Loading...</div>;
-  }
+  // if (!footerContent) {
+  //   return <div>Loading...</div>;
+  // }
   return (
     <footer className="bg-[#121825] text-[#BCBCBC] text-sm py-10 text-center">
       <div className="container">
         <nav className="flex flex-col md:flex-row md:justify-center gap-6 mt-6">
-          {/* <a href="#">Home</a>
-          <a href="#">Projects</a>
-          <a href="#">Gallery</a>
-          <a href="#">Contact</a>
-          <a href="#">About Us</a> */}
-          {footerContent.navigationLinks.map((item) => (
+          <a href="/">Home</a>
+          <Link href="/projects">Projects</Link>
+          <Link href="/gallery">Gallery</Link>
+          <Link href="/contactus">Contact</Link>
+          <Link href="/aboutus">About Us</Link>
+          {/* {footerContent.navigationLinks.map((item) => (
             <Link key={item.href} href={item.href}>
-              <a>{item.text}</a> {/* Use Link for client-side navigation */}
+              <a>{item.text}</a> 
             </Link>
-          ))}
+          ))} */}
         </nav>
         <div className="flex justify-center gap-6 mt-6">
           {/* Social Media Icons with Links */}
-          {/* <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
             <SocialX />
           </a>
           <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
@@ -90,20 +90,20 @@ export const Footer = () => {
           </a>
           <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
             <SocialLinkedIn />
-          </a> */}
-          {footerContent.socialLinks &&
+          </a>
+          {/* {footerContent.socialLinks &&
             Object.entries(footerContent.socialLinks).map(([platform, url]) => (
               <a key={platform} href={url} target="_blank" rel="noopener noreferrer">
                 {platform === "twitter" && <SocialX />}
                 {platform === "instagram" && <SocialInsta />}
                 {platform === "linkedin" && <SocialLinkedIn />}
               </a>
-            ))}
+            ))} */}
           
         </div>
         <p className="mt-6">
-          {/* &copy; 2024 Siddhivinayak Engineers, Inc. All rights reserved. */}
-          &copy; {new Date().getFullYear()} {footerContent.copyrightText}
+          &copy; 2024 Siddhivinayak Engineers, Inc. All rights reserved.
+          {/* &copy; {new Date().getFullYear()} {footerContent.copyrightText} */}
         </p>
       </div>
     </footer>

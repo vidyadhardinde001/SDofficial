@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 interface Project {
   id: number;
@@ -102,10 +103,12 @@ const Projects: React.FC = () => {
             key={project.id}
             className="flex flex-col md:flex-row bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl"
           >
-            <img
-              src={project.image}
+            <Image
+              src={project?.image}
               alt={project.title}
               className="w-full md:w-1/2 h-auto object-cover"
+              width={600}
+              height={600}
             />
             <div className="p-6 flex flex-col justify-between md:w-1/2">
               <div>

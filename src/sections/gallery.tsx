@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 const Gallery: React.FC = () => {
   // State for storing gallery images
@@ -47,11 +48,13 @@ const Gallery: React.FC = () => {
             key={image.id}
             className="relative group overflow-hidden rounded-lg"
           >
-            <img
+            <Image
               src={image.src}
               alt={image.alt}
               className="w-full h-full object-cover rounded-lg transform transition-transform duration-300 ease-in-out hover:scale-105"
               style={{ width: '300px', height: '300px' }}  // Set width and height
+              width={600}
+              height={600}
             />
             <p className="text-center text-lg font-medium mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               {image.alt}

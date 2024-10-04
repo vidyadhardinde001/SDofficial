@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ['drive.google.com','i.pravatar.cc'], // Add your image source domains here
+  },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
@@ -29,9 +32,7 @@ const nextConfig = {
   },
 
   // Adding domains for next/image
-  images: {
-    domains: ['i.pravatar.cc'], // Add external image domains here
-  },
+  
 
   async rewrites() {
     return [

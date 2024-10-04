@@ -54,6 +54,9 @@ const Gallery: React.FC = () => {
               width={300} // Set width for Image component
               height={300} // Set height for Image component
               className="w-full h-full object-cover rounded-lg transform transition-transform duration-300 ease-in-out hover:scale-105"
+              style={{ width: '300px', height: '300px' }}  // Set width and height
+              
+              
             />
             <p className="text-center text-lg font-medium mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               {image.alt}

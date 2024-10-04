@@ -104,15 +104,13 @@ const Projects: React.FC = () => {
             key={project.id}
             className="flex flex-col md:flex-row bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl"
           >
-            <div className="w-full md:w-1/2 h-auto">
-              <Image
-                src={project.image}
-                alt={project.title}
-                width={600} // Adjust width as needed
-                height={400} // Adjust height as needed
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <Image
+              src={project?.image}
+              alt={project.title}
+              className="w-full md:w-1/2 h-auto object-cover"
+              width={600}
+              height={600}
+            />
             <div className="p-6 flex flex-col justify-between md:w-1/2">
               <div>
                 <h2

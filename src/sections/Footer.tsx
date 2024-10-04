@@ -40,37 +40,53 @@ export const Footer = () => {
     fetchFooterContent();
   }, []);
 
-  if (!footerContent) {
-    return <div>Loading...</div>;
-  }
-
+  // if (!footerContent) {
+  //   return <div>Loading...</div>;
+  // }
   return (
     <footer className="bg-[#121825] text-[#BCBCBC] text-sm py-20 text-center">
       <div className="container">
         {/* Navigation Links */}
         <nav className="flex flex-col md:flex-row md:justify-center gap-6 mt-6">
-          {footerContent.navigationLinks.map((item) => (
+          <a href="/">Home</a>
+          <Link href="/projects">Projects</Link>
+          <Link href="/gallery">Gallery</Link>
+          <Link href="/contactus">Contact</Link>
+          <Link href="/aboutus">About Us</Link>
+          {/* {footerContent.navigationLinks.map((item) => (
             <Link key={item.href} href={item.href}>
-              <a>{item.text}</a> {/* Client-side navigation */}
+              <a>{item.text}</a> 
             </Link>
-          ))}
+          ))} */}
         </nav>
 
         {/* Social Media Links */}
         <div className="flex justify-center gap-6 mt-6">
-          {footerContent.socialLinks &&
+          {/* Social Media Icons with Links */}
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+            <SocialX />
+          </a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+            <SocialInsta />
+          </a>
+          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
+            <SocialLinkedIn />
+          </a>
+          {/* {footerContent.socialLinks &&
             Object.entries(footerContent.socialLinks).map(([platform, url]) => (
               <a key={platform} href={url} target="_blank" rel="noopener noreferrer">
                 {platform === "twitter" && <SocialX className="hover:text-blue-500" />}
                 {platform === "instagram" && <SocialInsta className="hover:text-blue-500" />}
                 {platform === "linkedin" && <SocialLinkedIn className="hover:text-blue-500" />}
               </a>
-            ))}
+            ))} */}
+          
         </div>
 
         {/* Copyright Text */}
         <p className="mt-6">
-          &copy; {new Date().getFullYear()} {footerContent.copyrightText}
+          &copy; 2024 Siddhivinayak Engineers, Inc. All rights reserved.
+          {/* &copy; {new Date().getFullYear()} {footerContent.copyrightText} */}
         </p>
       </div>
     </footer>

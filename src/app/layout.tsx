@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en" className="relative">
       <head>
         <link rel="icon" href="/assets/Siddhivinayak-Engineers.ico" /> {/* Corrected path */}
-        <title>Siddhivinyak Engineers</title>
+        <title>Siddhivinayak Engineers</title>
         <meta name="description" content="Template created by Frontend Tribe" />
       </head>
       <body className={twMerge(outfit.className, "antialiased bg-[#EAEEFE]")}>

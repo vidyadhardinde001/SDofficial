@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import { CSSTransition } from 'react-transition-group';
 import styles from './Transition.module.css';
 
-
-
 const ContactSection: React.FC = () => {
   const [inProp, setInProp] = useState(true);
 

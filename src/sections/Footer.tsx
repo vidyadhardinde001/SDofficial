@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
-import SocialX from "@/assets/social-x.svg";
+import FacebookIcon from "@/assets/social-facebook.svg";
 import SocialInsta from "@/assets/social-insta.svg";
 import SocialLinkedIn from "@/assets/social-linkedin.svg";
+
 import { useEffect, useState } from "react";
 
 // Define the structure of the footer content
@@ -63,14 +64,15 @@ export const Footer = () => {
         {/* Social Media Links */}
         <div className="flex justify-center gap-6 mt-6">
           {/* Social Media Icons with Links */}
-          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
-            <SocialX />
-          </a>
-          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+          
+          <a href="https://www.instagram.com/siddhivinayakengineers19?igsh=Nml3cnZ0cHgxYmo3" target="_blank" rel="noopener noreferrer">
             <SocialInsta />
           </a>
           <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
             <SocialLinkedIn />
+          </a>
+          <a href="https://www.facebook.com/SiddhivinayakEngineerss" target="_blank" rel="noopener noreferrer">
+            <FacebookIcon />
           </a>
           {/* {footerContent.socialLinks &&
             Object.entries(footerContent.socialLinks).map(([platform, url]) => (

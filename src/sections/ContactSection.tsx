@@ -132,7 +132,7 @@ const ContactSection: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full py-3 mt-4 text-white bg-[#0074F5] hover:bg-black rounded-md font-semibold tracking-wide flex items-center justify-center"
+              className="w-full py-3 mt-4 text-white bg-[#FE6D20] hover:bg-[#ff9f6c] rounded-md font-semibold tracking-wide flex items-center justify-center"
             >
               {content?.content?.buttonText}
               {/* submit */}

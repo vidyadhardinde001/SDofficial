@@ -52,7 +52,7 @@ const IndustriesWeServe: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-10 bg-[#EAEEFE]" ref={sectionRef}>
+    <section className="py-10 bg-[#FAFAFC]" ref={sectionRef}>
       <div className="max-w-6xl mx-auto px-4">
         <h1 className="text-5xl font-medium mb-12 mt-3 text-black text-center">
           Industries We Serve
@@ -62,7 +62,7 @@ const IndustriesWeServe: React.FC = () => {
           {industries.map((industry) => (
             <motion.div
               key={industry.name}
-              className="bg-white p-6 rounded-lg text-center shadow-md transition-transform duration-300 transform hover:scale-105 border border-gray-200 hover:border-blue-500"
+              className="bg-[#313337] p-6 rounded-lg text-center shadow-md transition-transform duration-300 transform hover:scale-105 border border-gray-200 hover:border-blue-500"
               whileHover={{ scale: 1.05 }}
               initial="hidden"
               animate={inView ? 'visible' : 'hidden'}
@@ -75,12 +75,12 @@ const IndustriesWeServe: React.FC = () => {
                   alt={industry.name} // Provide alt text for accessibility
                   width={80} // Set appropriate width for the icon
                   height={80} // Set appropriate height for the icon
-                  className="object-contain filter invert-0 sepia-1 saturate-100 hue-rotate-0 brightness-0 contrast-100"
+                  className="object-contain hue-rotate-0 brightness-100"
                 />
               </div>
 
               {/* Industry Name */}
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              <h3 className="text-l font-medium text-white mb-2">
                 {industry.name}
               </h3>
             </motion.div>

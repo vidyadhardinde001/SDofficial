@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Montserrat } from "next/font/google"; // Changed from Outfit to Montserrat
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
 
-const outfit = Outfit({ subsets: ["latin"] });
+// Configure Montserrat font
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // Add the weights you want to use
+});
 
 export const metadata: Metadata = {
   title: "Siddhivinayak Engineers",
@@ -18,11 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="relative">
       <head>
-        <link rel="icon" href="/assets/Siddhivinayak-Engineers.ico" /> {/* Corrected path */}
+        <link rel="icon" href="/assets/Siddhivinayak-Engineers.ico" />
         <title>Siddhivinayak Engineers</title>
         <meta name="description" content="Template created by Frontend Tribe" />
       </head>
-      <body className={twMerge(outfit.className, "antialiased bg-[#EAEEFE]")}>
+      <body className={twMerge(montserrat.className, "antialiased bg-[#EAEEFE]")}>
         {children}
       </body>
     </html>

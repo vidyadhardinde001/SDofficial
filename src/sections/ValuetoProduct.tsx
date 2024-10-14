@@ -16,9 +16,9 @@ const ValuetoProduct = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[white] flex flex-col items-center justify-center p-6">
+    <div className="min-h-screen bg-[#232323] flex flex-col items-center justify-center p-6">
       {/* Centered Heading */}
-      <h1 className="text-5xl font-medium mb-6 mt-6 text-[black] pb-14 text-center">
+      <h1 className="text-5xl font-medium mb-6 mt-6 text-white pb-14 text-center">
         How We Add Value to Our Products
       </h1>
 
@@ -27,7 +27,7 @@ const ValuetoProduct = () => {
         {cards.map((item, index) => (
           <div
             key={index}
-            className="bg-[transparent] text-[black] p-6 rounded-xl text-lg md:text-2xl flex items-center justify-center transition-all duration-300 ease-in-out overflow-hidden border border-[black] h-24"
+            className="bg-[#313337] hover:text-[#ff9f6c] text-[white] p-6 rounded-xl text-lg md:text-xl flex items-center justify-center transition-all duration-300 ease-in-out overflow-hidden h-24"
           >
             <span className="text-center">{item}</span>
           </div>

@@ -34,8 +34,8 @@ const TestimonialSection: React.FC = () => {
 
   return (
     <>
-      <div className="py-10 px-5 bg-[#EAEEFE]">
-        <h2 className="text-5xl font-medium mb-6 text-black pb-5 text-center">Testimonials</h2>
+      <div className="py-10 px-5 bg-[#232323]">
+        <h2 className="text-5xl font-medium mb-6 text-white pb-5 text-center">Testimonials</h2>
         <div
           ref={scrollContainerRef}
           onMouseDown={handleMouseDown}

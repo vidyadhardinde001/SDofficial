@@ -49,7 +49,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 backdrop-blur-lg z-50 bg-white">
+    <header className="sticky top-0 backdrop-blur-lg z-50 bg-black">
       <div className="py-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
@@ -70,27 +70,27 @@ export const Header = () => {
             <nav
               className={`${
                 isMenuOpen ? "block" : "hidden"
-              } md:flex lg:gap-14 md:gap-8 text-black/60 justify-center items-center bg-white px-4 py-2 rounded-full sm:w-[320px] md:w-[500px] lg:w-[700px] xl:w-[1200px] max-w-screen-md mx-auto`}
+              } md:flex lg:gap-14 md:gap-8 text-white justify-center items-center bg-black px-4 py-2 rounded-full sm:w-[320px] md:w-[500px] lg:w-[700px] xl:w-[1200px] max-w-screen-md mx-auto`}
             >
-              <Link href="/" className="relative group hover:text-black">
+              <Link href="/" className="relative group hover:text-white font-semibold">
                 Home
-                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
+                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
-              <Link href="/projects" className="relative group hover:text-black">
+              <Link href="/projects" className="relative group hover:text-white font-semibold">
                 Projects
-                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
+                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
-              <Link href="/gallery" className="relative group hover:text-black">
+              <Link href="/gallery" className="relative group hover:text-white font-semibold">
                 Gallery
-                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
+                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
-              <Link href="/contactus" className="relative group hover:text-black">
+              <Link href="/contactus" className="relative group hover:text-white font-semibold">
                 Contact
-                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
+                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
-              <Link href="/aboutus" className="relative group hover:text-black">
+              <Link href="/aboutus" className="relative group hover:text-white font-semibold">
                 About Us
-                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
+                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
               {/* {headerContent?.menuItems.map((link) => (
                 <Link key={link.href} href={link.href} className="relative group hover:text-black">
@@ -101,7 +101,7 @@ export const Header = () => {
             </nav>
             <a
               href="tel:+91 7558341063" // Replace with your actual phone number
-              className="bg-[#0074F5] hover:bg-black text-white px-4 py-2 rounded-md font-medium inline-flex align-items justify-center tracking-tight ml-auto hidden md:block"
+              className="bg-[#FE6D20] hover:bg-[#ff9f6c] text-white px-4 py-2 rounded-md font-medium inline-flex align-items justify-center tracking-tight ml-auto hidden md:block"
             >
               Call Us
             </a>
@@ -146,7 +146,7 @@ export const Header = () => {
           </Link>
           <a
             href="tel:+91 7558341063" // Replace with your actual phone number
-            className="bg-[#575FF2] hover:bg-[#2E38F2] text-white px-4 py-2 rounded-full font-medium mt-4"
+            className="bg-[#ffffff] hover:bg-[#6a6a6a] text-white px-4 py-2 rounded-full font-medium mt-4"
             onClick={() => setIsMenuOpen(false)}
           >
             Call Us

@@ -97,6 +97,51 @@ const fetchGalleryAndUpdateDatabase = async () => {
   }
 };
 
+const fetchHeroSectionAndUpdateDatabase = async () => {
+  try {
+    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=KJ0jrtflLnowUrnX1oa9gpRoehz3RhcouVR5Ek9sz3UbFXN0zfba5bB7xzBjfFZ7erXSvHOGyZAdArWipVZ3AHBEguUlQFw7m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPSes8K7rVC4cBQF2LqNz5wTxp2unB-jQa368GhxUbYHGxZqVBdM0i6thF3ZyONz4XQJmmtVdaPpBUVnQgDnpzCJuDlzVxqDkQ&lib=MhOghx2ivbIsU-792mgpTLfZ1uKL4_q0K'); // Replace with actual Google Sheets API URL
+    const apiData = response.data;
+
+    const heroData = {
+      section: 'heroSection',
+      content: {
+        welcomeMessage: apiData.content.welcomeMessage,
+        mainHeading: apiData.content.mainHeading,
+        subHeading: apiData.content.subHeading,
+        videoUrl: apiData.content.videoUrl,
+      }
+    };
+
+    // Delete existing hero data and insert the updated data
+    await Content.deleteMany({ section: 'heroSection' });
+    await Content.create(heroData);
+
+    console.log('Hero section updated from Google Sheets');
+  } catch (error) {
+    console.error('Error fetching Hero section data from API', error);
+  }
+};
+
+const fetchValueToProductAndUpdateDatabase = async () => {
+  try {
+    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=jVdIyl3bRGIyD_004jotgsni8PGYzKqzeeLkS101oznRIuj6RSNJH_0ppqqt4FfCGC0fG2o3z6jSp03xEhni6XXT5GghD_-xm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnEZGjWghMy4ALXbj4R6SY44yPFBeMgapBi6ZB4Xr_9Wyv2O6My-X2UriQlroIpkE5jxX5jBqFqzSiwuVZ1mXrk0x4IcFphKShw&lib=Mbw0ZJRqBK6WfKp-y_t1HJPZ1uKL4_q0K'); // Replace with your actual URL for Value to Product
+    const apiData = response.data;
+
+    const valueToProductData = {
+      section: 'valuetoProduct',
+      content: {
+        valueList: apiData.content // Adjust based on your API response structure
+      }
+    };
+
+    await Content.deleteMany({ section: 'valuetoProduct' });
+    await Content.create(valueToProductData);
+
+    console.log('Value to Product data updated from Google Sheets or API');
+  } catch (error) {
+    console.error('Error fetching Value to Product data from API', error);
+  }
+};
 
 
 
@@ -122,4 +167,6 @@ app.listen(port, () => {
   // fetchDataAndUpdateDatabase();
   fetchDataAndUpdateDatabase();
   fetchGalleryAndUpdateDatabase();
+  fetchHeroSectionAndUpdateDatabase();
+  fetchValueToProductAndUpdateDatabase();
 });

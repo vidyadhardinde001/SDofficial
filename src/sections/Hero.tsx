@@ -1,14 +1,22 @@
 "use client";
 import ArrowIcon from "@/assets/arrow-right.svg";
-import { useEffect } from "react";
+import { useEffect ,useState} from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
+import axios from "axios";
 
 declare global {
   interface Window {
     botpressWebChat: any; // Declare the botpressWebChat property
   }
+}
+
+interface HeroContent {
+  welcomeMessage: string;
+  mainHeading: string;
+  subHeading: string;
+  videoUrl: string;
 }
 
 export const Hero = () => {
@@ -25,8 +33,29 @@ export const Hero = () => {
     visible: { rotateX: 0, opacity: 1 },
   };
 
+  const [heroContent, setHeroContent] = useState<HeroContent>({
+    welcomeMessage: '',
+    mainHeading: '',
+    subHeading: '',
+    videoUrl: ''
+  });
+
   // Load Botpress script and configuration
   useEffect(() => {
+    const fetchHeroContent = async () => {
+      try {
+        const response = await axios.get('/api/content/heroSection');
+        const data = response.data.content;
+        // const response = await fetch('/api/content/heroSection');
+        // const data = await response.json();
+        setHeroContent(data);
+      } catch (error) {
+        console.error('Error fetching Hero content:', error);
+      }
+    };
+
+    fetchHeroContent();
+
     window.botpressWebChat = {
       botId: "1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9", // Your bot ID
       host: "https://cdn.botpress.cloud",
@@ -95,7 +124,7 @@ export const Hero = () => {
           variants={flipVariant}
           transition={{ duration: 0.8 }}
         >
-          Welcome to
+          {heroContent?.welcomeMessage}
         </motion.h1>
 
         <motion.h1
@@ -105,7 +134,7 @@ export const Hero = () => {
           variants={flipVariant}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          Siddhivinayak Engineers
+          {heroContent?.mainHeading}
         </motion.h1>
 
         <motion.p
@@ -115,7 +144,7 @@ export const Hero = () => {
           variants={flipVariant}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          One Stop Solution for All your Electric & Automation Needs.
+          {heroContent?.subHeading}
         </motion.p>
       </div>
     </section>

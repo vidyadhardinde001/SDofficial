@@ -75,6 +75,30 @@ const fetchDataAndUpdateDatabase = async () => {
   }
 };
 
+const fetchIndustriesDataAndUpdate = async() => {
+  try{
+    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=ZeAn9R4Rt7wAjmI2NaAXATp7GW7PjXY4ShiwTwVGBELhkMdBbvId0IdjPFUWRcoW8oo3v0vtTEjhDOa1-UEkteUFaRREl5hVm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBSm_USY4GSQ8Tca1sNRFpaiQ2g2GjE9ijJtY7fOPRD6yfShoFAtt0-kav1ZSmGKDIz4eD8bdqOgW7FGS2Wq8KwuVInP8lnoBQ&lib=MvLWOAv6XvPFl5sKePnYpffZ1uKL4_q0K');
+    const apiData = response.data;
+
+    const contentData = {
+      section: 'industries',
+      content:{
+        IndustryList: apiData.content.IndustryList
+      }
+    };
+
+    await Content.deleteMany({section: 'industries'});
+
+    await Content.create(contentData);
+
+    console.log('Industries data updated with google sheet');
+  } catch (error){
+    console.error('Error fetching data from Google Sheets API', error);
+  }
+
+};
+
+
 const fetchGalleryAndUpdateDatabase = async () => {
   try {
     const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=90rFnfDXzfZm6VlFKZkbcLc87LmuwCkBUWm11sfK4PCAddJzlknvEpZwhwhiYr9SIjY7P7jNyC7ZKCtrP-PL9B3qKtdSVnX3m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJTwMJZnWSxTM3TdZybefEV_oyLs55Xlori6jebIPmUq1k1Kole8MtZQuK9A_3FJIh41psCCXoaBR0iCy3D9Iai_2Ybj-VDT3A&lib=MCbCGb8vc5tMgqiebKsQrMPZ1uKL4_q0K'); // Replace with the correct URL for gallery
@@ -145,6 +169,7 @@ const fetchValueToProductAndUpdateDatabase = async () => {
 
 
 
+
 // Route to get content by section (header or footer)
 app.get('/api/content/:section', async (req, res) => {
   try {
@@ -169,4 +194,5 @@ app.listen(port, () => {
   fetchGalleryAndUpdateDatabase();
   fetchHeroSectionAndUpdateDatabase();
   fetchValueToProductAndUpdateDatabase();
+  fetchIndustriesDataAndUpdate();
 });

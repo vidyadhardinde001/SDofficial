@@ -23,11 +23,11 @@ const ValuetoProduct = () => {
       </h1>
 
       {/* Main Content Section */}
-      <div className="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+      <div className="w-full max-w-7xl grid grid-cols-0 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {cards.map((item, index) => (
           <div
             key={index}
-            className="bg-[#313337] hover:text-[#ff9f6c] text-[white] p-6 rounded-xl text-lg md:text-xl flex items-center justify-center transition-all duration-300 ease-in-out overflow-hidden h-24"
+            className="bg-[#313337] hover:text-[#ff7d38] text-[white] p-6 rounded-xl text-lg md:text-xl flex items-center justify-center transition-all duration-300 ease-in-out overflow-hidden h-24"
           >
             <span className="text-center">{item}</span>
           </div>

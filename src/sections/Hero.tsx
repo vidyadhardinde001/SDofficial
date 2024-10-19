@@ -35,15 +35,15 @@ export const Hero = () => {
       enableReset: true,
       startOpen: false, // Keep the bot closed initially
       styles: {
-        botMessageColor: "#9A90E2",
-        botMessageBackground: "#EAEAEA",
-        userMessageColor: "#FFFFFF",
-        userMessageBackground: "#000000",
-        headerBackground: "#FF5733",
-        headerTextColor: "#000000",
-        primaryColor: "#3498db",
-        messageTextColor: "#333333",
-        botAvatarUrl: "https://example.com/avatar.png",
+        botMessageColor: "#9A90E2 !important", // Apply !important
+        botMessageBackground: "#EAEAEA !important",
+        userMessageColor: "#FFFFFF !important",
+        userMessageBackground: "#000000 !important",
+        headerBackground: "#FF5733 !important",
+        headerTextColor: "#000000 !important",
+        primaryColor: "#3498db !important",
+        messageTextColor: "#333333 !important",
+        botAvatarUrl: "https://example.com/avatar.png" // Avatar URL
       }
     };
 

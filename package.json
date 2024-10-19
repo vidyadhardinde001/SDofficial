@@ -6,7 +6,7 @@
     "clean": "rimraf .next",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "lint": "next lint"
   },
   "dependencies": {

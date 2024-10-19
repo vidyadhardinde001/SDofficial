@@ -4,19 +4,6 @@ import { motion } from "framer-motion";
 import Image from "next/image"; // Import Next.js Image component
 import axios from "axios";
 
-// Define the industries with paths to your custom icons
-// const industries = [
-//   { name: 'Automobile', icon: '/assets/car.png' },
-//   { name: 'Metal Industry', icon: '/assets/metal.png' },
-//   { name: 'Wire Industry', icon: '/assets/wire.png' },
-//   { name: 'Plastic Pipe Industry', icon: '/assets/pipe.png' },
-//   { name: 'Water Treatment & Distribution', icon: '/assets/water.png' },
-//   { name: 'Food Industries', icon: '/assets/food.png' },
-//   { name: 'Cold Storage', icon: '/assets/cold.png' },
-//   { name: 'Environmental', icon: '/assets/plant.png' },
-//   { name: 'Animal Feed', icon: '/assets/animal.png' },
-// ];
-
 interface industries{
   name: string;
   icon: string;

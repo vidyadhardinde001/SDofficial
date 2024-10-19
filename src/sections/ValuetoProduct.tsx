@@ -1,19 +1,38 @@
 "use client";
 
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 const ValuetoProduct = () => {
+  const [cards, setCards] = useState([]);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/content/valuetoProduct');
+        const data = response.data.content.valueList;
+        // const response = await fetch('/api/content/valuetoProduct'); // Adjust the URL to match your API
+        // const data = await response.json();
+        setCards(data); // Assuming the response follows the same structure
+      } catch (error) {
+        console.error('Error fetching ValuetoProduct content:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
   // Card data for easier mapping
-  const cards = [
-    'Hardware',
-    'Selection of Right Products',
-    'Engineering Products',
-    'Instrumentation & System Integration',
-    'Energy Monitoring Systems',
-    'Safety Sensor Solutions',
-    'Corrective & Preventive Maintenance',
-    'Custom Programming for PLC, HMI, SCADA, VFD, Servo'
-  ];
+  // const cards = [
+  //   'Hardware',
+  //   'Selection of Right Products',
+  //   'Engineering Products',
+  //   'Instrumentation & System Integration',
+  //   'Energy Monitoring Systems',
+  //   'Safety Sensor Solutions',
+  //   'Corrective & Preventive Maintenance',
+  //   'Custom Programming for PLC, HMI, SCADA, VFD, Servo'
+  // ];
 
   return (
     <div className="min-h-screen bg-[#232323] flex flex-col items-center justify-center p-6">

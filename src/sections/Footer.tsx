@@ -21,25 +21,25 @@ interface FooterContent {
 }
 
 export const Footer = () => {
-  const [footerContent, setFooterContent] = useState<FooterContent | null>(null);
+  // const [footerContent, setFooterContent] = useState<FooterContent | null>(null);
 
-  useEffect(() => {
-    // Fetch the footer content from the API
-    async function fetchFooterContent() {
-      try {
-        const response = await fetch('/api/content/footer');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setFooterContent(data.content);
-      } catch (error) {
-        console.error('Error fetching footer content:', error);
-      }
-    }
+  // useEffect(() => {
+  //   // Fetch the footer content from the API
+  //   async function fetchFooterContent() {
+  //     try {
+  //       const response = await fetch('/api/content/footer');
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       const data = await response.json();
+  //       setFooterContent(data.content);
+  //     } catch (error) {
+  //       console.error('Error fetching footer content:', error);
+  //     }
+  //   }
 
-    fetchFooterContent();
-  }, []);
+  //   fetchFooterContent();
+  // }, []);
 
   // if (!footerContent) {
   //   return <div>Loading...</div>;

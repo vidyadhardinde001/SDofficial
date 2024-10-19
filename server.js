@@ -2,9 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Content = require('./models/Content'); // Ensure the path is correct
 const axios = require('axios');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const port = 5000;
+app.use(express.json());
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/siddhivinayak', {
@@ -166,6 +168,35 @@ const fetchValueToProductAndUpdateDatabase = async () => {
     console.error('Error fetching Value to Product data from API', error);
   }
 };
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'adityakhandare8320@gmail.com', // Replace with your email
+    pass: 'nvmn lylk fcjl cajk' // Replace with your email password
+  }
+});
+
+
+app.post('/api/contact', async (req, res) => {
+  const { name, email, phone, message } = req.body;
+
+  // Email options
+  const mailOptions = {
+    from: email,
+    to: 'adityakhandare8320@gmail.com',
+    subject: `Contact Form Submission from ${name}`,
+    text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}`
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: 'Message sent successfully!' });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ message: 'Error sending message' });
+  }
+});
 
 
 

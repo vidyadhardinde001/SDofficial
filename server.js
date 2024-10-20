@@ -13,7 +13,13 @@ app.use(express.json());
 console.log('MongoDB URI:', process.env.MONGODB_URI); // Add this line
 
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI,{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000, // Timeout after 30 seconds instead of 10
+  socketTimeoutMS: 45000,
+})
+
   .then(() => {
     console.log('Successfully connected to MongoDB');
   })
@@ -226,13 +232,16 @@ app.get('/api/content/:section', async (req, res) => {
   }
 });
 
+async function updateAllData() {
+  await fetchDataAndUpdateDatabase();
+  await fetchGalleryAndUpdateDatabase();
+  await fetchHeroSectionAndUpdateDatabase();
+  await fetchValueToProductAndUpdateDatabase();
+  await fetchIndustriesDataAndUpdate();
+}
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
-  // fetchDataAndUpdateDatabase();
-  fetchDataAndUpdateDatabase();
-  fetchGalleryAndUpdateDatabase();
-  fetchHeroSectionAndUpdateDatabase();
-  fetchValueToProductAndUpdateDatabase();
-  fetchIndustriesDataAndUpdate();
+  updateAllData(); // Run the update tasks after server starts
 });

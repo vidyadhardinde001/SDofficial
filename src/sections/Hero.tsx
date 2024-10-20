@@ -1,6 +1,6 @@
 "use client";
 import ArrowIcon from "@/assets/arrow-right.svg";
-import { useEffect ,useState} from "react";
+import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
@@ -46,8 +46,6 @@ export const Hero = () => {
       try {
         const response = await axios.get('/api/content/heroSection');
         const data = response.data.content;
-        // const response = await fetch('/api/content/heroSection');
-        // const data = await response.json();
         setHeroContent(data);
       } catch (error) {
         console.error('Error fetching Hero content:', error);
@@ -64,26 +62,32 @@ export const Hero = () => {
       enableReset: true,
       startOpen: false, // Keep the bot closed initially
       styles: {
-        botMessageColor: "#9A90E2",
-        botMessageBackground: "#EAEAEA",
-        userMessageColor: "#FFFFFF",
-        userMessageBackground: "#000000",
-        headerBackground: "#FF5733",
-        headerTextColor: "#000000",
-        primaryColor: "#3498db",
-        messageTextColor: "#333333",
-        botAvatarUrl: "https://example.com/avatar.png",
+        botMessageColor: "#9A90E2 !important", // Apply !important
+        botMessageBackground: "#EAEAEA !important",
+        userMessageColor: "#FFFFFF !important",
+        userMessageBackground: "#000000 !important",
+        headerBackground: "#FF5733 !important",
+        headerTextColor: "#000000 !important",
+        primaryColor: "#3498db !important",
+        messageTextColor: "#333333 !important",
+        botAvatarUrl: "https://example.com/avatar.png" // Avatar URL
       }
     };
 
-    // Dynamically add the Botpress Webchat script
+    // Dynamically add the Botpress Webchat script for version 2.2
     const script = document.createElement("script");
-    script.src = "https://cdn.botpress.cloud/webchat/v2.1/inject.js";
+    script.src = "https://cdn.botpress.cloud/webchat/v2.2/inject.js";
     script.async = true;
+    script.onload = () => {
+      console.log("Botpress Webchat script loaded successfully.");
+    };
+    script.onerror = () => {
+      console.error("Error loading Botpress Webchat script.");
+    };
     document.body.appendChild(script);
 
     const configScript = document.createElement("script");
-    configScript.src = "https://mediafiles.botpress.cloud/1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9/webchat/v2.1/config.js";
+    configScript.src = "https://files.bpcontent.cloud/2024/10/14/15/20241014153951-L6VHID1U.js";
     configScript.async = true;
     document.body.appendChild(configScript);
 

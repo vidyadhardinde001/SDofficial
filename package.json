@@ -6,10 +6,12 @@
     "clean": "rimraf .next",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "lint": "next lint"
   },
   "dependencies": {
+    "@botpress/webchat": "^2.2.16",
+    "@botpress/webchat-generator": "^0.2.15",
     "@react-three/drei": "^9.111.1",
     "@react-three/fiber": "^8.17.5",
     "animate.css": "^4.1.1",

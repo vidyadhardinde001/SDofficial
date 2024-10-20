@@ -2,22 +2,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image"; // Import Next.js Image component
-import axios from "axios";
 
-// Define the industries with paths to your custom icons
-// const industries = [
-//   { name: 'Automobile', icon: '/assets/car.png' },
-//   { name: 'Metal Industry', icon: '/assets/metal.png' },
-//   { name: 'Wire Industry', icon: '/assets/wire.png' },
-//   { name: 'Plastic Pipe Industry', icon: '/assets/pipe.png' },
-//   { name: 'Water Treatment & Distribution', icon: '/assets/water.png' },
-//   { name: 'Food Industries', icon: '/assets/food.png' },
-//   { name: 'Cold Storage', icon: '/assets/cold.png' },
-//   { name: 'Environmental', icon: '/assets/plant.png' },
-//   { name: 'Animal Feed', icon: '/assets/animal.png' },
-// ];
-
-interface industries{
+interface industries {
   name: string;
   icon: string;
 }
@@ -31,23 +17,21 @@ const fadeInVariants = {
 const IndustriesWeServe: React.FC = () => {
   const [inView, setInView] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [IndustryData, setIndustryData] = useState<industries[]>([]);
+
+  const IndustryData: industries[] = [
+    { name: "Automobile Industry", icon: "/assets/car1.png" },
+    { name: "Metal Industry", icon: "/assets/metal1.png" },
+    { name: "Wire Industry", icon: "/assets/wire1.png" },
+    { name: "Plastic Pipe Industry", icon: "/assets/pipe1.png" },
+    { name: "Water Treatment & Distribution", icon: "/assets/water1.png" },
+    { name: "Food Industries", icon: "/assets/food1.png" },
+    { name: "Cold Storage", icon: "/assets/cold1.png" },
+    { name: "Environmental", icon: "/assets/environment.png" },
+    { name: "Animal Feed", icon: "/assets/feed.png" },
+  ];
 
   // Intersection Observer for triggering animations once
   useEffect(() => {
-    const fetchIndustries = async () =>{
-      try{
-        const response = await axios.get("/api/content/industries");
-        setIndustryData(response.data.content.IndustryList);
-      } catch(error){
-        console.error("Error fetching Industry data:", error);
-      }
-    };
-    fetchIndustries();
-
-
-
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -69,7 +53,6 @@ const IndustriesWeServe: React.FC = () => {
         observer.unobserve(sectionRef.current);
       }
     };
-    
   }, []);
 
   return (
@@ -79,14 +62,15 @@ const IndustriesWeServe: React.FC = () => {
           Industries We Serve
         </h1>
 
+        {/* Grid for 2 rows with 9 cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {IndustryData.map((industry) => (
             <motion.div
               key={industry.name}
-              className="bg-[#313337] p-6 rounded-lg text-center shadow-md transition-transform duration-300 transform hover:scale-105 border border-gray-200 hover:border-blue-500"
-              whileHover={{ scale: 1.05 }}
+              className="bg-[#313337] p-6 rounded-lg text-center shadow-md transition-transform duration-300 transform hover:scale-105 border border-red-300 hover:border-red-500"
+              whileHover={{ scale: 1.01 }}
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={inView ? "visible" : "hidden"}
               variants={fadeInVariants}
             >
               {/* Icon Container */}

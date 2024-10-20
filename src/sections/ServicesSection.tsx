@@ -7,14 +7,14 @@ import Fieldscene from "@/components/Fieldscene";
 
 const ServicesSection: React.FC = () => {
   return (
-    <div className="bg-[#232323] text-black py-20 px-5">
+    <div className="bg-[#232323] text-black pt-20 pb-1 px-5">
       <h1 className="text-5xl font-medium mb-12 mt-6 text-white text-center pb-12">Our Services</h1>
       <div className="flex flex-col gap-8 w-full md:w-3/4 mx-auto">
         
         {/* First Section */}
         <div className="flex flex-col md:flex-row">
           <div className="flex-1 flex items-center justify-center">
-          <Scene />
+            <Scene />
           </div>
           <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-4">
             <h2 className="text-xl font-semibold text-[#ff7d38]">PLC, HMI, SCADA Software Development</h2>
@@ -32,7 +32,7 @@ const ServicesSection: React.FC = () => {
         {/* Second Section */}
         <div className="flex flex-col md:flex-row-reverse">
           <div className="flex-1 flex items-center justify-center">
-          <Wrench />
+            <Wrench />
           </div>
           <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-4">
             <h2 className="text-xl font-semibold text-[#ff7d38]">Maintenance Services</h2>
@@ -43,7 +43,6 @@ const ServicesSection: React.FC = () => {
               can involve troubleshooting, fixing, and replacing equipment to
               improve asset performance.
             </p>
-
           </div>
         </div>
         
@@ -67,7 +66,7 @@ const ServicesSection: React.FC = () => {
         {/* Fourth Section */}
         <div className="flex flex-col md:flex-row-reverse">
           <div className="flex-1 flex items-center justify-center">
-          <Fieldscene />
+            <Fieldscene />
           </div>
           <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-4">
             <h2 className="text-xl font-semibold text-[#ff7d38]">Field Wiring</h2>
@@ -77,6 +76,12 @@ const ServicesSection: React.FC = () => {
           </div>
         </div>
 
+        <hr className="border-gray-500 my-8" />
+      </div>
+
+      {/* 80% Horizontal Line Separator */}
+      <div className="flex justify-center my-12">
+        <div className="w-4/5 border-t border-gray-500"></div>
       </div>
     </div>
   );

@@ -4,11 +4,25 @@ const Content = require('./models/Content'); // Ensure the path is correct
 const axios = require('axios');
 const nodemailer = require('nodemailer');
 require('dotenv').config({ path: '.env.local' });
+const cors = require('cors');
 
 
 const app = express();
 const port = 10000;
-app.use(express.json());
+// app.use(express.json());
+const allowedOrigins = ['https://s-dofficial-53ll.vercel.app'];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      // Origin not allowed
+      return callback(new Error('CORS policy: Not allowed by CORS'), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 console.log('MongoDB URI:', process.env.MONGODB_URI); // Add this line
 

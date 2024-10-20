@@ -12,7 +12,7 @@ const Gallery: React.FC = () => {
   useEffect(() => {
     const fetchGalleryImages = async () => {
       try {
-        const response = await axios.get('/api/content/gallery');
+        const response = await axios.get('https://sdofficial-r1zr.onrender.com/api/content/gallery');
         const galleryData = response.data.content.galleryImages;
         setGalleryImages(galleryData);
         setLoading(false);

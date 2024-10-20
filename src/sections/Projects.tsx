@@ -80,7 +80,7 @@ const Projects: React.FC = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get("/api/content/projects");
+        const response = await axios.get("https://sdofficial-r1zr.onrender.com/api/content/projects");
         setProjectsData(response.data.content.projectsList); // Access the 'projectsList' inside 'content'
         setLoading(false); // Turn off loading once data is fetched
       } catch (error) {

@@ -4,16 +4,37 @@ const Content = require('./models/Content'); // Ensure the path is correct
 const axios = require('axios');
 const nodemailer = require('nodemailer');
 require('dotenv').config({ path: '.env.local' });
+const cors = require('cors');
+const cron = require('node-cron');
 
 
 const app = express();
-const port = 5000;
+const port = 10000;
 app.use(express.json());
+const allowedOrigins = ['https://s-dofficial-53ll.vercel.app'];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      // Origin not allowed
+      return callback(new Error('CORS policy: Not allowed by CORS'), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 console.log('MongoDB URI:', process.env.MONGODB_URI); // Add this line
 
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI,{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000, // Timeout after 30 seconds instead of 10
+  socketTimeoutMS: 45000,
+})
+
   .then(() => {
     console.log('Successfully connected to MongoDB');
   })
@@ -185,7 +206,10 @@ app.post('/api/contact', async (req, res) => {
 });
 
 
-
+cron.schedule('* * * * *', async () => {
+  console.log('Running scheduled data update task...');
+  await updateAllData();  // Call your update function periodically
+});
 
 // Route to get content by section (header or footer)
 app.get('/api/content/:section', async (req, res) => {
@@ -203,13 +227,16 @@ app.get('/api/content/:section', async (req, res) => {
   }
 });
 
+async function updateAllData() {
+  await fetchDataAndUpdateDatabase();
+  await fetchGalleryAndUpdateDatabase();
+  await fetchHeroSectionAndUpdateDatabase();
+  await fetchValueToProductAndUpdateDatabase();
+  await fetchIndustriesDataAndUpdate();
+}
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
-  // fetchDataAndUpdateDatabase();
-  fetchDataAndUpdateDatabase();
-  fetchGalleryAndUpdateDatabase();
-  fetchHeroSectionAndUpdateDatabase();
-  fetchValueToProductAndUpdateDatabase();
-  fetchIndustriesDataAndUpdate();
+  updateAllData(); // Run the update tasks after server starts
 });

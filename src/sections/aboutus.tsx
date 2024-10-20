@@ -18,7 +18,7 @@ const LearningTransformation: React.FC = () => {
     // Fetch content from the backend
     const fetchContent = async () => {
       try {
-        const response = await fetch('/api/content/aboutus'); // Fetching contact content
+        const response = await fetch('https://sdofficial-r1zr.onrender.com/api/content/aboutus'); // Fetching contact content
         const data = await response.json();
         console.log("Fetched data:", data);
         setAboutUsContent(data.content);

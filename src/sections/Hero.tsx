@@ -44,7 +44,7 @@ export const Hero = () => {
   useEffect(() => {
     const fetchHeroContent = async () => {
       try {
-        const response = await axios.get('/api/content/heroSection');
+        const response = await axios.get('https://sdofficial-r1zr.onrender.com/api/content/heroSection');
         const data = response.data.content;
         setHeroContent(data);
       } catch (error) {

@@ -27,7 +27,7 @@ const ContactSection: React.FC = () => {
     setMessageSent(false); // Reset message sent state
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://sdofficial-r1zr.onrender.com/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

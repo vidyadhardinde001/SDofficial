@@ -5,6 +5,7 @@ const axios = require('axios');
 const nodemailer = require('nodemailer');
 require('dotenv').config({ path: '.env.local' });
 const cors = require('cors');
+const cron = require('node-cron');
 
 
 const app = express();
@@ -228,7 +229,10 @@ app.post('/api/contact', async (req, res) => {
 });
 
 
-
+cron.schedule('* * * * *', async () => {
+  console.log('Running scheduled data update task...');
+  await updateAllData();  // Call your update function periodically
+});
 
 // Route to get content by section (header or footer)
 app.get('/api/content/:section', async (req, res) => {

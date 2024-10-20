@@ -3,16 +3,24 @@ const mongoose = require('mongoose');
 const Content = require('./models/Content'); // Ensure the path is correct
 const axios = require('axios');
 const nodemailer = require('nodemailer');
+require('dotenv').config({ path: '.env.local' });
+
 
 const app = express();
 const port = 5000;
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/siddhivinayak', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+console.log('MongoDB URI:', process.env.MONGODB_URI); // Add this line
+
+
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log('Successfully connected to MongoDB');
+  })
+  .catch((error) => {
+    console.error('Failed to connect to MongoDB', error);
+  });
+
 
 mongoose.connection.on('connected', () => {
   console.log('Connected to MongoDB');
@@ -160,10 +168,11 @@ app.post('/api/contact', async (req, res) => {
 
   // Email options
   const mailOptions = {
-    from: email,
-    to: 'adityakhandare8320@gmail.com',
-    subject: `Contact Form Submission from ${name}`,
-    text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}`
+    from: email, // Your email address
+    to: 'adityakhandare8320@gmail.com', // Your email address to receive the message
+    replyTo: email, // User's email address for replies
+    subject: `Contact Form Submission from ${name}`, // Subject line
+    text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}` // Email body
   };
 
   try {

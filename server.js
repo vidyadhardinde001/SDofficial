@@ -7,7 +7,7 @@ require('dotenv').config({ path: '.env.local' });
 
 
 const app = express();
-const port = 5000;
+const port = 10000;
 app.use(express.json());
 
 console.log('MongoDB URI:', process.env.MONGODB_URI); // Add this line

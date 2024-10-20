@@ -67,7 +67,7 @@ const IndustriesWeServe: React.FC = () => {
           {IndustryData.map((industry) => (
             <motion.div
               key={industry.name}
-              className="bg-[#313337] p-6 rounded-lg text-center shadow-md transition-transform duration-300 transform hover:scale-105 border border-red-300 hover:border-red-500"
+              className="bg-[#313337] p-6 rounded-lg text-center shadow-md transition-transform duration-300 transform hover:scale-105 border border-red-300 hover:border-red-00"
               whileHover={{ scale: 1.01 }}
               initial="hidden"
               animate={inView ? "visible" : "hidden"}

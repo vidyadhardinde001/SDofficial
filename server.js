@@ -9,7 +9,7 @@ const cors = require('cors');
 
 const app = express();
 const port = 10000;
-// app.use(express.json());
+app.use(express.json());
 const allowedOrigins = ['https://s-dofficial-53ll.vercel.app'];
 
 app.use(cors({

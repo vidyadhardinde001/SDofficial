@@ -106,7 +106,7 @@ const ContactSection: React.FC = () => {
                   placeholder="Your Name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
+                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FE6D20]"
                   required
                 />
                 <input
@@ -115,7 +115,7 @@ const ContactSection: React.FC = () => {
                   placeholder="E-mail Address"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
+                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FE6D20]"
                   required
                 />
                 <input
@@ -124,7 +124,7 @@ const ContactSection: React.FC = () => {
                   placeholder="Phone Number"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
+                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FE6D20]"
                   required
                 />
 
@@ -134,14 +134,14 @@ const ContactSection: React.FC = () => {
                   rows={4}
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0074F5]"
+                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FE6D20]"
                   required
                 ></textarea>
 
                 <div className="flex items-start space-x-2 mt-4">
                   <input type="checkbox" className="mt-1" required />
                   <p className="text-sm text-gray-500">
-                    I consent to the processing of my personal data by the Administrator in accordance with the Privacy Policy <span className="text-[#0074F5]">*</span>
+                    I consent to the processing of my personal data by the Administrator in accordance with the Privacy Policy <span className="text-[#FE6D20]">*</span>
                   </p>
                 </div>
 

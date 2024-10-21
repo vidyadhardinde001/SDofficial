@@ -73,7 +73,7 @@ const Projects: React.FC = () => {
             <div className="mt-4 px-4">
               <div className="w-full bg-gray-700 rounded-full h-4">
                 <div
-                  className="bg-[#ff7d38] h-4 rounded-full"
+                  className="bg-blue-200 h-4 rounded-full"
                   style={{ width: `100%` }}
                 ></div>
               </div>

@@ -74,7 +74,7 @@ const Projects: React.FC = () => {
               <div className="w-full bg-gray-700 rounded-full h-4">
                 <div
                   className="bg-[#ff7d38] h-4 rounded-full"
-                  style={{ width: `${project.progress}%` }}
+                  style={{ width: `100%` }}
                 ></div>
               </div>
               <p className="text-white text-sm mt-2 text-right">

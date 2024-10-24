@@ -71,14 +71,15 @@ const Projects: React.FC = () => {
               <p className="text-white text-sm mb-4">{project.description}</p>
             </div>
             <div className="mt-4 px-4">
+              <p className="text-white text-sm mb-2">Progress</p> {/* Add Progress label */}
               <div className="w-full bg-gray-700 rounded-full h-4">
                 <div
-                  className="bg-blue-200 h-4 rounded-full"
-                  style={{ width: `100%` }}
+                  className="bg-[#232323] h-4 rounded-full"
+                  style={{ width: `100%` }} // Default to 100%
                 ></div>
               </div>
               <p className="text-white text-sm mt-2 text-right">
-                {project.progress}%
+                {project.progress || 100}% {/* Default progress to 100% if no value */}
               </p>
             </div>
           </div>

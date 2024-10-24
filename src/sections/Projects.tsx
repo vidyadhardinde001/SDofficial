@@ -74,7 +74,7 @@ const Projects: React.FC = () => {
               <p className="text-white text-sm mb-2">Progress</p> {/* Add Progress label */}
               <div className="w-full bg-gray-700 rounded-full h-4">
                 <div
-                  className="bg-[#232323] h-4 rounded-full"
+                  className="bg-[#ff7d38] h-4 rounded-full"
                   style={{ width: `100%` }} // Default to 100%
                 ></div>
               </div>

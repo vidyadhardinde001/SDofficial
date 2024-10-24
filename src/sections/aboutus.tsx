@@ -35,17 +35,17 @@ const LearningTransformation: React.FC = () => {
   }
 
   return (
-    <section className="bg-gray-600 py-12">
+    <section className="bg-[white] py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Left Section: Text */}
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <p className="text-4xl font-bold text-black mb-2 leading-tight">
+          <div className="bg-[#232323] p-8 rounded-lg shadow-md">
+            <p className="text-4xl font-bold text-[#ff7d38] mb-2 leading-tight">
               {aboutUsContent.heading}
             </p>
             <br />
             {aboutUsContent?.description?.map((paragraph, index) => (
-              <p key={index} className="text-gray-600 text-lg mb-4">
+              <p key={index} className="text-[white] text-lg mb-4">
                 {paragraph}
               </p>
             ))}

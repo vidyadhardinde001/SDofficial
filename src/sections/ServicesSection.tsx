@@ -75,8 +75,6 @@ const ServicesSection: React.FC = () => {
             </p>
           </div>
         </div>
-
-        <hr className="border-gray-500 my-8" />
       </div>
 
       {/* 80% Horizontal Line Separator 

@@ -79,10 +79,10 @@ const ServicesSection: React.FC = () => {
         <hr className="border-gray-500 my-8" />
       </div>
 
-      {/* 80% Horizontal Line Separator */}
+      {/* 80% Horizontal Line Separator 
       <div className="flex justify-center my-12">
         <div className="w-4/5 border-t border-gray-500"></div>
-      </div>
+      </div>*/}
     </div>
   );
 };

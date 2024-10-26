@@ -54,11 +54,11 @@ const LearningTransformation: React.FC = () => {
           {/* Right Section: Image and Stats */}
           <div className="flex flex-col items-center">
             {/* Image Section */}
-            <div className="w-full mb-6 flex justify-center">
+            <div className="w-full mb-6 flex justify-center ">
               <img
                 src={aboutUsContent.imageUrl}
                 alt="Logo"
-                className="w-[1500px] h-[1500px] max-w-[1200px] max-h-[360px] object-contain rounded-lg shadow-md bg-[#f7f7f7]" // Adjusted width and height
+                className="w-[1500px] h-[1500px] max-w-[1200px] max-h-[360px] object-contain rounded-lg shadow-md bg-[#232323]" // Adjusted width and height
               />
             </div>
 

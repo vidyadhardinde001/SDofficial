@@ -78,6 +78,36 @@ const LearningTransformation: React.FC = () => {
             </div>
           </div>
         </div>
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* Left Section: Image */}
+          <div className="flex justify-center">
+            <img
+              src="/path-to-your-uploaded-image.jpg" // Replace this with the actual path of the uploaded image
+              alt="Mr. Atul Shinde"
+              className="w-[1500px] h-[1500px] max-w-[1200px] max-h-[360px] object-contain rounded-lg shadow-md"
+            />
+          </div>
+
+          {/* Right Section: Description */}
+          <div className="p-8 rounded-lg shadow-md">
+            <h2 className="text-4xl font-bold text-[#009688] mb-2 leading-tight">
+              Leadership
+            </h2>
+            <hr className="border-[#009688] mb-4 w-1/3" />
+            <h3 className="text-2xl font-bold text-gray-800 mb-2">
+              Mr. Nikhil Sutar
+            </h3>
+            <p className="text-gray-600 text-lg">
+              An Electronics Engineer with over 3 years of hands-on experience
+              in the Industrial Automation Industry, he is the backbone of
+              Microlog. His relentless efforts have yielded his organization an
+              outstanding reputation in understanding customer needs. His
+              special skills in programming, graphic visualization, design &
+              development, and computer software provide an edge while working
+              out embedded solutions for numerous industrial clients.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

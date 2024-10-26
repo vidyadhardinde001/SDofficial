@@ -34,24 +34,12 @@ const Gallery: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 bg-white">
       {/* Header Image */}
-      <div className="mb-8">
-        <Image
-          src={galleryImages[0]?.src || "/placeholder.jpg"} // Fallback to a placeholder image if no images are fetched
-          alt="Header Image"
-          width={1200}
-          height={600}
-          className="w-full h-96 object-cover rounded-lg"
-        />
-      </div>
 
       {/* Gallery Title and Description */}
       <div className="text-center mb-8">
         <h2 className="text-4xl font-bold mb-4">Gallery</h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          This is a display of gallery.
-        </p>
       </div>
 
       {/* Loading Indicator */}

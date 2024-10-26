@@ -67,12 +67,12 @@ const LearningTransformation: React.FC = () => {
               {aboutUsContent?.stats?.map((stat, index) => (
                 <div
                   key={index}
-                  className="bg-white p-4 rounded-lg shadow-md text-center"
+                  className="bg-[#232323] p-4 rounded-lg shadow-md text-center"
                 >
-                  <h2 className="text-3xl font-bold text-black">
+                  <h2 className="text-3xl font-bold text-[#ff7d38]">
                     {stat.value}
                   </h2>
-                  <p className="text-gray-500">{stat.label}</p>
+                  <p className="text-white">{stat.label}</p>
                 </div>
               ))}
             </div>

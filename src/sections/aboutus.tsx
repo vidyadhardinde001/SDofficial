@@ -83,21 +83,21 @@ const LearningTransformation: React.FC = () => {
           <div className="flex justify-center">
             <img
               src="/path-to-your-uploaded-image.jpg" // Replace this with the actual path of the uploaded image
-              alt="Mr. Atul Shinde"
+              alt="Mr. Nikhil Sutar"
               className="w-[1500px] h-[1500px] max-w-[1200px] max-h-[360px] object-contain rounded-lg shadow-md"
             />
           </div>
 
           {/* Right Section: Description */}
-          <div className="p-8 rounded-lg shadow-md">
+          <div className="p-8 rounded-lg shadow-md bg-[#232323]">
             <h2 className="text-4xl font-bold text-[#009688] mb-2 leading-tight">
               Leadership
             </h2>
             <hr className="border-[#009688] mb-4 w-1/3" />
-            <h3 className="text-2xl font-bold text-gray-800 mb-2">
+            <h3 className="text-2xl font-bold text-[#ff7d38] mb-2">
               Mr. Nikhil Sutar
             </h3>
-            <p className="text-gray-600 text-lg">
+            <p className="text-white text-lg">
               An Electronics Engineer with over 3 years of hands-on experience
               in the Industrial Automation Industry, he is the backbone of
               Microlog. His relentless efforts have yielded his organization an

@@ -4,7 +4,7 @@ import Image from "next/image"; // Import Next.js Image component
 import axios from "axios";
 
 const Gallery: React.FC = () => {
-  const [galleryImages, setGalleryImages] = useState<{ id: number, src: string, alt: string }[]>([]);
+  const [galleryImages, setGalleryImages] = useState<{ id: number; src: string; alt: string }[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<string | null>(null); // State to hold the selected image for the lightbox
 
@@ -12,7 +12,7 @@ const Gallery: React.FC = () => {
   useEffect(() => {
     const fetchGalleryImages = async () => {
       try {
-        const response = await axios.get('https://sdofficial-r1zr.onrender.com/api/content/gallery');
+        const response = await axios.get("https://sdofficial-r1zr.onrender.com/api/content/gallery");
         const galleryData = response.data.content.galleryImages;
         setGalleryImages(galleryData);
         setLoading(false);
@@ -35,15 +35,31 @@ const Gallery: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Gallery Title */}
-      <h2 className="text-3xl font-bold text-center mb-6">Gallery</h2>
+      {/* Header Image */}
+      <div className="mb-8">
+        <Image
+          src={galleryImages[0]?.src || "/placeholder.jpg"} // Fallback to a placeholder image if no images are fetched
+          alt="Header Image"
+          width={1200}
+          height={600}
+          className="w-full h-96 object-cover rounded-lg"
+        />
+      </div>
+
+      {/* Gallery Title and Description */}
+      <div className="text-center mb-8">
+        <h2 className="text-4xl font-bold mb-4">Gallery</h2>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          This is a display of gallery.
+        </p>
+      </div>
 
       {/* Loading Indicator */}
       {loading && <p className="text-center text-lg">Loading images...</p>}
 
       {/* Gallery Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {galleryImages.map((image) => (
+        {galleryImages.slice(1).map((image) => ( // Skipping the first image as it's used as the header
           <div
             key={image.id}
             className="relative group overflow-hidden rounded-lg"
@@ -52,20 +68,21 @@ const Gallery: React.FC = () => {
             <Image
               src={image.src}
               alt={image.alt}
-              width={300} // Set width for Image component
-              height={300} // Set height for Image component
-              className="w-full h-full object-cover rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
+              width={300}
+              height={200}
+              className="w-full h-64 object-cover rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
             />
-            <p className="text-center text-lg font-medium mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              {image.alt}
-            </p>
+            <p className="text-center text-lg font-medium mt-2">{image.alt}</p>
           </div>
         ))}
       </div>
 
       {/* Lightbox for Full Image View */}
       {selectedImage && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50" onClick={closeLightbox}>
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50"
+          onClick={closeLightbox}
+        >
           <Image
             src={selectedImage}
             alt="Selected"

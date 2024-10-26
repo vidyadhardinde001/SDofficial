@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="relative">
       <head>
-        <link rel="icon" href="/assets/Siddhivinayak-Engineers.ico" />
+        <link rel="icon" href="/assets/logo1.ico" />
         <title>Siddhivinayak Engineers</title>
         <meta name="description" content="Template created by Frontend Tribe" />
       </head>

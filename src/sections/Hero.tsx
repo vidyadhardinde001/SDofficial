@@ -27,42 +27,42 @@ export const Hero = () => {
   });
   const translateY = useTransform(scrollYProgress, [0, 1], [150, -150]);
 
-  // Animation variants for flip effect
   const flipVariant = {
     hidden: { rotateX: 90, opacity: 0 },
     visible: { rotateX: 0, opacity: 1 },
   };
 
   const [heroContent, setHeroContent] = useState<HeroContent>({
-    welcomeMessage: '',
-    mainHeading: '',
-    subHeading: '',
-    videoUrl: ''
+    welcomeMessage: "",
+    mainHeading: "",
+    subHeading: "",
+    videoUrl: "",
   });
 
-  // Load Botpress script and configuration
   useEffect(() => {
     const fetchHeroContent = async () => {
       try {
-        const response = await axios.get('https://sdofficial-r1zr.onrender.com/api/content/heroSection');
+        const response = await axios.get(
+          "https://sdofficial-r1zr.onrender.com/api/content/heroSection"
+        );
         const data = response.data.content;
         setHeroContent(data);
       } catch (error) {
-        console.error('Error fetching Hero content:', error);
+        console.error("Error fetching Hero content:", error);
       }
     };
 
     fetchHeroContent();
 
     window.botpressWebChat = {
-      botId: "1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9", // Your bot ID
+      botId: "1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9",
       host: "https://cdn.botpress.cloud",
-      botName: "SupportBot", // Optional: customize the bot name
+      botName: "SupportBot",
       showMessageHistory: true,
       enableReset: true,
-      startOpen: false, // Keep the bot closed initially
+      startOpen: false,
       styles: {
-        botMessageColor: "#9A90E2 !important", // Apply !important
+        botMessageColor: "#9A90E2 !important",
         botMessageBackground: "#EAEAEA !important",
         userMessageColor: "#FFFFFF !important",
         userMessageBackground: "#000000 !important",
@@ -70,11 +70,10 @@ export const Hero = () => {
         headerTextColor: "#000000 !important",
         primaryColor: "#3498db !important",
         messageTextColor: "#333333 !important",
-        botAvatarUrl: "https://example.com/avatar.png" // Avatar URL
-      }
+        botAvatarUrl: "https://example.com/avatar.png",
+      },
     };
 
-    // Dynamically add the Botpress Webchat script for version 2.2
     const script = document.createElement("script");
     script.src = "https://cdn.botpress.cloud/webchat/v2.2/inject.js";
     script.async = true;
@@ -87,7 +86,8 @@ export const Hero = () => {
     document.body.appendChild(script);
 
     const configScript = document.createElement("script");
-    configScript.src = "https://files.bpcontent.cloud/2024/10/14/15/20241014153951-L6VHID1U.js";
+    configScript.src =
+      "https://files.bpcontent.cloud/2024/10/14/15/20241014153951-L6VHID1U.js";
     configScript.async = true;
     document.body.appendChild(configScript);
 
@@ -100,9 +100,8 @@ export const Hero = () => {
   return (
     <section
       ref={heroRef}
-      className="relative overflow-hidden h-[80vh] flex items-center justify-center"
+      className="relative overflow-hidden min-h-[70vh] sm:min-h-[80vh] flex items-center justify-center px-4"
     >
-      {/* Video Background */}
       <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
         <video
           className="w-full h-full object-cover"
@@ -116,13 +115,11 @@ export const Hero = () => {
         </video>
       </div>
 
-      {/* Black Box with Blurred Edges */}
-      <div className="absolute inset-x-0 top-1/2 transform -translate-y-1/2 w-full max-w-[100%] h-[300px] bg-black opacity-40 blur-sm rounded-lg"></div>
+      <div className="absolute inset-x-0 top-1/2 transform -translate-y-1/2 w-full max-w-full h-[300px] bg-black opacity-40 blur-sm rounded-lg"></div>
 
       <div className="container relative z-10 flex flex-col items-center text-center">
-        {/* Text content */}
         <motion.h1
-          className="text-2xl md:text-5xl font-medium text-shadow mt-6 tracking-tighter bg-[#ffffff] text-transparent bg-clip-text"
+          className="text-lg sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-medium text-shadow mt-6 tracking-tighter bg-[#ffffff] text-transparent bg-clip-text"
           initial="hidden"
           animate="visible"
           variants={flipVariant}
@@ -132,7 +129,7 @@ export const Hero = () => {
         </motion.h1>
 
         <motion.h1
-          className="text-3xl md:text-6xl h-[10vh] font-semibold tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2"
+          className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl h-[10vh] font-semibold tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2"
           initial="hidden"
           animate="visible"
           variants={flipVariant}
@@ -142,7 +139,7 @@ export const Hero = () => {
         </motion.h1>
 
         <motion.p
-          className="text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl text-[#ffffff] tracking-tight mt-1 sm:mt-6 lg:mt-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full text-center mx-auto leading-tight"
+          className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#ffffff] tracking-tight mt-1 sm:mt-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full text-center mx-auto leading-tight"
           initial="hidden"
           animate="visible"
           variants={flipVariant}

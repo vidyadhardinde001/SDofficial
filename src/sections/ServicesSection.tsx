@@ -22,7 +22,7 @@ const ServicesSection: React.FC = () => {
             <h2 className="text-lg sm:text-xl font-semibold text-[#ff7d38]">
               PLC, HMI, SCADA Software Development
             </h2>
-            <p className="text-white text-sm sm:text-base leading-relaxed">
+            <p className="text-white text-sm sm:text-base leading-relaxed break-words md:whitespace-normal">
               HMI/SCADA collects data from RTUs (Remote Terminal Units), PLCs
               (Programmable Logic Controllers), and other control devices such as
               flow meters and temperature controllers. This data is presented to
@@ -42,7 +42,7 @@ const ServicesSection: React.FC = () => {
             <h2 className="text-lg sm:text-xl font-semibold text-[#ff7d38]">
               Maintenance Services
             </h2>
-            <p className="text-white text-sm sm:text-base leading-relaxed">
+            <p className="text-white text-sm sm:text-base leading-relaxed break-words md:whitespace-normal">
               Maintenance is the service done by technicians or mechanics to
               manage machinery and equipment to increase uptime in order to meet
               the business objectives. It is used across multiple industries and
@@ -63,7 +63,7 @@ const ServicesSection: React.FC = () => {
             <h2 className="text-lg sm:text-xl font-semibold text-[#ff7d38]">
               Control Panel Manufacturing
             </h2>
-            <p className="text-white text-sm sm:text-base leading-relaxed">
+            <p className="text-white text-sm sm:text-base leading-relaxed break-words md:whitespace-normal">
               An electrical control panel is an enclosure, typically a metal box
               or plastic moulding which contains important electrical components
               that control and monitor a number of mechanical processes.
@@ -82,7 +82,7 @@ const ServicesSection: React.FC = () => {
             <h2 className="text-lg sm:text-xl font-semibold text-[#ff7d38]">
               Field Wiring
             </h2>
-            <p className="text-white text-sm sm:text-base leading-relaxed">
+            <p className="text-white text-sm sm:text-base leading-relaxed break-words md:whitespace-normal">
               In general, field wiring is wiring that is connected between
               equipment items or equipment components that are connected upon
               installation in the field.

@@ -147,7 +147,7 @@ const ContactSection: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full py-3 mt-4 text-white bg-[#FE6D20] hover:bg-[#ff9f6c] rounded-md font-semibold tracking-wide flex items-center justify-center"
+                  className="w-full py-3 mt-4 text-white bg-[#FE6D20] hover:bg-[#000000] rounded-md font-semibold tracking-wide flex items-center justify-center"
                 >
                   {isLoading ? 'Sending...' : 'Submit'}
                 </button>

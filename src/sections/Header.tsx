@@ -2,7 +2,7 @@
 import ArrowRight from "@/assets/arrow-right.svg";
 import logo from "@/assets/logo1.png";
 import Image from "next/image";
-import MenuIcon from "@/assets/menu.svg";
+import MenuIcon from "@/assets/icons8-menu-64.png";
 import CloseIcon from "@/assets/cross.png"; // Import the Close Icon
 import Link from "next/link";
 import { useState } from "react";
@@ -99,7 +99,18 @@ export const Header = () => {
           isMenuOpen ? "block" : "hidden"
         } md:hidden fixed top-0 left-0 w-full bg-white z-40`}
       >
-        <div className="flex flex-col items-center py-6">
+        <div className="flex flex-col items-center py-6 relative">
+        <button
+            className="absolute top-4 right-4"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <Image
+              src={CloseIcon}
+              alt="Close Menu"
+              width={24}
+              height={24}
+            />
+          </button>
           <Link
             href="/"
             className="relative group text-lg py-2"

@@ -10,7 +10,7 @@ const ValuetoProduct = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://sdofficial-r1zr.onrender.com/api/content/valuetoProduct');
+        const response = await axios.get('/api/content/valuetoProduct');
         const data = response.data.content.valueList;
         setCards(data); // Assuming the response follows the same structure
       } catch (error) {

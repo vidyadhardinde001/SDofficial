@@ -43,7 +43,7 @@ export const Hero = () => {
     const fetchHeroContent = async () => {
       try {
         const response = await axios.get(
-          "https://sdofficial-r1zr.onrender.com/api/content/heroSection"
+          "/api/content/heroSection"
         );
         const data = response.data.content;
         setHeroContent(data);

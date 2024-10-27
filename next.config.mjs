@@ -38,7 +38,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:5000/api/:path*', // Proxy to Express server
+        destination: 'https://sdofficial-r1zr.onrender.com/api/:path*', // Proxy to Express server
       },
     ];
   },

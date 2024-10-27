@@ -15,7 +15,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-black bg-opacity-70 backdrop-blur-sm">
+    <header className="sticky top-0 backdrop-blur-lg z-50 bg-black">
       <div className="py-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -63,7 +63,7 @@ export const Header = () => {
 
             {/* Call Us Button for Desktop */}
             <a
-              href="tel:+91 7558341063"
+              href="tel:+91 7057272626"
               className="hidden md:inline-block bg-[#FE6D20] hover:bg-[#ff9f6c] text-white px-4 py-2 rounded-md font-medium tracking-tight"
             >
               Call Us

@@ -45,10 +45,10 @@ export const Footer = () => {
   //   return <div>Loading...</div>;
   // }
   return (
-    <footer className="bg-[#232323] text-[#BCBCBC] text-sm py-20 text-center">
+    <footer className="bg-[#232323] text-[#BCBCBC] text-sm py-8 text-center">
       <div className="container">
         {/* Navigation Links */}
-        <nav className="flex flex-col md:flex-row md:justify-center gap-6 mt-6">
+        <nav className="flex flex-col md:flex-row md:justify-center gap-6 mt-0">
           <a href="/">Home</a>
           <Link href="/projects">Projects</Link>
           <Link href="/gallery">Gallery</Link>

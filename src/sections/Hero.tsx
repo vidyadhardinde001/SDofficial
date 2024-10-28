@@ -75,7 +75,7 @@ export const Hero = () => {
     };
 
     const script = document.createElement("script");
-    script.src = "https://cdn.botpress.cloud/webchat/v2.2/inject.js";
+    script.src = "https://cdn.botpress.cloud/webchat/v2.1/inject.js";
     script.async = true;
     script.onload = () => {
       console.log("Botpress Webchat script loaded successfully.");
@@ -87,7 +87,7 @@ export const Hero = () => {
 
     const configScript = document.createElement("script");
     configScript.src =
-      "https://files.bpcontent.cloud/2024/10/14/15/20241014153951-L6VHID1U.js";
+      "https://mediafiles.botpress.cloud/1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9/webchat/v2.1/config.js";
     configScript.async = true;
     document.body.appendChild(configScript);
 

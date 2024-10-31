@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import logo1 from "@/assets/logo1.png";
+
 
 interface AboutUsContent {
   heading: string;
@@ -52,7 +54,7 @@ const LearningTransformation: React.FC = () => {
             {/* Image Section */}
             <div className="w-full mb-4 md:mb-6 flex justify-center">
               <img
-                src={aboutUsContent.imageUrl}
+                src={logo1.src}
                 alt="Logo"
                 className="w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:max-w-[1000px] lg:max-h-[600px] object-contain rounded-lg shadow-md bg-[#232323]"
               />

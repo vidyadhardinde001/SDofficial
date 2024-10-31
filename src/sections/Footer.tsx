@@ -4,91 +4,36 @@ import FacebookIcon from "@/assets/social-facebook.svg";
 import SocialInsta from "@/assets/social-insta.svg";
 import SocialLinkedIn from "@/assets/social-linkedin.svg";
 
-import { useEffect, useState } from "react";
-
-// Define the structure of the footer content
-interface FooterContent {
-  socialLinks: {
-    twitter: string;
-    instagram: string;
-    linkedin: string;
-  };
-  navigationLinks: {
-    href: string;
-    text: string;
-  }[];
-  copyrightText: string;
-}
-
 export const Footer = () => {
-  // const [footerContent, setFooterContent] = useState<FooterContent | null>(null);
-
-  // useEffect(() => {
-  //   // Fetch the footer content from the API
-  //   async function fetchFooterContent() {
-  //     try {
-  //       const response = await fetch('/api/content/footer');
-  //       if (!response.ok) {
-  //         throw new Error('Network response was not ok');
-  //       }
-  //       const data = await response.json();
-  //       setFooterContent(data.content);
-  //     } catch (error) {
-  //       console.error('Error fetching footer content:', error);
-  //     }
-  //   }
-
-  //   fetchFooterContent();
-  // }, []);
-
-  // if (!footerContent) {
-  //   return <div>Loading...</div>;
-  // }
   return (
     <footer className="bg-[#232323] text-[#BCBCBC] text-sm py-8 text-center">
-      <div className="container">
+      <div className="container mx-auto px-4">
         {/* Navigation Links */}
-        <nav className="flex flex-col md:flex-row md:justify-center gap-6 mt-0">
-          <a href="/">Home</a>
-          <Link href="/projects">Projects</Link>
-          <Link href="/gallery">Gallery</Link>
-          <Link href="/contactus">Contact</Link>
-          <Link href="/aboutus">About Us</Link>
-          {/* {footerContent.navigationLinks.map((item) => (
-            <Link key={item.href} href={item.href}>
-              <a>{item.text}</a> 
-            </Link>
-          ))} */}
+        <nav className="flex flex-col items-center gap-6 mt-0 md:flex-row md:justify-center">
+          <a href="/" className="hover:text-white">Home</a>
+          <Link href="/projects" className="hover:text-white">Projects</Link>
+          <Link href="/gallery" className="hover:text-white">Gallery</Link>
+          <Link href="/contactus" className="hover:text-white">Contact</Link>
+          <Link href="/aboutus" className="hover:text-white">About Us</Link>
         </nav>
 
         {/* Social Media Links */}
         <div className="flex justify-center gap-6 mt-6">
           {/* Social Media Icons with Links */}
-          
           <a href="https://www.instagram.com/siddhivinayakengineers19?igsh=Nml3cnZ0cHgxYmo3" target="_blank" rel="noopener noreferrer">
-            <SocialInsta />
+            <SocialInsta className="w-6 h-6 md:w-8 md:h-8 hover:opacity-75 transition-opacity duration-200" />
           </a>
           <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
-            <SocialLinkedIn />
+            <SocialLinkedIn className="w-6 h-6 md:w-8 md:h-8 hover:opacity-75 transition-opacity duration-200" />
           </a>
           <a href="https://www.facebook.com/SiddhivinayakEngineerss" target="_blank" rel="noopener noreferrer">
-            <FacebookIcon />
+            <FacebookIcon className="w-6 h-6 md:w-8 md:h-8 hover:opacity-75 transition-opacity duration-200" />
           </a>
-          {/* {footerContent.socialLinks &&
-            Object.entries(footerContent.socialLinks).map(([platform, url]) => (
-              <a key={platform} href={url} target="_blank" rel="noopener noreferrer">
-                {platform === "twitter" && <SocialX className="hover:text-blue-500" />}
-                {platform === "instagram" && <SocialInsta className="hover:text-blue-500" />}
-                {platform === "linkedin" && <SocialLinkedIn className="hover:text-blue-500" />}
-              </a>
-            ))} */}
-          
         </div>
 
         {/* Copyright Text */}
-        <p className="mt-6">
+        <p className="mt-6 text-xs md:text-sm lg:text-base">
           &copy; 2024 Siddhivinayak Engineers, Inc. All rights reserved.
-          {/* &copy; {new Date().getFullYear()} {footerContent.copyrightText} */}
         </p>
       </div>
     </footer>

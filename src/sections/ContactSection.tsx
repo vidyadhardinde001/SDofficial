@@ -63,22 +63,22 @@ const ContactSection: React.FC = () => {
         <section className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-gradient-to-r bg-white">
           <div className="flex flex-col md:flex-row justify-between items-start md:mx-0 lg:mx-[200px] mb-[100px]">
             {/* Left Side: Contact Info */}
-            <div className="w-full md:w-6/12 md:mt-0">
+            <div className="w-full md:w-6/12 md:mt-0 text-center md:text-left">
               <h2 className="text-sm m-2 tracking-[10px] text-gray-500 font-medium">CONTACT</h2>
-              <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-medium text-black leading-tight">
-                Any Questions? <br />
-                Write or call us. <br />
-                We will write back <br />
+              <h1 className="mt-4 text-2xl sm:text-3xl lg:text-5xl font-medium text-black leading-tight">
+                Any Questions? <br className="hidden lg:block" />
+                Write or call us. <br className="hidden lg:block" />
+                We will write back <br className="hidden lg:block" />
                 within 12hrs :)
               </h1>
-              <div className="mt-8 space-y-4 text-lg text-gray-700">
-                <p className="flex items-center">
+              <div className="mt-8 space-y-4 text-base sm:text-lg text-gray-700">
+                <p className="flex items-center justify-center md:justify-start">
                   <span className="mr-2">📞</span>+91 7057272626
                 </p>
-                <p className="flex items-center">
+                <p className="flex items-center justify-center md:justify-start">
                   <span className="mr-2">📧</span>siddhivinayakengineers19@gmail.com
                 </p>
-                <p className="flex items-center">
+                <p className="flex items-center justify-center md:justify-start">
                   <span className="mr-2">📍</span> Arjunwad
                 </p>
               </div>
@@ -87,7 +87,7 @@ const ContactSection: React.FC = () => {
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d122237.18993477206!2d74.628396!3d16.781044!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc12102e1214d0b%3A0x1527ff323ff45359!2sSiddhivinayak%20Engineers!5e0!3m2!1sen!2sus!4v1727588966231!5m2!1sen!2sus"
                   width="100%"
-                  height="300"
+                  height="250"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
@@ -100,7 +100,7 @@ const ContactSection: React.FC = () => {
             {/* Right Side: Contact Form */}
             <div className="w-full mt-8 md:mt-0 md:w-5/12">
               <form onSubmit={handleSubmit} className="space-y-4">
-              <input
+                <input
                   type="text"
                   name="name"
                   placeholder="Your Name"
@@ -138,7 +138,7 @@ const ContactSection: React.FC = () => {
                   required
                 ></textarea>
 
-                <div className="flex items-start space-x-2 mt-4">
+                <div className="flex items-start space-x-2 mt-4 text-center md:text-left">
                   <input type="checkbox" className="mt-1" required />
                   <p className="text-sm text-gray-500">
                     I consent to the processing of my personal data by the Administrator in accordance with the Privacy Policy <span className="text-[#FE6D20]">*</span>
@@ -154,7 +154,7 @@ const ContactSection: React.FC = () => {
               </form>
 
               {messageSent && <p className="text-green-600 mt-4">Message sent successfully!</p>}
-                {errorMessage && <p className="text-red-600 mt-4">{errorMessage}</p>}
+              {errorMessage && <p className="text-red-600 mt-4">{errorMessage}</p>}
             </div>
           </div>
         </section>

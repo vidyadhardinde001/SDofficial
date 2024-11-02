@@ -1,0 +1,15 @@
+# Allow all crawlers access to the entire site
+User-agent: *
+Disallow:
+
+# Block specific directories (uncomment if needed)
+# Disallow: /private/
+# Disallow: /tmp/
+
+# Example of blocking a specific crawler (uncomment if needed)
+# User-agent: BadBot
+# Disallow: /
+
+# Set crawl delay for specific user-agents (optional)
+# User-agent: Googlebot
+# Crawl-delay: 10

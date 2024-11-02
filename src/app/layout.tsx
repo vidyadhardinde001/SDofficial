@@ -10,9 +10,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Siddhivinayak Engineers | Control Panel Manufacturing & Automation Solutions",
+  title: "Siddhivinayak Engineers | Manufacturing & Automation Solutions",
   description:
-    "Siddhivinayak Engineers provides top-tier control panel manufacturing, PLC, HMI, and SCADA software development services, ensuring high-quality solutions for various industries.",
+    "Siddhivinayak Engineers offers premium control panel manufacturing, PLC, HMI, and SCADA software development, delivering high-quality solutions for industries.",
 };
 
 export default function RootLayout({
@@ -60,6 +60,27 @@ export default function RootLayout({
 
         {/* Additional link and script tags */}
         <link rel="canonical" href="https://siddhivinayakengineers.netlify.app/" />
+
+        {/* Schema.org JSON-LD Markup */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Siddhivinayak Engineers",
+            "description": "Top-tier control panel manufacturing, PLC, HMI, and SCADA software development services.",
+            "url": "https://siddhivinayakengineers.netlify.app/",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "123 Main St", // Replace with your actual address
+              "addressLocality": "Your City", // Replace with your city
+              "addressRegion": "Your Region", // Replace with your region
+              "postalCode": "123456", // Replace with your postal code
+              "addressCountry": "Country" // Replace with your country
+            },
+            "telephone": "+1234567890", // Replace with your actual phone number
+            "logo": "https://siddhivinayakengineers.netlify.app/assets/logo1.ico" // Replace with your logo URL
+          })
+        }} />
       </head>
       <body className={twMerge(montserrat.className, "antialiased bg-[#EAEEFE]")}>
         {children}

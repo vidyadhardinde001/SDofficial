@@ -13,6 +13,16 @@ const logoStyle = {
   height: '70px', // Adjust this size as needed
 };
 
+// Define the logos with their respective URLs
+const logos = [
+  { src: mahabal, alt: "Mahabal Logo", url: "https://www.mahabalgroup.com/" },
+  { src: alpha, alt: "Alpha Logo", url: "http://www.phadkegroup.com/" },
+  { src: suyesh, alt: "Suyesh Logo", url: "https://www.suyeshgroup.in/suyesh-foundry-pvt-ltd.php" },
+  { src: riba, alt: "Riba Logo", url: "https://www.ribatextiles.com/" },
+  { src: pidilite, alt: "Pidilite Logo", url: "https://www.pidilite.com/" },
+  { src: menon, alt: "Menon Logo", url: "https://menonindia.in/" },
+];
+
 export const LogoTicker = () => {
   return (
     <div className="py-8 md:py-12 bg-white">
@@ -36,67 +46,25 @@ export const LogoTicker = () => {
               repeatType: 'loop',
             }}
           >
-            <Image
-              src={mahabal}
-              alt="Mahabal Logo"
-              style={logoStyle}
-            />
-            <Image
-              src={alpha}
-              alt="Alpha Logo"
-              style={logoStyle}
-            />
-            <Image
-              src={suyesh}
-              alt="Suyesh Logo"
-              style={logoStyle}
-            />
-            <Image
-              src={riba}
-              alt="Riba Logo"
-              style={logoStyle}
-            />
-            <Image
-              src={pidilite}
-              alt="Pidilite Logo"
-              style={logoStyle}
-            />
-            <Image
-              src={menon}
-              alt="Menon Logo"
-              style={logoStyle}
-            />
+            {logos.map((logo, index) => (
+              <a key={index} href={logo.url} target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  style={logoStyle}
+                />
+              </a>
+            ))}
             {/* Second Set of Logos for animation */}
-            <Image
-              src={mahabal}
-              alt="Mahabal Logo"
-              style={logoStyle}
-            />
-            <Image
-              src={alpha}
-              alt="Alpha Logo"
-              style={logoStyle}
-            />
-            <Image
-              src={suyesh}
-              alt="Suyesh Logo"
-              style={logoStyle}
-            />
-            <Image
-              src={riba}
-              alt="Riba Logo"
-              style={logoStyle}
-            />
-            <Image
-              src={pidilite}
-              alt="Pidilite Logo"
-              style={logoStyle}
-            />
-            <Image
-              src={menon}
-              alt="Menon Logo"
-              style={logoStyle}
-            />
+            {logos.map((logo, index) => (
+              <a key={`second-${index}`} href={logo.url} target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  style={logoStyle}
+                />
+              </a>
+            ))}
           </motion.div>
         </div>
       </div>

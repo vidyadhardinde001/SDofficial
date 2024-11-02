@@ -1,6 +1,6 @@
 "use client";
-import ArrowIcon from "@/assets/arrow-right.svg";
 import { useEffect, useState, useRef, useCallback } from "react";
+import Head from "next/head";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import axios from "axios";
@@ -90,56 +90,77 @@ export const Hero = () => {
   }, [fetchHeroContent]);
 
   return (
-    <section
-      ref={heroRef}
-      className="relative overflow-hidden min-h-[70vh] sm:min-h-[80vh] flex items-center justify-center px-4"
-    >
-      <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
-        <video
-          className="w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src={heroContent.videoUrl || "/assets/bg-video.mp4"} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+    <>
+      <Head>
+        <title>Siddhivinayak Engineers - Your Automation Solutions Partner</title>
+        <meta
+          name="description"
+          content="Siddhivinayak Engineers specializes in control panel manufacturing, PLC, HMI, and SCADA software development, offering top-notch services across various industries."
+        />
+        <meta name="keywords" content="Control Panel, Automation, PLC, HMI, SCADA, Electric Services" />
+        <meta property="og:title" content="Siddhivinayak Engineers" />
+        <meta property="og:description" content="Top-notch control panel and automation services for various industries." />
+        <meta property="og:image" content="/path/to/your-image.jpg" />
+        <meta property="og:url" content="https://siddhivinayakengineers.netlify.app/" />
+        <link rel="canonical" href="https://siddhivinayakengineers.netlify.app/" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Siddhivinayak Engineers" />
+        <meta name="twitter:description" content="Offering control panel manufacturing, PLC, HMI, and SCADA software solutions." />
+        <meta name="twitter:image" content="/path/to/twitter-image.jpg" />
+      </Head>
 
-      <div className="absolute inset-x-0 top-1/2 transform -translate-y-1/2 w-full max-w-full h-[300px] bg-black opacity-40 blur-sm rounded-lg"></div>
+      <section
+        ref={heroRef}
+        className="relative overflow-hidden min-h-[70vh] sm:min-h-[80vh] flex items-center justify-center px-4"
+      >
+        <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src={heroContent.videoUrl || "/assets/bg-video.mp4"} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
 
-      <div className="container relative z-10 flex flex-col items-center text-center">
-        <motion.h1
-          className="text-lg sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-medium text-shadow mt-6 tracking-tighter bg-[#ffffff] text-transparent bg-clip-text"
-          initial="hidden"
-          animate="visible"
-          variants={flipVariant}
-          transition={{ duration: 0.8 }}
-        >
-          {heroContent.welcomeMessage || "Welcome to"}
-        </motion.h1>
+        <div className="absolute inset-x-0 top-1/2 transform -translate-y-1/2 w-full max-w-full h-[300px] bg-black opacity-40 blur-sm rounded-lg"></div>
 
-        <motion.h1
-          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl h-[10vh] font-semibold tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2"
-          initial="hidden"
-          animate="visible"
-          variants={flipVariant}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          {heroContent.mainHeading || "Siddhivinayak Engineers"}
-        </motion.h1>
+        <div className="container relative z-10 flex flex-col items-center text-center">
+          <motion.h2
+            className="text-lg sm:text-2xl md:text-3xl lg:text-5xl xl:text-5xl text-[#ffffff] tracking-tight mt-2"
+            initial="hidden"
+            animate="visible"
+            variants={flipVariant}
+            transition={{ duration: 1, delay: 0.1 }}
+          >
+            Welcome to
+          </motion.h2>
 
-        <motion.p
-          className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#ffffff] tracking-tight mt-1 sm:mt-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full text-center mx-auto leading-tight"
-          initial="hidden"
-          animate="visible"
-          variants={flipVariant}
-          transition={{ duration: 1, delay: 0.4 }}
-        >
-          {heroContent.subHeading || "One Stop Solution for All your Electric & Automation Needs."}
-        </motion.p>
-      </div>
-    </section>
+          <motion.h1
+            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl h-[10vh] font-semibold tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2"
+            initial="hidden"
+            animate="visible"
+            variants={flipVariant}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            {heroContent.mainHeading || "Siddhivinayak Engineers"}
+          </motion.h1>
+
+          <motion.p
+            className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#ffffff] tracking-tight mt-1 sm:mt-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full text-center mx-auto leading-tight"
+            initial="hidden"
+            animate="visible"
+            variants={flipVariant}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
+            {heroContent.subHeading || "One Stop Solution for All your Electric & Automation Needs."}
+          </motion.p>
+        </div>
+      </section>
+    </>
   );
 };

@@ -59,32 +59,32 @@ export const Hero = () => {
         enableReset: true,
         startOpen: false,
         styles: {
-          botMessageColor: "#9A90E2 !important",
-          botMessageBackground: "#EAEAEA !important",
-          userMessageColor: "#FFFFFF !important",
-          userMessageBackground: "#000000 !important",
-          headerBackground: "#FF5733 !important",
-          headerTextColor: "#000000 !important",
-          primaryColor: "#3498db !important",
-          messageTextColor: "#333333 !important",
+          botMessageColor: "#9A90E2",
+          botMessageBackground: "#EAEAEA",
+          userMessageColor: "#FFFFFF",
+          userMessageBackground: "#000000",
+          headerBackground: "#FF5733",
+          headerTextColor: "#000000",
+          primaryColor: "#3498db",
+          messageTextColor: "#333333",
           botAvatarUrl: "https://example.com/avatar.png",
         },
       };
 
-      const script = document.createElement("script");
-      script.src = "https://cdn.botpress.cloud/webchat/v2.1/inject.js";
-      script.async = true;
-      document.body.appendChild(script);
+      const injectScript = document.createElement("script");
+      injectScript.src = "https://cdn.botpress.cloud/webchat/v2.2/inject.js";
+      injectScript.async = true;
+      document.body.appendChild(injectScript);
 
       const configScript = document.createElement("script");
       configScript.src =
-        "https://mediafiles.botpress.cloud/1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9/webchat/v2.1/config.js";
+        "https://files.bpcontent.cloud/2024/10/14/15/20241014153951-L6VHID1U.js";
       configScript.async = true;
       document.body.appendChild(configScript);
 
       return () => {
-        document.body.removeChild(script);
-        document.body.removeChild(configScript);
+        if (injectScript) document.body.removeChild(injectScript);
+        if (configScript) document.body.removeChild(configScript);
       };
     }
   }, [fetchHeroContent]);

@@ -1,14 +1,13 @@
 "use client";
 import ArrowIcon from "@/assets/arrow-right.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
 import Image from "next/image";
 import axios from "axios";
 
 declare global {
   interface Window {
-    botpressWebChat: any; // Declare the botpressWebChat property
+    botpressWebChat: any;
   }
 }
 
@@ -39,63 +38,56 @@ export const Hero = () => {
     videoUrl: "",
   });
 
-  useEffect(() => {
-    const fetchHeroContent = async () => {
-      try {
-        const response = await axios.get(
-          "/api/content/heroSection"
-        );
-        const data = response.data.content;
-        setHeroContent(data);
-      } catch (error) {
-        console.error("Error fetching Hero content:", error);
-      }
-    };
+  const fetchHeroContent = useCallback(async () => {
+    try {
+      const response = await axios.get("/api/content/heroSection");
+      setHeroContent(response.data.content);
+    } catch (error) {
+      console.error("Error fetching Hero content:", error);
+    }
+  }, []);
 
+  useEffect(() => {
     fetchHeroContent();
 
-    window.botpressWebChat = {
-      botId: "1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9",
-      host: "https://cdn.botpress.cloud",
-      botName: "SupportBot",
-      showMessageHistory: true,
-      enableReset: true,
-      startOpen: false,
-      styles: {
-        botMessageColor: "#9A90E2 !important",
-        botMessageBackground: "#EAEAEA !important",
-        userMessageColor: "#FFFFFF !important",
-        userMessageBackground: "#000000 !important",
-        headerBackground: "#FF5733 !important",
-        headerTextColor: "#000000 !important",
-        primaryColor: "#3498db !important",
-        messageTextColor: "#333333 !important",
-        botAvatarUrl: "https://example.com/avatar.png",
-      },
-    };
+    if (!window.botpressWebChat) {
+      window.botpressWebChat = {
+        botId: "1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9",
+        host: "https://cdn.botpress.cloud",
+        botName: "SupportBot",
+        showMessageHistory: true,
+        enableReset: true,
+        startOpen: false,
+        styles: {
+          botMessageColor: "#9A90E2 !important",
+          botMessageBackground: "#EAEAEA !important",
+          userMessageColor: "#FFFFFF !important",
+          userMessageBackground: "#000000 !important",
+          headerBackground: "#FF5733 !important",
+          headerTextColor: "#000000 !important",
+          primaryColor: "#3498db !important",
+          messageTextColor: "#333333 !important",
+          botAvatarUrl: "https://example.com/avatar.png",
+        },
+      };
 
-    const script = document.createElement("script");
-    script.src = "https://cdn.botpress.cloud/webchat/v2.1/inject.js";
-    script.async = true;
-    script.onload = () => {
-      console.log("Botpress Webchat script loaded successfully.");
-    };
-    script.onerror = () => {
-      console.error("Error loading Botpress Webchat script.");
-    };
-    document.body.appendChild(script);
+      const script = document.createElement("script");
+      script.src = "https://cdn.botpress.cloud/webchat/v2.1/inject.js";
+      script.async = true;
+      document.body.appendChild(script);
 
-    const configScript = document.createElement("script");
-    configScript.src =
-      "https://mediafiles.botpress.cloud/1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9/webchat/v2.1/config.js";
-    configScript.async = true;
-    document.body.appendChild(configScript);
+      const configScript = document.createElement("script");
+      configScript.src =
+        "https://mediafiles.botpress.cloud/1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9/webchat/v2.1/config.js";
+      configScript.async = true;
+      document.body.appendChild(configScript);
 
-    return () => {
-      document.body.removeChild(script);
-      document.body.removeChild(configScript);
-    };
-  }, []);
+      return () => {
+        document.body.removeChild(script);
+        document.body.removeChild(configScript);
+      };
+    }
+  }, [fetchHeroContent]);
 
   return (
     <section
@@ -110,7 +102,7 @@ export const Hero = () => {
           muted
           playsInline
         >
-          <source src="/assets/bg-video.mp4" type="video/mp4" />
+          <source src={heroContent.videoUrl || "/assets/bg-video.mp4"} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -125,17 +117,17 @@ export const Hero = () => {
           variants={flipVariant}
           transition={{ duration: 0.8 }}
         >
-          {heroContent?.welcomeMessage}
+          {heroContent.welcomeMessage || "Welcome to"}
         </motion.h1>
 
         <motion.h1
-          className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl h-[10vh] font-semibold tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2"
+          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl h-[10vh] font-semibold tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2"
           initial="hidden"
           animate="visible"
           variants={flipVariant}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          {heroContent?.mainHeading}
+          {heroContent.mainHeading || "Siddhivinayak Engineers"}
         </motion.h1>
 
         <motion.p
@@ -145,7 +137,7 @@ export const Hero = () => {
           variants={flipVariant}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          {heroContent?.subHeading}
+          {heroContent.subHeading || "One Stop Solution for All your Electric & Automation Needs."}
         </motion.p>
       </div>
     </section>

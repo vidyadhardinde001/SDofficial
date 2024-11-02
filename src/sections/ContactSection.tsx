@@ -56,9 +56,9 @@ const ContactSection: React.FC = () => {
             {/* Left Side: Contact Info */}
             <div className="w-full md:w-6/12 text-center md:text-left mb-8 md:mb-0">
               <h2 className="text-sm tracking-[10px] text-gray-500 font-medium">CONTACT</h2>
-              <h1 className="mt-4 text-2xl sm:text-3xl lg:text-5xl font-medium text-black leading-tight">
+              <h2 className="mt-4 text-2xl sm:text-3xl lg:text-5xl font-medium text-black leading-tight">
                 Any Questions? <br /> Write or call us. <br /> We will respond within 12hrs :)
-              </h1>
+              </h2>
               <div className="mt-8 space-y-4 text-gray-700">
                 <p className="flex items-center justify-center md:justify-start">
                   📞 +91 7057272626

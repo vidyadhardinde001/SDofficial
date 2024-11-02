@@ -58,9 +58,10 @@ const IndustriesWeServe: React.FC = () => {
   return (
     <section className="py-10 bg-[#FAFAFC]" ref={sectionRef}>
       <div className="max-w-6xl mx-auto px-4">
-        <h1 className="text-5xl font-medium mb-12 mt-3 text-black text-center">
+        {/* Change <h1> to <h2> but keep the same styling */}
+        <h2 className="text-5xl font-medium mb-12 mt-3 text-black text-center">
           Industries We Serve
-        </h1>
+        </h2>
 
         {/* Grid for 2 rows with 9 cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">

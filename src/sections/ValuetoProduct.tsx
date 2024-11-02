@@ -21,11 +21,11 @@ const ValuetoProduct = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#232323] flex flex-col items-center justify-center sm:px-6 lg:px-10 py-4 sm:py-6 md:py-8 lg:py-10">
+    <div className="min-h-screen bg-[#232323] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-10 py-4 sm:py-6 md:py-8 lg:py-10">
       {/* Centered Heading */}
-      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium mb-4 sm:mb-6 text-white text-center">
+      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium mb-4 sm:mb-6 text-white text-center">
         How We Add Value to Our Products
-      </h1>
+      </h2>
 
       {/* Main Content Section */}
       <div className="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">

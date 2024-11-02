@@ -8,9 +8,9 @@ import Fieldscene from "@/components/Fieldscene";
 const ServicesSection: React.FC = () => {
   return (
     <div className="bg-[#232323] text-black pt-10 sm:pt-20 pb-5 sm:pb-1 px-4 sm:px-5">
-      <h1 className="text-2xl sm:text-5xl font-medium mb-8 sm:mb-12 mt-4 sm:mt-6 text-white text-center pb-8 sm:pb-12">
+      <h2 className="text-2xl sm:text-5xl font-medium mb-8 sm:mb-12 mt-4 sm:mt-6 text-white text-center pb-8 sm:pb-12">
         Our Services
-      </h1>
+      </h2>
       <div className="flex flex-col gap-6 sm:gap-8 w-full md:w-3/4 mx-auto">
         
         {/* First Section */}
@@ -56,7 +56,7 @@ const ServicesSection: React.FC = () => {
               business objectives. It is used across multiple industries and can
               involve troubleshooting, fixing, and replacing equipment to
               improve asset performance.<br/><br/>{" "}
- 
+
             </p>
           </div>
         </div>

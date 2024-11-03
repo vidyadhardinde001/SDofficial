@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, useRef, useCallback } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import axios from "axios";
@@ -50,7 +51,7 @@ export const Hero = () => {
   useEffect(() => {
     fetchHeroContent();
 
-    if (!window.botpressWebChat) {
+    if (typeof window !== "undefined" && !window.botpressWebChat) {
       window.botpressWebChat = {
         botId: "1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9",
         host: "https://cdn.botpress.cloud",
@@ -92,22 +93,14 @@ export const Hero = () => {
   return (
     <>
       <Head>
-        <title>Siddhivinayak Engineers - Your Automation Solutions Partner</title>
+        <title>
+          Siddhivinayak Engineers - Your Automation Solutions Partner
+        </title>
         <meta
           name="description"
           content="Siddhivinayak Engineers specializes in control panel manufacturing, PLC, HMI, and SCADA software development, offering top-notch services across various industries."
         />
-        <meta name="keywords" content="Control Panel, Automation, PLC, HMI, SCADA, Electric Services" />
-        <meta property="og:title" content="Siddhivinayak Engineers" />
-        <meta property="og:description" content="Top-notch control panel and automation services for various industries." />
-        <meta property="og:image" content="/path/to/your-image.jpg" />
-        <meta property="og:url" content="https://siddhivinayakengineers.netlify.app/" />
-        <link rel="canonical" href="https://siddhivinayakengineers.netlify.app/" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Siddhivinayak Engineers" />
-        <meta name="twitter:description" content="Offering control panel manufacturing, PLC, HMI, and SCADA software solutions." />
-        <meta name="twitter:image" content="/path/to/twitter-image.jpg" />
+        {/* Additional meta tags */}
       </Head>
 
       <section
@@ -122,7 +115,10 @@ export const Hero = () => {
             muted
             playsInline
           >
-            <source src={heroContent.videoUrl || "/assets/bg-video.mp4"} type="video/mp4" />
+            <source
+              src={heroContent.videoUrl || "/assets/bg-video.mp4"}
+              type="video/mp4"
+            />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -141,24 +137,41 @@ export const Hero = () => {
           </motion.h2>
 
           <motion.h1
-            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl h-[10vh] font-semibold tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tighter bg-gradient-to-b from-white to-[#ffffff] text-transparent bg-clip-text mt-2 mb-5 sm:mb-1 w-full pb-1"
             initial="hidden"
             animate="visible"
             variants={flipVariant}
-            transition={{ duration: 1, delay: 0.2 }}
+            transition={{ duration: 1, delay: 0.1 }}
+            style={{ lineHeight: "1.1", paddingBottom: "0em" }}
           >
             {heroContent.mainHeading || "Siddhivinayak Engineers"}
           </motion.h1>
 
           <motion.p
-            className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#ffffff] tracking-tight mt-1 sm:mt-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full text-center mx-auto leading-tight"
+            className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#ffffff] tracking-tight mt-1 sm:mt-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full xl:max-w-full mx-auto leading-tight"
             initial="hidden"
             animate="visible"
             variants={flipVariant}
             transition={{ duration: 1, delay: 0.4 }}
           >
-            {heroContent.subHeading || "One Stop Solution for All your Electric & Automation Needs."}
+            {heroContent.subHeading ||
+              "One Stop Solution for All your Electric & Automation Needs."}
           </motion.p>
+
+          <div className="flex flex-col sm:flex-row gap-4 mt-6">
+            <Link
+              href="/projects"
+              className="bg-orange-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md transition hover:bg-orange-600 text-center sm:text-left text-sm sm:text-base"
+            >
+              Go to Projects
+            </Link>
+            <Link
+              href="/contactus"
+              className="bg-white text-orange-500 border border-orange-500 px-3 py-1.5 sm:px-4 sm:py-2 rounded-md transition hover:bg-orange-100 text-center sm:text-left text-sm sm:text-base"
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
       </section>
     </>

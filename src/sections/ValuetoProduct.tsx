@@ -3,15 +3,36 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
+const CACHE_EXPIRATION_MS = 60 * 60 * 1000;
+
 const ValuetoProduct = () => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
+      const cachedCards = localStorage.getItem("valuetoProductCards");
+      const cachedTimestamp = localStorage.getItem("valuetoProductCacheTimestamp");
+
+      if (cachedCards && cachedTimestamp) {
+        const now = new Date().getTime();
+        const cacheAge = now - parseInt(cachedTimestamp, 10);
+
+        if (cacheAge < CACHE_EXPIRATION_MS) {
+          // Use cached data if it's still valid
+          setCards(JSON.parse(cachedCards));
+          return;
+        }
+      }
+
+      // If no valid cache, fetch new data from API
       try {
         const response = await axios.get('/api/content/valuetoProduct');
         const data = response.data.content.valueList;
         setCards(data);
+
+        // Cache the new data and timestamp
+        localStorage.setItem("valuetoProductCards", JSON.stringify(data));
+        localStorage.setItem("valuetoProductCacheTimestamp", new Date().getTime().toString());
       } catch (error) {
         console.error('Error fetching ValuetoProduct content:', error);
       }
@@ -23,9 +44,9 @@ const ValuetoProduct = () => {
   return (
     <div className="min-h-screen bg-[#232323] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-10 py-4 sm:py-6 md:py-8 lg:py-10">
       {/* Centered Heading */}
-      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium mb-4 sm:mb-6 text-white text-center">
+      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium mb-4 sm:mb-6 text-white text-center">
         How We Add Value to Our Products
-      </h1>
+      </h2>
 
       {/* Main Content Section */}
       <div className="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">

@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image"; // Import Next.js Image component
+import Image from "next/image";
 import axios from "axios";
 
 const Gallery: React.FC = () => {
   const [galleryImages, setGalleryImages] = useState<{ id: number; src: string; alt: string }[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null); // State to hold the selected image for the lightbox
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   // Fetch gallery images from the database
   const CACHE_EXPIRATION_MS = 60 * 60 * 1000; // 24 hours
@@ -55,7 +55,7 @@ useEffect(() => {
 
   return (
     <div className="mx-auto px-4 py-8 bg-white">
-      {/* Gallery Title and Description */}
+      {/* Gallery Title */}
       <div className="text-center mb-8">
         <h2 className="text-4xl font-bold mb-4">Gallery</h2>
       </div>
@@ -65,11 +65,11 @@ useEffect(() => {
 
       {/* Gallery Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {galleryImages.slice(1).map((image) => ( // Skipping the first image as it's used as the header
+        {galleryImages.slice(1).map((image) => (
           <div
             key={image.id}
             className="relative group overflow-hidden rounded-lg"
-            onClick={() => handleImageClick(image.src)} // Open lightbox on click
+            onClick={() => handleImageClick(image.src)}
           >
             <Image
               src={image.src}
@@ -78,7 +78,6 @@ useEffect(() => {
               height={200}
               className="w-full h-64 object-cover rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
             />
-            <p className="text-center text-lg font-medium mt-2">{image.alt}</p>
           </div>
         ))}
       </div>

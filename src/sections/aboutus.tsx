@@ -10,27 +10,40 @@ interface AboutUsContent {
   stats: { value: string; label: string }[];
   imageUrl: string;
 }
-
+const CACHE_KEY = "aboutUsContentCache";
+const CACHE_EXPIRATION = 60 * 60 * 1000; 
 const LearningTransformation: React.FC = () => {
   const [aboutUsContent, setAboutUsContent] = useState<AboutUsContent | null>(null);
 
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const response = await fetch('/api/content/aboutus');
-        const data = await response.json();
-        console.log("Fetched data:", data);
-        setAboutUsContent(data.content);
+        const cachedData = localStorage.getItem(CACHE_KEY);
+        const cacheTimestamp = localStorage.getItem(`${CACHE_KEY}_timestamp`);
+
+        if (cachedData && cacheTimestamp) {
+          const isCacheValid = Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
+          if (isCacheValid) {
+            setAboutUsContent(JSON.parse(cachedData));
+            return;
+          }
+        }
+
+        // If no valid cache, fetch data from the API
+        const response = await axios.get("/api/content/aboutus");
+        const data = response.data.content;
+        setAboutUsContent(data);
+
+        // Save data to localStorage with timestamp
+        localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+        localStorage.setItem(`${CACHE_KEY}_timestamp`, Date.now().toString());
       } catch (error) {
-        console.error('Error fetching aboutus section content', error);
+        console.error("Error fetching aboutus section content", error);
       }
     };
+
     fetchContent();
   }, []);
-
-  if (!aboutUsContent) {
-    return <p>Loading...</p>;
-  }
 
   return (
     <section className="bg-white py-6 md:py-12">
@@ -39,10 +52,10 @@ const LearningTransformation: React.FC = () => {
           {/* Left Section: Text */}
           <div className="bg-[#232323] p-4 md:p-8 rounded-lg shadow-md">
             <p className="text-2xl md:text-4xl font-bold text-[#ff7d38] mb-2 leading-tight">
-              {aboutUsContent.heading}
+              {aboutUsContent?.heading}
             </p>
             <br />
-            {aboutUsContent.description.map((paragraph, index) => (
+            {aboutUsContent?.description.map((paragraph, index) => (
               <p key={index} className="text-white text-base md:text-lg mb-2 md:mb-4">
                 {paragraph}
               </p>
@@ -62,7 +75,7 @@ const LearningTransformation: React.FC = () => {
 
             {/* Stats Section */}
             <div className="grid grid-cols-2 gap-3 sm:gap-6 w-full">
-              {aboutUsContent.stats.map((stat, index) => (
+              {aboutUsContent?.stats.map((stat, index) => (
                 <div key={index} className="bg-[#232323] p-2 md:p-4 rounded-lg shadow-md text-center">
                   <h2 className="text-xl md:text-3xl font-bold text-[#ff7d38]">{stat.value}</h2>
                   <p className="text-white text-sm md:text-base">{stat.label}</p>

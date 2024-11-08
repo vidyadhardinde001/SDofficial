@@ -18,17 +18,40 @@ const Projects: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true); // State for loading
 
   // Fetch project data from the API
+  const CACHE_KEY = "projectsData";
+  const CACHE_TIMESTAMP_KEY = "projectsCacheTimestamp";
+  const CACHE_EXPIRATION_MS = 60 * 60 * 1000; // 1 hour
+
   useEffect(() => {
     const fetchProjects = async () => {
+      // Check if data is in cache and hasn't expired
+      const cachedData = localStorage.getItem(CACHE_KEY);
+      const cachedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
+
+      if (cachedData && cachedTimestamp) {
+        const cacheAge = Date.now() - parseInt(cachedTimestamp, 10);
+
+        if (cacheAge < CACHE_EXPIRATION_MS) {
+          // Use cached data
+          setProjectsData(JSON.parse(cachedData));
+          setLoading(false);
+          return;
+        }
+      }
+
+      // Fetch fresh data from API if cache is expired or not available
       try {
-        const response = await axios.get(
-          "/api/content/projects"
-        );
-        setProjectsData(response.data.content.projectsList); // Access the 'projectsList' inside 'content'
-        setLoading(false); // Turn off loading once data is fetched
+        const response = await axios.get("/api/content/projects");
+        const projectsList = response.data.content.projectsList;
+
+        // Update state and cache the data
+        setProjectsData(projectsList);
+        localStorage.setItem(CACHE_KEY, JSON.stringify(projectsList));
+        localStorage.setItem(CACHE_TIMESTAMP_KEY, Date.now().toString());
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching projects data:", error);
-        setLoading(false); // Turn off loading in case of error
+        setLoading(false);
       }
     };
 

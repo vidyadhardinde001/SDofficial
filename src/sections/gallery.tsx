@@ -9,21 +9,41 @@ const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null); // State to hold the selected image for the lightbox
 
   // Fetch gallery images from the database
-  useEffect(() => {
-    const fetchGalleryImages = async () => {
-      try {
-        const response = await axios.get("/api/content/gallery");
-        const galleryData = response.data.content.galleryImages;
-        setGalleryImages(galleryData);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching gallery images:", error);
-        setLoading(false);
-      }
-    };
+  const CACHE_EXPIRATION_MS = 60 * 60 * 1000; // 24 hours
 
-    fetchGalleryImages();
-  }, []);
+useEffect(() => {
+  const fetchGalleryImages = async () => {
+    const cachedGalleryImages = localStorage.getItem("galleryImages");
+    const cachedTimestamp = localStorage.getItem("cacheTimestamp");
+
+    if (cachedGalleryImages && cachedTimestamp) {
+      const now = new Date().getTime();
+      const cacheAge = now - parseInt(cachedTimestamp, 10);
+
+      if (cacheAge < CACHE_EXPIRATION_MS) {
+        setGalleryImages(JSON.parse(cachedGalleryImages));
+        setLoading(false);
+        return;
+      }
+    }
+
+    try {
+      const response = await axios.get("/api/content/gallery");
+      const galleryData = response.data.content.galleryImages;
+      setGalleryImages(galleryData);
+
+      localStorage.setItem("galleryImages", JSON.stringify(galleryData));
+      localStorage.setItem("cacheTimestamp", new Date().getTime().toString());
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching gallery images:", error);
+      setLoading(false);
+    }
+  };
+
+  fetchGalleryImages();
+}, []);
+
 
   const handleImageClick = (src: string) => {
     setSelectedImage(src);

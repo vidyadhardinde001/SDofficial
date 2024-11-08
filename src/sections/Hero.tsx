@@ -19,6 +19,8 @@ interface HeroContent {
   videoUrl: string;
 }
 
+const CACHE_EXPIRATION_MS = 60 * 60 * 1000; 
+
 export const Hero = () => {
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -41,12 +43,31 @@ export const Hero = () => {
 
   useEffect(() => {
     const fetchHeroContent = async () => {
+      const cachedHeroContent = localStorage.getItem("heroContent");
+      const cachedTimestamp = localStorage.getItem("heroCacheTimestamp");
+
+      if (cachedHeroContent && cachedTimestamp) {
+        const now = new Date().getTime();
+        const cacheAge = now - parseInt(cachedTimestamp, 10);
+
+        if (cacheAge < CACHE_EXPIRATION_MS) {
+          // Use the cached data if it's still valid
+          setHeroContent(JSON.parse(cachedHeroContent));
+          return;
+        }
+      }
+
+      // If no valid cache or cache expired, fetch from the API
       try {
-        const response = await axios.get(
-          "/api/content/heroSection"
-        );
+        const response = await axios.get("/api/content/heroSection");
         const data = response.data.content;
+        
+        // Store the fetched data in state
         setHeroContent(data);
+
+        // Cache the fetched data and timestamp in localStorage
+        localStorage.setItem("heroContent", JSON.stringify(data));
+        localStorage.setItem("heroCacheTimestamp", new Date().getTime().toString());
       } catch (error) {
         console.error("Error fetching Hero content:", error);
       }

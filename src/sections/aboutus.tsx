@@ -2,12 +2,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import logo1 from "@/assets/logo1.png";
+import Image from "next/image";
 
 interface AboutUsContent {
   heading: string;
   description: string[];
-  stats: { value: string; label: string }[];
+  stats: { value: string | number; label: string }[];
   imageUrl: string;
+  leadership: {
+    name: string;
+    role: string;
+    description: string;
+    imageUrl: string;
+  };
 }
 const CACHE_KEY = "aboutUsContentCache";
 const CACHE_EXPIRATION = 60 * 60 * 1000; 
@@ -29,7 +36,7 @@ const LearningTransformation: React.FC = () => {
         }
 
         // If no valid cache, fetch data from the API
-        const response = await axios.get("/api/content/aboutus");
+        const response = await axios.get("/api/content/aboutUsSection");
         const data = response.data.content;
         setAboutUsContent(data);
 
@@ -62,11 +69,14 @@ const LearningTransformation: React.FC = () => {
 
           {/* Image and Stats Section */}
           <div className="flex flex-col items-center space-y-6">
-            <img
-              src={logo1.src}
-              alt="Logo"
-              className="w-[80%] md:w-[90%] lg:w-[100%] bg-[#232323] max-w-lg object-contain rounded-lg shadow-lg"
-            />
+          <Image
+            src={logo1.src}
+            alt="Logo"
+            width={300} // Adjust the width as needed
+            height={200} // Adjust the height as needed
+            className="w-[80%] md:w-[90%] lg:w-[100%] bg-[#232323] max-w-lg object-contain rounded-lg shadow-lg"
+          />
+
 
             <div className="grid grid-cols-2 gap-4 w-full">
               {aboutUsContent?.stats.map((stat, index) => (
@@ -83,25 +93,27 @@ const LearningTransformation: React.FC = () => {
         </div>
 
         {/* Leadership Section */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <img
-            src="/path-to-your-uploaded-image.jpg"
-            alt="Mr. Nikhil Sutar"
-            className="w-[80%] md:w-[90%] lg:w-[100%] max-w-lg object-contain rounded-lg shadow-lg mx-auto "
-          />
-
-          <div className="bg-[#232323] p-6 rounded-lg shadow-lg text-white">
-            <h2 className="text-2xl md:text-4xl font-bold text-[#009688] mb-4 leading-tight">
-              Leadership
-            </h2>
-            <h3 className="text-xl md:text-2xl font-bold text-[#ff7d38] mb-2">
-              Mr. Nikhil Sutar
-            </h3>
-            <p className="text-base md:text-lg">
-              An Electronics Engineer with over 3 years of hands-on experience in the Industrial Automation Industry, Mr. Sutar is the backbone of Microlog. His skills in programming, graphic visualization, and software design provide an edge in delivering embedded solutions for diverse industrial clients.
-            </p>
+        {aboutUsContent?.leadership && (
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <Image
+              src={aboutUsContent.leadership.imageUrl}
+              alt={aboutUsContent.leadership.name}
+              width={400} // Specify appropriate width
+              height={300} // Specify appropriate height
+              className="w-[80%] md:w-[90%] lg:w-[100%] max-w-lg object-contain rounded-lg shadow-lg mx-auto"
+            />
+            <div className="bg-[#232323] p-6 rounded-lg shadow-lg text-white">
+              <h2 className="text-2xl md:text-4xl font-bold text-[#009688] mb-4 leading-tight">
+                Leadership
+              </h2>
+              <h3 className="text-xl md:text-2xl font-bold text-[#ff7d38] mb-2">
+                {aboutUsContent.leadership.name}
+              </h3>
+              <p className="text-base md:text-lg">{aboutUsContent.leadership.description}</p>
+            </div>
           </div>
-        </div>
+        )}
+
       </div>
     </section>
   );

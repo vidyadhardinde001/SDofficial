@@ -129,6 +129,35 @@ const fetchGalleryAndUpdateDatabase = async () => {
   }
 };
 
+const fetchAboutUsSectionAndUpdateDatabase = async () => {
+  try {
+    // Fetch the data from the API (replace with your actual URL)
+    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=jAh1H5cGJTRQCFmcIsSpUczJPFTk8cybMltga0owv9_kknMZyXc2v6xodag8KLa6BgCDrQSJlIJ9FYET8KgCWngnRB4h7r89m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPqMLSOjrwHZzK4mYvDdiHLGQJ-sHsTjH8OGIT8v3wDXNf-klVZLuzilP1FveXtpdQO_gPawdAHBn8CdIZfxHGG40252Hhbnptz9Jw9Md8uu&lib=MmfELZ3pWjpi07YwspSVeGEoLBlaE9kY8');
+    const apiData = response.data;
+
+    // Structure the data as per the Content model
+    const aboutUsData = {
+      section: 'aboutUsSection',
+      content: {
+        heading: apiData.content.heading,
+        description: apiData.content.description,
+        stats: apiData.content.stats,
+        imageUrl: apiData.content.imageUrl,
+        leadership: apiData.content.leadership
+      }
+    };
+
+    // Delete any existing data for the About Us section and insert the updated data
+    await Content.deleteMany({ section: 'aboutUsSection' });
+    await Content.create(aboutUsData);
+
+    console.log('About Us section updated from Google Sheets');
+  } catch (error) {
+    console.error('Error fetching About Us section data from API', error);
+  }
+};
+
+
 const fetchHeroSectionAndUpdateDatabase = async () => {
   try {
     const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=KJ0jrtflLnowUrnX1oa9gpRoehz3RhcouVR5Ek9sz3UbFXN0zfba5bB7xzBjfFZ7erXSvHOGyZAdArWipVZ3AHBEguUlQFw7m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPSes8K7rVC4cBQF2LqNz5wTxp2unB-jQa368GhxUbYHGxZqVBdM0i6thF3ZyONz4XQJmmtVdaPpBUVnQgDnpzCJuDlzVxqDkQ&lib=MhOghx2ivbIsU-792mgpTLfZ1uKL4_q0K'); // Replace with actual Google Sheets API URL
@@ -233,6 +262,7 @@ async function updateAllData() {
   await fetchHeroSectionAndUpdateDatabase();
   await fetchValueToProductAndUpdateDatabase();
   await fetchIndustriesDataAndUpdate();
+  await fetchAboutUsSectionAndUpdateDatabase();
 }
 
 // Start the server

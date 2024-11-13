@@ -27,13 +27,13 @@ const LearningTransformation: React.FC = () => {
         const cachedData = localStorage.getItem(CACHE_KEY);
         const cacheTimestamp = localStorage.getItem(`${CACHE_KEY}_timestamp`);
 
-        if (cachedData && cacheTimestamp) {
-          const isCacheValid = Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
-          if (isCacheValid) {
-            setAboutUsContent(JSON.parse(cachedData));
-            return;
-          }
-        }
+        // if (cachedData && cacheTimestamp) {
+        //   const isCacheValid = Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
+        //   if (isCacheValid) {
+        //     setAboutUsContent(JSON.parse(cachedData));
+        //     return;
+        //   }
+        // }
 
         // If no valid cache, fetch data from the API
         const response = await axios.get("/api/content/aboutUsSection");

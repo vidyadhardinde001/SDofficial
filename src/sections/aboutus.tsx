@@ -84,24 +84,25 @@ const LearningTransformation: React.FC = () => {
 
         {/* Leadership Section */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <img
-            src="/path-to-your-uploaded-image.jpg"
-            alt="Mr. Nikhil Sutar"
-            className="w-[80%] md:w-[90%] lg:w-[100%] max-w-lg object-contain rounded-lg shadow-lg mx-auto "
-          />
+  <img
+    src="/assets/Nikhil Sutar.jpg"
+    alt="Mr. Nikhil Sutar"
+    className="w-full md:w-[80%] lg:w-[90%] max-w-lg h-auto object-contain rounded-lg shadow-lg mx-auto"
+  />
 
-          <div className="bg-[#232323] p-6 rounded-lg shadow-lg text-white">
-            <h2 className="text-2xl md:text-4xl font-bold text-[#009688] mb-4 leading-tight">
-              Leadership
-            </h2>
-            <h3 className="text-xl md:text-2xl font-bold text-[#ff7d38] mb-2">
-              Mr. Nikhil Sutar
-            </h3>
-            <p className="text-base md:text-lg">
-              An Electronics Engineer with over 3 years of hands-on experience in the Industrial Automation Industry, Mr. Sutar is the backbone of Microlog. His skills in programming, graphic visualization, and software design provide an edge in delivering embedded solutions for diverse industrial clients.
-            </p>
-          </div>
-        </div>
+  <div className="bg-[#232323] p-6 md:p-8 rounded-lg shadow-lg text-white">
+    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#009688] mb-4 leading-tight">
+      Leadership
+    </h2>
+    <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#ff7d38] mb-2">
+      Mr. Nikhil Sutar
+    </h3>
+    <p className="text-sm md:text-base lg:text-lg leading-relaxed text-opacity-90">
+      Mr. Nikhil Sutar holds a Diploma and Bachelor's Degree in Electrical Engineering with over 9 years of industry experience. He brings specialized skills in PLC programming and a commitment to precision that have established Siddhivinayak Engineers as a trusted provider of automation solutions. Since founding the firm in 2021, he has focused on delivering reliable and innovative solutions tailored to diverse industrial needs.
+    </p>
+  </div>
+</div>
+
       </div>
     </section>
   );

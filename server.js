@@ -11,7 +11,7 @@ const cron = require('node-cron');
 const app = express();
 const port = 10000;
 app.use(express.json());
-const allowedOrigins = ['https://s-dofficial-53ll.vercel.app'];
+const allowedOrigins = ['https://siddhivinayakengineers.co.in'];
 
 app.use(cors({
   origin: function (origin, callback) {

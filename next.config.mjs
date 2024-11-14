@@ -38,7 +38,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://sdofficial-r1zr.onrender.com/api/:path*', // Proxy to Express server
+        destination: 'https://siddhivinayakengineers.co.in/api/:path*', // Proxy to Express server
       },
     ];
   },

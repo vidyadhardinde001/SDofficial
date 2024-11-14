@@ -208,9 +208,12 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'adityakhandare8320@gmail.com', // Replace with your email
-    pass: 'nvmn lylk fcjl cajk' // Replace with your email password
+    pass: 'asnx dmwh azyy ruhm' // Replace with your email password
   }
 });
+
+// asnx dmwh azyy ruhm
+// nvmn lylk fcjl cajk
 
 
 app.post('/api/contact', async (req, res) => {

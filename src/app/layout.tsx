@@ -12,7 +12,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Siddhivinayak Engineers | Manufacturing & Automation Solutions",
   description:
-    "Siddhivinayak Engineers offers premium control panel manufacturing, PLC, HMI, and SCADA software development, delivering high-quality solutions for industries.",
+    "Siddhivinayak Engineers offers premium Control panel manufacturing, PLC, HMI, and SCADA software development, delivering high-quality solutions for industries.",
 };
 
 export default function RootLayout({
@@ -34,7 +34,7 @@ export default function RootLayout({
         />
         <meta
           name="keywords"
-          content="Siddhivinayak Engineers | control panel manufacturing, PLC programming, HMI development, SCADA software, industrial automation, automation solutions"
+          content="Siddhivinayak Engineers, control panel manufacturing, PLC programming, HMI development, SCADA software, industrial automation, automation solutions"
         />
         <meta name="robots" content="index, follow" />
 

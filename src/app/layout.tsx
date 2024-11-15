@@ -83,15 +83,7 @@ export default function RootLayout({
         }} />
       </head>
       <body className={twMerge(montserrat.className, "antialiased bg-[#EAEEFE]")}>
-        <header className="flex items-center p-4 bg-white shadow">
-          {/* Logo */}
-          <img src="/assets/logo1.ico" alt="Logo" className="w-10 h-10 mr-2" />
-          {/* Title */}
-          <h1 className="text-xl font-semibold text-gray-800">
-            Siddhivinayak Engineers
-          </h1>
-        </header>
-        <main>{children}</main>
+        {children}
       </body>
     </html>
   );

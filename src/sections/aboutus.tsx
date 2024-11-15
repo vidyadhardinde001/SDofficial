@@ -8,7 +8,6 @@ interface AboutUsContent {
   heading: string;
   description: string[];
   stats: { value: string | number; label: string }[];
-  imageUrl: string;
   leadership: {
     name: string;
     role: string;
@@ -16,8 +15,10 @@ interface AboutUsContent {
     imageUrl: string;
   };
 }
+
 const CACHE_KEY = "aboutUsContentCache";
-const CACHE_EXPIRATION = 60 * 60 * 1000; 
+const CACHE_EXPIRATION = 60 * 60 * 1000;
+
 const LearningTransformation: React.FC = () => {
   const [aboutUsContent, setAboutUsContent] = useState<AboutUsContent | null>(null);
 
@@ -28,23 +29,22 @@ const LearningTransformation: React.FC = () => {
         const cacheTimestamp = localStorage.getItem(`${CACHE_KEY}_timestamp`);
 
         if (cachedData && cacheTimestamp) {
-          const isCacheValid = Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
+          const isCacheValid =
+            Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
           if (isCacheValid) {
             setAboutUsContent(JSON.parse(cachedData));
             return;
           }
         }
 
-        // If no valid cache, fetch data from the API
         const response = await axios.get("/api/content/aboutUsSection");
         const data = response.data.content;
         setAboutUsContent(data);
 
-        // Save data to localStorage with timestamp
         localStorage.setItem(CACHE_KEY, JSON.stringify(data));
         localStorage.setItem(`${CACHE_KEY}_timestamp`, Date.now().toString());
       } catch (error) {
-        console.error("Error fetching aboutus section content", error);
+        console.error("Error fetching about us section content", error);
       }
     };
 
@@ -52,70 +52,69 @@ const LearningTransformation: React.FC = () => {
   }, []);
 
   return (
-    <section className="bg-white py-10 md:py-16">
-      <div className="container mx-auto px-4 lg:max-w-5xl xl:max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          {/* Text Section */}
-          <div className="bg-[#232323] p-6 rounded-lg shadow-lg text-white">
-            <h2 className="text-2xl md:text-4xl font-bold text-[#ff7d38] mb-4 leading-tight">
+    <section className="bg-gray-50 py-12">
+      <div className="container mx-auto px-6 lg:px-16">
+        {/* Header */}
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Top Left: Leadership Image */}
+          <div className="lg:col-span-1 flex justify-center items-center">
+            <Image
+              src={aboutUsContent?.leadership.imageUrl || ""}
+              alt={aboutUsContent?.leadership.name || "Leadership"}
+              width={300}
+              height={300}
+              className="rounded-lg shadow-lg object-cover"
+            />
+          </div>
+
+          {/* Top Right: Leadership Section */}
+          <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Leadership</h2>
+            <h3 className="text-3xl font-semibold text-teal-600 mb-2">
+              {aboutUsContent?.leadership.name}
+            </h3>
+            <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+              {aboutUsContent?.leadership.description}
+            </p>
+          </div>
+
+          {/* Middle Row: About Us Section */}
+          <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg lg:row-span-1">
+            <h2 className="text-3xl font-bold text-teal-600 mb-4">
               {aboutUsContent?.heading}
             </h2>
             {aboutUsContent?.description.map((paragraph, index) => (
-              <p key={index} className="text-base md:text-lg mb-4">
+              <p key={index} className="text-gray-600 mb-4 text-lg">
                 {paragraph}
               </p>
             ))}
           </div>
 
-          {/* Image and Stats Section */}
-          <div className="flex flex-col items-center space-y-6">
-          <Image
-            src={logo1.src}
-            alt="Logo"
-            width={300} // Adjust the width as needed
-            height={200} // Adjust the height as needed
-            className="w-[80%] md:w-[90%] lg:w-[100%] bg-[#232323] max-w-lg object-contain rounded-lg shadow-lg"
-          />
-
-
-            <div className="grid grid-cols-2 gap-4 w-full">
-              {aboutUsContent?.stats.map((stat, index) => (
-                <div
-                  key={index}
-                  className="bg-[#232323] p-4 rounded-lg shadow-lg text-center text-white"
-                >
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#ff7d38]">{stat.value}</h3>
-                  <p className="text-sm md:text-base">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+          {/* Logo Section (Centered) */}
+          <div className="lg:col-span-1 flex justify-center items-center flex-col space-y-6">
+            <Image
+              src={logo1.src}
+              alt="Company Logo"
+              width={600}
+              height={600}
+              className="object-contain"
+            />
           </div>
         </div>
 
-        {/* Leadership Section */}
-        {aboutUsContent?.leadership && (
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <Image
-            src={aboutUsContent.leadership.imageUrl}
-            alt={aboutUsContent.leadership.name}
-            width={400} // Specify appropriate width
-            height={300} // Specify appropriate height
-            className="w-[80%] max-w-lg object-contain rounded-lg shadow-lg mx-auto h-[350px] bg-[#232323]"
-          />
-          <div className="bg-[#232323] p-6 rounded-lg shadow-lg text-white">
-            <h2 className="text-2xl font-bold text-[#009688] mb-4 leading-tight">
-              Leadership
-            </h2>
-            <h3 className="text-xl font-bold text-[#ff7d38] mb-2">
-              {aboutUsContent.leadership.name}
-            </h3>
-            <p className="text-base">
-              {aboutUsContent.leadership.description}
-            </p>
-          </div>
-        </div>        
-        )}
-
+        {/* Stats Section */}
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
+          {aboutUsContent?.stats.map((stat, index) => (
+            <div
+              key={index}
+              className="bg-[#FE6D20] text-white p-6 rounded-lg text-center shadow-lg"
+            >
+              <h3 className="text-3xl font-bold">{stat.value}</h3>
+              <p className="mt-2">{stat.label}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

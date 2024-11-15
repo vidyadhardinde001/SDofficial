@@ -11,7 +11,7 @@ const cron = require('node-cron');
 const app = express();
 const port = 10000;
 app.use(express.json());
-const allowedOrigins = ['https://siddhivinayakengineers.co.in'];
+const allowedOrigins = ['https://siddhivinayakengineers.co.in','http://localhost:3000'];
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -50,6 +50,49 @@ mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (err) => {
   console.error('Failed to connect to MongoDB', err);
 });
+const fetchTestimonialsAndUpdateDatabase = async () => {
+  try {
+    // Fetch the data from the API (replace with your actual URL)
+    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=tlX-MehkG-lKwsHWM7UNM6twD8D9X0CJ6SLs6p6o3LUFwPiBcX59WKJHRVyjVP7MFznqBD-wJHv43Gz4_MwY9646o6ob-DCsm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnLFuKCgEWsBYL5ih1GLrw_2Aq1_nbXwB7Ez55Ds0baFPdUl_v-59Hr7ddiIy0rv5e0pIllKAJq6KhAu4ukK2YssAX6upMKUJlA&lib=M7zoeFMcLY1Nf1brj8mesNvZ1uKL4_q0K');
+    
+    // Check if the response and content data exists
+    if (!response.data || !Array.isArray(response.data.content)) {
+      throw new Error('Invalid or empty content data');
+    }
+
+    const apiData = response.data;
+
+    // Ensure that we have data to map
+    if (apiData.content.length === 0) {
+      console.warn('No testimonials found in the API data');
+      return; // Or handle empty data as needed
+    }
+
+    // Structure the data as per the required format
+    const contentData = {
+      section: 'testimonial',  // section is 'testimonial' for all testimonials
+      content: {
+        testimonialList: apiData.content.map(testimonial => ({
+          name: testimonial.name,
+          testimonial: testimonial.testimonial,
+          avatarUrl: testimonial.avatarUrl
+        }))
+      }
+    };
+
+    // Delete any existing data for the Testimonials section and insert the updated data
+    await Content.deleteMany({ section: 'testimonial' });
+    await Content.create(contentData);
+
+    console.log('Testimonials section updated from Google Sheets');
+  } catch (error) {
+    console.error('Error fetching Testimonials section data from API', error);
+  }
+};
+
+
+
+
 
 
 const fetchDataAndUpdateDatabase = async () => {
@@ -266,6 +309,7 @@ async function updateAllData() {
   await fetchValueToProductAndUpdateDatabase();
   await fetchIndustriesDataAndUpdate();
   await fetchAboutUsSectionAndUpdateDatabase();
+  await fetchTestimonialsAndUpdateDatabase();
 }
 
 // Start the server

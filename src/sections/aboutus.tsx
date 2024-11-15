@@ -95,23 +95,25 @@ const LearningTransformation: React.FC = () => {
         {/* Leadership Section */}
         {aboutUsContent?.leadership && (
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <Image
-              src={aboutUsContent.leadership.imageUrl}
-              alt={aboutUsContent.leadership.name}
-              width={400} // Specify appropriate width
-              height={300} // Specify appropriate height
-              className="w-[80%] md:w-[90%] lg:w-[100%] max-w-lg object-contain rounded-lg shadow-lg mx-auto"
-            />
-            <div className="bg-[#232323] p-6 rounded-lg shadow-lg text-white">
-              <h2 className="text-2xl md:text-4xl font-bold text-[#009688] mb-4 leading-tight">
-                Leadership
-              </h2>
-              <h3 className="text-xl md:text-2xl font-bold text-[#ff7d38] mb-2">
-                {aboutUsContent.leadership.name}
-              </h3>
-              <p className="text-base md:text-lg">{aboutUsContent.leadership.description}</p>
-            </div>
+          <Image
+            src={aboutUsContent.leadership.imageUrl}
+            alt={aboutUsContent.leadership.name}
+            width={400} // Specify appropriate width
+            height={300} // Specify appropriate height
+            className="w-[80%] max-w-lg object-contain rounded-lg shadow-lg mx-auto h-[350px] bg-[#232323]"
+          />
+          <div className="bg-[#232323] p-6 rounded-lg shadow-lg text-white">
+            <h2 className="text-2xl font-bold text-[#009688] mb-4 leading-tight">
+              Leadership
+            </h2>
+            <h3 className="text-xl font-bold text-[#ff7d38] mb-2">
+              {aboutUsContent.leadership.name}
+            </h3>
+            <p className="text-base">
+              {aboutUsContent.leadership.description}
+            </p>
           </div>
+        </div>        
         )}
 
       </div>

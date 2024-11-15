@@ -1,13 +1,62 @@
 "use client";
 
-import React, { useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
+import axios from "axios";
 import Image from "next/image";
 
+interface Testimonial {
+  testimonial: string;
+  name: string;
+  avatarUrl: string;
+}
+
+const CACHE_KEY = "testimonialsCache";
+const CACHE_EXPIRATION = 60 * 60 * 1000; // 1 hour
+
 const TestimonialSection: React.FC = () => {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
   const scrollLeftRef = useRef(0);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const cachedData = localStorage.getItem(CACHE_KEY);
+        const cacheTimestamp = localStorage.getItem(`${CACHE_KEY}_timestamp`);
+
+        // if (cachedData && cacheTimestamp) {
+        //   const isCacheValid = Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
+        //   if (isCacheValid) {
+        //     setTestimonials(JSON.parse(cachedData));
+        //     return;
+        //   }
+        // }
+
+        // Fetch data from the API if no valid cache
+        const response = await axios.get("/api/content/testimonial");
+    console.log("API Response:", response.data); // Log the whole response
+
+    const data = response.data.content; // Access 'content' in response
+    console.log("Data Content:", data);
+        if (data && Array.isArray(data.testimonialList)) {
+          setTestimonials(data.testimonialList);  // Set the array of testimonials correctly
+        } else {
+          console.error("Error: 'testimonialList' is not an array or not present.");
+        }
+        setTestimonials(data.testimonialList);
+
+        // Save data to localStorage with timestamp
+        localStorage.setItem(CACHE_KEY, JSON.stringify(data.testimonialList));
+        localStorage.setItem(`${CACHE_KEY}_timestamp`, Date.now().toString());
+      } catch (error) {
+        console.error("Error fetching testimonials", error);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     if (!scrollContainerRef.current) return;
@@ -43,30 +92,20 @@ const TestimonialSection: React.FC = () => {
         aria-label="Testimonials"
         className="flex gap-4 sm:gap-6 overflow-x-scroll cursor-grab select-none custom-scrollbar pb-4"
       >
-        {[...Array(5)].map((_, index) => (
-          <div
-            key={index}
-            className="min-w-[240px] sm:min-w-[280px] lg:min-w-[300px] max-w-[280px] lg:max-w-[320px] bg-white shadow-md rounded-lg p-4 sm:p-6 flex-shrink-0"
-          >
-            <p className="text-gray-600 text-sm sm:text-base mb-3">
-              &quot;This product exceeded my expectations! The quality is
-              top-notch and the service was excellent.&quot;
-            </p>
-            <div className="flex items-center">
-              <Image
-                src={`https://i.pravatar.cc/100?img=${index + 1}`}
-                alt="User Avatar"
-                width={48}
-                height={48}
-                className="w-10 sm:w-12 h-10 sm:h-12 rounded-full mr-3 sm:mr-4"
-              />
-              <div>
-                <p className="font-bold text-sm sm:text-base">John Doe {index + 1}</p>
-                <p className="text-xs sm:text-sm text-gray-500">Customer</p>
-              </div>
-            </div>
-          </div>
-        ))}
+         {Array.isArray(testimonials) && testimonials.map((testimonial, index) => (
+  <div key={index} className="min-w-[240px] sm:min-w-[280px] lg:min-w-[300px] max-w-[280px] lg:max-w-[320px] bg-white shadow-md rounded-lg p-4 sm:p-6 flex-shrink-0">
+    <p className="text-gray-600 text-sm sm:text-base mb-3">
+      &quot;{testimonial.testimonial}&quot;
+    </p>
+    <div className="flex items-center">
+      <Image src={testimonial.avatarUrl} alt="User Avatar" width={48} height={48} className="w-10 sm:w-12 h-10 sm:h-12 rounded-full mr-3 sm:mr-4" />
+      <div>
+        <p className="font-bold text-sm sm:text-base">{testimonial?.name}</p>
+        <p className="text-xs sm:text-sm text-gray-500">Customer</p>
+      </div>
+    </div>
+  </div>
+))}
       </div>
       <style jsx>{`
         .custom-scrollbar::-webkit-scrollbar {

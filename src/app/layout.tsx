@@ -68,17 +68,17 @@ export default function RootLayout({
             "@type": "LocalBusiness",
             "name": "Siddhivinayak Engineers",
             "description": "Top-tier control panel manufacturing, PLC, HMI, and SCADA software development services.",
-            "url": "https://siddhivinayakengineers.netlify.app/",
+            "url": "https://siddhivinayakengineers.co.in/",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "123 Main St", // Replace with your actual address
-              "addressLocality": "Your City", // Replace with your city
-              "addressRegion": "Your Region", // Replace with your region
-              "postalCode": "123456", // Replace with your postal code
-              "addressCountry": "Country" // Replace with your country
+              "addressLocality": "Miraj", // Replace with your city
+              "addressRegion": "Arjunwad", // Replace with your region
+              "postalCode": "416120", // Replace with your postal code
+              "addressCountry": "India" // Replace with your country
             },
-            "telephone": "+1234567890", // Replace with your actual phone number
-            "logo": "https://siddhivinayakengineers.netlify.app/assets/logo1.ico" // Replace with your logo URL
+            "telephone": "+91 7057272626", // Replace with your actual phone number
+            "logo": "https://siddhivinayakengineers.co.in/assets/logo1.ico" // Replace with your logo URL
           })
         }} />
       </head>

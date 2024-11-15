@@ -46,7 +46,7 @@ export default function RootLayout({
           content={String(metadata.description)}
         />
         <meta property="og:image" content="/assets/og-image.jpg" />
-        <meta property="og:url" content="https://siddhivinayakengineers.netlify.app/" />
+        <meta property="og:url" content="https://siddhivinayakengineers.co.in/" />
         <meta property="og:site_name" content="Siddhivinayak Engineers" />
 
         {/* Twitter Card Meta Tags */}

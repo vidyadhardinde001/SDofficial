@@ -83,12 +83,12 @@ export const Header = () => {
             </nav>
 
             {/* Call Us Button for Desktop */}
-            <a
+            {/* <a
               href="tel:+91 7057272626"
               className="bg-[#FE6D20] hover:bg-[#ff9f6c] text-white px-4 py-2 rounded-md font-medium inline-flex justify-center tracking-tight ml-auto hidden md:block"
             >
               Call Us
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

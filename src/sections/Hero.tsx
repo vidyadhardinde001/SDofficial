@@ -195,10 +195,10 @@ export const Hero = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link
-              href="/projects"
+              href="#services"
               className="bg-orange-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md transition hover:bg-orange-600 text-left text-sm sm:text-base"
             >
-              Go to Projects
+              Go to Services
             </Link>
             <Link
               href="/contactus"

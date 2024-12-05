@@ -55,8 +55,31 @@ const LearningTransformation: React.FC = () => {
     <section className="bg-gray-50 py-12">
       <div className="container mx-auto px-6 lg:px-16">
         {/* Header */}
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+          {/* About Us Content */}
+          <div className="lg:w-2/3 bg-white p-8 rounded-lg shadow-lg">
+            <h2 className="text-3xl font-bold text-teal-600 mb-4">
+              {aboutUsContent?.heading}
+            </h2>
+            {aboutUsContent?.description.map((paragraph, index) => (
+              <p key={index} className="text-gray-600 mb-4 text-lg">
+                {paragraph}
+              </p>
+            ))}
+          </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Logo Section (on the right of About Us) */}
+          <div className="lg:w-1/3 flex justify-center items-center border-4 border-gray-300 p-4 rounded-lg shadow-lg">
+         <Image
+         src={logo1.src}
+         alt="Company Logo"
+         width={300}
+        height={300}
+        className="object-contain"/>
+        </div>
+
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
           {/* Top Left: Leadership Image */}
           <div className="lg:col-span-1 flex justify-center items-center">
             <Image
@@ -69,7 +92,7 @@ const LearningTransformation: React.FC = () => {
           </div>
 
           {/* Top Right: Leadership Section */}
-          <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg">
+          <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg mt-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">Leadership</h2>
             <h3 className="text-3xl font-semibold text-teal-600 mb-2">
               {aboutUsContent?.leadership.name}
@@ -77,29 +100,6 @@ const LearningTransformation: React.FC = () => {
             <p className="mt-4 text-lg text-gray-600 leading-relaxed">
               {aboutUsContent?.leadership.description}
             </p>
-          </div>
-
-          {/* Middle Row: About Us Section */}
-          <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg lg:row-span-1">
-            <h2 className="text-3xl font-bold text-teal-600 mb-4">
-              {aboutUsContent?.heading}
-            </h2>
-            {aboutUsContent?.description.map((paragraph, index) => (
-              <p key={index} className="text-gray-600 mb-4 text-lg">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-
-          {/* Logo Section (Centered) */}
-          <div className="lg:col-span-1 flex justify-center items-center flex-col space-y-6">
-            <Image
-              src={logo1.src}
-              alt="Company Logo"
-              width={600}
-              height={600}
-              className="object-contain"
-            />
           </div>
         </div>
 

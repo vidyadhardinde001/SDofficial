@@ -4,49 +4,53 @@ import Image from "next/image";
 import axios from "axios";
 
 const Gallery: React.FC = () => {
-  const [galleryImages, setGalleryImages] = useState<{ id: number; src: string; alt: string }[]>([]);
+  const [galleryImages, setGalleryImages] = useState<
+    { id: number; src: string; alt: string }[]
+  >([]);
   const [loading, setLoading] = useState(true);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string;
+    alt: string;
+  } | null>(null);
 
   // Fetch gallery images from the database
   const CACHE_EXPIRATION_MS = 60 * 60 * 1000; // 24 hours
 
-useEffect(() => {
-  const fetchGalleryImages = async () => {
-    const cachedGalleryImages = localStorage.getItem("galleryImages");
-    const cachedTimestamp = localStorage.getItem("cacheTimestamp");
+  useEffect(() => {
+    const fetchGalleryImages = async () => {
+      const cachedGalleryImages = localStorage.getItem("galleryImages");
+      const cachedTimestamp = localStorage.getItem("cacheTimestamp");
 
-    if (cachedGalleryImages && cachedTimestamp) {
-      const now = new Date().getTime();
-      const cacheAge = now - parseInt(cachedTimestamp, 10);
+      if (cachedGalleryImages && cachedTimestamp) {
+        const now = new Date().getTime();
+        const cacheAge = now - parseInt(cachedTimestamp, 10);
 
-      if (cacheAge < CACHE_EXPIRATION_MS) {
-        setGalleryImages(JSON.parse(cachedGalleryImages));
-        setLoading(false);
-        return;
+        if (cacheAge < CACHE_EXPIRATION_MS) {
+          setGalleryImages(JSON.parse(cachedGalleryImages));
+          setLoading(false);
+          return;
+        }
       }
-    }
 
-    try {
-      const response = await axios.get("/api/content/gallery");
-      const galleryData = response.data.content.galleryImages;
-      setGalleryImages(galleryData);
+      try {
+        const response = await axios.get("/api/content/gallery");
+        const galleryData = response.data.content.galleryImages;
+        setGalleryImages(galleryData);
 
-      localStorage.setItem("galleryImages", JSON.stringify(galleryData));
-      localStorage.setItem("cacheTimestamp", new Date().getTime().toString());
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching gallery images:", error);
-      setLoading(false);
-    }
-  };
+        localStorage.setItem("galleryImages", JSON.stringify(galleryData));
+        localStorage.setItem("cacheTimestamp", new Date().getTime().toString());
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching gallery images:", error);
+        setLoading(false);
+      }
+    };
 
-  fetchGalleryImages();
-}, []);
+    fetchGalleryImages();
+  }, []);
 
-
-  const handleImageClick = (src: string) => {
-    setSelectedImage(src);
+  const handleImageClick = (src: string, alt: string) => {
+    setSelectedImage({ src, alt });
   };
 
   const closeLightbox = () => {
@@ -65,11 +69,11 @@ useEffect(() => {
 
       {/* Gallery Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {galleryImages.slice(1).map((image) => (
+        {galleryImages.map((image) => (
           <div
             key={image.id}
             className="relative group overflow-hidden rounded-lg"
-            onClick={() => handleImageClick(image.src)}
+            onClick={() => handleImageClick(image.src, image.alt)}
           >
             <Image
               src={image.src}
@@ -85,16 +89,17 @@ useEffect(() => {
       {/* Lightbox for Full Image View */}
       {selectedImage && (
         <div
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50"
+          className="fixed inset-0 flex flex-col items-center justify-center bg-black bg-opacity-75 z-50"
           onClick={closeLightbox}
         >
           <Image
-            src={selectedImage}
-            alt="Selected"
+            src={selectedImage.src}
+            alt={selectedImage.alt}
             width={800}
             height={800}
-            className="max-w-full max-h-full object-contain"
+            className="max-w-full max-h-[80vh] object-contain"
           />
+          <p className="text-white text-center mt-4 text-lg">{selectedImage.alt}</p>
         </div>
       )}
     </div>

@@ -1,8 +1,6 @@
 import { Header } from "@/sections/Header";
 import { Hero } from "@/sections/Hero";
 import { LogoTicker } from "@/sections/LogoTicker";
-import { ProductShowcase } from "@/sections/ProductShowcase";
-import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
 import IndustriesWeServe from "@/sections/IndustriesWeServe";
 import ContactSection from "@/sections/ContactSection";

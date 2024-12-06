@@ -53,10 +53,6 @@ const Projects: React.FC = () => {
     fetchProjects();
   }, []);
 
-  const handleImageClick = (image: string) => {
-    setSelectedImage(image); // Set the selected image for lightbox
-  };
-
   const closeLightbox = () => {
     setSelectedImage(null); // Clear the selected image to close the lightbox
   };
@@ -67,14 +63,14 @@ const Projects: React.FC = () => {
         <div
           key={project.id}
           className="bg-[#232323] rounded-lg overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl cursor-pointer"
-          onClick={() => handleImageClick(project.image)} // Open lightbox on click
+          onClick={() => setSelectedImage(project.image)} // Open lightbox on click
         >
           <Image
             src={project.image}
             alt={project.title}
-            width={600}
-            height={300}
-            className="w-full h-48 object-cover"
+            width={700}
+            height={400}
+            className="w-full h-[350px] object-cover"
           />
           <div className="p-4">
             <h2
@@ -95,7 +91,7 @@ const Projects: React.FC = () => {
 
   return (
     <div id="projects-section" className="w-full px-4 py-8 bg-white">
-      <h1 className="text-4xl font-medium mb-8 text-center text-black">
+      <h1 className="text-5xl font-medium mb-12 text-center text-black">
         Our Projects
       </h1>
       {loading ? (

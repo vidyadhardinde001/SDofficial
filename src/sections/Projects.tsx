@@ -17,6 +17,10 @@ const Projects: React.FC = () => {
   const [projectsData, setProjectsData] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // State for modal
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   // Fetch project data from the API
   const CACHE_KEY = "projectsData";
   const CACHE_TIMESTAMP_KEY = "projectsCacheTimestamp";
@@ -58,19 +62,30 @@ const Projects: React.FC = () => {
     fetchProjects();
   }, []);
 
+  const openModal = (image: string) => {
+    setSelectedImage(image);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedImage(null);
+  };
+
   const projectsList = useMemo(
     () =>
       projectsData.map((project) => (
         <div
           key={project.id}
-          className="bg-[#232323] rounded-lg overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
+          className="bg-[#232323] rounded-lg overflow-hidden shadow-lg transform hover:shadow-2xl"
         >
           <Image
             src={project.image}
             alt={project.title}
-            width={600}
-            height={300}
-            className="w-full h-48 object-cover"
+            width={700}
+            height={400}
+            className="w-full h-[350px] object-cover cursor-pointer"
+            onClick={() => openModal(project.image)} // Open modal on click
           />
           <div className="p-4">
             <h2
@@ -83,18 +98,6 @@ const Projects: React.FC = () => {
               {project.title}
             </h2>
             <p className="text-white text-sm mb-4">{project.description}</p>
-          </div>
-          <div className="mt-4 px-4">
-            <p className="text-white text-sm mb-2">Progress</p>
-            <div className="w-full bg-gray-700 rounded-full h-4 mr-9">
-              <div
-                className="bg-[#ff7d38] h-4 rounded-full"
-                style={{ width: `${project.progress ?? 100}%` }}
-              ></div>
-            </div>
-            <p className="text-white text-sm mt-2 text-right">
-              {project.progress ?? 100}%
-            </p>
           </div>
         </div>
       )),
@@ -111,6 +114,30 @@ const Projects: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-center">
           {projectsList}
+        </div>
+      )}
+
+      {/* Modal */}
+      {modalOpen && selectedImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
+          onClick={closeModal} // Close modal when background is clicked
+        >
+          <div className="relative">
+            <Image
+              src={selectedImage}
+              alt="Full view"
+              width={1200}
+              height={800}
+              className="rounded-lg"
+            />
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 bg-white text-black rounded-full p-2"
+            >
+              ✖
+            </button>
+          </div>
         </div>
       )}
     </div>

@@ -16,15 +16,14 @@ interface Project {
 const Projects: React.FC = () => {
   const [projectsData, setProjectsData] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // Fetch project data from the API
   const CACHE_KEY = "projectsData";
   const CACHE_TIMESTAMP_KEY = "projectsCacheTimestamp";
   const CACHE_EXPIRATION_MS = 60 * 60 * 1000; // 1 hour
 
   useEffect(() => {
     const fetchProjects = async () => {
-      // Check if data is in cache and hasn't expired
       const cachedData = localStorage.getItem(CACHE_KEY);
       const cachedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
 
@@ -32,19 +31,15 @@ const Projects: React.FC = () => {
         const cacheAge = Date.now() - parseInt(cachedTimestamp, 10);
 
         if (cacheAge < CACHE_EXPIRATION_MS) {
-          // Use cached data
           setProjectsData(JSON.parse(cachedData));
           setLoading(false);
           return;
         }
       }
 
-      // Fetch fresh data from API if cache is expired or not available
       try {
         const response = await axios.get("/api/content/projects");
         const projectsList = response.data.content.projectsList;
-
-        // Update state and cache the data
         setProjectsData(projectsList);
         localStorage.setItem(CACHE_KEY, JSON.stringify(projectsList));
         localStorage.setItem(CACHE_TIMESTAMP_KEY, Date.now().toString());
@@ -58,12 +53,21 @@ const Projects: React.FC = () => {
     fetchProjects();
   }, []);
 
+  const handleImageClick = (image: string) => {
+    setSelectedImage(image); // Set the selected image for lightbox
+  };
+
+  const closeLightbox = () => {
+    setSelectedImage(null); // Clear the selected image to close the lightbox
+  };
+
   const projectsList = useMemo(
     () =>
       projectsData.map((project) => (
         <div
           key={project.id}
-          className="bg-[#232323] rounded-lg overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
+          className="bg-[#232323] rounded-lg overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl cursor-pointer"
+          onClick={() => handleImageClick(project.image)} // Open lightbox on click
         >
           <Image
             src={project.image}
@@ -84,18 +88,6 @@ const Projects: React.FC = () => {
             </h2>
             <p className="text-white text-sm mb-4">{project.description}</p>
           </div>
-          <div className="mt-4 px-4">
-            <p className="text-white text-sm mb-2">Progress</p>
-            <div className="w-full bg-gray-700 rounded-full h-4 mr-9">
-              <div
-                className="bg-[#ff7d38] h-4 rounded-full"
-                style={{ width: `${project.progress ?? 100}%` }}
-              ></div>
-            </div>
-            <p className="text-white text-sm mt-2 text-right">
-              {project.progress ?? 100}%
-            </p>
-          </div>
         </div>
       )),
     [projectsData]
@@ -111,6 +103,30 @@ const Projects: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-center">
           {projectsList}
+        </div>
+      )}
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+          onClick={closeLightbox}
+        >
+          <div className="relative">
+            <Image
+              src={selectedImage}
+              alt="Selected project"
+              width={800}
+              height={600}
+              className="rounded-lg"
+            />
+            <button
+              className="absolute top-4 right-4 text-white text-2xl font-bold"
+              onClick={closeLightbox}
+            >
+              ✕
+            </button>
+          </div>
         </div>
       )}
     </div>

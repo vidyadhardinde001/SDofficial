@@ -1,9 +1,4 @@
-// src/sections/ServicesSection.tsx
 import React from "react";
-import Scene from "@/components/laptop";
-import Scene2 from "@/components/controlpanel";
-import Wrench from "@/components/wrenchscene";
-import Fieldscene from "@/components/Fieldscene";
 
 const ServicesSection: React.FC = () => {
   return (
@@ -16,7 +11,11 @@ const ServicesSection: React.FC = () => {
         {/* First Section */}
         <div className="flex flex-col md:flex-row items-center">
           <div className="flex-1 flex items-center justify-center mb-4 md:mb-0">
-            <Scene />
+            <img 
+              src="/assets/scada.jpg" 
+              alt="PLC, HMI, SCADA Software Development" 
+              className="w-full max-w-md rounded-lg shadow-md"
+            />
           </div>
           <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-3 sm:space-y-4">
             <h2 className="text-lg sm:text-xl font-semibold text-[#ff7d38] text-center md:text-left">
@@ -44,7 +43,11 @@ const ServicesSection: React.FC = () => {
         {/* Second Section */}
         <div className="flex flex-col md:flex-row-reverse items-center">
           <div className="flex-1 flex items-center justify-center mb-4 md:mb-0">
-            <Wrench />
+            <img 
+              src="/assets/maintanance.webp" 
+              alt="Maintenance Services" 
+              className="w-full max-w-md rounded-lg shadow-md"
+            />
           </div>
           <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-3 sm:space-y-4">
             <h2 className="text-lg sm:text-xl font-semibold text-[#ff7d38] text-center md:text-left">
@@ -55,8 +58,7 @@ const ServicesSection: React.FC = () => {
               manage machinery and equipment to increase uptime in order to meet
               business objectives. It is used across multiple industries and can
               involve troubleshooting, fixing, and replacing equipment to
-              improve asset performance.<br/><br/>{" "}
-
+              improve asset performance.<br/><br/>
             </p>
           </div>
         </div>
@@ -66,7 +68,11 @@ const ServicesSection: React.FC = () => {
         {/* Third Section */}
         <div className="flex flex-col md:flex-row items-center">
           <div className="flex-1 flex items-center justify-center h-48 sm:h-64 mb-4 md:mb-0">
-            <Scene2 />
+            <img 
+              src="/assets/controlpanel.jpg" 
+              alt="Control Panel Manufacturing" 
+              className="w-full max-w-md rounded-lg shadow-md"
+            />
           </div>
           <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-3 sm:space-y-4">
             <h2 className="text-lg sm:text-xl font-semibold text-[#ff7d38] text-center md:text-left">
@@ -91,7 +97,11 @@ const ServicesSection: React.FC = () => {
         {/* Fourth Section */}
         <div className="flex flex-col md:flex-row-reverse items-center">
           <div className="flex-1 flex items-center justify-center mb-4 md:mb-0">
-            <Fieldscene />
+            <img 
+              src="/assets/field.webp" 
+              alt="Field Wiring" 
+              className="w-full max-w-md rounded-lg shadow-md"
+            />
           </div>
           <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-3 sm:space-y-4">
             <h2 className="text-lg sm:text-xl font-semibold text-[#ff7d38] text-center md:text-left">

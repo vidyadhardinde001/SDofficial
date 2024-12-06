@@ -57,27 +57,7 @@ const LearningTransformation: React.FC = () => {
         {/* Header */}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Top Left: Leadership Image */}
-          <div className="lg:col-span-1 flex justify-center items-center">
-            <Image
-              src={aboutUsContent?.leadership.imageUrl || ""}
-              alt={aboutUsContent?.leadership.name || "Leadership"}
-              width={300}
-              height={300}
-              className="rounded-lg shadow-lg object-cover"
-            />
-          </div>
-
-          {/* Top Right: Leadership Section */}
-          <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Leadership</h2>
-            <h3 className="text-3xl font-semibold text-teal-600 mb-2">
-              {aboutUsContent?.leadership.name}
-            </h3>
-            <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-              {aboutUsContent?.leadership.description}
-            </p>
-          </div>
+          
 
           {/* Middle Row: About Us Section */}
           <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg lg:row-span-1">
@@ -100,6 +80,28 @@ const LearningTransformation: React.FC = () => {
               height={600}
               className="object-contain"
             />
+          </div>
+
+          {/* Top Left: Leadership Image */}
+          <div className="lg:col-span-1 flex justify-center items-center">
+            <Image
+              src={aboutUsContent?.leadership.imageUrl || ""}
+              alt={aboutUsContent?.leadership.name || "Leadership"}
+              width={300}
+              height={300}
+              className="rounded-lg shadow-lg object-cover"
+            />
+          </div>
+
+          {/* Top Right: Leadership Section */}
+          <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Leadership</h2>
+            <h3 className="text-3xl font-semibold text-teal-600 mb-2">
+              {aboutUsContent?.leadership.name}
+            </h3>
+            <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+              {aboutUsContent?.leadership.description}
+            </p>
           </div>
         </div>
 

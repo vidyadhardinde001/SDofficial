@@ -137,7 +137,11 @@ export const Hero = () => {
 
       <section
         ref={heroRef}
-        className="relative overflow-hidden min-h-[70vh] sm:min-h-[80vh] flex items-center"
+        className={`relative overflow-hidden flex items-center ${
+          typeof window !== "undefined" && window.innerHeight > 900
+            ? "justify-center"
+            : "justify-start"
+        } min-h-[70vh] sm:min-h-[80vh]`}
       >
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
@@ -157,10 +161,16 @@ export const Hero = () => {
         </div>
 
         {/* Black Gradient Overlay */}
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-black via-black/70 to-black/0 -z-10"></div>
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-black via-black/80 to-black/0 -z-10"></div>
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col items-start text-left w-full max-w-none px-4 sm:px-6 lg:px-8">
+        <div
+          className={`relative z-10 flex flex-col text-left w-full max-w-none px-4 sm:px-6 lg:px-[200px] ${
+            typeof window !== "undefined" && window.innerHeight > 900
+              ? "items-center text-center"
+              : "items-start"
+          }`}
+        >
           <motion.h2
             className="text-lg sm:text-2xl md:text-3xl lg:text-5xl text-white tracking-tight mt-2"
             initial="hidden"

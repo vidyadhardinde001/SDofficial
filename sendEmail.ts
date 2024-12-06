@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Email content
     const mailOptions = {
         from: process.env.GMAIL_USER, // Sender's email (your Gmail)
-        to: 'adityakhandare8320@gmail.com', // Recipient email
+        to: 'siddhivinayakengineers19@gmail.com', // Recipient email
         subject: `Contact form submission from ${name}`,
         text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}`,
       };

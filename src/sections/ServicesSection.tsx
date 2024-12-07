@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const ServicesSection: React.FC = () => {
   return (
@@ -26,14 +27,14 @@ const ServicesSection: React.FC = () => {
               (Programmable Logic Controllers), and other control devices such as
               flow meters and temperature controllers. This data is presented to
               an operator using a Human Machine Interface (HMI).<br/><br/>{" "}
-              <a 
-                href="https://www.dosupply.com/tech/2019/02/04/explaining-hmi-scada-and-plcs-what-they-do-and-how-they-work-together/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-[#ff7d38] underline"
+              <Link
+                href="/plc"
+                className="text-[#ff7d38] underline transition-all duration-300 hover:text-[#ff7d38] hover:font-bold"
+
               >
-                Read more about SCADA and PLCs
-              </a>
+                Read more
+                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
+              </Link>
             </p>
           </div>
         </div>
@@ -60,6 +61,14 @@ const ServicesSection: React.FC = () => {
               involve troubleshooting, fixing, and replacing equipment to
               improve asset performance.<br/><br/>
             </p>
+            <Link
+                href="/maintanience"
+                className="text-[#ff7d38] underline transition-all duration-300 hover:text-[#ff7d38] hover:font-bold"
+
+              >
+                Read more
+                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
+              </Link>
           </div>
         </div>
         
@@ -80,14 +89,14 @@ const ServicesSection: React.FC = () => {
             </h2>
             <p className="text-black text-sm sm:text-base text-center md:text-left">
               An electrical control panel is an enclosure, typically a metal box or plastic moulding which contains important electrical components that control and monitor a number of mechanical processes.<br/><br/>{" "}
-              <a 
-                href="https://elecsafety.co.uk/electrical-control-panels/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-[#ff7d38] underline"
+              <Link
+                href="/control"
+                className="text-[#ff7d38] underline transition-all duration-300 hover:text-[#ff7d38] hover:font-bold"
+
               >
-                Read more about Control Panel Manufacturing
-              </a>
+                Read more
+                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
+              </Link>
             </p>
           </div>
         </div>
@@ -109,14 +118,14 @@ const ServicesSection: React.FC = () => {
             </h2>
             <p className="text-black text-sm sm:text-base text-center md:text-left">
               In general, field wiring is wiring that is connected between equipment items or equipment components that are connected upon installation in the field.<br/><br/>{" "}
-              <a 
-                href="https://connectorsupplier.com/field-wiring-the-backbone-of-complex-industrial-environments/#:~:text=Networking%20automation%20and%20control%20technology,sensor%20data%20in%20industrial%20applications." 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-[#ff7d38] underline"
+              <Link
+                href="/field"
+                className="text-[#ff7d38] underline transition-all duration-300 hover:text-[#ff7d38] hover:font-bold"
+
               >
-                Read more about Field Wiring
-              </a>
+                Read more
+                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
+              </Link>
             </p>
           </div>
         </div>

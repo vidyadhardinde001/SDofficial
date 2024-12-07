@@ -8,6 +8,8 @@ import QuoteSection from "@/sections/QuoteSection";
 import ValuetoProduct from "@/sections/ValuetoProduct";
 import TestimonialSection from "@/sections/TestimonialSection";
 import ServicesSection from "@/sections/ServicesSection";
+import AutoScrollingCards from "@/sections/AutoScrollingCards";
+
 
 export default function Home() {
   return (
@@ -15,6 +17,7 @@ export default function Home() {
       <Header />
       <Hero />
       <ServicesSection />
+      <AutoScrollingCards />
       <ValuetoProduct />
       <IndustriesWeServe />
       <LogoTicker />

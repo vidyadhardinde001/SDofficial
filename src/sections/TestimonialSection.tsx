@@ -71,19 +71,19 @@ const TestimonialSection: React.FC = () => {
         {/* Left Arrow */}
         <button
           onClick={handlePrev}
-          className="w-12 h-12 bg-gray-600 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition duration-300 shadow-lg"
+          className="w-10 h-10 bg-gray-600 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition duration-300 shadow-lg sm:w-12 sm:h-12"
         >
           &lt;
         </button>
 
         {/* Testimonials */}
-        <div className="flex gap-6">
+        <div className="flex gap-6 overflow-x-auto sm:gap-8 lg:gap-10">
           {testimonials
             .slice(currentIndex, currentIndex + 3)
             .map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-white shadow-md rounded-lg p-6 max-w-md w-full"
+                className="bg-white shadow-md rounded-lg p-6 max-w-md w-full sm:w-[280px] lg:w-[320px]"
               >
                 <p className="text-gray-600 text-sm sm:text-base mb-3">
                   &quot;{testimonial.testimonial}&quot;
@@ -103,7 +103,7 @@ const TestimonialSection: React.FC = () => {
         {/* Right Arrow */}
         <button
           onClick={handleNext}
-          className="w-12 h-12 bg-gray-600 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition duration-300 shadow-lg"
+          className="w-10 h-10 bg-gray-600 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition duration-300 shadow-lg sm:w-12 sm:h-12"
         >
           &gt;
         </button>

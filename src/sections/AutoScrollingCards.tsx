@@ -69,7 +69,7 @@ const AutoScrollingCards: React.FC = () => {
           }
           return nextIndex;
         });
-      }, 2000); // Scroll every 2 seconds
+      }, 1500); // Scroll every 2 seconds
 
       return () => clearInterval(interval);
     }

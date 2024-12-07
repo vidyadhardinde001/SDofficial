@@ -90,7 +90,46 @@ const fetchTestimonialsAndUpdateDatabase = async () => {
   }
 };
 
+const fetchServiceAndUpdateDatabase = async () => {
+  try {
+    // Fetch the data from the API (replace with your actual URL)
+    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=-M5A8mgAzhrAvupKNAFJnhUAJUfUecg-FHDlY_icWAR8_LxM0Bnx2MgaOT8KkUPLU0MhgAFGONizlwhcUP2WmGEi0pGEns6tm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNoX58wTQim0ILrxFrnQhDK3QdGrvJjxiQBZHnv9-GHTostibzxAxZOFK9eI4qiW375_kc9TEa_2YZYOTXb83n9wIzU36-wAq9z9Jw9Md8uu&lib=M2CSbHZUJlxxbq7HKujHoQ0oLBlaE9kY8');
+    
+    // Check if the response and content data exists
+    if (!response.data || !Array.isArray(response.data.content)) {
+      throw new Error('Invalid or empty content data');
+    }
 
+    const apiData = response.data;
+
+    // Ensure that we have data to map
+    if (apiData.content.length === 0) {
+      console.warn('No service found in the API data');
+      return; // Or handle empty data as needed
+    }
+
+    // Structure the data as per the required format
+    const contentData = {
+      section: 'service',  // section is 'testimonial' for all testimonials
+      content: {
+        serviceList: apiData.content.map(service => ({
+          image:  service.image,
+          name: service.name,
+          description: service.description,
+          read_more_path: service.read_more_path
+        }))
+      }
+    };
+
+    // Delete any existing data for the Testimonials section and insert the updated data
+    await Content.deleteMany({ section: 'service' });
+    await Content.create(contentData);
+
+    console.log('service section updated from Google Sheets');
+  } catch (error) {
+    console.error('Error fetching service section data from API', error);
+  }
+};
 
 
 
@@ -310,6 +349,7 @@ async function updateAllData() {
   await fetchIndustriesDataAndUpdate();
   await fetchAboutUsSectionAndUpdateDatabase();
   await fetchTestimonialsAndUpdateDatabase();
+  await fetchServiceAndUpdateDatabase();
 }
 
 // Start the server

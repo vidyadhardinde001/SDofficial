@@ -26,13 +26,13 @@ const TestimonialSection: React.FC = () => {
         const cachedData = localStorage.getItem(CACHE_KEY);
         const cacheTimestamp = localStorage.getItem(`${CACHE_KEY}_timestamp`);
 
-        // if (cachedData && cacheTimestamp) {
-        //   const isCacheValid = Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
-        //   if (isCacheValid) {
-        //     setTestimonials(JSON.parse(cachedData));
-        //     return;
-        //   }
-        // }
+        if (cachedData && cacheTimestamp) {
+          const isCacheValid = Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
+          if (isCacheValid) {
+            setTestimonials(JSON.parse(cachedData));
+            return;
+          }
+        }
 
         // Fetch data from the API if no valid cache
         const response = await axios.get("/api/content/testimonial");

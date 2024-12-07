@@ -19,6 +19,7 @@ const AutoScrollingCards: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [isLandscape, setIsLandscape] = useState(true); // Track orientation
   const containerRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef(0);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -102,6 +103,26 @@ const AutoScrollingCards: React.FC = () => {
     setSelectedImage(null);
   };
 
+  // Handle touch scrolling in portrait mode
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const deltaX = touchStartX.current - touchEndX;
+
+    if (Math.abs(deltaX) > 50) {
+      // Swipe left or right
+      setCurrentIndex((prevIndex) => {
+        const nextIndex = deltaX > 0 ? prevIndex + 1 : prevIndex - 1;
+        if (nextIndex < 0) return projects.length - 1;
+        if (nextIndex >= projects.length) return 0;
+        return nextIndex;
+      });
+    }
+  };
+
   if (loading) {
     return <div className="text-center text-gray-500">Loading projects...</div>;
   }
@@ -122,6 +143,8 @@ const AutoScrollingCards: React.FC = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         ref={containerRef}
+        onTouchStart={isLandscape ? undefined : handleTouchStart} // Only activate touch in portrait mode
+        onTouchEnd={isLandscape ? undefined : handleTouchEnd} // Only activate touch in portrait mode
         style={{
           width: '100%',
           maxWidth: '1200px', // Ensures the container is centered
@@ -166,18 +189,20 @@ const AutoScrollingCards: React.FC = () => {
         ))}
       </div>
 
-      {/* Navigation Dots */}
-      <div className="flex justify-center gap-2 mt-4 mb-4">
-        {projects.map((_, index) => (
-          <button
-            key={index}
-            className={`w-3 h-3 rounded-full ${
-              index === currentIndex ? "bg-orange-500" : "bg-gray-300"
-            }`}
-            onClick={() => handleDotClick(index)}
-          ></button>
-        ))}
-      </div>
+      {/* Navigation Dots (only in landscape mode) */}
+      {isLandscape && (
+        <div className="flex justify-center gap-2 mt-4 mb-4">
+          {projects.map((_, index) => (
+            <button
+              key={index}
+              className={`w-3 h-3 rounded-full ${
+                index === currentIndex ? "bg-orange-500" : "bg-gray-300"
+              }`}
+              onClick={() => handleDotClick(index)}
+            ></button>
+          ))}
+        </div>
+      )}
 
       {/* Lightbox Modal */}
       {selectedImage && (

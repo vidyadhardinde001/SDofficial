@@ -42,7 +42,7 @@ const MaintainPage = () => {
 
         <ul className="list-disc pl-6 mb-6">
           <li>Eliminates travel costs for service</li>
-          <li>Eliminates the 'wait' time for service to begin</li>
+          <li>Eliminates the &rsquo;wait&rsquo; time for service to begin</li>
           <li>We are the backup support to your staff for your system maintenance or repair</li>
           <li>
             Disaster recovery: we save a copy of your programs and updates on
@@ -54,7 +54,7 @@ const MaintainPage = () => {
         {/* Contact Section */}
         <p className="text-lg sm:text-xl">
           <span className="font-bold text-red-600">Contact us</span> for
-          assistance.
+          assistance
         </p>
       </div>
     </div>

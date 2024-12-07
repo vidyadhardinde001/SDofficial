@@ -11,7 +11,7 @@ const MaintainPage = () => {
       {/* Introduction Section */}
       <div className="max-w-5xl mx-auto text-justify leading-relaxed mb-12">
         <p className="text-lg sm:text-xl mb-6">
-          In today’s rapidly evolving technological landscape, keeping your control and automation systems updated is crucial for ensuring operational efficiency, safety, and reliability. Aging equipment and outdated software can result in costly downtime and pose significant risks to your operations. 
+          In today&rsquo;s rapidly evolving technological landscape, keeping your control and automation systems updated is crucial for ensuring operational efficiency, safety, and reliability. Aging equipment and outdated software can result in costly downtime and pose significant risks to your operations.
         </p>
         <p className="text-lg sm:text-xl mb-6">
           At <span className="font-semibold text-[#ff7d38]">Siddhivinayak Engineers</span>, we specialize in providing end-to-end upgrading, maintenance, and repair services for control systems across industries. Our expert team ensures your systems are always at peak performance, helping you avoid unnecessary disruptions and maximize productivity.
@@ -106,7 +106,7 @@ const MaintainPage = () => {
       <section className="mt-12">
         <div className="text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-            Let’s Elevate Your Systems Today!
+            Let&rsquo;s Elevate Your Systems Today!
           </h2>
           <p className="text-lg sm:text-xl mb-6">
             Contact us to learn more about how our services can benefit your operations.

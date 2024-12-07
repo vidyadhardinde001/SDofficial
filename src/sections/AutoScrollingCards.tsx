@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import axios from "axios";
 
@@ -17,13 +17,15 @@ const AutoScrollingCards: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isLandscape, setIsLandscape] = useState(true); // Track orientation
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const response = await axios.get("/api/content/projects");
         const projectsList = response.data.content.projectsList;
-        setProjects(projectsList);
+        setProjects(projectsList.slice(0, 10)); // Limit to 10 projects
       } catch (error) {
         console.error("Error fetching projects:", error);
       } finally {
@@ -34,14 +36,44 @@ const AutoScrollingCards: React.FC = () => {
     fetchProjects();
   }, []);
 
+  // Check orientation on window resize
   useEffect(() => {
-    if (!isPaused && projects.length > 0) {
+    const checkOrientation = () => {
+      if (window.innerHeight > window.innerWidth) {
+        setIsLandscape(false); // Portrait mode
+      } else {
+        setIsLandscape(true); // Landscape mode
+      }
+    };
+
+    checkOrientation(); // Check initial orientation
+    window.addEventListener("resize", checkOrientation); // Listen for resize events
+
+    return () => {
+      window.removeEventListener("resize", checkOrientation); // Cleanup
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isPaused && isLandscape && projects.length > 0) {
       const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
-      }, 1500); // Scroll every 3 seconds
+        setCurrentIndex((prevIndex) => {
+          const nextIndex = (prevIndex + 1) % projects.length; // Loop back to the first project
+          // Smooth scrolling to the next item
+          if (containerRef.current) {
+            const targetCard = containerRef.current.children[nextIndex] as HTMLElement;
+            containerRef.current.scrollTo({
+              left: targetCard.offsetLeft,
+              behavior: "smooth", // This ensures smooth scroll
+            });
+          }
+          return nextIndex;
+        });
+      }, 2000); // Scroll every 2 seconds
+
       return () => clearInterval(interval);
     }
-  }, [isPaused, projects]);
+  }, [isPaused, projects, isLandscape]);
 
   const handleMouseEnter = () => {
     setIsPaused(true);
@@ -53,6 +85,13 @@ const AutoScrollingCards: React.FC = () => {
 
   const handleDotClick = (index: number) => {
     setCurrentIndex(index);
+    if (containerRef.current) {
+      const targetCard = containerRef.current.children[index] as HTMLElement;
+      containerRef.current.scrollTo({
+        left: targetCard.offsetLeft,
+        behavior: "smooth",
+      });
+    }
   };
 
   const openLightbox = (image: string) => {
@@ -74,24 +113,27 @@ const AutoScrollingCards: React.FC = () => {
   }
 
   return (
-    <section className="py-1 bg-gray-100">
+    <section className="py-8 bg-gray-100">
       <h2 className="text-4xl font-medium text-center mb-8 text-gray-800">
         Featured Projects
       </h2>
       <div
-        className="relative flex gap-0 px-6 overflow-hidden"
+        className="relative flex gap-[50px] overflow-x-hidden justify-center"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        ref={containerRef}
+        style={{
+          width: '100%',
+          maxWidth: '1200px', // Ensures the container is centered
+          margin: '0 auto', // Centers the container
+        }}
       >
         {projects.map((project, index) => (
           <div
             key={project.id}
-            className={`min-w-[300px] max-w-[300px] flex-shrink-0 transition-transform duration-500 transform ${
+            className={`min-w-[280px] sm:min-w-[300px] md:min-w-[320px] lg:min-w-[350px] xl:min-w-[380px] transition-transform duration-500 transform ${
               index === currentIndex ? "scale-105" : "scale-100"
             }`}
-            style={{
-              transform: `translateX(${(index - currentIndex) * 320}px)`,
-            }}
           >
             <div
               className="bg-white rounded-lg shadow-lg overflow-hidden relative cursor-pointer group"

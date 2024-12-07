@@ -320,7 +320,7 @@ app.post('/api/contact', async (req, res) => {
 });
 
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('0 * * * *', async () => {
   console.log('Running scheduled data update task...');
   await updateAllData();  // Call your update function periodically
 });

@@ -11,7 +11,7 @@ const ControlPage = () => {
         Control panel manufacturing is a critical process in industries, involving the design, assembly, and wiring of panels that house electrical and electronic components used to control machinery and processes. It begins with meticulous planning and layout design, often using tools like AutoCAD or EPLAN, to ensure efficient use of space and ease of maintenance. The selection of components such as circuit breakers, relays, PLCs, terminal blocks, and power supplies is done based on the system requirements and industry standards like IEC or UL. During assembly, enclosures are fabricated, and components are mounted securely, followed by precise wiring that adheres to detailed schematics.
         </p>
         <p className="text-lg sm:text-xl leading-relaxed mt-4">
-        
+        Modern advancements in control panels include IoT-enabled smart panels for remote monitoring, modular designs for scalability, and energy-efficient solutions to reduce power consumption. Comprehensive documentation is provided to support operation, troubleshooting, and future upgrades, making control panels indispensable for reliable and safe industrial operations.
 
         </p>
       </div>

@@ -1,5 +1,5 @@
 "use client";
-import ArrowRight from "@/assets/arrow-right.svg";
+
 import logo from "@/assets/logo1.png";
 import Image from "next/image";
 import MenuIcon from "@/assets/icons8-menu-64.png";

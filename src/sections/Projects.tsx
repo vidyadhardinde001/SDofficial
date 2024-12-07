@@ -62,7 +62,7 @@ const Projects: React.FC = () => {
       projectsData.map((project) => (
         <div
           key={project.id}
-          className="bg-[#232323] rounded-lg overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl cursor-pointer"
+          className="bg-[#232323] rounded-lg overflow-hidden shadow-lg transform transition-transform duration-500 cursor-pointer"
           onClick={() => setSelectedImage(project.image)} // Open lightbox on click
         >
           <Image

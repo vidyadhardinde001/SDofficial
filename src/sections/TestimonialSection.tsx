@@ -22,14 +22,13 @@ const TestimonialSection: React.FC = () => {
         const cachedData = localStorage.getItem(CACHE_KEY);
         const cacheTimestamp = localStorage.getItem(`${CACHE_KEY}_timestamp`);
 
-        if (cachedData && cacheTimestamp) {
-          const isCacheValid =
-            Date.now() - parseInt(cacheTimestamp, 10) < CACHE_EXPIRATION;
-          if (isCacheValid) {
-            setTestimonials(JSON.parse(cachedData));
-            return;
-          }
-        }
+        // if (cachedData && cacheTimestamp) {
+        //   const isCacheValid = Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
+        //   if (isCacheValid) {
+        //     setTestimonials(JSON.parse(cachedData));
+        //     return;
+        //   }
+        // }
 
         const response = await axios.get("/api/content/testimonial");
         const data = response.data.content;
@@ -71,19 +70,19 @@ const TestimonialSection: React.FC = () => {
         {/* Left Arrow */}
         <button
           onClick={handlePrev}
-          className="w-10 h-10 bg-gray-600 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition duration-300 shadow-lg sm:w-12 sm:h-12"
+          className="w-12 h-12 bg-gray-600 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition duration-300 shadow-lg"
         >
           &lt;
         </button>
 
         {/* Testimonials */}
-        <div className="flex gap-6 overflow-x-auto sm:gap-8 lg:gap-10">
+        <div className="flex gap-6">
           {testimonials
             .slice(currentIndex, currentIndex + 3)
             .map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-white shadow-md rounded-lg p-6 max-w-md w-full sm:w-[280px] lg:w-[320px]"
+                className="bg-white shadow-md rounded-lg p-6 max-w-md w-full"
               >
                 <p className="text-gray-600 text-sm sm:text-base mb-3">
                   &quot;{testimonial.testimonial}&quot;
@@ -103,7 +102,7 @@ const TestimonialSection: React.FC = () => {
         {/* Right Arrow */}
         <button
           onClick={handleNext}
-          className="w-10 h-10 bg-gray-600 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition duration-300 shadow-lg sm:w-12 sm:h-12"
+          className="w-12 h-12 bg-gray-600 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition duration-300 shadow-lg"
         >
           &gt;
         </button>

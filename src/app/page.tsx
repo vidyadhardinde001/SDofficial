@@ -9,10 +9,6 @@ import ValuetoProduct from "@/sections/ValuetoProduct";
 import TestimonialSection from "@/sections/TestimonialSection";
 import ServicesSection from "@/sections/ServicesSection";
 
-import Projects from "@/sections/Projects";
-import Gallery from "@/sections/gallery";
-import AboutUs from "@/sections/aboutus";
-
 export default function Home() {
   return (
     <>

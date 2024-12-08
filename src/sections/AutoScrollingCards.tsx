@@ -83,7 +83,7 @@ const AutoScrollingCards: React.FC = () => {
         {projects.map((project, index) => (
           <div
             key={project.id}
-            className={`flex-shrink-0 w-[85%] sm:w-[70%] md:w-[50%] lg:w-[30%] mx-2 transition-transform duration-500 ${
+            className={`flex-shrink-0 w-[85%] sm:w-[100%] md:w-[50%] lg:w-[30%] mx-2 transition-transform duration-500 ${
               index === currentIndex ? "scale-105 z-10" : "scale-100 opacity-70"
             }`}
           >

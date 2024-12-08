@@ -2,11 +2,14 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid"; // v2
+
 
 interface Testimonial {
   testimonial: string;
   name: string;
   company: string;
+  image: string;
 }
 
 const CACHE_KEY = "testimonialsCache";
@@ -15,6 +18,7 @@ const CACHE_EXPIRATION = 60 * 60 * 1000; // 1 hour
 const TestimonialSection: React.FC = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPortrait, setIsPortrait] = useState(false);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -22,13 +26,14 @@ const TestimonialSection: React.FC = () => {
         const cachedData = localStorage.getItem(CACHE_KEY);
         const cacheTimestamp = localStorage.getItem(`${CACHE_KEY}_timestamp`);
 
-        // if (cachedData && cacheTimestamp) {
-        //   const isCacheValid = Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
-        //   if (isCacheValid) {
-        //     setTestimonials(JSON.parse(cachedData));
-        //     return;
-        //   }
-        // }
+        if (cachedData && cacheTimestamp) {
+          const isCacheValid =
+            Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
+          if (isCacheValid) {
+            setTestimonials(JSON.parse(cachedData));
+            return;
+          }
+        }
 
         const response = await axios.get("/api/content/testimonial");
         const data = response.data.content;
@@ -47,6 +52,17 @@ const TestimonialSection: React.FC = () => {
     };
 
     fetchTestimonials();
+
+    const updateOrientation = () => {
+      setIsPortrait(window.innerHeight > window.innerWidth);
+    };
+
+    updateOrientation();
+    window.addEventListener("resize", updateOrientation);
+
+    return () => {
+      window.removeEventListener("resize", updateOrientation);
+    };
   }, []);
 
   const handlePrev = () => {
@@ -61,51 +77,48 @@ const TestimonialSection: React.FC = () => {
     );
   };
 
+  const cardsToShow = isPortrait ? 1 : 3;
+
   return (
-    <section className="py-8 px-4 sm:py-10 sm:px-6 lg:py-12 lg:px-8 bg-[#232323]">
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-white text-center mb-10">
-        Testimonials
-      </h2>
-      <div className="flex justify-center items-center gap-4">
-        {/* Left Arrow */}
-        <button
-          onClick={handlePrev}
-          className="w-12 h-12 bg-gray-600 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition duration-300 shadow-lg"
-        >
-          &lt;
-        </button>
+    <section className="p-8 bg-[#232323]">
+      <h2 className="text-3xl py-5 text-white lg:text-5xl sm:text-3xl text-center mb-10">Testimonials</h2>
+      <div className="flex flex-col items-center">
 
         {/* Testimonials */}
-        <div className="flex flex-wrap justify-center gap-6 w-full">
+        <div className="flex space-x-4 overflow-hidden mb-4">
           {testimonials
-            .slice(currentIndex, currentIndex + 3)
+            .slice(currentIndex, currentIndex + cardsToShow)
             .map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-white shadow-md rounded-lg p-6 max-w-[90%] sm:max-w-[45%] lg:max-w-[30%]"
+                className="flex-shrink-0 w-64 p-6 bg-white rounded-lg shadow-lg"
               >
-                <p className="text-gray-600 text-sm sm:text-base mb-3">
+                <p className="text-gray-700 italic mb-4">
                   &quot;{testimonial.testimonial}&quot;
                 </p>
                 <div className="text-center">
-                  <p className="font-bold text-sm sm:text-base">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-xs sm:text-sm text-gray-500">
-                    {testimonial.company}
-                  </p>
+                  <p className="text-lg font-bold">{testimonial.name}</p>
+                  <p className="text-sm text-gray-500">{testimonial.company}</p>
                 </div>
               </div>
             ))}
         </div>
 
-        {/* Right Arrow */}
-        <button
-          onClick={handleNext}
-          className="w-12 h-12 bg-gray-600 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition duration-300 shadow-lg"
-        >
-          &gt;
-        </button>
+        {/* Arrow Buttons */}
+        <div className="flex space-x-4 mt-4">
+          <button
+            onClick={handlePrev}
+            className="w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transform transition-transform duration-300 ease-in-out hover:scale-110"
+          >
+            <ChevronLeftIcon className="w-6 h-6" />
+          </button>
+          <button
+            onClick={handleNext}
+            className="w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transform transition-transform duration-300 ease-in-out hover:scale-110"
+          >
+            <ChevronRightIcon className="w-6 h-6" />
+          </button>
+        </div>
       </div>
     </section>
   );

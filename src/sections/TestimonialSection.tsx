@@ -76,13 +76,13 @@ const TestimonialSection: React.FC = () => {
         </button>
 
         {/* Testimonials */}
-        <div className="flex gap-6">
+        <div className="flex flex-wrap justify-center gap-6 w-full">
           {testimonials
             .slice(currentIndex, currentIndex + 3)
             .map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-white shadow-md rounded-lg p-6 max-w-md w-full"
+                className="bg-white shadow-md rounded-lg p-6 max-w-[90%] sm:max-w-[45%] lg:max-w-[30%]"
               >
                 <p className="text-gray-600 text-sm sm:text-base mb-3">
                   &quot;{testimonial.testimonial}&quot;

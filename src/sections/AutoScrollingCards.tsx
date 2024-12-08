@@ -50,7 +50,7 @@ const AutoScrollingCards: React.FC = () => {
           }
           return nextIndex;
         });
-      }, 2000);
+      }, 1500);
 
       return () => clearInterval(interval);
     }
@@ -74,7 +74,7 @@ const AutoScrollingCards: React.FC = () => {
         Featured Projects
       </h2>
       <div
-        className="relative gap-[50px] overflow-y-hidden flex overflow-x-hidden max-w-[80%] align-middle mx-auto h-[50vh] scrollbar-hidden"
+        className="relative gap-[50px] overflow-y-hidden flex overflow-x-auto max-w-[80%] mx-auto h-[50vh] scrollbar-hidden"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         ref={containerRef}
@@ -83,11 +83,11 @@ const AutoScrollingCards: React.FC = () => {
         {projects.map((project, index) => (
           <div
             key={project.id}
-            className={`flex-shrink-0 lg:w-[30%] mx-2 transition-transform duration-500 ${
+            className={`flex-shrink-0 lg:w-[30%] sm:w-[45%] w-full mx-2 transition-transform duration-500 ${
               index === currentIndex ? "scale-105 z-10" : "scale-100 opacity-70"
-            } w-full sm:w-[calc(80% / 3)]`}
+            }`}
           >
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden relative cursor-pointer group h-auto w-full sm:w-auto">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden relative cursor-pointer group h-auto w-full">
               {/* Image Section */}
               <div className="relative">
                 <Image
@@ -95,7 +95,7 @@ const AutoScrollingCards: React.FC = () => {
                   alt={project.title}
                   width={400}
                   height={300}
-                  className="w-full h-[50vh] sm:h-[300px] object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-[50vh] sm:h-[250px] md:h-[300px] object-cover group-hover:scale-110 transition-transform duration-500"
                 />
 
                 {/* Overlay with description */}

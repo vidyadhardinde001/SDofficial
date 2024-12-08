@@ -17,9 +17,9 @@ export default function Home() {
       <Header />
       <Hero />
       <ServicesSection />
-      <AutoScrollingCards />
       <ValuetoProduct />
       <IndustriesWeServe />
+      <AutoScrollingCards />
       <LogoTicker />
       <TestimonialSection />
       <ContactSection />

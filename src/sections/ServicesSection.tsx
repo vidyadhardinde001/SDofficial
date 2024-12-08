@@ -13,7 +13,8 @@ interface Service {
 
 const ServicesSection: React.FC = () => {
   const [services, setServices] = useState<Service[]>([]);
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [isPortrait, setIsPortrait] = useState(false);
+  const [expandedService, setExpandedService] = useState<number | null>(null);
 
   useEffect(() => {
     const CACHE_KEY = "services_data";
@@ -25,8 +26,7 @@ const ServicesSection: React.FC = () => {
         const cacheTimestamp = localStorage.getItem(`${CACHE_KEY}_timestamp`);
 
         if (cachedData && cacheTimestamp) {
-          const isCacheValid =
-            Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
+          const isCacheValid = Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
           if (isCacheValid) {
             setServices(JSON.parse(cachedData));
             return;
@@ -49,67 +49,83 @@ const ServicesSection: React.FC = () => {
       }
     };
 
+    // Check screen orientation
+    const updateOrientation = () => {
+      setIsPortrait(window.innerHeight > window.innerWidth);
+    };
+
     fetchServices();
+    updateOrientation();
+
+    // Listen for window resize events
+    window.addEventListener("resize", updateOrientation);
+
+    return () => {
+      window.removeEventListener("resize", updateOrientation);
+    };
   }, []);
 
-  const toggleExpand = (index: number) => {
-    setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
-  };
-
   return (
-    <div
-      id="services"
-      className="bg-[#ffffff] text-black pt-10 sm:pt-20 pb-5 sm:pb-1 px-4 sm:px-5"
-    >
-      <h2 className="text-2xl sm:text-5xl font-medium mb-1 text-black text-center pb-3 sm:pb-12">
+    <div id="services" className="bg-[#ffffff] text-black pt-10 sm:pt-20 pb-5 sm:pb-1 px-4 sm:px-5">
+      <h2 className="text-2xl sm:text-5xl font-medium mb-1 text-black text-center pb- sm:pb-12">
         Our Services
       </h2>
 
       {/* Grid Layout with Responsive Design */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:w-3/4 mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:w-[90%] mx-auto">
         {services.map((service, index) => (
           <div
             key={index}
             id={service.name.toLowerCase().replace(/ /g, "-")}
-            className="bg-white p-6 rounded-lg shadow-md border border-gray-300 hover:border-[#ff7d38] transition-all duration-300 hover:shadow-lg"
+            className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg"
           >
-            <div className="flex justify-center mb-6">
-              <img
-                src={service.image}
-                alt={service.name}
-                className="w-full max-w-[320px] rounded-lg shadow-md"
-              />
-            </div>
-            <h3 className="text-xl font-semibold text-[#ff7d38] text-center mb-4">
-              {service.name}
-            </h3>
-
-            {/* Toggle Dropdown Button */}
-            <div className="text-center">
-              <button
-                onClick={() => toggleExpand(index)}
-                className="text-[#ff7d38] font-medium underline"
-              >
-                {expandedIndex === index ? "Hide Info" : "Show Info"}
-              </button>
-            </div>
-
-            {/* Expandable Info */}
-            {expandedIndex === index && (
-              <div className="space-y-4 mt-4">
-                <p className="text-black text-sm sm:text-base text-center">
-                  {service.description}
-                </p>
-                <div className="text-center">
-                  <Link
-                    href={service.read_more_path}
-                    className="text-[#ff7d38] underline"
-                  >
-                    Read more about {service.name}
-                  </Link>
-                </div>
+            {/* Conditionally Render Image */}
+            {!isPortrait || expandedService === index ? (
+              <div className="flex justify-center mb-6 h-[30vh] overflow-hidden">
+                <img
+                  src={service.image}
+                  alt={service.name}
+                  className="w-auto h-full object-cover rounded-lg shadow-md"
+                />
               </div>
-            )}
+            ) : null}
+
+            <div>
+              <h3 className="text-xl mb-6 font-semibold text-[#ff7d38] text-center">{service.name}</h3>
+
+              {/* Conditionally show description and link based on orientation */}
+              {!isPortrait ? (
+                <div className="space-y-4">
+                  <p className="text-black text-sm sm:text-base text-center">{service.description}</p>
+                  <div className="text-center">
+                    <Link href={service.read_more_path} className="text-[#ff7d38] underline">
+                      Read more about {service.name}
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center mt-4">
+                  <button
+                    className="text-black underline"
+                    onClick={() =>
+                      setExpandedService(expandedService === index ? null : index)
+                    }
+                  >
+                    {expandedService === index ? "Hide Info" : "Show Info"}
+                  </button>
+                  {expandedService === index && (
+                    <div className="space-y-4 mt-2">
+                      <p className="text-black text-sm sm:text-base">{service.description}</p>
+                      <div>
+                        <Link href={service.read_more_path} className="text-[#ff7d38] underline">
+                          Read more about {service.name}
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </div>
@@ -118,6 +134,18 @@ const ServicesSection: React.FC = () => {
       <div className="flex justify-center my-10 sm:my-12">
         <div className="w-4/5 border-t border-gray-500"></div>
       </div>
+
+      {/* Custom Styles for Portrait Mode */}
+      <style jsx>{`
+        @media (max-width: 767px) and (orientation: portrait) {
+          .grid {
+            display: block;
+          }
+          .grid > div {
+            margin-bottom: 20px; /* Space between cards */
+          }
+        }
+      `}</style>
     </div>
   );
 };

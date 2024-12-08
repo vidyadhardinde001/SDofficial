@@ -52,12 +52,12 @@ const ServicesSection: React.FC = () => {
 
   return (
     <div id="services" className="bg-[#ffffff] text-black pt-10 sm:pt-20 pb-5 sm:pb-1 px-4 sm:px-5">
-      <h2 className="text-2xl sm:text-5xl font-medium mb-8 sm:mb-12 mt-4 sm:mt-6 text-black text-center pb-8 sm:pb-12">
+      <h2 className="text-2xl sm:text-5xl font-medium mb-1 text-black text-center pb-3 sm:pb-12">
         Our Services
       </h2>
 
-      {/* Grid Layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:w-3/4 mx-auto">
+      {/* Grid Layout with Responsive Design */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:w-3/4 mx-auto">
         {services.map((service, index) => (
           <div
             key={index}
@@ -88,6 +88,18 @@ const ServicesSection: React.FC = () => {
       <div className="flex justify-center my-10 sm:my-12">
         <div className="w-4/5 border-t border-gray-500"></div>
       </div>
+
+      {/* Custom Styles for Portrait Mode */}
+      <style jsx>{`
+        @media (max-width: 767px) and (orientation: portrait) {
+          .grid {
+            display: block;
+          }
+          .grid > div {
+            margin-bottom: 20px; /* Space between cards */
+          }
+        }
+      `}</style>
     </div>
   );
 };

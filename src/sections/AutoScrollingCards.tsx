@@ -74,7 +74,7 @@ const AutoScrollingCards: React.FC = () => {
         Featured Projects
       </h2>
       <div
-        className="relative gap-[100px] overflow-y-hidden flex overflow-x-hidden max-w-[80%] align-middle mx-auto h-[60vh] scrollbar-hidden"
+        className="relative gap-[50px] overflow-y-hidden flex overflow-x-hidden max-w-[80%] align-middle mx-auto h-[50vh] scrollbar-hidden"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         ref={containerRef}
@@ -99,7 +99,7 @@ const AutoScrollingCards: React.FC = () => {
                 />
 
                 {/* Overlay with description */}
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="text-center text-white px-4">
                     {/* Description */}
                     <p className="text-sm sm:text-base">{project.description}</p>

@@ -1,9 +1,8 @@
 "use client";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
 import axios from "axios";
 
 declare global {
@@ -41,6 +40,8 @@ export const Hero = () => {
     videoUrl: "",
   });
 
+  const [isPortrait, setIsPortrait] = useState(false);
+
   useEffect(() => {
     const fetchHeroContent = async () => {
       const cachedHeroContent = localStorage.getItem("heroContent");
@@ -51,21 +52,16 @@ export const Hero = () => {
         const cacheAge = now - parseInt(cachedTimestamp, 10);
 
         if (cacheAge < CACHE_EXPIRATION_MS) {
-          // Use the cached data if it's still valid
           setHeroContent(JSON.parse(cachedHeroContent));
           return;
         }
       }
 
-      // If no valid cache or cache expired, fetch from the API
       try {
         const response = await axios.get("/api/content/heroSection");
         const data = response.data.content;
-
-        // Store the fetched data in state
         setHeroContent(data);
 
-        // Cache the fetched data and timestamp in localStorage
         localStorage.setItem("heroContent", JSON.stringify(data));
         localStorage.setItem(
           "heroCacheTimestamp",
@@ -76,51 +72,19 @@ export const Hero = () => {
       }
     };
 
+    const updateOrientation = () => {
+      setIsPortrait(window.innerHeight > window.innerWidth);
+    };
+
     fetchHeroContent();
+    updateOrientation();
 
-    if (typeof window !== "undefined" && !window.botpressWebChat) {
-      window.botpressWebChat = {
-        botId: "1f02dc69-88ec-4ac9-807e-92b5d1cc4fc9",
-        host: "https://cdn.botpress.cloud",
-        botName: "SupportBot",
-        showMessageHistory: true,
-        enableReset: true,
-        startOpen: false,
-        styles: {
-          botMessageColor: "#9A90E2",
-          botMessageBackground: "#EAEAEA",
-          userMessageColor: "#FFFFFF",
-          userMessageBackground: "#000000",
-          headerBackground: "#FF5733",
-          headerTextColor: "#000000",
-          primaryColor: "#3498db",
-          messageTextColor: "#333333",
-          botAvatarUrl: "https://example.com/avatar.png",
-        },
-      };
+    window.addEventListener("resize", updateOrientation);
 
-      const injectScript = document.createElement("script");
-      injectScript.src = "https://cdn.botpress.cloud/webchat/v2.2/inject.js";
-      injectScript.async = true;
-      document.body.appendChild(injectScript);
-
-      const configScript = document.createElement("script");
-      configScript.src =
-        "https://files.bpcontent.cloud/2024/10/14/15/20241014153951-L6VHID1U.js";
-      configScript.async = true;
-      document.body.appendChild(configScript);
-
-      return () => {
-        if (injectScript) document.body.removeChild(injectScript);
-        if (configScript) document.body.removeChild(configScript);
-      };
-    }
+    return () => {
+      window.removeEventListener("resize", updateOrientation);
+    };
   }, []);
-
-  // useEffect(() => {
-  //   fetchHeroContent();
-
-  // }, [fetchHeroContent]);
 
   return (
     <>
@@ -132,16 +96,13 @@ export const Hero = () => {
           name="description"
           content="Siddhivinayak Engineers specializes in control panel manufacturing, PLC, HMI, and SCADA software development, offering top-notch services across various industries."
         />
-        {/* Additional meta tags */}
       </Head>
 
       <section
         ref={heroRef}
-        className={`relative overflow-hidden flex items-center ${
-          typeof window !== "undefined" && window.innerHeight > 900
-            ? "justify-center"
-            : "justify-start"
-        } min-h-[70vh] sm:min-h-[80vh]`}
+        className={`relative overflow-hidden flex items-center min-h-[70vh] sm:min-h-[80vh] ${
+          isPortrait ? "justify-center text-center" : "justify-start text-left"
+        }`}
       >
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
@@ -165,10 +126,8 @@ export const Hero = () => {
 
         {/* Content */}
         <div
-          className={`relative z-10 flex flex-col text-left w-full max-w-none px-4 sm:px-6 lg:px-[200px] ${
-            typeof window !== "undefined" && window.innerHeight > 900
-              ? "items-center text-center"
-              : "items-start"
+          className={`relative z-10 flex flex-col w-full px-4 sm:px-6 lg:px-[200px] ${
+            isPortrait ? "items-center" : "items-start"
           }`}
         >
           <motion.h2
@@ -206,13 +165,13 @@ export const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link
               href="/projects"
-              className="bg-orange-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md transition hover:bg-orange-600 text-left text-sm sm:text-base"
+              className="bg-orange-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md transition hover:bg-orange-600 text-sm sm:text-base"
             >
               Go to Projects
             </Link>
             <Link
               href="/contactus"
-              className="bg-white text-orange-500 border border-orange-500 px-3 py-1.5 sm:px-4 sm:py-2 rounded-md transition hover:bg-orange-100 text-left text-sm sm:text-base"
+              className="bg-white text-orange-500 border border-orange-500 px-3 py-1.5 sm:px-4 sm:py-2 rounded-md transition hover:bg-orange-100 text-sm sm:text-base"
             >
               Contact Us
             </Link>

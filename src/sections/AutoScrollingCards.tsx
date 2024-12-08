@@ -74,7 +74,7 @@ const AutoScrollingCards: React.FC = () => {
         Featured Projects
       </h2>
       <div
-        className="relative gap-[50px] overflow-y-hidden flex overflow-x-auto max-w-[80%] mx-auto h-[50vh] scrollbar-hidden"
+        className="relative gap-[50px] overflow-y-hidden flex overflow-x-auto max-w-[80%] mx-auto h-[55vh] scrollbar-hidden"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         ref={containerRef}
@@ -83,7 +83,7 @@ const AutoScrollingCards: React.FC = () => {
         {projects.map((project, index) => (
           <div
             key={project.id}
-            className={`flex-shrink-0 lg:w-[30%] md:w-[50%] sm:w-[70%] w-[85%] mx-2 transition-transform duration-500 ${
+            className={`flex-shrink-0 w-[85%] sm:w-[70%] md:w-[50%] lg:w-[30%] mx-2 transition-transform duration-500 ${
               index === currentIndex ? "scale-105 z-10" : "scale-100 opacity-70"
             }`}
           >
@@ -95,23 +95,21 @@ const AutoScrollingCards: React.FC = () => {
                   alt={project.title}
                   width={400}
                   height={300}
-                  className="w-full h-[50vh] sm:h-[250px] md:h-[300px] object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-[40vh] sm:h-[45vh] md:h-[300px] object-cover group-hover:scale-110 transition-transform duration-500"
                 />
 
                 {/* Overlay with description */}
-                <div className="absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute text-sm inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="text-center text-white px-4">
                     {/* Description */}
-                    <p className="text-sm sm:text-base">
-                      {project.description}
-                    </p>
+                    <p className="text-xs sm:text-sm">{project.description}</p>
                   </div>
                 </div>
               </div>
 
               {/* Title Section */}
-              <div className="absolute bottom-0 left-0 w-full bg-orange-500 text-white text-center py-2 group-hover:bg-white group-hover:text-orange-500 transition-all duration-300">
-                <h3 className="text-lg sm:text-xl font-semibold">
+              <div className="bg-orange-500 text-white text-center py-2 group-hover:bg-white group-hover:text-orange-500 transition-all duration-300">
+                <h3 className="text-xs sm:text-sm md:text-base font-semibold">
                   {project.title}
                 </h3>
               </div>

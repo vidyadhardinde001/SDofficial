@@ -83,7 +83,7 @@ const AutoScrollingCards: React.FC = () => {
         {projects.map((project, index) => (
           <div
             key={project.id}
-            className={`flex-shrink-0 lg:w-[30%] sm:w-[45%] w-full mx-2 transition-transform duration-500 ${
+            className={`flex-shrink-0 lg:w-[30%] md:w-[50%] sm:w-[70%] w-[85%] mx-2 transition-transform duration-500 ${
               index === currentIndex ? "scale-105 z-10" : "scale-100 opacity-70"
             }`}
           >
@@ -102,16 +102,18 @@ const AutoScrollingCards: React.FC = () => {
                 <div className="absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="text-center text-white px-4">
                     {/* Description */}
-                    <p className="text-sm sm:text-base">{project.description}</p>
+                    <p className="text-sm sm:text-base">
+                      {project.description}
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Title Section */}
-              <div
-                className="absolute bottom-0 left-0 w-full bg-orange-500 text-white text-center py-2 group-hover:bg-white group-hover:text-orange-500 transition-all duration-300"
-              >
-                <h3 className="text-lg sm:text-xl font-semibold">{project.title}</h3>
+              <div className="absolute bottom-0 left-0 w-full bg-orange-500 text-white text-center py-2 group-hover:bg-white group-hover:text-orange-500 transition-all duration-300">
+                <h3 className="text-lg sm:text-xl font-semibold">
+                  {project.title}
+                </h3>
               </div>
             </div>
           </div>

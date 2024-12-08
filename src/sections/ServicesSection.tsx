@@ -12,7 +12,6 @@ interface Service {
 }
 
 const ServicesSection: React.FC = () => {
-
   const [services, setServices] = useState<Service[]>([]);
 
   useEffect(() => {
@@ -51,40 +50,35 @@ const ServicesSection: React.FC = () => {
     fetchServices();
   }, []);
 
-
   return (
     <div id="services" className="bg-[#ffffff] text-black pt-10 sm:pt-20 pb-5 sm:pb-1 px-4 sm:px-5">
       <h2 className="text-2xl sm:text-5xl font-medium mb-8 sm:mb-12 mt-4 sm:mt-6 text-black text-center pb-8 sm:pb-12">
         Our Services
       </h2>
-      <div className="flex flex-col gap-6 sm:gap-8 w-full md:w-3/4 mx-auto">
+
+      {/* Grid Layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:w-3/4 mx-auto">
         {services.map((service, index) => (
           <div
             key={index}
             id={service.name.toLowerCase().replace(/ /g, "-")}
-            className={`flex flex-col md:flex-row ${
-              index % 2 === 1 ? "md:flex-row-reverse" : ""
-            } items-center`}
+            className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg"
           >
-            <div className="flex-1 flex items-center justify-center mb-4 md:mb-0">
+            <div className="flex justify-center mb-6">
               <img
                 src={service.image}
                 alt={service.name}
-                className="w-full max-w-md rounded-lg shadow-md"
+                className="w-full max-w-[320px] rounded-lg shadow-md"
               />
             </div>
-            <div className="flex-1 flex flex-col justify-center md:pl-8 space-y-3 sm:space-y-4">
-              <h2 className="text-lg sm:text-xl font-semibold text-[#ff7d38] text-center md:text-left">
-                {service.name}
-              </h2>
-              <p className="text-black text-sm sm:text-base text-center md:text-left">
-                {service.description}
-                <br />
-                <br />
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-[#ff7d38] text-center">{service.name}</h3>
+              <p className="text-black text-sm sm:text-base text-center">{service.description}</p>
+              <div className="text-center">
                 <Link href={service.read_more_path} className="text-[#ff7d38] underline">
                   Read more about {service.name}
                 </Link>
-              </p>
+              </div>
             </div>
           </div>
         ))}

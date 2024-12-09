@@ -9,6 +9,7 @@ import ValuetoProduct from "@/sections/ValuetoProduct";
 import TestimonialSection from "@/sections/TestimonialSection";
 import ServicesSection from "@/sections/ServicesSection";
 import AutoScrollingCards from "@/sections/AutoScrollingCards";
+import Products from "@/sections/products";
 
 
 export default function Home() {
@@ -17,9 +18,10 @@ export default function Home() {
       <Header />
       <Hero />
       <ServicesSection />
+      <Products />
       <ValuetoProduct />
       <IndustriesWeServe />
-      <AutoScrollingCards />
+      <AutoScrollingCards />    
       <LogoTicker />
       <TestimonialSection />
       <ContactSection />

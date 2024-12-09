@@ -4,9 +4,62 @@ import Image from "next/image";
 import axios from "axios";
 
 const Gallery: React.FC = () => {
+  const initialGalleryImages = [
+    {
+        id: 1,
+        src: "https://drive.google.com/uc?export=view&id=1wCCLHVT9Ns9r_gRhNpWc60fbLEQhyKTA",
+        alt: "Mixer",
+    },
+    {
+        id: 2,
+        src: "https://drive.google.com/uc?export=view&id=1C1FtKzzHlobf9kQRS1XjFoPWx1SKTSS8",
+        alt: "Robo",
+    },
+    {
+        id: 3,
+        src: "https://drive.google.com/uc?export=view&id=1-30m_3aG9Xqpwi0AbgjHd55s2a6dGvhM",
+        alt: "Foundary",
+    },
+    {
+        id: 4,
+        src: "https://drive.google.com/uc?export=view&id=1txzHviodjayVGIdK19xkGsVCpf3FKAL1",
+        alt: "Incernator",
+    },
+    {
+        id: 5,
+        src: "https://drive.google.com/uc?export=view&id=1d52YS5EnJL_h3_HhDp3NymXZrrHbgf2w",
+        alt: "Treatment",
+    },
+    {
+        id: 6,
+        src: "https://drive.google.com/uc?export=view&id=1HgSmKAYGggF-R13A83xXIcGpYCVrTt24",
+        alt: "Wire Stranding",
+    },
+    {
+        id: 7,
+        src: "https://drive.google.com/uc?export=view&id=1Y8us2yl1BH9uZkfbd4cpWzh2GOF07bzA",
+        alt: "Special Purpose",
+    },
+    {
+        id: 8,
+        src: "https://drive.google.com/uc?export=view&id=1wCCLHVT9Ns9r_gRhNpWc60fbLEQhyKTA",
+        alt: "Mixer",
+    },
+    {
+        id: 9,
+        src: "https://drive.google.com/uc?export=view&id=1h2u0xLyN3RH6Hs1Ei1NtpFHDWbvvmb9u",
+        alt: "TTR",
+    },
+    {
+        id: 10,
+        src: "https://drive.google.com/uc?export=view&id=17bM4LNNJ7N2W8AISy4CIVDo7S8_dL3PA",
+        alt: "Rubber Winding Machine",
+    },
+];
+
   const [galleryImages, setGalleryImages] = useState<
     { id: number; src: string; alt: string }[]
-  >([]);
+  >(initialGalleryImages);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<{
     src: string;

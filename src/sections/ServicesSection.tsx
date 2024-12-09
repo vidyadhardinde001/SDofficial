@@ -140,15 +140,15 @@ const ServicesSection: React.FC = () => {
                 {/* Conditionally show description and link based on orientation */}
                 {!isPortrait ? (
                   <div className="space-y-4">
-                    <p className="text-black text-sm sm:text-base text-center">
+                    <p className="text-black text-left text-sm sm:text-base">
                       {service.description}
                     </p>
                     <div className="text-center">
                       <Link
                         href={service.read_more_path}
-                        className="text-[#ff7d38] underline"
+                        className="text-[#ff3838] font-bold underline"
                       >
-                        Read more about {service.name}
+                        READ MORE
                       </Link>
                     </div>
                   </div>
@@ -172,9 +172,9 @@ const ServicesSection: React.FC = () => {
                         <div>
                           <Link
                             href={service.read_more_path}
-                            className="text-[#ff7d38] underline"
+                            className="text-[#ff3838] font-bold underline"
                           >
-                            Read more about {service.name}
+                            Read more
                           </Link>
                         </div>
                       </div>

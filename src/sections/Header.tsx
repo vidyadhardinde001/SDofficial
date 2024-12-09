@@ -151,13 +151,6 @@ export const Header = () => {
             About Us
             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#0074F5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
           </Link>
-          <a
-            href="tel:+91 7057272626"
-            className="bg-[#ff9f6c] hover:bg-[#6a6a6a] text-white px-4 py-2 rounded-full font-medium mt-4"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Call Us
-          </a>
         </div>
       </nav>
     </header>

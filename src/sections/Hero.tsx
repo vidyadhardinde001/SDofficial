@@ -152,7 +152,7 @@ export const Hero = () => {
           </motion.h1>
 
           <motion.p
-            className="text-sm sm:text-base md:text-lg lg:text-xl text-white tracking-tight mt-1 sm:mt-6 leading-tight"
+            className="text-lg sm:text-base md:text-lg lg:text-2xl text-white tracking-tight mt-1 sm:mt-6 leading-tight"
             initial="hidden"
             animate="visible"
             variants={flipVariant}
@@ -161,6 +161,31 @@ export const Hero = () => {
             {heroContent.subHeading ||
               "One Stop Solution for All your Electric & Automation Needs."}
           </motion.p>
+
+          <motion.div
+            className="text-sm sm:text-base md:text-sm lg:text-sm text-white tracking-tight mt-1 sm:mt-6 leading-tight hidden lg:block"
+            initial="hidden"
+            animate="visible"
+            variants={flipVariant}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
+            <ul className="list-disc pl-5 space-y-2">
+              <li className="flex items-center">
+                <span className="w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
+                We Are Manufacturers Of Custom made Industrial Control Panels
+                And Industrial Automation.
+              </li>
+              <li className="flex items-center">
+                <span className="w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
+                We Offer Factory Automation Products (PLC, SCADA, HMI, VFD, AC
+                Servo) of world renowned brands.
+              </li>
+              <li className="flex items-center">
+                <span className="w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
+                Custom Software development & On site commissioning services.
+              </li>
+            </ul>
+          </motion.div>
 
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link

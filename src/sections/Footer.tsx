@@ -8,9 +8,12 @@ import SocialLinkedIn from "@/assets/social-linkedin.svg";
 export const Footer = () => {
   return (
     <footer
-      className="relative bg-cover bg-center text-white py-12"
+      className="relative text-white py-12"
       style={{
         backgroundImage: `url('/assets/wallpaper.jpg')`,
+        backgroundAttachment: "fixed", // Enables parallax effect
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       {/* Dark overlay */}
@@ -37,7 +40,9 @@ export const Footer = () => {
 
           {/* Our Services */}
           <div className="text-left">
-            <h3 className="text-lg font-bold mb-4 text-orange-400">Our Services</h3>
+            <h3 className="text-lg font-bold mb-4 text-orange-400">
+              Our Services
+            </h3>
             <ul className="space-y-2">
               <li>SCADA/HMI</li>
               <li>Industrial Controls</li>
@@ -48,7 +53,9 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div className="text-left">
-            <h3 className="text-lg font-bold mb-4 text-orange-400">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-4 text-orange-400">
+              Quick Links
+            </h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/" className="hover:text-orange-400">
@@ -80,7 +87,9 @@ export const Footer = () => {
 
           {/* Get In Touch */}
           <div className="text-left">
-            <h3 className="text-lg font-bold text-orange-400 mb-4">Get In Touch</h3>
+            <h3 className="text-lg font-bold text-orange-400 mb-4">
+              Get In Touch
+            </h3>
             <ul className="space-y-2">
               <li>📍 Arjunwad</li>
               <li>📞 +91 7057272626</li>

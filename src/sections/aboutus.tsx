@@ -22,6 +22,29 @@ const CACHE_EXPIRATION = 60 * 60 * 1000;
 const LearningTransformation: React.FC = () => {
   const [aboutUsContent, setAboutUsContent] = useState<AboutUsContent | null>(null);
 
+  // Placeholder Data
+  const placeholderContent: AboutUsContent = {
+    heading: "About Us",
+    description: [
+      "We are manufacturers of custom-made industrial control panels and industrial automation systems with over 3 years of expertise in system integration, plant automation, turnkey projects, and corrective and preventive maintenance.",
+      "We offer factory automation products (PLC, SCADA, HMI, VFD, AC Servo) of world-renowned brands, along with custom software development, energy monitoring, industrial safety solutions, and low-voltage distribution panels.",
+      "Our focus on high-quality solutions ensures we meet customer needs efficiently with cutting-edge technology.",
+    ],
+    stats: [
+      { value: "9", label: "Years Experience" },
+      { value: "24", label: "Project Challenges" },
+      { value: "50+", label: "Positive Reviews" },
+      { value: "100+", label: "Trusted Clients" },
+    ],
+    leadership: {
+      name: "Mr. Nikhil Sutar",
+      role: "Founder & CEO",
+      description:
+        "With a Diploma and Bachelor's Degree in Electrical Engineering and over 9 years of industry experience, Mr. Nikhil Sutar specializes in PLC programming and automation solutions. Since founding Siddhivinayak Engineers in 2021, he has focused on delivering reliable and innovative industrial solutions.",
+      imageUrl: "/path-to-placeholder-leadership.jpg",
+    },
+  };
+
   useEffect(() => {
     const fetchContent = async () => {
       try {
@@ -51,27 +74,26 @@ const LearningTransformation: React.FC = () => {
     fetchContent();
   }, []);
 
+  const content = aboutUsContent || placeholderContent;
+
   return (
     <section className="bg-gray-50 py-12">
       <div className="container mx-auto px-6 lg:px-16">
         {/* Header */}
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
-
-          {/* Middle Row: About Us Section */}
-          <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg lg:row-span-1">
+          {/* About Us Section */}
+          <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg">
             <h2 className="text-3xl font-bold text-teal-600 mb-4">
-              {aboutUsContent?.heading}
+              {content.heading}
             </h2>
-            {aboutUsContent?.description.map((paragraph, index) => (
+            {content.description.map((paragraph, index) => (
               <p key={index} className="text-gray-600 mb-4 text-lg">
                 {paragraph}
               </p>
             ))}
           </div>
 
-          {/* Logo Section (Centered) */}
+          {/* Logo Section */}
           <div className="lg:col-span-1 flex justify-center items-center flex-col space-y-6">
             <Image
               src={logo1.src}
@@ -82,32 +104,32 @@ const LearningTransformation: React.FC = () => {
             />
           </div>
 
-          {/* Top Left: Leadership Image */}
+          {/* Leadership Image */}
           <div className="lg:col-span-1 flex justify-center items-center">
             <Image
-              src={aboutUsContent?.leadership.imageUrl || ""}
-              alt={aboutUsContent?.leadership.name || "Leadership"}
+              src={content.leadership.imageUrl}
+              alt={content.leadership.name}
               width={300}
               height={300}
               className="rounded-lg shadow-lg object-cover"
             />
           </div>
 
-          {/* Top Right: Leadership Section */}
+          {/* Leadership Details */}
           <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">Leadership</h2>
             <h3 className="text-3xl font-semibold text-teal-600 mb-2">
-              {aboutUsContent?.leadership.name}
+              {content.leadership.name}
             </h3>
             <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-              {aboutUsContent?.leadership.description}
+              {content.leadership.description}
             </p>
           </div>
         </div>
 
         {/* Stats Section */}
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {aboutUsContent?.stats.map((stat, index) => (
+          {content.stats.map((stat, index) => (
             <div
               key={index}
               className="bg-[#FE6D20] text-white p-6 rounded-lg text-center shadow-lg"

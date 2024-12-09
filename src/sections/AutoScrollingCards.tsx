@@ -78,7 +78,13 @@ const AutoScrollingCards: React.FC = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         ref={containerRef}
-        style={{ scrollBehavior: "smooth" }}
+        style={{
+          scrollBehavior: "smooth",
+          overflowY: "hidden",
+          overflowX: "scroll",
+          scrollbarWidth: "none", // For Firefox
+          msOverflowStyle: "none", // For IE & Edge
+        }}
       >
         {projects.map((project, index) => (
           <div

@@ -26,21 +26,21 @@ const ServicesSection: React.FC = () => {
       read_more_path: "/plc-hmi-scada-software-development",
     },
     {
-      image: "/assets/scada.jpg",
+      image: "/assets/maintanance.jpg",
       name: "Maintenance Services",
       description:
         "Maintenance is the service done by technicians or mechanics to manage machinery and equipment...",
       read_more_path: "/maintenance-services",
     },
     {
-      image: "/path-to-placeholder-3.jpg",
+      image: "/assets/controlpanel.jpg",
       name: "Control Panel Manufacturing",
       description:
         "An electrical control panel is an enclosure, typically a metal box or plastic moulding...",
       read_more_path: "/control-panel-manufacturing",
     },
     {
-      image: "/path-to-placeholder-4.jpg",
+      image: "/assets/field.webp",
       name: "Field Wiring",
       description:
         "In general, field wiring is wiring that is connected between equipment items...",

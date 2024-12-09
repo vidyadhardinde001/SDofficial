@@ -48,16 +48,16 @@ export const LogoTicker = () => {
       const cachedLogos = localStorage.getItem('clientLogos');
       const cachedTimestamp = localStorage.getItem('cacheTimestamp');
 
-      // if (cachedLogos && cachedTimestamp) {
-      //   const now = new Date().getTime();
-      //   const cacheAge = now - parseInt(cachedTimestamp, 10);
+      if (cachedLogos && cachedTimestamp) {
+        const now = new Date().getTime();
+        const cacheAge = now - parseInt(cachedTimestamp, 10);
 
-      //   if (cacheAge < CACHE_EXPIRATION_MS) {
-      //     setLogos(JSON.parse(cachedLogos));
-      //     // setLoading(false);
-      //     return;
-      //   }
-      // }
+        if (cacheAge < CACHE_EXPIRATION_MS) {
+          setLogos(JSON.parse(cachedLogos));
+          // setLoading(false);
+          return;
+        }
+      }
 
       try {
         const response = await axios.get('/api/content/clients');

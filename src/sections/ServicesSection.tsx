@@ -16,6 +16,38 @@ const ServicesSection: React.FC = () => {
   const [isPortrait, setIsPortrait] = useState(false);
   const [expandedService, setExpandedService] = useState<number | null>(null);
 
+  // Placeholder data
+  const placeholderServices: Service[] = [
+    {
+      image: "/assets/scada.jpg",
+      name: "PLC, HMI, SCADA Software Development",
+      description:
+        "HMI/SCADA collects data from RTUs (Remote Terminal Units), PLCs, and other control devices...",
+      read_more_path: "/plc-hmi-scada-software-development",
+    },
+    {
+      image: "/assets/scada.jpg",
+      name: "Maintenance Services",
+      description:
+        "Maintenance is the service done by technicians or mechanics to manage machinery and equipment...",
+      read_more_path: "/maintenance-services",
+    },
+    {
+      image: "/path-to-placeholder-3.jpg",
+      name: "Control Panel Manufacturing",
+      description:
+        "An electrical control panel is an enclosure, typically a metal box or plastic moulding...",
+      read_more_path: "/control-panel-manufacturing",
+    },
+    {
+      image: "/path-to-placeholder-4.jpg",
+      name: "Field Wiring",
+      description:
+        "In general, field wiring is wiring that is connected between equipment items...",
+      read_more_path: "/field-wiring",
+    },
+  ];
+
   useEffect(() => {
     const CACHE_KEY = "services_data";
     const CACHE_EXPIRATION = 60 * 60 * 1000; // 24 hours
@@ -26,7 +58,8 @@ const ServicesSection: React.FC = () => {
         const cacheTimestamp = localStorage.getItem(`${CACHE_KEY}_timestamp`);
 
         if (cachedData && cacheTimestamp) {
-          const isCacheValid = Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
+          const isCacheValid =
+            Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
           if (isCacheValid) {
             setServices(JSON.parse(cachedData));
             return;
@@ -40,9 +73,14 @@ const ServicesSection: React.FC = () => {
           setServices(data.serviceList);
           // Save data to localStorage with timestamp
           localStorage.setItem(CACHE_KEY, JSON.stringify(data.serviceList));
-          localStorage.setItem(`${CACHE_KEY}_timestamp`, Date.now().toString());
+          localStorage.setItem(
+            `${CACHE_KEY}_timestamp`,
+            Date.now().toString()
+          );
         } else {
-          console.error("Error: 'serviceList' is not an array or not present.");
+          console.error(
+            "Error: 'serviceList' is not an array or not present."
+          );
         }
       } catch (error) {
         console.error("Error fetching services", error);
@@ -66,68 +104,87 @@ const ServicesSection: React.FC = () => {
   }, []);
 
   return (
-    <div id="services" className="bg-[#ffffff] text-black pt-10 sm:pt-20 pb-5 sm:pb-1 px-4 sm:px-5">
+    <div
+      id="services"
+      className="bg-[#ffffff] text-black pt-10 sm:pt-20 pb-5 sm:pb-1 px-4 sm:px-5"
+    >
       <h2 className="text-2xl sm:text-5xl font-medium mb-1 text-black text-center pb- sm:pb-12">
         Our Services
       </h2>
 
       {/* Grid Layout with Responsive Design */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:w-[90%] mx-auto">
-        {services.map((service, index) => (
-          <div
-            key={index}
-            id={service.name.toLowerCase().replace(/ /g, "-")}
-            className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg"
-          >
-            {/* Conditionally Render Image */}
-            {!isPortrait || expandedService === index ? (
-              <div className="flex justify-center mb-6 h-[30vh] overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={service.name}
-                  className="w-auto h-full object-cover rounded-lg shadow-md"
-                />
-              </div>
-            ) : null}
-
-            <div>
-              <h3 className="text-xl mb-6 font-semibold text-[#ff7d38] text-center">{service.name}</h3>
-
-              {/* Conditionally show description and link based on orientation */}
-              {!isPortrait ? (
-                <div className="space-y-4">
-                  <p className="text-black text-sm sm:text-base text-center">{service.description}</p>
-                  <div className="text-center">
-                    <Link href={service.read_more_path} className="text-[#ff7d38] underline">
-                      Read more about {service.name}
-                    </Link>
-                  </div>
+        {(services.length > 0 ? services : placeholderServices).map(
+          (service, index) => (
+            <div
+              key={index}
+              id={service.name.toLowerCase().replace(/ /g, "-")}
+              className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg"
+            >
+              {/* Conditionally Render Image */}
+              {!isPortrait || expandedService === index ? (
+                <div className="flex justify-center mb-6 h-[30vh] overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.name}
+                    className="w-auto h-full object-cover rounded-lg shadow-md"
+                  />
                 </div>
-              ) : (
-                <div className="text-center mt-4">
-                  <button
-                    className="text-black underline"
-                    onClick={() =>
-                      setExpandedService(expandedService === index ? null : index)
-                    }
-                  >
-                    {expandedService === index ? "Hide Info" : "Show Info"}
-                  </button>
-                  {expandedService === index && (
-                    <div className="space-y-4 mt-2">
-                      <p className="text-black text-sm sm:text-base">{service.description}</p>
-                      <div>
-                        <Link href={service.read_more_path} className="text-[#ff7d38] underline">
-                          Read more about {service.name}
-                        </Link>
-                      </div>
+              ) : null}
+
+              <div>
+                <h3 className="text-xl mb-6 font-semibold text-[#ff7d38] text-center">
+                  {service.name}
+                </h3>
+
+                {/* Conditionally show description and link based on orientation */}
+                {!isPortrait ? (
+                  <div className="space-y-4">
+                    <p className="text-black text-sm sm:text-base text-center">
+                      {service.description}
+                    </p>
+                    <div className="text-center">
+                      <Link
+                        href={service.read_more_path}
+                        className="text-[#ff7d38] underline"
+                      >
+                        Read more about {service.name}
+                      </Link>
                     </div>
-                  )}
-                </div>
-              )}
+                  </div>
+                ) : (
+                  <div className="text-center mt-4">
+                    <button
+                      className="text-black underline"
+                      onClick={() =>
+                        setExpandedService(
+                          expandedService === index ? null : index
+                        )
+                      }
+                    >
+                      {expandedService === index ? "Hide Info" : "Show Info"}
+                    </button>
+                    {expandedService === index && (
+                      <div className="space-y-4 mt-2">
+                        <p className="text-black text-sm sm:text-base">
+                          {service.description}
+                        </p>
+                        <div>
+                          <Link
+                            href={service.read_more_path}
+                            className="text-[#ff7d38] underline"
+                          >
+                            Read more about {service.name}
+                          </Link>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        )}
       </div>
 
       {/* 80% Horizontal Line Separator */}

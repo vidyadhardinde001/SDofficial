@@ -61,7 +61,7 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/gallary" className="hover:text-orange-400">
+                <Link href="/gallery" className="hover:text-orange-400">
                   Gallery
                 </Link>
               </li>

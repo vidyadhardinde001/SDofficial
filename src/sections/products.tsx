@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import axios from "axios";
 
 interface Product {
   name: string;
@@ -9,61 +10,98 @@ interface Product {
   details: string;
 }
 
-const productData: Product[] = [
+const CACHE_EXPIRATION_MS = 60 * 60 * 1000; // 1 hour
+
+const hardcodedData: Product[] = [
   {
     name: "Lubi Catalog",
-    image: "/assets/products/lubi.webp",
+    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
     details: "Lubi Catalog provides comprehensive solutions for various industrial needs.",
   },
   {
     name: "SMPS",
-    image: "/assets/products/smps.jpg",
+    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
     details: "SMPS (Switched Mode Power Supply) ensures efficient power delivery.",
   },
   {
     name: "Motors",
-    image: "/assets/products/motor.jpg",
+    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
     details: "High-performance motors for industrial and commercial applications.",
   },
   {
     name: "VFD",
-    image: "/assets/products/vfd.jpg",
+    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
     details: "Variable Frequency Drives for controlling motor speed efficiently.",
   },
   {
     name: "Temperature Controller",
-    image: "/assets/products/temp.jpg",
+    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
     details: "Precision temperature controllers for diverse industrial processes.",
   },
   {
     name: "PLC",
-    image: "/assets/products/plc.jpg",
+    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
     details: "Programmable Logic Controllers for automation and control systems.",
   },
   {
     name: "Encoders",
-    image: "/assets/products/encoder.jpg",
+    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
     details: "Encoders for precise motion control and positioning.",
   },
   {
     name: "HMI",
-    image: "/assets/products/hmi.jpg",
+    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
     details: "Human-Machine Interface solutions for seamless user interaction.",
   },
   // Add other products here
 ];
 
 const ProductGrid: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>(hardcodedData); // Initially show hardcoded data
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [visibleProductsCount, setVisibleProductsCount] = useState(5); // Initial number of products to show
   const [isExpanded, setIsExpanded] = useState(false); // Track if the products are expanded
 
-  // Handle loading more products
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const cachedProducts = localStorage.getItem('productData');
+      const cachedTimestamp = localStorage.getItem('cacheTimestamp');
+
+      // if (cachedProducts && cachedTimestamp) {
+      //   const now = new Date().getTime();
+      //   const cacheAge = now - parseInt(cachedTimestamp, 10);
+
+      //   if (cacheAge < CACHE_EXPIRATION_MS) {
+      //     setProducts(JSON.parse(cachedProducts));
+      //     return;
+      //   }
+      // }
+
+      try {
+        const response = await axios.get('/api/content/products');
+        const productsData: Product[] = response.data.content.productsList;
+
+        // Ensure the response data is an array of products
+        if (Array.isArray(productsData)) {
+          setProducts(productsData);
+          localStorage.setItem('productData', JSON.stringify(productsData));
+          localStorage.setItem('cacheTimestamp', new Date().getTime().toString());
+        } else {
+          console.error('Received data is not an array:', productsData);
+        }
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   const toggleProductVisibility = () => {
     if (isExpanded) {
       setVisibleProductsCount(5); // Show the initial 5 products
     } else {
-      setVisibleProductsCount(productData.length); // Show all products
+      setVisibleProductsCount(products.length); // Show all products
     }
     setIsExpanded(!isExpanded); // Toggle the expanded state
   };
@@ -72,7 +110,7 @@ const ProductGrid: React.FC = () => {
     <div className="max-w-full mx-auto p-6 bg-white">
       <h2 className="text-5xl font-medium text-center mb-8">Our Products</h2>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-        {productData.slice(0, visibleProductsCount).map((product, index) => (
+        {products.slice(0, visibleProductsCount).map((product, index) => (
           <div
             key={index}
             className="border rounded-lg p-4 hover:shadow-lg cursor-pointer flex flex-col items-center"

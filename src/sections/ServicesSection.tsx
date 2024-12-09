@@ -22,29 +22,29 @@ const ServicesSection: React.FC = () => {
       image: "/assets/scada.jpg",
       name: "PLC, HMI, SCADA Software Development",
       description:
-        "HMI/SCADA collects data from RTUs (Remote Terminal Units), PLCs, and other control devices...",
-      read_more_path: "/plc-hmi-scada-software-development",
+        "HMI/SCADA collects data from RTUs (Remote Terminal Units), PLCs (Programmable Logic Controllers), and other control devices such as flow meters and temperature controllers. This data is presented to an operator using a Human Machine Interface (HMI).",
+      read_more_path: "/plc",
     },
     {
       image: "/assets/maintanance.jpg",
       name: "Maintenance Services",
       description:
-        "Maintenance is the service done by technicians or mechanics to manage machinery and equipment...",
-      read_more_path: "/maintenance-services",
+        "Maintenance is the service done by technicians or mechanics to manage machinery and equipment to increase uptime in order to meet business objectives. It is used across multiple industries and can involve troubleshooting, fixing, and replacing equipment to improve asset performance.",
+      read_more_path: "/maintainence",
     },
     {
       image: "/assets/controlpanel.jpg",
       name: "Control Panel Manufacturing",
       description:
-        "An electrical control panel is an enclosure, typically a metal box or plastic moulding...",
-      read_more_path: "/control-panel-manufacturing",
+        "An electrical control panel is an enclosure, typically a metal box or plastic moulding which contains important electrical components that control and monitor a number of mechanical processes.",
+      read_more_path: "/control",
     },
     {
       image: "/assets/field.webp",
       name: "Field Wiring",
       description:
-        "In general, field wiring is wiring that is connected between equipment items...",
-      read_more_path: "/field-wiring",
+        "In general, field wiring is wiring that is connected between equipment items or equipment components that are connected upon installation in the field.",
+      read_more_path: "/field",
     },
   ];
 

@@ -171,6 +171,46 @@ const fetchClientsAndUpdateDatabase = async () => {
   }
 };
 
+const fetchProductsAndUpdateDatabase = async () => {
+  try {
+    // Fetch the data from the API (replace with your actual URL)
+    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=weFDPhGDwdgsi2HF7UBUWBYvIgBPOU-P_bVknHGk9cN8n5GInhqRoqb4ACxA8JEReFO9kJCYfzadpnNZtQLBUVvzS4IWC7K2m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPGA1O4dOPqZXE6WR3R49X367kDH2zimDotuDPPe7A8kMNBl6DjA0J6clvv0ruCw9Hh-h_ajE_L6UKhGefqF4yupPWp7YHZz8w&lib=MQWkvGjJpPe-8AF3btGDFevZ1uKL4_q0K');
+    
+    // Check if the response and content data exists
+    if (!response.data || !Array.isArray(response.data.content)) {
+      throw new Error('Invalid or empty content data');
+    }
+
+    const apiData = response.data;
+
+    // Ensure that we have data to map
+    if (apiData.content.length === 0) {
+      console.warn('No products found in the API data');
+      return; // Or handle empty data as needed
+    }
+
+    // Structure the data as per the required format
+    const contentData = {
+      section: 'products',  // section is 'testimonial' for all testimonials
+      content: {
+        productsList: apiData.content.map(products => ({
+          name:  products.name,
+          image: products.image,
+          details: products.details
+        }))
+      }
+    };
+
+    // Delete any existing data for the Testimonials section and insert the updated data
+    await Content.deleteMany({ section: 'products' });
+    await Content.create(contentData);
+
+    console.log('products section updated from Google Sheets');
+  } catch (error) {
+    console.error('Error fetching service products data from API', error);
+  }
+};
+
 
 const fetchDataAndUpdateDatabase = async () => {
   try {
@@ -389,6 +429,7 @@ async function updateAllData() {
   await fetchTestimonialsAndUpdateDatabase();
   await fetchServiceAndUpdateDatabase();
   await fetchClientsAndUpdateDatabase();
+  await fetchProductsAndUpdateDatabase();
 }
 
 // Start the server

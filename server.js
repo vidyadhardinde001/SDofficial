@@ -131,7 +131,45 @@ const fetchServiceAndUpdateDatabase = async () => {
   }
 };
 
+const fetchClientsAndUpdateDatabase = async () => {
+  try {
+    // Fetch the data from the API (replace with your actual URL)
+    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=GgB36ODmEYtmIg5BtVF5lJu4t3SKHzn6cK0Ch38hfxKrqvSyRbR3q6N8ZP94J4t9HdwVxqydxkhoku9s2CvY3GAf4Xuj_A3hm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKbES-7aEjHyludqHW24UDeyqd_nTAp1qkKYGXDiRJ_E35GG8uU1tG7jjt5KmL-SKUp2DOLQ2inzdYcb2CkXj4F2sgp6fkp_uA&lib=MD3k01dNQnOzBmwiq3sDuNPZ1uKL4_q0K');
+    
+    // Check if the response and content data exists
+    if (!response.data || !Array.isArray(response.data.content)) {
+      throw new Error('Invalid or empty content data');
+    }
 
+    const apiData = response.data;
+
+    // Ensure that we have data to map
+    if (apiData.content.length === 0) {
+      console.warn('No service found in the API data');
+      return; // Or handle empty data as needed
+    }
+
+    // Structure the data as per the required format
+    const contentData = {
+      section: 'clients',  // section is 'testimonial' for all testimonials
+      content: {
+        clientsList: apiData.content.map(clients => ({
+          src:  clients.src,
+          alt: clients.alt,
+          url: clients.url
+        }))
+      }
+    };
+
+    // Delete any existing data for the Testimonials section and insert the updated data
+    await Content.deleteMany({ section: 'clients' });
+    await Content.create(contentData);
+
+    console.log('clients section updated from Google Sheets');
+  } catch (error) {
+    console.error('Error fetching service clients data from API', error);
+  }
+};
 
 
 const fetchDataAndUpdateDatabase = async () => {
@@ -350,6 +388,7 @@ async function updateAllData() {
   await fetchAboutUsSectionAndUpdateDatabase();
   await fetchTestimonialsAndUpdateDatabase();
   await fetchServiceAndUpdateDatabase();
+  await fetchClientsAndUpdateDatabase();
 }
 
 // Start the server

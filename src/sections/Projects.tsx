@@ -10,12 +10,81 @@ interface Project {
   description: string;
   image: string;
   category: string;
-  progress: number;
 }
 
 const Projects: React.FC = () => {
-  const [projectsData, setProjectsData] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
+
+  const initialProjects: Project[] = [
+    {
+      id: 1,
+      title: "Mixer Plant Automation",
+      description: "Control Panel, PLC, VFD, Programming, SCADA Software Development, Commissioning of Plant. Integration of Instrumentation like Temperature, Weight etc.PID loop for temperature control.",
+      image: "https://drive.google.com/uc?export=view&id=1wCCLHVT9Ns9r_gRhNpWc60fbLEQhyKTA",
+      category: "Market research",
+    },
+    {
+      id: 2,
+      title: "Incinerators Plant Automation",
+      description: "Scope Of Work : Turnkey Electric Project including Distribution Panel, Control Panel, Field wiring, PLC, VFD, SCADA with IOT functions Instrumentation integrated like Temperature , Pressure, Flow, Burner Control System etc. VFD Synchronization with change in temperature.",
+      image: "https://drive.google.com/uc?export=view&id=1txzHviodjayVGIdK19xkGsVCpf3FKAL1",
+      category: "Market research",
+    },
+    {
+      id: 3,
+      title: "Water Treatment Plant Automation",
+      description: "Scope Of Work: Turn Key Electrical Project, Distribution Panels, Control Panels, MCC Panels, Field wiring, PLC, VFD, SCADA, Remote I/O Instrumentation Integrated: Actuators for Valves, Ultrasonic Level Sensors, Ph, Turbidity, Flow, Pressure etc.",
+      image: "https://drive.google.com/uc?export=view&id=1d52YS5EnJL_h3_HhDp3NymXZrrHbgf2w",
+      category: "Branding strategies",
+    },
+    {
+      id: 4,
+      title: "Wire Stranding Machine",
+      description: "Scope OF Supply: Control Panel, PLC, VFD, Field Wiring etc., Giving and Taking Command & Feedback to Robot ",
+      image: "https://drive.google.com/uc?export=view&id=1HgSmKAYGggF-R13A83xXIcGpYCVrTt24",
+      category: "Branding strategies",
+    },
+    {
+      id: 5,
+      title: "Special Purpose Machines",
+      description: "Scope OF Supply: Control Panel, PLC, Servo, etc., Control Panel, Field wiring, PLC, VFD .Instrumentation integrated like Temperature , Pressure, Flow, Servo Motion Control System etc.",
+      image: "https://drive.google.com/uc?export=view&id=1Y8us2yl1BH9uZkfbd4cpWzh2GOF07bzA",
+      category: "Branding strategies",
+    },
+    {
+      id: 6,
+      title: "Robo Interfacing With SPMs",
+      description: "Scope OF Supply: Control Panel, PLC, VFD, etc., VVFD Synchronization With Respect to Speed By Taking Encoder feedback .Instrumentation integrated like Temperature , Pressure,.",
+      image: "https://drive.google.com/uc?export=view&id=1C1FtKzzHlobf9kQRS1XjFoPWx1SKTSS8",
+      category: "Branding strategies",
+    },
+    {
+      id: 7,
+      title: "Foundry Core Making Machine",
+      description: "Scope OF Supply: Control Panel, PLC, VFD, etc., VVFD Synchronization With Respect to Speed By Taking Encoder feedback .Instrumentation integrated like Temperature , Pressure,. ",
+      image: "https://drive.google.com/uc?export=view&id=1-30m_3aG9Xqpwi0AbgjHd55s2a6dGvhM",
+      category: "Branding strategies",
+    },
+    {
+      id: 8,
+      title: "Heating Oven Temperature Traveling Recorder(TTR)",
+      description: "Scope OF Supply : Electrical Panel, HMI, Programming",
+      image: "https://drive.google.com/uc?export=view&id=1h2u0xLyN3RH6Hs1Ei1NtpFHDWbvvmb9u",
+      category: "Branding strategies",
+    },
+    {
+      id: 9,
+      title: "Rubber Winding Machine",
+      description: "Scope of Work: PLC , HMI Program Devlopment, Electrical Control Panel",
+      image: "https://drive.google.com/uc?export=view&id=17bM4LNNJ7N2W8AISy4CIVDo7S8_dL3PA",
+      category: "Branding strategies",
+    },
+  ];
+  
+
+
+  const [projectsData, setProjectsData] = useState<Project[]>(initialProjects); // Default state is initialProjects
+
+  // const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const CACHE_KEY = "projectsData";
@@ -32,7 +101,7 @@ const Projects: React.FC = () => {
 
         if (cacheAge < CACHE_EXPIRATION_MS) {
           setProjectsData(JSON.parse(cachedData));
-          setLoading(false);
+          // setLoading(false);
           return;
         }
       }
@@ -43,10 +112,10 @@ const Projects: React.FC = () => {
         setProjectsData(projectsList);
         localStorage.setItem(CACHE_KEY, JSON.stringify(projectsList));
         localStorage.setItem(CACHE_TIMESTAMP_KEY, Date.now().toString());
-        setLoading(false);
+        // setLoading(false);
       } catch (error) {
         console.error("Error fetching projects data:", error);
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
@@ -94,13 +163,11 @@ const Projects: React.FC = () => {
       <h1 className="text-5xl font-medium mb-12 text-center text-black">
         Our Projects
       </h1>
-      {loading ? (
-        <div className="text-center text-black">Loading...</div>
-      ) : (
+      
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-center">
           {projectsList}
         </div>
-      )}
+      
 
       {/* Lightbox Modal */}
       {selectedImage && (

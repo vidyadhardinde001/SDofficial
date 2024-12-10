@@ -60,7 +60,7 @@ export default function RootLayout({
         <meta name="twitter:image" content="/assets/twitter-image.jpg" />
 
         {/* Additional link and script tags */}
-        <link rel="canonical" href="https://siddhivinayakengineers.netlify.app/" />
+        <link rel="canonical" href="https://siddhivinayakengineers.co.in/" />
 
         {/* Schema.org JSON-LD Markup */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{

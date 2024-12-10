@@ -104,7 +104,7 @@ export const LogoTicker = () => {
               translateX: '-50%',
             }}
             transition={{
-              duration: 20,
+              duration: 10,
               repeat: Infinity,
               ease: 'linear',
               repeatType: 'loop',
@@ -116,8 +116,8 @@ export const LogoTicker = () => {
                 <Image
                   src={logo.src}
                   alt={logo.alt}
-                  width={130}
-                  height={70}
+                  width={150}
+                  height={200}
                   // style={logoStyle}
                 />
               </a>
@@ -129,8 +129,8 @@ export const LogoTicker = () => {
                 <Image
                   src={logo.src}
                   alt={logo.alt}
-                  width={130}
-                  height={70}
+                  width={150}
+                  height={200}
                   // style={logoStyle}
                 />
               </a>

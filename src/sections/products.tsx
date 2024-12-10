@@ -10,8 +10,6 @@ interface Product {
   details: string;
 }
 
-const CACHE_EXPIRATION_MS = 60 * 60 * 1000; // 1 hour
-
 const hardcodedData: Product[] = [
   {
     name: "Lubi Catalog",
@@ -59,24 +57,9 @@ const hardcodedData: Product[] = [
 const ProductGrid: React.FC = () => {
   const [products, setProducts] = useState<Product[]>(hardcodedData); // Initially show hardcoded data
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [visibleProductsCount, setVisibleProductsCount] = useState(5); // Initial number of products to show
-  const [isExpanded, setIsExpanded] = useState(false); // Track if the products are expanded
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const cachedProducts = localStorage.getItem('productData');
-      const cachedTimestamp = localStorage.getItem('cacheTimestamp');
-
-      // if (cachedProducts && cachedTimestamp) {
-      //   const now = new Date().getTime();
-      //   const cacheAge = now - parseInt(cachedTimestamp, 10);
-
-      //   if (cacheAge < CACHE_EXPIRATION_MS) {
-      //     setProducts(JSON.parse(cachedProducts));
-      //     return;
-      //   }
-      // }
-
       try {
         const response = await axios.get('/api/content/products');
         const productsData: Product[] = response.data.content.productsList;
@@ -84,8 +67,6 @@ const ProductGrid: React.FC = () => {
         // Ensure the response data is an array of products
         if (Array.isArray(productsData)) {
           setProducts(productsData);
-          localStorage.setItem('productData', JSON.stringify(productsData));
-          localStorage.setItem('cacheTimestamp', new Date().getTime().toString());
         } else {
           console.error('Received data is not an array:', productsData);
         }
@@ -97,20 +78,11 @@ const ProductGrid: React.FC = () => {
     fetchProducts();
   }, []);
 
-  const toggleProductVisibility = () => {
-    if (isExpanded) {
-      setVisibleProductsCount(5); // Show the initial 5 products
-    } else {
-      setVisibleProductsCount(products.length); // Show all products
-    }
-    setIsExpanded(!isExpanded); // Toggle the expanded state
-  };
-
   return (
     <div className="max-w-full mx-auto p-6 bg-white">
       <h2 className="text-5xl font-medium text-center mb-8">Our Products</h2>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-        {products.slice(0, visibleProductsCount).map((product, index) => (
+        {products.map((product, index) => (
           <div
             key={index}
             className="border rounded-lg p-4 hover:shadow-lg cursor-pointer flex flex-col items-center"
@@ -128,16 +100,6 @@ const ProductGrid: React.FC = () => {
             <h3 className="text-lg font-medium text-center">{product.name}</h3>
           </div>
         ))}
-      </div>
-
-      {/* See More / Show Less Button */}
-      <div className="text-center mt-6">
-        <button
-          onClick={toggleProductVisibility}
-          className="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-orange-600"
-        >
-          {isExpanded ? "Show Less" : "See More"}
-        </button>
       </div>
 
       {/* Product Details Modal */}

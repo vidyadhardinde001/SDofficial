@@ -6,8 +6,7 @@ import React, { useEffect, useState } from "react";
 const CACHE_EXPIRATION_MS = 60 * 60 * 1000;
 
 const ValuetoProduct = () => {
-  const [cards, setCards] = useState<string[]>([]);
-  const [showAll, setShowAll] = useState(false); // State to toggle "See More"
+  const [cards, setCards] = useState<string[]>([]); // State to store cards data
   const [isPortrait, setIsPortrait] = useState(false); // State to check orientation
 
   useEffect(() => {
@@ -63,50 +62,33 @@ const ValuetoProduct = () => {
     fetchData();
   }, []);
 
-  // Number of cards to show initially
-  const initialVisibleCards = 3;
-
   return (
     <div
-    className="mix-h-[60vh] flex flex-col items-center justify-center bg-fixed bg-cover bg-center relative"
-    style={{
-      backgroundImage: "url('/assets/industriesbg.webp')", // Replace with your background image path
-    }}
-  >
-    {/* Black Overlay */}
-    <div className="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
-  
-    {/* Centered Heading */}
-    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium py-10 px-[100px] sm:mb-6 text-white rounded-full text-center relative z-10 shadow-lg w-full">
-      How We Add Value to Our Products
-    </h2>
-  
-    {/* Main Content Section */}
-    <div className="w-full p-1 max-w-7xl grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-2 portrait:grid-cols-1 mb-10 relative z-10">
-      {(isPortrait && !showAll
-        ? cards.slice(0, initialVisibleCards)
-        : cards
-      ).map((item, index) => (
-        <div
-          key={index}
-          className="bg-[#313337] hover:text-[#ff7d38] text-white p-3 sm:p-4 md:p-5 lg:p-6 rounded-xl text-sm sm:text-base md:text-lg xl:text-xl flex items-center justify-center transition-all duration-300 ease-in-out overflow-hidden h-16 sm:h-20 md:h-24 lg:h-28"
-        >
-          <span className="text-center">{item}</span>
-        </div>
-      ))}
+      className="mix-h-[60vh] flex flex-col items-center justify-center bg-fixed bg-cover bg-center relative"
+      style={{
+        backgroundImage: "url('/assets/industriesbg.webp')", // Replace with your background image path
+      }}
+    >
+      {/* Black Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
+
+      {/* Centered Heading */}
+      <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-medium py-10 px-1 sm:mb-0 text-white rounded-full text-center relative z-10 shadow-lg w-full">
+        How We Add Value to Our Products
+      </h2>
+
+      {/* Main Content Section */}
+      <div className="w-full p-1 max-w-7xl grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-2 portrait:grid-cols-1 mb-10 relative z-10">
+        {cards.map((item, index) => (
+          <div
+            key={index}
+            className="bg-[#313337] hover:text-[#ff7d38] text-white p-3 sm:p-4 md:p-5 lg:p-6 rounded-xl text-sm sm:text-base md:text-lg xl:text-xl flex items-center justify-center transition-all duration-300 ease-in-out overflow-hidden h-16 sm:h-20 md:h-24 lg:h-28"
+          >
+            <span className="text-center">{item}</span>
+          </div>
+        ))}
+      </div>
     </div>
-  
-    {/* Show More / Show Less Button */}
-    {isPortrait && cards.length > initialVisibleCards && (
-      <button
-        onClick={() => setShowAll(!showAll)}
-        className="mb-4 px-4 bg-[#ff7d38] text-white font-medium rounded-lg hover:bg-[#ff9a60] transition-all duration-300 z-10"
-      >
-        {showAll ? "Show Less" : "See More"}
-      </button>
-    )}
-  </div>
-  
   );
 };
 

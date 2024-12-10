@@ -4,7 +4,7 @@ const MaintainPage = () => {
   return (
     <div className="bg-white text-black min-h-screen py-12 px-6 sm:px-10 lg:px-16">
       {/* Header Section */}
-      <h1 className="text-4xl sm:text-5xl font-extrabold text-center mb-10 uppercase text-gray-800">
+      <h1 className="text-4xl sm:text-5xl font-extrabold text-center mb-10 text-gray-800">
         Upgrading, Maintenance, and Repair Services
       </h1>
 
@@ -53,7 +53,7 @@ const MaintainPage = () => {
         <p className="text-lg sm:text-xl mb-6 text-justify">
           We provide a wide range of maintenance and repair solutions tailored to meet your specific needs:
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="p-6 bg-gray-100 rounded-lg shadow-md">
             <h3 className="font-bold text-xl mb-3 text-gray-800">
               Preventative Maintenance

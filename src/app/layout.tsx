@@ -79,8 +79,8 @@ export default function RootLayout({
               "addressCountry": "India" // Replace with your country
             },
             "telephone": "+91 7057272626", // Replace with your actual phone number
-            "logo": "https://siddhivinayakengineers.co.in/assets/logo1.ico", // Replace with your logo URL
-            "image": "https://siddhivinayakengineers.co.in/assets/og-image.jpg"
+            "logo": "https://siddhivinayakengineers.co.in/_next/image?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Dview%26id%3D1C1FtKzzHlobf9kQRS1XjFoPWx1SKTSS8&w=384&q=75", // Replace with your logo URL
+            "image": "https://siddhivinayakengineers.co.in/_next/image?url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Dview%26id%3D1C1FtKzzHlobf9kQRS1XjFoPWx1SKTSS8&w=384&q=75"
           })
         }} />
       </head>

@@ -62,15 +62,15 @@ const IndustriesWeServe: React.FC = () => {
       const cachedIndustries = localStorage.getItem("industriesData");
       const cachedTimestamp = localStorage.getItem("cacheTimestamp");
 
-      // if (cachedIndustries && cachedTimestamp) {
-      //   const now = new Date().getTime();
-      //   const cacheAge = now - parseInt(cachedTimestamp, 10);
+      if (cachedIndustries && cachedTimestamp) {
+        const now = new Date().getTime();
+        const cacheAge = now - parseInt(cachedTimestamp, 10);
 
-      //   if (cacheAge < CACHE_EXPIRATION_MS) {
-      //     setIndustries(JSON.parse(cachedIndustries));
-      //     return;
-      //   }
-      // }
+        if (cacheAge < CACHE_EXPIRATION_MS) {
+          setIndustries(JSON.parse(cachedIndustries));
+          return;
+        }
+      }
 
       try {
         const response = await axios.get("/api/content/industries");

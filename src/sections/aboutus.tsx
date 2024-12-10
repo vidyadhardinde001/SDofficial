@@ -8,6 +8,7 @@ interface AboutUsContent {
   heading: string;
   description: string[];
   stats: { value: string | number; label: string }[];
+  imageUrl: string;
   leadership: {
     name: string;
     role: string;
@@ -36,6 +37,7 @@ const LearningTransformation: React.FC = () => {
       { value: "50+", label: "Positive Reviews" },
       { value: "100+", label: "Trusted Clients" },
     ],
+    imageUrl : "/path-to-placeholder-leadership.jpg",
     leadership: {
       name: "Mr. Nikhil Sutar",
       role: "Founder & CEO",
@@ -63,6 +65,7 @@ const LearningTransformation: React.FC = () => {
         const response = await axios.get("/api/content/aboutUsSection");
         const data = response.data.content;
         setAboutUsContent(data);
+        console.log(data.imageUrl);
 
         localStorage.setItem(CACHE_KEY, JSON.stringify(data));
         localStorage.setItem(`${CACHE_KEY}_timestamp`, Date.now().toString());
@@ -96,7 +99,7 @@ const LearningTransformation: React.FC = () => {
           {/* Logo Section */}
           <div className="lg:col-span-1 flex justify-center items-center flex-col space-y-6">
             <Image
-              src={logo1.src}
+              src={content.imageUrl}
               alt="Company Logo"
               width={600}
               height={600}

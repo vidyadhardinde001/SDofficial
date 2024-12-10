@@ -5,21 +5,42 @@ import Image from "next/image";
 import MenuIcon from "@/assets/icons8-menu-64.png";
 import CloseIcon from "@/assets/cross.png"; // Import the Close Icon
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [logoUrl, setLogoUrl] = useState("");
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    // Fetch the logo URL from the API
+    const fetchLogo = async () => {
+      try {
+        const response = await fetch("/api/content/aboutUsSection"); // Replace with your actual API endpoint
+        const data = await response.json();
+        setLogoUrl(data.content.imageUrl); // Assuming `imageUrl` is the key for the image URL in the API response
+        console.log("error",data);
+      } catch (error) {
+        console.error("Failed to fetch logo URL:", error);
+      }
+    };
+
+    fetchLogo();
+  }, []);
 
   return (
     <header className="sticky top-0 backdrop-blur-lg z-50 bg-black">
       <div className="py-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            <Image src={logo} alt="Saas Logo" width={80} height={10} />
+          {logoUrl ? (
+              <Image src={logoUrl} alt="Dynamic Logo" width={80} height={10} />
+            ) : (
+              <Image src={logo} alt="Dynamic Logo" width={80} height={10} />
+            )}
 
             {/* Mobile Menu Button */}
             <button className="md:hidden ml-auto" onClick={handleMenuToggle}>

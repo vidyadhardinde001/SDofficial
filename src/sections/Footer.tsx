@@ -1,3 +1,6 @@
+"use client";
+
+
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/logo1.png";
@@ -5,7 +8,27 @@ import FacebookIcon from "@/assets/social-facebook.svg";
 import SocialInsta from "@/assets/social-insta.svg";
 import SocialLinkedIn from "@/assets/social-linkedin.svg";
 
+import { useEffect, useState } from "react";
+
 export const Footer = () => {
+
+  const [logoUrl, setLogoUrl] = useState(null);
+
+  useEffect(() => {
+    // Fetch the logo URL from the API
+    const fetchLogo = async () => {
+      try {
+        const response = await fetch("/api/content/aboutUsSection"); // Replace with your actual API endpoint
+        const data = await response.json();
+        setLogoUrl(data.content.imageUrl); // Assuming API response contains `imageUrl`
+        console.log(data.content.imageUrl);
+      } catch (error) {
+        console.error("Error fetching logo:", error);
+      }
+    };
+
+    fetchLogo();
+  }, []);
   return (
     <footer
       className="relative text-white py-12"
@@ -24,13 +47,24 @@ export const Footer = () => {
           {/* Company Information */}
           <div className="text-left">
             <div className="mb-4">
-              <Image
-                src={logo}
-                alt="Company Logo"
-                width={100}
-                height={100}
-                className="mx-auto md:mx-0"
-              />
+              {logoUrl ? (
+                <Image
+                  src={logoUrl}
+                  alt="Company Logo"
+                  width={100}
+                  height={100}
+                  className="mx-auto md:mx-0"
+                />
+              ) : (
+                // <p>Loading logo...</p>
+                <Image
+                  src={logo}
+                  alt="Company Logo"
+                  width={100}
+                  height={100}
+                  className="mx-auto md:mx-0"
+                />
+              )}
             </div>
             <p className="text-sm md:text-base">
               We are committed to developing custom automation and controls

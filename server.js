@@ -292,7 +292,7 @@ const fetchGalleryAndUpdateDatabase = async () => {
 const fetchAboutUsSectionAndUpdateDatabase = async () => {
   try {
     // Fetch the data from the API (replace with your actual URL)
-    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=jAh1H5cGJTRQCFmcIsSpUczJPFTk8cybMltga0owv9_kknMZyXc2v6xodag8KLa6BgCDrQSJlIJ9FYET8KgCWngnRB4h7r89m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPqMLSOjrwHZzK4mYvDdiHLGQJ-sHsTjH8OGIT8v3wDXNf-klVZLuzilP1FveXtpdQO_gPawdAHBn8CdIZfxHGG40252Hhbnptz9Jw9Md8uu&lib=MmfELZ3pWjpi07YwspSVeGEoLBlaE9kY8');
+    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=UKCaMEnrO0ZRu74BhggcSjMJsD1P4iKtLXMItNZa2zoh_rP_zqMSfiWXAomo6uv_cRHwdN_R8xCqGNFAGd_FU6dT1ZYbjZpSm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPqMLSOjrwHZzK4mYvDdiHLGQJ-sHsTjH8OGIT8v3wDXNf-klVZLuzilP1FveXtpdQO_gPawdAHBn8CdIZfxHGG40252Hhbnptz9Jw9Md8uu&lib=MmfELZ3pWjpi07YwspSVeGEoLBlaE9kY8');
     const apiData = response.data;
 
     // Structure the data as per the Content model

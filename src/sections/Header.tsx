@@ -32,7 +32,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <header className="sticky top-0 backdrop-blur-lg z-50 bg-black">
+    <header className="sticky top-0 backdrop-blur-lg z-50 bg-white">
       <div className="py-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
@@ -50,7 +50,7 @@ export const Header = () => {
                   alt="Close Menu"
                   width={24}
                   height={24}
-                  className="invert filter"
+                  className=""
                 />
               ) : (
                 <Image
@@ -58,58 +58,51 @@ export const Header = () => {
                   alt="Open Menu"
                   width={24}
                   height={24}
+                  className = "invert filter"
                 />
               )}
             </button>
 
             {/* Desktop Navigation Links */}
             <nav
-              className={`hidden md:flex lg:gap-14 md:gap-8 text-white justify-center items-center bg-black px-4 py-2 rounded-full sm:w-[320px] md:w-[500px] lg:w-[700px] xl:w-[1200px] max-w-screen-md mx-auto`}
+              className={`hidden md:flex lg:gap-14 md:gap-8 text-black justify-center items-center bg-white px-4 py-2 rounded-full sm:w-[320px] md:w-[500px] lg:w-[700px] xl:w-[1200px] max-w-screen-md mx-auto`}
             >
               <Link
                 href="/"
-                className="relative group hover:text-white font-semibold"
+                className="relative group hover:text-orange-400 font-semibold"
               >
                 Home
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
               <Link
                 href="/projects"
-                className="relative group hover:text-white font-semibold"
+                className="relative group hover:text-orange-400 font-semibold"
               >
                 Projects
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
               <Link
                 href="/gallery"
-                className="relative group hover:text-white font-semibold"
+                className="relative group hover:text-orange-400 font-semibold"
               >
                 Gallery
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
               <Link
                 href="/contactus"
-                className="relative group hover:text-white font-semibold"
+                className="relative group hover:text-orange-400 font-semibold"
               >
                 Contact
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
               <Link
                 href="/aboutus"
-                className="relative group hover:text-white font-semibold"
+                className="relative group hover:text-orange-400 font-semibold"
               >
                 About Us
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#ff9f6c] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>
             </nav>
-
-            {/* Call Us Button for Desktop */}
-            {/* <a
-              href="tel:+91 7057272626"
-              className="bg-[#FE6D20] hover:bg-[#ff9f6c] text-white px-4 py-2 rounded-md font-medium inline-flex justify-center tracking-tight ml-auto hidden md:block"
-            >
-              Call Us
-            </a> */}
           </div>
         </div>
       </div>

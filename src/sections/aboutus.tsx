@@ -37,7 +37,7 @@ const LearningTransformation: React.FC = () => {
       { value: "50+", label: "Positive Reviews" },
       { value: "100+", label: "Trusted Clients" },
     ],
-    imageUrl : "/path-to-placeholder-leadership.jpg",
+    imageUrl : "/assets/logo1.jpg",
     leadership: {
       name: "Mr. Nikhil Sutar",
       role: "Founder & CEO",

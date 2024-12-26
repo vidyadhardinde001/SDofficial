@@ -51,9 +51,9 @@ export const Footer = () => {
                 <Image
                   src={logoUrl}
                   alt="Company Logo"
-                  width={100}
-                  height={100}
-                  className="mx-auto md:mx-0"
+                  width={200}
+                  height={200}
+                  className="mx-auto md:mx-0 bg-white rounded-lg"
                 />
               ) : (
                 // <p>Loading logo...</p>
@@ -120,14 +120,14 @@ export const Footer = () => {
           </div>
 
           {/* Get In Touch */}
-          <div className="text-left">
+          <div className="text-left w-[400px]">
             <h3 className="text-lg font-bold text-orange-400 mb-4">
               Get In Touch
             </h3>
             <ul className="space-y-2">
               <li>📍 Arjunwad</li>
               <li>📞 +91 7057272626</li>
-              <li>📧 siddhivinayakengineers19@gmail.com</li>
+              <li className="underline">📧 siddhivinayakengineers19@gmail.com</li>
               <li>⏱ 24/7 Emergency Service</li>
             </ul>
           </div>

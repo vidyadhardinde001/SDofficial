@@ -100,7 +100,7 @@ const LearningTransformation: React.FC = () => {
           <div className="lg:col-span-1 flex justify-center items-center flex-col space-y-6">
             <Image
               src={content.imageUrl}
-              alt="Company Logo"
+              alt="Siddhivinayak Engineers Logo"
               width={600}
               height={600}
               className="object-contain"

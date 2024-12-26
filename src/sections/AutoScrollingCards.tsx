@@ -101,16 +101,9 @@ const AutoScrollingCards: React.FC = () => {
                   alt={project.title}
                   width={400}
                   height={300}
-                  className="w-full h-[40vh] sm:h-[45vh] md:h-[300px] object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-[40vh] sm:h-[45vh] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-500"
                 />
 
-                {/* Overlay with description */}
-                <div className="absolute text-sm inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="text-center text-white px-4">
-                    {/* Description */}
-                    <p className="text-xs sm:text-sm">{project.description}</p>
-                  </div>
-                </div>
               </div>
 
               {/* Title Section */}

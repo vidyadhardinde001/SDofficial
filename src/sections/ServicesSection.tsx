@@ -110,23 +110,18 @@ const ServicesSection: React.FC = () => {
               </div>
 
               <div>
+                {/* Clickable Heading */}
                 <h3 className="text-xl mb-6 font-semibold text-[#ff7d38] text-center">
-                  {service.name}
+                  <Link href={service.read_more_path} className="hover:underline">
+                    {service.name}
+                  </Link>
                 </h3>
 
-                {/* Always show description and link */}
+                {/* Description */}
                 <div className="space-y-4">
                   <p className="text-black text-left text-sm sm:text-base">
                     {service.description}
                   </p>
-                  <div className="text-center">
-                    <Link
-                      href={service.read_more_path}
-                      className="text-[#ff3838] font-bold underline"
-                    >
-                      READ MORE
-                    </Link>
-                  </div>
                 </div>
               </div>
             </div>

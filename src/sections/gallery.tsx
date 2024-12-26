@@ -114,7 +114,7 @@ const Gallery: React.FC = () => {
     <div className="mx-auto px-4 py-8 bg-white">
       {/* Gallery Title */}
       <div className="text-center mb-8">
-        <h2 className="text-4xl font-bold mb-4">Gallery</h2>
+        <h2 className="text-5xl font-medium mb-4">Gallery</h2>
       </div>
 
       {/* Loading Indicator */}

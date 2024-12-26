@@ -37,9 +37,9 @@ export const Header = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
           {logoUrl ? (
-              <Image src={logoUrl} alt="Dynamic Logo" width={80} height={10} />
+              <Image src={logoUrl} alt="Dynamic Logo" width={110} height={100} />
             ) : (
-              <Image src={logo} alt="Dynamic Logo" width={80} height={10} />
+              <Image src={logo} alt="Dynamic Logo" width={110} height={100} />
             )}
 
             {/* Mobile Menu Button */}

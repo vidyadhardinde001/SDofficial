@@ -100,7 +100,7 @@ export const Hero = () => {
 
       <section
         ref={heroRef}
-        className={`relative overflow-hidden flex items-center min-h-[70vh] sm:min-h-[80vh] ${
+        className={`relative overflow-hidden flex items-center min-h-[70vh] sm:min-h-[90vh] ${
           isPortrait ? "justify-center text-center" : "justify-start text-left"
         }`}
       >
@@ -122,11 +122,11 @@ export const Hero = () => {
         </div>
 
         {/* Black Gradient Overlay */}
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-black via-black/80 to-black/0 -z-10"></div>
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-black via-black/70 to-black/0 -z-10"></div>
 
         {/* Content */}
         <div
-          className={`relative z-10 flex flex-col w-full px-4 sm:px-6 lg:px-[200px] ${
+          className={`relative z-10 flex flex-col w-full px-4 sm:px-6 lg:px-[50px] ${
             isPortrait ? "items-center" : "items-start"
           }`}
         >
@@ -189,10 +189,10 @@ export const Hero = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link
-              href="/projects"
+              href="#services"
               className="bg-orange-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md transition hover:bg-orange-600 text-sm sm:text-base"
             >
-              Go to Projects
+              Go to Services
             </Link>
             <Link
               href="/contactus"

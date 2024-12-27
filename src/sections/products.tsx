@@ -18,37 +18,37 @@ const hardcodedData: Product[] = [
   },
   {
     name: "SMPS",
-    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
+    image: "https://drive.google.com/uc?export=view&id=1HN1QWq4McL3yEkattEwwryY3hI30eAVJ",
     pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "Motors",
-    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
+    image: "https://drive.google.com/uc?export=view&id=1_7J20t1NUY8oTX5g6_O7U0E7QNVzontL",
     pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "VFD",
-    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
+    image: "https://drive.google.com/uc?export=view&id=18m72OxcU5DUxYuNqkEj_p-UWUckE88RF",
     pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "Temperature Controller",
-    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
+    image: "https://drive.google.com/uc?export=view&id=1O8-5YAl9MFmL9CdnGzoGm3zgbQaUO_pc",
     pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "PLC",
-    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
+    image: "https://drive.google.com/uc?export=view&id=1B_luix_ZiNqFvloy4RkbEJKbnKahfAmq",
     pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "Encoders",
-    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
+    image: "https://drive.google.com/uc?export=view&id=1yEbNjc5GYdD9HIY8W67_wfhRh5crx6QK",
     pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "HMI",
-    image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
+    image: "https://drive.google.com/uc?export=view&id=1yUosAAeAGk3OIlATMktF0L_uiHbRyj0F",
     pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
 ];

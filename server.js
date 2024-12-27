@@ -368,11 +368,12 @@ const fetchValueToProductAndUpdateDatabase = async () => {
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'adityakhandare8320@gmail.com', // Replace with your email
-    pass: 'asnx dmwh azyy ruhm' // Replace with your email password
+    user: 'siddhivinayakengineers19@gmail.com', // Replace with your email
+    pass: 'qkvk xevp sxcz ohxf' // Replace with your email password
   }
 });
 
+// qkvk xevp sxcz ohxf
 // asnx dmwh azyy ruhm
 // nvmn lylk fcjl cajk
 
@@ -383,7 +384,7 @@ app.post('/api/contact', async (req, res) => {
   // Email options
   const mailOptions = {
     from: email, // Your email address
-    to: 'adityakhandare8320@gmail.com', // Your email address to receive the message
+    to: 'siddhivinayakengineers19@gmail.com', // Your email address to receive the message
     replyTo: email, // User's email address for replies
     subject: `Contact Form Submission from ${name}`, // Subject line
     text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}` // Email body

@@ -68,6 +68,9 @@ export const Hero = () => {
           new Date().getTime().toString()
         );
       } catch (error) {
+        const response = await axios.get("https://script.googleusercontent.com/macros/echo?user_content_key=yIf-C8I1vOPKOskf4jp7kVUTG7mpBLmSb3_HFPvEwkpOpR3ncZau8PmWyC0iGGJCf_18hywsRE2UfI1h8vsc29XncDIATNFJm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPSes8K7rVC4cBQF2LqNz5wTxp2unB-jQa368GhxUbYHGxZqVBdM0i6thF3ZyONz4XQJmmtVdaPpBUVnQgDnpzCJuDlzVxqDkQ&lib=MhOghx2ivbIsU-792mgpTLfZ1uKL4_q0K");
+        const data = response.data.content;
+        setHeroContent(data);
         console.error("Error fetching Hero content:", error);
       }
     };

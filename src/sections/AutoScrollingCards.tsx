@@ -25,6 +25,9 @@ const AutoScrollingCards: React.FC = () => {
         setProjects(projectsList.slice(0, 10)); // Limit to 10 projects
       } catch (error) {
         console.error("Error fetching projects:", error);
+        const response = await axios.get("https://script.googleusercontent.com/macros/echo?user_content_key=jWiOjkrf2ctn2AgdYjCviqqnE6ug9Aidd_OROLJcY_0LmgfZYVE-7st50YzWi5_2L3aAFqee5F2Ppmd-pptFj4drARAV7L3xm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNsCMzeldO4Xb_scTkAnMat5qCrKwegdmpVCvGZHadmqfYT3XWzQJwz-y7I4-Gds87a84TYTPQIyHJ2wmYtgjIjbkze09Tcvtg&lib=MLI_HfzysNsvwOtnrQy7NCvZ1uKL4_q0K");
+        const projectsList = response.data.content.projectsList;
+        setProjects(projectsList.slice(0, 10));
       }
     };
 

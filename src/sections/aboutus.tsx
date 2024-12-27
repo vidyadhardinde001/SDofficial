@@ -71,6 +71,9 @@ const LearningTransformation: React.FC = () => {
         localStorage.setItem(`${CACHE_KEY}_timestamp`, Date.now().toString());
       } catch (error) {
         console.error("Error fetching about us section content", error);
+        const response = await axios.get("https://script.googleusercontent.com/macros/echo?user_content_key=nlaUMw9FNa1EIqEuKLu-gjrPZTAxppG7Ziwc7GEhbdRwh2nOrIPC6-BfBnAo2DQlvyS35k0QYkWOAcylyFqhm0OPRqQO4bJym5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPqMLSOjrwHZzK4mYvDdiHLGQJ-sHsTjH8OGIT8v3wDXNf-klVZLuzilP1FveXtpdQO_gPawdAHBn8CdIZfxHGG40252Hhbnptz9Jw9Md8uu&lib=MmfELZ3pWjpi07YwspSVeGEoLBlaE9kY8");
+        const data = response.data.content;
+        setAboutUsContent(data);
       }
     };
 

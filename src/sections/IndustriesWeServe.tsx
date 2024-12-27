@@ -85,6 +85,9 @@ const IndustriesWeServe: React.FC = () => {
         }
       } catch (error) {
         console.error("Error fetching industries:", error);
+        const response = await axios.get("https://script.googleusercontent.com/macros/echo?user_content_key=jWOM0L0LTwC9om75TT2z4H4Ml35KlGll3af_vW4szjiksEFTR_hxIetZvbEvr9MZ--TcuxQ2_2gkJau_z0qwl8T0-l072qUkm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBSm_USY4GSQ8Tca1sNRFpaiQ2g2GjE9ijJtY7fOPRD6yfShoFAtt0-kav1ZSmGKDIz4eD8bdqOgW7FGS2Wq8KwuVInP8lnoBQ&lib=MvLWOAv6XvPFl5sKePnYpffZ1uKL4_q0K");
+        const industriesData: Industry[] = response.data.content.IndustryList;
+        setIndustries(industriesData);
       }
     };
 

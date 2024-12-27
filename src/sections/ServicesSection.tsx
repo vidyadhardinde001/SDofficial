@@ -59,6 +59,9 @@ const ServicesSection: React.FC = () => {
         }
       } catch (error) {
         console.error("Error fetching services", error);
+        const response = await axios.get("https://script.googleusercontent.com/macros/echo?user_content_key=JGbLHgO0yId23NSD3Vjcdcu-IwXoP1VvEbG2sy83zCBsfWdk85LVH7oL-rPXLNcTGfw4NBXlqsN01eF7ytYEO5HYwT03wq69m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNoX58wTQim0ILrxFrnQhDK3QdGrvJjxiQBZHnv9-GHTostibzxAxZOFK9eI4qiW375_kc9TEa_2YZYOTXb83n9wIzU36-wAq9z9Jw9Md8uu&lib=M2CSbHZUJlxxbq7HKujHoQ0oLBlaE9kY8");
+        const data = response.data.content;
+        setServices(data.serviceList);
       }
     };
 

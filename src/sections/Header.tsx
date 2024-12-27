@@ -24,6 +24,9 @@ export const Header = () => {
         setLogoUrl(data.content.imageUrl); // Assuming `imageUrl` is the key for the image URL in the API response
         console.log("error",data);
       } catch (error) {
+        const response = await fetch("https://script.googleusercontent.com/macros/echo?user_content_key=nlaUMw9FNa1EIqEuKLu-gjrPZTAxppG7Ziwc7GEhbdRwh2nOrIPC6-BfBnAo2DQlvyS35k0QYkWOAcylyFqhm0OPRqQO4bJym5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPqMLSOjrwHZzK4mYvDdiHLGQJ-sHsTjH8OGIT8v3wDXNf-klVZLuzilP1FveXtpdQO_gPawdAHBn8CdIZfxHGG40252Hhbnptz9Jw9Md8uu&lib=MmfELZ3pWjpi07YwspSVeGEoLBlaE9kY8"); // Replace with your actual API endpoint
+        const data = await response.json();
+        setLogoUrl(data.content.imageUrl);
         console.error("Failed to fetch logo URL:", error);
       }
     };

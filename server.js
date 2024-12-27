@@ -25,7 +25,7 @@ app.use(cors({
   }
 }));
 
-console.log('MongoDB URI:', process.env.MONGODB_URI); // Add this line
+// console.log('MongoDB URI:', process.env.MONGODB_URI); // Add this line
 
 
 mongoose.connect(process.env.MONGODB_URI,{
@@ -53,17 +53,17 @@ mongoose.connection.on('error', (err) => {
 const fetchTestimonialsAndUpdateDatabase = async () => {
   try {
     // Fetch the data from the API (replace with your actual URL)
-    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=tlX-MehkG-lKwsHWM7UNM6twD8D9X0CJ6SLs6p6o3LUFwPiBcX59WKJHRVyjVP7MFznqBD-wJHv43Gz4_MwY9646o6ob-DCsm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnLFuKCgEWsBYL5ih1GLrw_2Aq1_nbXwB7Ez55Ds0baFPdUl_v-59Hr7ddiIy0rv5e0pIllKAJq6KhAu4ukK2YssAX6upMKUJlA&lib=M7zoeFMcLY1Nf1brj8mesNvZ1uKL4_q0K');
+    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=gANT39kqQv4E2y1lrKmrphqFeLR1DAHRchg5DC0vvczwYtW1IDSEBdVfW2KV7ZzaloGsbT47X1nE7AQ0m5Txysy31atGWnnhm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnLFuKCgEWsBYL5ih1GLrw_2Aq1_nbXwB7Ez55Ds0baFPdUl_v-59Hr7ddiIy0rv5e0pIllKAJq6KhAu4ukK2YssAX6upMKUJlA&lib=M7zoeFMcLY1Nf1brj8mesNvZ1uKL4_q0K');
     
-    // Check if the response and content data exists
-    if (!response.data || !Array.isArray(response.data.content)) {
-      throw new Error('Invalid or empty content data');
+    // Check if the response and testimonialList data exists
+    if (!response.data || !response.data.content || !Array.isArray(response.data.content.testimonialList)) {
+      throw new Error('Invalid or empty testimonialList data');
     }
 
     const apiData = response.data;
 
     // Ensure that we have data to map
-    if (apiData.content.length === 0) {
+    if (apiData.content.testimonialList.length === 0) {
       console.warn('No testimonials found in the API data');
       return; // Or handle empty data as needed
     }
@@ -72,7 +72,7 @@ const fetchTestimonialsAndUpdateDatabase = async () => {
     const contentData = {
       section: 'testimonial',  // section is 'testimonial' for all testimonials
       content: {
-        testimonialList: apiData.content.map(testimonial => ({
+        testimonialList: apiData.content.testimonialList.map(testimonial => ({
           name: testimonial.name,
           testimonial: testimonial.testimonial,
           avatarUrl: testimonial.avatarUrl
@@ -90,20 +90,21 @@ const fetchTestimonialsAndUpdateDatabase = async () => {
   }
 };
 
+
 const fetchServiceAndUpdateDatabase = async () => {
   try {
     // Fetch the data from the API (replace with your actual URL)
-    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=-M5A8mgAzhrAvupKNAFJnhUAJUfUecg-FHDlY_icWAR8_LxM0Bnx2MgaOT8KkUPLU0MhgAFGONizlwhcUP2WmGEi0pGEns6tm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNoX58wTQim0ILrxFrnQhDK3QdGrvJjxiQBZHnv9-GHTostibzxAxZOFK9eI4qiW375_kc9TEa_2YZYOTXb83n9wIzU36-wAq9z9Jw9Md8uu&lib=M2CSbHZUJlxxbq7HKujHoQ0oLBlaE9kY8');
+    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=JGbLHgO0yId23NSD3Vjcdcu-IwXoP1VvEbG2sy83zCBsfWdk85LVH7oL-rPXLNcTGfw4NBXlqsN01eF7ytYEO5HYwT03wq69m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNoX58wTQim0ILrxFrnQhDK3QdGrvJjxiQBZHnv9-GHTostibzxAxZOFK9eI4qiW375_kc9TEa_2YZYOTXb83n9wIzU36-wAq9z9Jw9Md8uu&lib=M2CSbHZUJlxxbq7HKujHoQ0oLBlaE9kY8');
     
     // Check if the response and content data exists
-    if (!response.data || !Array.isArray(response.data.content)) {
+    if (!response.data || !response.data.content || !Array.isArray(response.data.content.serviceList)) {
       throw new Error('Invalid or empty content data');
     }
 
     const apiData = response.data;
 
     // Ensure that we have data to map
-    if (apiData.content.length === 0) {
+    if (apiData.content.serviceList.length === 0) {
       console.warn('No service found in the API data');
       return; // Or handle empty data as needed
     }
@@ -112,7 +113,7 @@ const fetchServiceAndUpdateDatabase = async () => {
     const contentData = {
       section: 'service',  // section is 'testimonial' for all testimonials
       content: {
-        serviceList: apiData.content.map(service => ({
+        serviceList: apiData.content.serviceList.map(service => ({
           image:  service.image,
           name: service.name,
           description: service.description,
@@ -134,18 +135,18 @@ const fetchServiceAndUpdateDatabase = async () => {
 const fetchClientsAndUpdateDatabase = async () => {
   try {
     // Fetch the data from the API (replace with your actual URL)
-    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=GgB36ODmEYtmIg5BtVF5lJu4t3SKHzn6cK0Ch38hfxKrqvSyRbR3q6N8ZP94J4t9HdwVxqydxkhoku9s2CvY3GAf4Xuj_A3hm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKbES-7aEjHyludqHW24UDeyqd_nTAp1qkKYGXDiRJ_E35GG8uU1tG7jjt5KmL-SKUp2DOLQ2inzdYcb2CkXj4F2sgp6fkp_uA&lib=MD3k01dNQnOzBmwiq3sDuNPZ1uKL4_q0K');
+    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=XE6VU7KrXAv_AfT6lB_EjczQE34Cntbh-fofCeehVSooTEiayCvnF0XmF9uElaWHoBJuOAZ_5D3GXGJ9TXEO0ZHubWQWm63Gm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKbES-7aEjHyludqHW24UDeyqd_nTAp1qkKYGXDiRJ_E35GG8uU1tG7jjt5KmL-SKUp2DOLQ2inzdYcb2CkXj4F2sgp6fkp_uA&lib=MD3k01dNQnOzBmwiq3sDuNPZ1uKL4_q0K');
     
     // Check if the response and content data exists
-    if (!response.data || !Array.isArray(response.data.content)) {
+    if (!response.data || !response.data.content || !Array.isArray(response.data.content.clientsList)) {
       throw new Error('Invalid or empty content data');
     }
 
     const apiData = response.data;
 
     // Ensure that we have data to map
-    if (apiData.content.length === 0) {
-      console.warn('No service found in the API data');
+    if (apiData.content.clientsList.length === 0) {
+      console.warn('No clients found in the API data');
       return; // Or handle empty data as needed
     }
 
@@ -153,7 +154,7 @@ const fetchClientsAndUpdateDatabase = async () => {
     const contentData = {
       section: 'clients',  // section is 'testimonial' for all testimonials
       content: {
-        clientsList: apiData.content.map(clients => ({
+        clientsList: apiData.content.clientsList.map(clients => ({
           src:  clients.src,
           alt: clients.alt,
           url: clients.url
@@ -167,14 +168,14 @@ const fetchClientsAndUpdateDatabase = async () => {
 
     console.log('clients section updated from Google Sheets');
   } catch (error) {
-    console.error('Error fetching service clients data from API', error);
+    console.error('Error fetching clients clients data from API', error);
   }
 };
 
 const fetchProductsAndUpdateDatabase = async () => {
   try {
     // Fetch the data from the API (replace with your actual URL)
-    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=weFDPhGDwdgsi2HF7UBUWBYvIgBPOU-P_bVknHGk9cN8n5GInhqRoqb4ACxA8JEReFO9kJCYfzadpnNZtQLBUVvzS4IWC7K2m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPGA1O4dOPqZXE6WR3R49X367kDH2zimDotuDPPe7A8kMNBl6DjA0J6clvv0ruCw9Hh-h_ajE_L6UKhGefqF4yupPWp7YHZz8w&lib=MQWkvGjJpPe-8AF3btGDFevZ1uKL4_q0K');
+    const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=EsAvQO09Z1k2nxGcWhJ7ilXCZmmrfbu5rCIaCoE4w_0fDx1BJ5RqbShO-EGZnVx0lZL7ZIWMarnI9jADFHru4PGM3pyTTVEMm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPGA1O4dOPqZXE6WR3R49X367kDH2zimDotuDPPe7A8kMNBl6DjA0J6clvv0ruCw9Hh-h_ajE_L6UKhGefqF4yupPWp7YHZz8w&lib=MQWkvGjJpPe-8AF3btGDFevZ1uKL4_q0K');
     
     // Check if the response and content data exists
     if (!response.data || !Array.isArray(response.data.content)) {
@@ -196,7 +197,7 @@ const fetchProductsAndUpdateDatabase = async () => {
         productsList: apiData.content.map(products => ({
           name:  products.name,
           image: products.image,
-          details: products.details
+          pdf: products.pdf
         }))
       }
     };
@@ -367,11 +368,12 @@ const fetchValueToProductAndUpdateDatabase = async () => {
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'adityakhandare8320@gmail.com', // Replace with your email
-    pass: 'asnx dmwh azyy ruhm' // Replace with your email password
+    user: 'siddhivinayakengineers19@gmail.com', // Replace with your email
+    pass: 'qkvk xevp sxcz ohxf' // Replace with your email password
   }
 });
 
+// qkvk xevp sxcz ohxf
 // asnx dmwh azyy ruhm
 // nvmn lylk fcjl cajk
 
@@ -382,7 +384,7 @@ app.post('/api/contact', async (req, res) => {
   // Email options
   const mailOptions = {
     from: email, // Your email address
-    to: 'adityakhandare8320@gmail.com', // Your email address to receive the message
+    to: 'siddhivinayakengineers19@gmail.com', // Your email address to receive the message
     replyTo: email, // User's email address for replies
     subject: `Contact Form Submission from ${name}`, // Subject line
     text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}` // Email body

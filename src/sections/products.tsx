@@ -7,76 +7,60 @@ import axios from "axios";
 interface Product {
   name: string;
   image: string;
-  details: string;
+  pdf: string;  // Add PDF link to the product data
 }
 
 const hardcodedData: Product[] = [
   {
     name: "Lubi Catalog",
     image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
-    details: "Lubi Catalog provides comprehensive solutions for various industrial needs.",
+    pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "SMPS",
     image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
-    details: "SMPS (Switched Mode Power Supply) ensures efficient power delivery.",
+    pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "Motors",
     image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
-    details: "High-performance motors for industrial and commercial applications.",
+    pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "VFD",
     image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
-    details: "Variable Frequency Drives for controlling motor speed efficiently.",
+    pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "Temperature Controller",
     image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
-    details: "Precision temperature controllers for diverse industrial processes.",
+    pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "PLC",
     image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
-    details: "Programmable Logic Controllers for automation and control systems.",
+    pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "Encoders",
     image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
-    details: "Encoders for precise motion control and positioning.",
+    pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "HMI",
     image: "https://drive.google.com/uc?export=view&id=1BVqrRRB4Plnn7OOtJ1uWlo0GbeFapR84",
-    details: "Human-Machine Interface solutions for seamless user interaction.",
+    pdf: "https://drive.google.com/file/d/1ftLX6aqz0USMwO4uqQhPn2k_qO_ETT5i/view?usp=sharing",  // Open PDF in browser
   },
-  // Add other products here
 ];
 
 const ProductGrid: React.FC = () => {
   const [products, setProducts] = useState<Product[]>(hardcodedData); // Initially show hardcoded data
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get('/api/content/products');
-        const productsData: Product[] = response.data.content.productsList;
-
-        // Ensure the response data is an array of products
-        if (Array.isArray(productsData)) {
-          setProducts(productsData);
-        } else {
-          console.error('Received data is not an array:', productsData);
-        }
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+  const handleProductClick = (product: Product) => {
+    // Open PDF in a new window/tab
+    const pdfUrl = product.pdf;
+    window.open(pdfUrl, "_blank");
+  };
 
   return (
     <div className="max-w-full mx-auto p-6 bg-white">
@@ -86,9 +70,9 @@ const ProductGrid: React.FC = () => {
           <div
             key={index}
             className="border rounded-lg p-4 hover:shadow-lg cursor-pointer flex flex-col items-center"
-            onClick={() => setSelectedProduct(product)}
+            onClick={() => handleProductClick(product)}  // Open PDF on click
           >
-            <div className="relative w-full h-32 mb-4"> {/* Fixed image size */}
+            <div className="relative w-full h-32 mb-4">
               <Image
                 src={product.image}
                 alt={product.name}
@@ -101,22 +85,6 @@ const ProductGrid: React.FC = () => {
           </div>
         ))}
       </div>
-
-      {/* Product Details Modal */}
-      {selectedProduct && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full">
-            <h3 className="text-xl font-bold mb-4">{selectedProduct.name}</h3>
-            <p className="mb-6">{selectedProduct.details}</p>
-            <button
-              onClick={() => setSelectedProduct(null)}
-              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

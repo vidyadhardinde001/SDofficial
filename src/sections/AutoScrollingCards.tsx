@@ -111,16 +111,16 @@ const AutoScrollingCards: React.FC = () => {
                 />
               </div>
 
-              {/* Title Section */}
-              <div className="bg-orange-500 text-white text-center py-2 group-hover:bg-white group-hover:text-orange-500 transition-all duration-300">
-                <h3 className="text-xs sm:text-sm md:text-base font-semibold">
-                  {project.title}
-                </h3>
+                {/* Title Section */}
+                <div className="bg-orange-500 text-white text-center py-2 group-hover:bg-white group-hover:text-orange-500 transition-all duration-300">
+                  <h3 className="text-xs sm:text-sm md:text-base font-semibold">
+                    {project.title}
+                  </h3>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
       {/* Arrow Controls */}
       <div className="flex justify-center mt-4 gap-4">

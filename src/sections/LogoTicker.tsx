@@ -106,22 +106,23 @@ export const LogoTicker = () => {
           </div>
 
           <div className="relative flex items-center">
-            {/* Left Arrow */}
-            <button
-              onClick={() => handleScroll('left')}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
-            >
-              <span className="text-2xl font-bold">&#8249;</span>
-            </button>
+  {/* Left Arrow */}
+  <button
+    onClick={() => handleScroll('left')}
+    className="absolute left-0 top-[calc(50%+10px)] transform -translate-y-1/2 w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
+  >
+    <span className="text-2xl font-bold">&#8249;</span>
+  </button>
 
-            {/* Right Arrow */}
-            <button
-              onClick={() => handleScroll('right')}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
-            >
-              <span className="text-2xl font-bold">&#8250;</span>
-            </button>
-          </div>
+  {/* Right Arrow */}
+  <button
+    onClick={() => handleScroll('right')}
+    className="absolute right-0 top-[calc(50%+10px)] transform -translate-y-1/2 w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
+  >
+    <span className="text-2xl font-bold">&#8250;</span>
+  </button>
+</div>
+
         </div>
       </div>
     </div>

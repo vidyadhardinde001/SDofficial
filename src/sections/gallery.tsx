@@ -6,56 +6,56 @@ import axios from "axios";
 const Gallery: React.FC = () => {
   const initialGalleryImages = [
     {
-        id: 1,
-        src: "https://drive.google.com/uc?export=view&id=1wCCLHVT9Ns9r_gRhNpWc60fbLEQhyKTA",
-        alt: "Mixer",
+      id: 1,
+      src: "https://drive.google.com/uc?export=view&id=1wCCLHVT9Ns9r_gRhNpWc60fbLEQhyKTA",
+      alt: "Mixer",
     },
     {
-        id: 2,
-        src: "https://drive.google.com/uc?export=view&id=1C1FtKzzHlobf9kQRS1XjFoPWx1SKTSS8",
-        alt: "Robo",
+      id: 2,
+      src: "https://drive.google.com/uc?export=view&id=1C1FtKzzHlobf9kQRS1XjFoPWx1SKTSS8",
+      alt: "Robo",
     },
     {
-        id: 3,
-        src: "https://drive.google.com/uc?export=view&id=1-30m_3aG9Xqpwi0AbgjHd55s2a6dGvhM",
-        alt: "Foundary",
+      id: 3,
+      src: "https://drive.google.com/uc?export=view&id=1-30m_3aG9Xqpwi0AbgjHd55s2a6dGvhM",
+      alt: "Foundary",
     },
     {
-        id: 4,
-        src: "https://drive.google.com/uc?export=view&id=1txzHviodjayVGIdK19xkGsVCpf3FKAL1",
-        alt: "Incernator",
+      id: 4,
+      src: "https://drive.google.com/uc?export=view&id=1txzHviodjayVGIdK19xkGsVCpf3FKAL1",
+      alt: "Incernator",
     },
     {
-        id: 5,
-        src: "https://drive.google.com/uc?export=view&id=1d52YS5EnJL_h3_HhDp3NymXZrrHbgf2w",
-        alt: "Treatment",
+      id: 5,
+      src: "https://drive.google.com/uc?export=view&id=1d52YS5EnJL_h3_HhDp3NymXZrrHbgf2w",
+      alt: "Treatment",
     },
     {
-        id: 6,
-        src: "https://drive.google.com/uc?export=view&id=1HgSmKAYGggF-R13A83xXIcGpYCVrTt24",
-        alt: "Wire Stranding",
+      id: 6,
+      src: "https://drive.google.com/uc?export=view&id=1HgSmKAYGggF-R13A83xXIcGpYCVrTt24",
+      alt: "Wire Stranding",
     },
     {
-        id: 7,
-        src: "https://drive.google.com/uc?export=view&id=1Y8us2yl1BH9uZkfbd4cpWzh2GOF07bzA",
-        alt: "Special Purpose",
+      id: 7,
+      src: "https://drive.google.com/uc?export=view&id=1Y8us2yl1BH9uZkfbd4cpWzh2GOF07bzA",
+      alt: "Special Purpose",
     },
     {
-        id: 8,
-        src: "https://drive.google.com/uc?export=view&id=1wCCLHVT9Ns9r_gRhNpWc60fbLEQhyKTA",
-        alt: "Mixer",
+      id: 8,
+      src: "https://drive.google.com/uc?export=view&id=1wCCLHVT9Ns9r_gRhNpWc60fbLEQhyKTA",
+      alt: "Mixer",
     },
     {
-        id: 9,
-        src: "https://drive.google.com/uc?export=view&id=1h2u0xLyN3RH6Hs1Ei1NtpFHDWbvvmb9u",
-        alt: "TTR",
+      id: 9,
+      src: "https://drive.google.com/uc?export=view&id=1h2u0xLyN3RH6Hs1Ei1NtpFHDWbvvmb9u",
+      alt: "TTR",
     },
     {
-        id: 10,
-        src: "https://drive.google.com/uc?export=view&id=17bM4LNNJ7N2W8AISy4CIVDo7S8_dL3PA",
-        alt: "Rubber Winding Machine",
+      id: 10,
+      src: "https://drive.google.com/uc?export=view&id=17bM4LNNJ7N2W8AISy4CIVDo7S8_dL3PA",
+      alt: "Rubber Winding Machine",
     },
-];
+  ];
 
   const [galleryImages, setGalleryImages] = useState<
     { id: number; src: string; alt: string }[]
@@ -67,7 +67,7 @@ const Gallery: React.FC = () => {
   } | null>(null);
 
   // Fetch gallery images from the database
-  const CACHE_EXPIRATION_MS = 60 * 60 * 1000; // 24 hours
+  const CACHE_EXPIRATION_MS = 60 * 60 * 1000; // 1 hour
 
   useEffect(() => {
     const fetchGalleryImages = async () => {
@@ -125,16 +125,20 @@ const Gallery: React.FC = () => {
         {galleryImages.map((image) => (
           <div
             key={image.id}
-            className="relative group overflow-hidden rounded-lg"
+            className="relative group overflow-hidden rounded-lg w-full h-80 bg-gray-200"
             onClick={() => handleImageClick(image.src, image.alt)}
           >
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={300}
-              height={200}
-              className="w-full h-64 object-cover rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
-            />
+             <Image
+    src={image.src}
+    alt={image.alt}
+    layout="fill"
+    objectFit="cover"
+    className="rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
+  />
+            {/* Show title below image */}
+            <div className="absolute bottom-0 left-0 w-full bg-orange-500 text-white text-center py-3">
+    <span className="text-lg font-semibold">{image.alt}</span>
+  </div>
           </div>
         ))}
       </div>

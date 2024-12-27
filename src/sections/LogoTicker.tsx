@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import axios from 'axios';
 
 // Type definition for logos
@@ -59,7 +58,6 @@ export const LogoTicker = () => {
         const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=XE6VU7KrXAv_AfT6lB_EjczQE34Cntbh-fofCeehVSooTEiayCvnF0XmF9uElaWHoBJuOAZ_5D3GXGJ9TXEO0ZHubWQWm63Gm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKbES-7aEjHyludqHW24UDeyqd_nTAp1qkKYGXDiRJ_E35GG8uU1tG7jjt5KmL-SKUp2DOLQ2inzdYcb2CkXj4F2sgp6fkp_uA&lib=MD3k01dNQnOzBmwiq3sDuNPZ1uKL4_q0K');
         const logosData: Logo[] = response.data.content.clientsList;
         setLogos(logosData);
-        // setLogos(initialLogos);
       }
     };
 
@@ -90,34 +88,28 @@ export const LogoTicker = () => {
             ref={logoContainerRef}
             className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black,transparent)]"
           >
-            <motion.div
-              className="flex gap-[100px] flex-none pr-14"
-              animate={{ translateX: '-50%' }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: 'linear',
-                repeatType: 'loop',
-              }}
-            >
+            {/* Logos container */}
+            <div className="flex gap-[200px] flex-none pr-14">
+              {/* Original set of logos */}
               {logos.map((logo, index) => (
                 <a key={index} href={logo.url} target="_blank" rel="noopener noreferrer">
                   <Image src={logo.src} alt={logo.alt} width={150} height={200} />
                 </a>
               ))}
-
+              {/* Duplicate logos to ensure a smooth continuous scroll */}
               {logos.map((logo, index) => (
                 <a key={`second-${index}`} href={logo.url} target="_blank" rel="noopener noreferrer">
                   <Image src={logo.src} alt={logo.alt} width={150} height={200} />
                 </a>
               ))}
-            </motion.div>
+            </div>
           </div>
+
           <div className="relative flex items-center">
   {/* Left Arrow */}
   <button
     onClick={() => handleScroll('left')}
-    className="absolute left-0 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
+    className="absolute left-0 top-[calc(50%+10px)] transform -translate-y-1/2 w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
   >
     <span className="text-2xl font-bold">&#8249;</span>
   </button>
@@ -125,13 +117,11 @@ export const LogoTicker = () => {
   {/* Right Arrow */}
   <button
     onClick={() => handleScroll('right')}
-    className="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
+    className="absolute right-0 top-[calc(50%+10px)] transform -translate-y-1/2 w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
   >
     <span className="text-2xl font-bold">&#8250;</span>
   </button>
 </div>
-
-
 
         </div>
       </div>

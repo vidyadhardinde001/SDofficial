@@ -113,22 +113,26 @@ export const LogoTicker = () => {
               ))}
             </motion.div>
           </div>
+          <div className="relative flex items-center">
+  {/* Left Arrow */}
+  <button
+    onClick={() => handleScroll('left')}
+    className="absolute left-0 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
+  >
+    <span className="text-2xl font-bold">&#8249;</span>
+  </button>
 
-          {/* Left Arrow */}
-          <button
-            onClick={() => handleScroll('left')}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
-          >
-            &#8592;
-          </button>
+  {/* Right Arrow */}
+  <button
+    onClick={() => handleScroll('right')}
+    className="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
+  >
+    <span className="text-2xl font-bold">&#8250;</span>
+  </button>
+</div>
 
-          {/* Right Arrow */}
-          <button
-            onClick={() => handleScroll('right')}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
-          >
-            &#8594;
-          </button>
+
+
         </div>
       </div>
     </div>

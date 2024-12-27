@@ -25,6 +25,7 @@ export const LogoTicker = () => {
   const [logos, setLogos] = useState<Logo[]>(initialLogos);
   const [isScrolling, setIsScrolling] = useState(false);
   const logoContainerRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const fetchLogos = async () => {
@@ -55,9 +56,7 @@ export const LogoTicker = () => {
         }
       } catch (error) {
         console.error('Error fetching logos:', error);
-        const response = await axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=XE6VU7KrXAv_AfT6lB_EjczQE34Cntbh-fofCeehVSooTEiayCvnF0XmF9uElaWHoBJuOAZ_5D3GXGJ9TXEO0ZHubWQWm63Gm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKbES-7aEjHyludqHW24UDeyqd_nTAp1qkKYGXDiRJ_E35GG8uU1tG7jjt5KmL-SKUp2DOLQ2inzdYcb2CkXj4F2sgp6fkp_uA&lib=MD3k01dNQnOzBmwiq3sDuNPZ1uKL4_q0K');
-        const logosData: Logo[] = response.data.content.clientsList;
-        setLogos(logosData);
+        setLogos(initialLogos);
       }
     };
 
@@ -67,12 +66,32 @@ export const LogoTicker = () => {
   const handleScroll = (direction: 'left' | 'right') => {
     if (logoContainerRef.current && !isScrolling) {
       setIsScrolling(true);
-      const scrollAmount = direction === 'left' ? -200 : 200; // Adjust scroll distance
-      logoContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
 
+      // Calculate logo width + gap
+      const logoWidth = 150; // Adjust this to your logo width
+      const gap = 200; // Adjust this to your gap between logos
+      const scrollAmount = logoWidth + gap;
+
+      let newIndex = currentIndex;
+
+      if (direction === 'left') {
+        newIndex = (currentIndex - 1 + logos.length) % logos.length;
+      } else if (direction === 'right') {
+        newIndex = (currentIndex + 1) % logos.length;
+      }
+
+      // Scroll the container
+      logoContainerRef.current.scrollTo({
+        left: newIndex * scrollAmount,
+        behavior: 'smooth',
+      });
+
+      setCurrentIndex(newIndex);
+
+      // Reset scrolling state after scrolling
       setTimeout(() => {
         setIsScrolling(false);
-      }, 500); // Wait for scroll to complete
+      }, 500);
     }
   };
 
@@ -83,46 +102,43 @@ export const LogoTicker = () => {
           <h2 className="text-5xl font-medium mb-6 mt-6 text-[black] pb-14">Our Clients</h2>
         </div>
 
-        <div className="relative">
-          <div
-            ref={logoContainerRef}
-            className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black,transparent)]"
-          >
+        <div className="relative flex flex-col items-center">
+          {/* Logos container wrapper restricted to 80% width */}
+          <div className="relative w-[80%] mx-auto overflow-hidden">
             {/* Logos container */}
-            <div className="flex gap-[200px] flex-none pr-14">
-              {/* Original set of logos */}
-              {logos.map((logo, index) => (
-                <a key={index} href={logo.url} target="_blank" rel="noopener noreferrer">
-                  <Image src={logo.src} alt={logo.alt} width={150} height={200} />
-                </a>
-              ))}
-              {/* Duplicate logos to ensure a smooth continuous scroll */}
-              {logos.map((logo, index) => (
-                <a key={`second-${index}`} href={logo.url} target="_blank" rel="noopener noreferrer">
-                  <Image src={logo.src} alt={logo.alt} width={150} height={200} />
-                </a>
-              ))}
+            <div
+              ref={logoContainerRef}
+              className="flex overflow-hidden"
+            >
+              <div className="flex gap-[200px] flex-none pr-14">
+                {/* Logos */}
+                {logos.map((logo, index) => (
+                  <a key={index} href={logo.url} target="_blank" rel="noopener noreferrer">
+                    <Image src={logo.src} alt={logo.alt} width={150} height={200} />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="relative flex items-center">
-  {/* Left Arrow */}
-  <button
-    onClick={() => handleScroll('left')}
-    className="absolute left-0 top-[calc(50%+10px)] transform -translate-y-1/2 w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
-  >
-    <span className="text-2xl font-bold">&#8249;</span>
-  </button>
+          {/* Navigation Arrows */}
+          <div className="flex items-center justify-center gap-6 mt-6">
+            {/* Left Arrow */}
+            <button
+              onClick={() => handleScroll('left')}
+              className="w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
+            >
+              <span className="text-2xl font-bold">&#8249;</span>
+            </button>
 
-  {/* Right Arrow */}
-  <button
-    onClick={() => handleScroll('right')}
-    className="absolute right-0 top-[calc(50%+10px)] transform -translate-y-1/2 w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
-  >
-    <span className="text-2xl font-bold">&#8250;</span>
-  </button>
-</div>
-
+            {/* Right Arrow */}
+            <button
+              onClick={() => handleScroll('right')}
+              className="w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
+            >
+              <span className="text-2xl font-bold">&#8250;</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

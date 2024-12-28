@@ -11,11 +11,10 @@ type Logo = {
   url: string;
 };
 
-
 // Initial logos (fallback in case fetching fails)
 const initialLogos: Logo[] = [
   { src: "https://drive.google.com/uc?export=view&id=1Zz8Zr-LuJVnCVoQJZcUhdT4QNjkeHBK1", alt: "Mahabal Logo", url: "https://www.mahabalgroup.com/" },
-  { src: "https://drive.google.com/uc?export=view&id=11myYlFJbFOBIeAKg1F-vWQ-QYOY1Re9fr", alt: "Alpha Logo", url: "http://www.phadkegroup.com/" },
+  { src: "https://drive.google.com/uc?export=view&id=1myYlFJbFOBIeAKg1F-vWQ-QYOY1Re9fr", alt: "Alpha Logo", url: "http://www.phadkegroup.com/" },
   { src: "https://drive.google.com/uc?export=view&id=1WsTTCaYiJ8Oa2ndWhWV5z37UtZweikLB", alt: "Suyesh Logo", url: "https://www.suyeshgroup.in/suyesh-foundry-pvt-ltd.php" },
   { src: "https://drive.google.com/uc?export=view&id=1XYrjhlcxoe5wJsH8SbfVyJ66nkOyW5GB", alt: "Riba Logo", url: "https://www.ribatextiles.com/" },
   { src: "https://drive.google.com/uc?export=view&id=19AORO8ahtKzoSN4fVx6sKDQNvOjklO64", alt: "Pidilite Logo", url: "https://www.pidilite.com/" },

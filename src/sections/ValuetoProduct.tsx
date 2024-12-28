@@ -5,8 +5,21 @@ import React, { useEffect, useState } from "react";
 
 const CACHE_EXPIRATION_MS = 60 * 60 * 1000;
 
+// Hardcoded data
+const HARD_CODED_CARDS = [
+  "Custom Programming for PLC, HMI, SCADA, VFD, Servo",
+  "Selection of Right Products",
+  "Engineering Products",
+  "Instrumentation & System Integration",
+  "Energy Monitoring Systems",
+  "Safety Sensor Solutions",
+  "Corrective & Preventive Maintenance",
+  "Hardware",
+  "IoT Projects",
+];
+
 const ValuetoProduct = () => {
-  const [cards, setCards] = useState<string[]>([]); // State to store cards data
+  const [cards, setCards] = useState<string[]>(HARD_CODED_CARDS); // Initialize with hardcoded data
   const [isPortrait, setIsPortrait] = useState(false); // State to check orientation
 
   useEffect(() => {

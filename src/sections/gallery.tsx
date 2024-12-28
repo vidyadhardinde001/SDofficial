@@ -127,22 +127,22 @@ const Gallery: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {galleryImages.map((image) => (
           <div
-            key={image.id}
-            className="relative group overflow-hidden rounded-lg w-full h-80 bg-gray-200"
-            onClick={() => handleImageClick(image.src, image.alt)}
-          >
-             <Image
+  key={image.id}
+  className="relative group overflow-hidden rounded-lg w-full h-80 bg-gray-200"
+  onClick={() => handleImageClick(image.src, image.alt)}
+>
+  <Image
     src={image.src}
     alt={image.alt}
-    layout="fill"
-    objectFit="cover"
+    layout="fill" // Ensures the image covers the entire container
+    objectFit="cover" // Prevents distortion by cropping the image to fit
     className="rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
   />
-            {/* Show title below image */}
-            <div className="absolute bottom-0 left-0 w-full bg-orange-500 text-white text-center py-3">
+  {/* Show title below image */}
+  <div className="absolute bottom-0 left-0 w-full bg-orange-500 text-white text-center py-3">
     <span className="text-lg font-semibold">{image.alt}</span>
   </div>
-          </div>
+</div>
         ))}
       </div>
 

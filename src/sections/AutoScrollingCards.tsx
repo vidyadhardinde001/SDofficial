@@ -23,7 +23,7 @@ const AutoScrollingCards: React.FC = () => {
       try {
         const response = await axios.get("/api/content/projects");
         const projectsList = response.data.content.projectsList;
-        setProjects(projectsList.slice(0, 10)); // Limit to 10 projects
+        setProjects(projectsList.slice(0, 100)); // Limit to 100 projects
       } catch (error) {
         console.error("Error fetching projects:", error);
         const response = await axios.get(

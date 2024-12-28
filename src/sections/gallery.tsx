@@ -13,7 +13,7 @@ const Gallery: React.FC = () => {
     {
       id: 2,
       src: "https://drive.google.com/uc?export=view&id=1C1FtKzzHlobf9kQRS1XjFoPWx1SKTSS8",
-      alt: "Industrial Robots",
+      alt: "IndustrialRobots",
     },
     {
       id: 3,
@@ -57,9 +57,8 @@ const Gallery: React.FC = () => {
     },
   ];
 
-  const [galleryImages, setGalleryImages] = useState<
-    { id: number; src: string; alt: string }[]
-  >(initialGalleryImages);
+  const [galleryImages, setGalleryImages] =
+    useState<{ id: number; src: string; alt: string }[]>(initialGalleryImages);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<{
     src: string;
@@ -95,7 +94,9 @@ const Gallery: React.FC = () => {
         setLoading(false);
       } catch (error) {
         console.error("Error fetching gallery images:", error);
-        const response = await axios.get("https://script.googleusercontent.com/macros/echo?user_content_key=uiKNXkAJCgZY8p_6JuThU1BWEtVngPVh_j6UGiztz5ENnBNwM-ZXyRn-TcSsaQBYZaCB1yMgwNyStdSjtdJ2YNotXehC9fY4m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJTwMJZnWSxTM3TdZybefEV_oyLs55Xlori6jebIPmUq1k1Kole8MtZQuK9A_3FJIh41psCCXoaBR0iCy3D9Iai_2Ybj-VDT3A&lib=MCbCGb8vc5tMgqiebKsQrMPZ1uKL4_q0K");
+        const response = await axios.get(
+          "https://script.googleusercontent.com/macros/echo?user_content_key=uiKNXkAJCgZY8p_6JuThU1BWEtVngPVh_j6UGiztz5ENnBNwM-ZXyRn-TcSsaQBYZaCB1yMgwNyStdSjtdJ2YNotXehC9fY4m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJTwMJZnWSxTM3TdZybefEV_oyLs55Xlori6jebIPmUq1k1Kole8MtZQuK9A_3FJIh41psCCXoaBR0iCy3D9Iai_2Ybj-VDT3A&lib=MCbCGb8vc5tMgqiebKsQrMPZ1uKL4_q0K"
+        );
         const galleryData = response.data.content.galleryImages;
         setGalleryImages(galleryData);
         setLoading(false);
@@ -124,25 +125,26 @@ const Gallery: React.FC = () => {
       {loading && <p className="text-center text-lg">Loading images...</p>}
 
       {/* Gallery Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {galleryImages.map((image) => (
           <div
-  key={image.id}
-  className="relative group overflow-hidden rounded-lg w-full h-80 bg-gray-200"
-  onClick={() => handleImageClick(image.src, image.alt)}
->
-  <Image
-    src={image.src}
-    alt={image.alt}
-    layout="fill" // Ensures the image covers the entire container
-    objectFit="cover" // Prevents distortion by cropping the image to fit
-    className="rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
-  />
-  {/* Show title below image */}
-  <div className="absolute bottom-0 left-0 w-full bg-orange-500 text-white text-center py-3">
-    <span className="text-lg font-semibold">{image.alt}</span>
-  </div>
-</div>
+          key={image.id}
+          className="relative group overflow-hidden rounded-lg w-full bg-gray-200"
+          style={{ paddingBottom: "100%" }} // Ensures the card maintains a square shape
+          onClick={() => handleImageClick(image.src, image.alt)}
+        >
+          <Image
+            src={image.src}
+            alt={image.alt}
+            layout="fill"
+            objectFit="cover"
+            className="rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
+          />
+          <div className="absolute bottom-0 left-0 w-full bg-orange-500 text-white text-center sm:py-0 lg:py-3">
+            <span className="text-lg lg:text-lg sm:text-sm font-semibold">{image.alt}</span>
+          </div>
+        </div>
+        
         ))}
       </div>
 
@@ -159,7 +161,9 @@ const Gallery: React.FC = () => {
             height={800}
             className="max-w-full max-h-[80vh] object-contain"
           />
-          <p className="text-white text-center mt-4 text-lg">{selectedImage.alt}</p>
+          <p className="text-white text-center mt-4 text-lg">
+            {selectedImage.alt}
+          </p>
         </div>
       )}
     </div>

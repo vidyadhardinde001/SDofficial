@@ -1,8 +1,6 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import axios from 'axios';
-import { motion } from 'framer-motion';
 
 // Type definition for logos
 type Logo = {
@@ -11,7 +9,7 @@ type Logo = {
   url: string;
 };
 
-// Initial logos (fallback in case fetching fails)
+// Initial logos (fallback data)
 const initialLogos: Logo[] = [
   { src: "https://drive.google.com/uc?export=view&id=1Zz8Zr-LuJVnCVoQJZcUhdT4QNjkeHBK1", alt: "Mahabal Logo", url: "https://www.mahabalgroup.com/" },
   { src: "https://drive.google.com/uc?export=view&id=1myYlFJbFOBIeAKg1F-vWQ-QYOY1Re9fr", alt: "Alpha Logo", url: "http://www.phadkegroup.com/" },
@@ -22,92 +20,61 @@ const initialLogos: Logo[] = [
 ];
 
 export const LogoTicker = () => {
-  const [logos, setLogos] = useState<Logo[]>(initialLogos);
-  const [currentPosition, setCurrentPosition] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Fetch logos from an API
-  useEffect(() => {
-    const fetchLogos = async () => {
-      try {
-        const response = await axios.get('/api/content/clients');
-        const logosData: Logo[] = response.data.content.clientsList;
+  const logoWidth = 150; // Width of each logo
+  const gap = 32; // Increased gap between logos
+  const visibleLogos = 3; // Number of logos visible at once
 
-        if (Array.isArray(logosData)) {
-          setLogos(logosData);
-        } else {
-          console.error('Invalid data format:', logosData);
-        }
-      } catch (error) {
-        console.error('Error fetching logos:', error);
-      }
-    };
-
-    fetchLogos();
-  }, []);
-
-  // Duplicate logos for seamless scrolling
-  const duplicatedLogos = [...logos, ...logos];
-
-  // Automatic smooth scrolling
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentPosition((prev) => {
-        const containerWidth = 150 + 16; // Logo width + padding
-        const totalWidth = containerWidth * logos.length;
-        let newPosition = prev - 1; // Move by 1 pixel at a time for smooth scrolling
-
-        if (Math.abs(newPosition) >= totalWidth) {
-          newPosition = 0; // Reset position to loop smoothly
-        }
-
-        return newPosition;
-      });
-    }, 20); // Adjust the interval for smoothness (smaller value = smoother)
-
-    return () => clearInterval(intervalId); // Clean up the interval on component unmount
-  }, [logos]);
-
-  // Handle manual scroll with buttons
+  // Handle scroll with repeating effect
   const handleScroll = (direction: 'left' | 'right') => {
-    const containerWidth = 150 + 16; // Logo width + padding
-    const moveAmount = 3 * containerWidth; // Move by 3 logos at a time
-
-    setCurrentPosition((prev) => {
-      let newPosition;
+    setCurrentIndex((prev) => {
       if (direction === 'left') {
-        newPosition = prev + moveAmount;
+        return (prev - 1 + initialLogos.length) % initialLogos.length; // Move left
       } else {
-        newPosition = prev - moveAmount;
+        return (prev + 1) % initialLogos.length; // Move right
       }
-
-      return newPosition;
     });
   };
+
+  // Duplicated logos for seamless repetition
+  const duplicatedLogos = [...initialLogos, ...initialLogos];
 
   return (
     <div className="py-8 md:py-12 bg-white relative">
       <div className="container">
         <div className="text-center mb-8">
-          <h2 className="text-5xl font-medium mb-6 mt-6 text-[black] pb-14">Our Clients</h2>
+          <h2 className="text-5xl font-medium mb-6 mt-6 text-black pb-14">Our Clients</h2>
         </div>
 
+        {/* Logos container */}
         <div className="relative flex flex-col items-center">
-          {/* Logos container */}
-          <div className="relative w-full mx-auto overflow-hidden">
-            <motion.div
-              className="flex"
-              animate={{ x: currentPosition }}
-              transition={{ duration: 0.05, ease: 'linear' }} // Smooth and fast transition
+          <div className="relative w-full overflow-hidden">
+            <div
+              className="flex transition-transform duration-500"
+              style={{
+                transform: `translateX(-${
+                  (logoWidth + gap) * (currentIndex % initialLogos.length)
+                }px)`,
+                gap: `${gap}px`, // Gap between logos
+              }}
             >
               {duplicatedLogos.map((logo, index) => (
-                <a key={index} href={logo.url} target="_blank" rel="noopener noreferrer" className="flex-none px-4">
-                  <Image src={logo.src} alt={logo.alt} width={150} height={100} />
+                <a
+                  key={index}
+                  href={logo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-none"
+                  style={{ padding: `0 ${gap / 2}px` }} // Padding to maintain consistent spacing
+                >
+                  <Image src={logo.src} alt={logo.alt} width={logoWidth} height={100} />
                 </a>
               ))}
-            </motion.div>
+            </div>
           </div>
 
-          {/* Navigation buttons */}
+          {/* Navigation buttons below logos */}
           <div className="flex items-center justify-center gap-6 mt-6">
             {/* Left Button */}
             <button

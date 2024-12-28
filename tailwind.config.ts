@@ -21,6 +21,9 @@ const config: Config = {
           lg: "80px",
         },
       },
+      spacing: {
+        square: "100%", // Utility for square dimensions
+      },
     },
   },
   plugins: [],

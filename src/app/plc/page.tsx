@@ -72,7 +72,7 @@ const PLCPage = () => {
           solutions to streamline your operations.
         </p>
         <div className="flex justify-center">
-          <Link href="/contact">
+          <Link href="/contactus">
             <button className="bg-white text-[#ff7d38] py-2 px-6 rounded-lg font-semibold hover:bg-gray-100">
               Contact Us
             </button>

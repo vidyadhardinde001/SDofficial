@@ -1,6 +1,5 @@
 "use client";
 
-
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/logo1.png";
@@ -32,6 +31,7 @@ export const Footer = () => {
 
     fetchLogo();
   }, []);
+
   return (
     <footer
       className="relative text-white py-12"
@@ -59,7 +59,6 @@ export const Footer = () => {
                   className="mx-auto md:mx-0 bg-white rounded-lg"
                 />
               ) : (
-                // <p>Loading logo...</p>
                 <Image
                   src={logo}
                   alt="Company Logo"
@@ -128,10 +127,36 @@ export const Footer = () => {
               Get In Touch
             </h3>
             <ul className="space-y-2">
-              <li>📍 Arjunwad</li>
-              <li>📞 +91 7057272626</li>
-              <li className="underline">📧 siddhivinayakengineers19@gmail.com</li>
-              <li>⏱ 24/7 Emergency Service</li>
+              <li className="flex items-start text-lg text-white">
+                <span className="text-2xl mr-3">📍</span>
+                <div>
+                  <span className="block font-semibold">Arjunwad, Tal-Shirol, Dist-Kolhapur 416120</span>
+                  <span className="block font-semibold text-white">Maharashtra, India</span>
+                </div>
+              </li>
+              <li className="flex items-start text-lg text-white">
+                <span className="text-2xl mr-3">📞</span>
+                <div>
+                  <span className="block font-semibold">+91 7057272626</span>
+                </div>
+              </li>
+              <li className="flex items-start text-lg text-white">
+                <span className="text-2xl mr-3">📧</span>
+                <div>
+                  <a
+                    href="mailto:siddhivinayakengineers19@gmail.com"
+                    className="underline text-white"
+                  >
+                    siddhivinayakengineers19@gmail.com
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start text-lg text-white">
+                <span className="text-2xl mr-3">⏱</span>
+                <div>
+                  <span className="block font-semibold">24/7 Emergency Service</span>
+                </div>
+              </li>
             </ul>
           </div>
         </div>

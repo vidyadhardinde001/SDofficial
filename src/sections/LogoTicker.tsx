@@ -1,7 +1,8 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 // Type definition for logos
 type Logo = {
@@ -10,6 +11,7 @@ type Logo = {
   url: string;
 };
 
+// Initial logos (fallback in case fetching fails)
 const initialLogos: Logo[] = [
   { src: "https://drive.google.com/uc?export=view&id=1EvzdmVomzUoqeYsFTx-ZgPlS3DciR6kn", alt: "Mahabal Logo", url: "https://www.mahabalgroup.com/" },
   { src: "https://drive.google.com/uc?export=view&id=1EvzdmVomzUoqeYsFTx-ZgPlS3DciR6kn", alt: "Alpha Logo", url: "http://www.phadkegroup.com/" },
@@ -19,80 +21,67 @@ const initialLogos: Logo[] = [
   { src: "https://drive.google.com/uc?export=view&id=1CvRv0eNTgKDif0Ker3tuo1MyNOOO2886", alt: "Menon Logo", url: "https://menonindia.in/" },
 ];
 
-const CACHE_EXPIRATION_MS = 60 * 60 * 1000; // 1 hour
-
 export const LogoTicker = () => {
   const [logos, setLogos] = useState<Logo[]>(initialLogos);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const logoContainerRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPosition, setCurrentPosition] = useState(0);
 
+  // Fetch logos from an API
   useEffect(() => {
     const fetchLogos = async () => {
-      const cachedLogos = localStorage.getItem('clientLogos');
-      const cachedTimestamp = localStorage.getItem('cacheTimestamp');
-
-      if (cachedLogos && cachedTimestamp) {
-        const now = new Date().getTime();
-        const cacheAge = now - parseInt(cachedTimestamp, 10);
-
-        if (cacheAge < CACHE_EXPIRATION_MS) {
-          setLogos(JSON.parse(cachedLogos));
-          return;
-        }
-      }
-
       try {
         const response = await axios.get('/api/content/clients');
         const logosData: Logo[] = response.data.content.clientsList;
 
         if (Array.isArray(logosData)) {
           setLogos(logosData);
-          localStorage.setItem('clientLogos', JSON.stringify(logosData));
-          localStorage.setItem('cacheTimestamp', new Date().getTime().toString());
         } else {
-          console.error('Received data is not an array:', logosData);
-          setLogos(initialLogos);
+          console.error('Invalid data format:', logosData);
         }
       } catch (error) {
         console.error('Error fetching logos:', error);
-        setLogos(initialLogos);
       }
     };
 
     fetchLogos();
   }, []);
 
+  // Duplicate logos for seamless scrolling
+  const duplicatedLogos = [...logos, ...logos];
+
+  // Automatic smooth scrolling
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentPosition((prev) => {
+        const containerWidth = 150 + 16; // Logo width + padding
+        const totalWidth = containerWidth * logos.length;
+        let newPosition = prev - 1; // Move by 1 pixel at a time for smooth scrolling
+
+        if (Math.abs(newPosition) >= totalWidth) {
+          newPosition = 0; // Reset position to loop smoothly
+        }
+
+        return newPosition;
+      });
+    }, 20); // Adjust the interval for smoothness (smaller value = smoother)
+
+    return () => clearInterval(intervalId); // Clean up the interval on component unmount
+  }, [logos]);
+
+  // Handle manual scroll with buttons
   const handleScroll = (direction: 'left' | 'right') => {
-    if (logoContainerRef.current && !isScrolling) {
-      setIsScrolling(true);
+    const containerWidth = 150 + 16; // Logo width + padding
+    const moveAmount = 3 * containerWidth; // Move by 3 logos at a time
 
-      // Calculate logo width + gap
-      const logoWidth = 150; // Adjust this to your logo width
-      const gap = 200; // Adjust this to your gap between logos
-      const scrollAmount = logoWidth + gap;
-
-      let newIndex = currentIndex;
-
+    setCurrentPosition((prev) => {
+      let newPosition;
       if (direction === 'left') {
-        newIndex = (currentIndex - 1 + logos.length) % logos.length;
-      } else if (direction === 'right') {
-        newIndex = (currentIndex + 1) % logos.length;
+        newPosition = prev + moveAmount;
+      } else {
+        newPosition = prev - moveAmount;
       }
 
-      // Scroll the container
-      logoContainerRef.current.scrollTo({
-        left: newIndex * scrollAmount,
-        behavior: 'smooth',
-      });
-
-      setCurrentIndex(newIndex);
-
-      // Reset scrolling state after scrolling
-      setTimeout(() => {
-        setIsScrolling(false);
-      }, 500);
-    }
+      return newPosition;
+    });
   };
 
   return (
@@ -103,35 +92,31 @@ export const LogoTicker = () => {
         </div>
 
         <div className="relative flex flex-col items-center">
-          {/* Logos container wrapper restricted to 80% width */}
-          <div className="relative w-[80%] mx-auto overflow-hidden">
-            {/* Logos container */}
-            <div
-              ref={logoContainerRef}
-              className="flex overflow-hidden"
+          {/* Logos container */}
+          <div className="relative w-full mx-auto overflow-hidden">
+            <motion.div
+              className="flex"
+              animate={{ x: currentPosition }}
+              transition={{ duration: 0.05, ease: 'linear' }} // Smooth and fast transition
             >
-              <div className="flex gap-[200px] flex-none pr-14">
-                {/* Logos */}
-                {logos.map((logo, index) => (
-                  <a key={index} href={logo.url} target="_blank" rel="noopener noreferrer">
-                    <Image src={logo.src} alt={logo.alt} width={150} height={200} />
-                  </a>
-                ))}
-              </div>
-            </div>
+              {duplicatedLogos.map((logo, index) => (
+                <a key={index} href={logo.url} target="_blank" rel="noopener noreferrer" className="flex-none px-4">
+                  <Image src={logo.src} alt={logo.alt} width={150} height={100} />
+                </a>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Navigation buttons */}
           <div className="flex items-center justify-center gap-6 mt-6">
-            {/* Left Arrow */}
+            {/* Left Button */}
             <button
               onClick={() => handleScroll('left')}
               className="w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"
             >
               <span className="text-2xl font-bold">&#8249;</span>
             </button>
-
-            {/* Right Arrow */}
+            {/* Right Button */}
             <button
               onClick={() => handleScroll('right')}
               className="w-12 h-12 bg-[#ff7d38] rounded-full flex items-center justify-center text-white hover:bg-[#ffae82] transition-transform duration-300 ease-in-out hover:scale-110"

@@ -37,13 +37,13 @@ const LearningTransformation: React.FC = () => {
       { value: "50+", label: "Positive Reviews" },
       { value: "100+", label: "Trusted Clients" },
     ],
-    imageUrl : "/assets/logo1.jpg",
+    imageUrl : "/assets/logo.png",
     leadership: {
       name: "Mr. Nikhil Sutar",
       role: "Founder & CEO",
       description:
-        "With a Diploma and Bachelor's Degree in Electrical Engineering and over 9 years of industry experience, Mr. Nikhil Sutar specializes in PLC programming and automation solutions. Since founding Siddhivinayak Engineers in 2021, he has focused on delivering reliable and innovative industrial solutions.",
-      imageUrl: "/path-to-placeholder-leadership.jpg",
+        "With a Diploma and Bachelor's Degree in Electrical Engineering and over 9 years of industry experience, he brings specialized skills in PLC programming and a dedication to precision that have positioned Siddhivinayak Engineers as a trusted provider of automation solutions. Since establishing the firm in 2021, he has focused on delivering reliable and innovative solutions tailored to diverse industrial needs.",
+      imageUrl: "/assets/Nikhil_Sutar.jpg",
     },
   };
 

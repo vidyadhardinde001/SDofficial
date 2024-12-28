@@ -13,7 +13,7 @@ const Gallery: React.FC = () => {
     {
       id: 2,
       src: "https://drive.google.com/uc?export=view&id=1C1FtKzzHlobf9kQRS1XjFoPWx1SKTSS8",
-      alt: "Robo",
+      alt: "Industrial Robots",
     },
     {
       id: 3,

@@ -62,9 +62,9 @@ export const Footer = () => {
                 <Image
                   src={logo}
                   alt="Company Logo"
-                  width={100}
-                  height={100}
-                  className="mx-auto md:mx-0"
+                  width={200}
+                  height={200}
+                  className="mx-auto md:mx-0 bg-white rounded-lg"
                 />
               )}
             </div>

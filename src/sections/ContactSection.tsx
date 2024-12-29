@@ -35,15 +35,18 @@ const ContactSection: React.FC = () => {
 
       if (!response.ok) throw new Error("Error sending verification email");
 
-      // alert("Verification email sent. Please check your inbox.");
+      alert("Verification email sent. Please check your inbox.");
       const data = await response.json();
+      console.log(data);
     if (data.success) {
       setEmailVerified(true);
+      setErrorMessage(null); 
       alert("Email Verified Successfully!");
     } else {
       throw new Error(data.message || "Verification failed");
     }
     } catch (error) {
+      setErrorMessage("Failed to verify email. Please try again.");
       console.error("Failed to send verification email:", error);
     }
   };
@@ -54,12 +57,13 @@ const ContactSection: React.FC = () => {
     setErrorMessage(null);
     setMessageSent(false);
 
+    if (!emailVerified) {
+      setErrorMessage("Please verify your email before submitting.");
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      if (!emailVerified) {
-        setErrorMessage("Please verify your email before submitting.");
-        setIsLoading(false);
-        return;
-      }
       const response = await fetch(
         "https://sdofficial-r1zr.onrender.com/api/contact",
         {
@@ -73,6 +77,7 @@ const ContactSection: React.FC = () => {
 
       setMessageSent(true);
       setFormData({ name: "", email: "", phone: "", message: "" });
+      setEmailVerified(false);
     } catch (error) {
       setErrorMessage("Failed to send message. Please try again later.");
     } finally {

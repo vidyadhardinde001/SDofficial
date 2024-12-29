@@ -93,8 +93,10 @@ const ServicesSection: React.FC = () => {
       {/* Responsive Layout */}
       <div
         className={`${
-          isPortrait ? "flex flex-col gap-4" : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
-        } md:w-[90%] mx-auto`}
+          isPortrait
+            ? "flex flex-col gap-4"
+            : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+        } md:w-full mx-auto max-w-full`}
       >
         {(services.length > 0 ? services : placeholderServices).map(
           (service, index) => (

@@ -22,9 +22,11 @@ export const Header = () => {
         const response = await fetch("/api/content/aboutUsSection"); // Replace with your actual API endpoint
         const data = await response.json();
         setLogoUrl(data.content.imageUrl); // Assuming `imageUrl` is the key for the image URL in the API response
-        console.log("error",data);
+        console.log("error", data);
       } catch (error) {
-        const response = await fetch("https://script.googleusercontent.com/macros/echo?user_content_key=nlaUMw9FNa1EIqEuKLu-gjrPZTAxppG7Ziwc7GEhbdRwh2nOrIPC6-BfBnAo2DQlvyS35k0QYkWOAcylyFqhm0OPRqQO4bJym5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPqMLSOjrwHZzK4mYvDdiHLGQJ-sHsTjH8OGIT8v3wDXNf-klVZLuzilP1FveXtpdQO_gPawdAHBn8CdIZfxHGG40252Hhbnptz9Jw9Md8uu&lib=MmfELZ3pWjpi07YwspSVeGEoLBlaE9kY8"); // Replace with your actual API endpoint
+        const response = await fetch(
+          "https://script.googleusercontent.com/macros/echo?user_content_key=nlaUMw9FNa1EIqEuKLu-gjrPZTAxppG7Ziwc7GEhbdRwh2nOrIPC6-BfBnAo2DQlvyS35k0QYkWOAcylyFqhm0OPRqQO4bJym5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPqMLSOjrwHZzK4mYvDdiHLGQJ-sHsTjH8OGIT8v3wDXNf-klVZLuzilP1FveXtpdQO_gPawdAHBn8CdIZfxHGG40252Hhbnptz9Jw9Md8uu&lib=MmfELZ3pWjpi07YwspSVeGEoLBlaE9kY8"
+        ); // Replace with your actual API endpoint
         const data = await response.json();
         setLogoUrl(data.content.imageUrl);
         console.error("Failed to fetch logo URL:", error);
@@ -35,11 +37,11 @@ export const Header = () => {
   }, []);
 
   return (
-    <header className="sticky top-0 backdrop-blur-lg z-50 bg-white">
+    <header className="sticky top-0 backdrop-blur-lg z-50 bg-white shadow-md">
       <div className="py-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-          {logoUrl ? (
+            {logoUrl ? (
               <Image src={logoUrl} alt="Dynamic Logo" width={80} height={100} />
             ) : (
               <Image src={logo} alt="Dynamic Logo" width={80} height={100} />
@@ -61,7 +63,7 @@ export const Header = () => {
                   alt="Open Menu"
                   width={24}
                   height={24}
-                  className = "invert filter"
+                  className="invert filter"
                 />
               )}
             </button>
@@ -114,19 +116,14 @@ export const Header = () => {
       <nav
         className={`${
           isMenuOpen ? "block" : "hidden"
-        } md:hidden fixed top-0 left-0 w-full bg-white z-40`}
+        } md:hidden fixed top-0 left-0 w-full bg-white z-40 shadow-lg`}
       >
         <div className="flex flex-col items-center py-6 relative">
-        <button
+          <button
             className="absolute top-4 right-4"
             onClick={() => setIsMenuOpen(false)}
           >
-            <Image
-              src={CloseIcon}
-              alt="Close Menu"
-              width={24}
-              height={24}
-            />
+            <Image src={CloseIcon} alt="Close Menu" width={24} height={24} />
           </button>
           <Link
             href="/"

@@ -46,9 +46,9 @@ export const Footer = () => {
       <div className="absolute inset-0 bg-black bg-opacity-80"></div>
 
       <div className="relative container mx-auto px-6 md:px-12 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Information */}
-          <div className="text-left">
+          <div className="text-left mb-8 lg:mb-0">
             <div className="mb-4">
               {logoUrl ? (
                 <Image
@@ -75,7 +75,7 @@ export const Footer = () => {
           </div>
 
           {/* Our Services */}
-          <div className="text-left">
+          <div className="text-left mb-8 lg:mb-0">
             <h3 className="text-lg font-bold mb-4 text-orange-400">
               Our Services
             </h3>
@@ -88,7 +88,7 @@ export const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="text-left">
+          <div className="text-left mb-8 lg:mb-0">
             <h3 className="text-lg font-bold mb-4 text-orange-400">
               Quick Links
             </h3>
@@ -122,43 +122,45 @@ export const Footer = () => {
           </div>
 
           {/* Get In Touch */}
-          <div className="text-left w-[400px]">
-            <h3 className="text-lg font-bold text-orange-400 mb-4">
-              Get In Touch
-            </h3>
-            <ul className="space-y-2">
-              <li className="flex items-start text-lg text-white">
-                <span className="text-2xl mr-3">📍</span>
-                <div>
-                  <span className="block font-semibold">Arjunwad, Tal-Shirol, Dist-Kolhapur 416120</span>
-                  <span className="block font-semibold text-white">Maharashtra, India</span>
-                </div>
-              </li>
-              <li className="flex items-start text-lg text-white">
-                <span className="text-2xl mr-3">📞</span>
-                <div>
-                  <span className="block font-semibold">+91 7057272626</span>
-                </div>
-              </li>
-              <li className="flex items-start text-lg text-white">
-                <span className="text-2xl mr-3">📧</span>
-                <div>
-                  <a
-                    href="mailto:siddhivinayakengineers19@gmail.com"
-                    className="underline text-white"
-                  >
-                    siddhivinayakengineers19@gmail.com
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-start text-lg text-white">
-                <span className="text-2xl mr-3">⏱</span>
-                <div>
-                  <span className="block font-semibold">24/7 Emergency Service</span>
-                </div>
-              </li>
-            </ul>
-          </div>
+          <div className="text-left">
+  <h3 className="text-lg font-bold text-orange-400 mb-4">
+    Get In Touch
+  </h3>
+  <ul className="space-y-2">
+    <li className="flex items-start text-sm md:text-lg text-white">
+      <span className="text-xl mr-3">📍</span>
+      <div>
+        <span className="block font-semibold">Arjunwad, Tal-Shirol, Dist-Kolhapur 416120</span>
+        <span className="block font-semibold text-white">Maharashtra, India</span>
+      </div>
+    </li>
+    <li className="flex items-start text-sm md:text-lg text-white">
+      <span className="text-xl mr-3">📞</span>
+      <div>
+        <span className="block font-semibold">+91 7057272626</span>
+      </div>
+    </li>
+    <li className="flex items-start text-sm md:text-lg text-white">
+      <span className="text-xl mr-3">📧</span>
+      <div className="max-w-full">
+        <a
+          href="mailto:siddhivinayakengineers19@gmail.com"
+          className="underline text-white break-words"
+        >
+          siddhivinayakengineers19@gmail.com
+        </a>
+      </div>
+    </li>
+    <li className="flex items-start text-sm md:text-lg text-white">
+      <span className="text-xl mr-3">⏱</span>
+      <div>
+        <span className="block font-semibold">24/7 Emergency Service</span>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
         </div>
 
         {/* Social Media */}

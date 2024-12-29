@@ -41,6 +41,7 @@ const ContactSection: React.FC = () => {
       console.log(data);
     if (data.message === 'Verification email sent') {
       alert("Verification email sent. Please check your inbox.");
+      setEmailVerified(true);
       // setEmailVerified(true);
       // setErrorMessage(null); 
       // alert("Email Verified Successfully!");
@@ -48,12 +49,12 @@ const ContactSection: React.FC = () => {
     } else {
       throw new Error(data.message || "Verification failed");
     }
-    if (data.verified) {
-      setEmailVerified(true);
-      alert("Email successfully verified! You can now submit the form.");
-    } else {
-      alert("Email not yet verified. Please verify via the link sent to your email.");
-    }
+    // if (data.verified) {
+    //   setEmailVerified(true);
+    //   alert("Email successfully verified! You can now submit the form.");
+    // } else {
+    //   alert("Email not yet verified. Please verify via the link sent to your email.");
+    // }
     } catch (error) {
       setErrorMessage("Failed to verify email. Please try again.");
       console.error("Failed to send verification email:", error);

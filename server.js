@@ -373,8 +373,8 @@ const verifiedEmails = new Set();
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'adityakhandare8320@gmail.com', // Replace with your email
-    pass: 'asnx dmwh azyy ruhm' // Replace with your email password
+    user: 'siddhivinayakengineers19@gmail.com', // Replace with your email
+    pass: 'qkvk xevp sxcz ohxf' // Replace with your email password
   }
 });
 
@@ -390,7 +390,7 @@ app.post('/api/verify-email', async (req, res) => {
 
 
     const mailOptions = {
-      from: 'adityakhandare8320@gmail.com',
+      from: 'siddhivinayakengineers19@gmail.com',
       to: email,
       subject: 'Email Verification',
       html: `<p>Click <a href="${verificationLink}">here</a> to verify your email.</p>`,
@@ -431,7 +431,7 @@ app.post('/api/contact', async (req, res) => {
   // Email options
   const mailOptions = {
     from: email, // Your email address
-    to: 'adityakhandare8320@gmail.com', // Your email address to receive the message
+    to: 'siddhivinayakengineers19@gmail.com', // Your email address to receive the message
     replyTo: email, // User's email address for replies
     subject: `Contact Form Submission from ${name}`, // Subject line
     text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}` // Email body

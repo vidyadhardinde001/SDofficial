@@ -39,10 +39,11 @@ const ContactSection: React.FC = () => {
       // alert("Verification email sent. Please check your inbox.");
       const data = await response.json();
       console.log(data);
-    if (data.success) {
+    if (data.message === 'Verification email sent') {
       setEmailVerified(true);
       // setErrorMessage(null); 
       alert("Email Verified Successfully!");
+      console.log("Email Verified:", emailVerified);
     } else {
       throw new Error(data.message || "Verification failed");
     }

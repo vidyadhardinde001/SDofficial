@@ -49,12 +49,10 @@ const ContactSection: React.FC = () => {
     } else {
       throw new Error(data.message || "Verification failed");
     }
-    // if (data.verified) {
-    //   setEmailVerified(true);
-    //   alert("Email successfully verified! You can now submit the form.");
-    // } else {
-    //   alert("Email not yet verified. Please verify via the link sent to your email.");
-    // }
+    if (data.verified) {
+      setEmailVerified(true);
+      alert("Email successfully verified! You can now submit the form.");
+    } 
     } catch (error) {
       setErrorMessage("Failed to verify email. Please try again.");
       console.error("Failed to send verification email:", error);

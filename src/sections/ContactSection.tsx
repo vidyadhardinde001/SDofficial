@@ -35,7 +35,14 @@ const ContactSection: React.FC = () => {
 
       if (!response.ok) throw new Error("Error sending verification email");
 
-      alert("Verification email sent. Please check your inbox.");
+      // alert("Verification email sent. Please check your inbox.");
+      const data = await response.json();
+    if (data.success) {
+      setEmailVerified(true);
+      alert("Email Verified Successfully!");
+    } else {
+      throw new Error(data.message || "Verification failed");
+    }
     } catch (error) {
       console.error("Failed to send verification email:", error);
     }
@@ -133,9 +140,12 @@ const ContactSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={sendVerificationEmail}
-                  className="w-full py-2 bg-gray-500 text-white rounded"
+                  className={`w-full py-2 rounded ${
+                    emailVerified ? "bg-green-500 text-white" : "bg-gray-500 text-white"
+                  }`}
+                  disabled={emailVerified}
                 >
-                  Verify Email
+                  {emailVerified ? "Email Verified" : "Verify Email"}
                 </button>
                 <input
                   type="text"

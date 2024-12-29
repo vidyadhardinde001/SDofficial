@@ -35,7 +35,7 @@ const ContactSection: React.FC = () => {
 
       if (!response.ok) throw new Error("Error sending verification email");
 
-      alert("Verification email sent. Please check your inbox.");
+      // alert("Verification email sent. Please check your inbox.");
       const data = await response.json();
       console.log(data);
     if (data.success) {

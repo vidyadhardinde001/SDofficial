@@ -125,7 +125,7 @@ export const Hero = () => {
         </div>
 
         {/* Black Gradient Overlay */}
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-black via-black/70 to-black/0 -z-10"></div>
+        <div className="absolute inset-0 w-full h-full opacity-70 bg-gradient-to-r from-black via-black/60 to-black/0 -z-10"></div>
 
         {/* Content */}
         <div

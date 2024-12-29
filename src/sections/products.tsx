@@ -84,13 +84,13 @@ const ProductGrid: React.FC = () => {
           setProducts(productsData);
         } else {
           console.error("Received data is not an array:", productsData);
-          setError("Unexpected data format from API.");
+          setError("");
         }
         localStorage.setItem(CACHE_KEY, JSON.stringify(productsData));
         localStorage.setItem(`${CACHE_KEY}_timestamp`, Date.now().toString());
       } catch (err) {
-        console.error("Error fetching products:", err);
-        setError("Failed to fetch products. Showing cached data.");
+        console.error("", err);
+        setError("");
       } finally {
         setLoading(false);
       }

@@ -12,6 +12,7 @@ const ContactSection: React.FC = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [messageSent, setMessageSent] = useState(false);
+  const [emailVerified, setEmailVerified] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleInputChange = (
@@ -21,6 +22,25 @@ const ContactSection: React.FC = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const sendVerificationEmail = async () => {
+    try {
+      const response = await fetch(
+        "https://sdofficial-r1zr.onrender.com/api/verify-email",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: formData.email }),
+        }
+      );
+
+      if (!response.ok) throw new Error("Error sending verification email");
+
+      alert("Verification email sent. Please check your inbox.");
+    } catch (error) {
+      console.error("Failed to send verification email:", error);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -28,6 +48,11 @@ const ContactSection: React.FC = () => {
     setMessageSent(false);
 
     try {
+      if (!emailVerified) {
+        setErrorMessage("Please verify your email before submitting.");
+        setIsLoading(false);
+        return;
+      }
       const response = await fetch(
         "https://sdofficial-r1zr.onrender.com/api/contact",
         {
@@ -105,6 +130,13 @@ const ContactSection: React.FC = () => {
                   className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FE6D20]"
                   required
                 />
+                <button
+                  type="button"
+                  onClick={sendVerificationEmail}
+                  className="w-full py-2 bg-gray-500 text-white rounded"
+                >
+                  Verify Email
+                </button>
                 <input
                   type="text"
                   name="phone"

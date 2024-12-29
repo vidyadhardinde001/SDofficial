@@ -364,27 +364,74 @@ const fetchValueToProductAndUpdateDatabase = async () => {
     console.error('Error fetching Value to Product data from API', error);
   }
 };
+// qkvk xevp sxcz ohxf
+// asnx dmwh azyy ruhm
+// nvmn lylk fcjl cajk
+
+const verifiedEmails = new Set();
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'siddhivinayakengineers19@gmail.com', // Replace with your email
-    pass: 'qkvk xevp sxcz ohxf' // Replace with your email password
+    user: 'adityakhandare8320@gmail.com', // Replace with your email
+    pass: 'asnx dmwh azyy ruhm' // Replace with your email password
   }
 });
 
-// qkvk xevp sxcz ohxf
-// asnx dmwh azyy ruhm
-// nvmn lylk fcjl cajk
+app.post('/api/verify-email', async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ message: 'Email is required' });
+  }
+
+  try {
+    const verificationLink = `${req.protocol}://${req.get('host')}/verify?email=${encodeURIComponent(email)}`;
+
+
+    const mailOptions = {
+      from: 'adityakhandare8320@gmail.com',
+      to: email,
+      subject: 'Email Verification',
+      html: `<p>Click <a href="${verificationLink}">here</a> to verify your email.</p>`,
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: 'Verification email sent' });
+  } catch (error) {
+    console.error('Error sending verification email:', error);
+    res.status(500).json({ message: 'Error sending verification email' });
+  }
+});
+
+app.get('/verify', (req, res) => {
+  const { email } = req.query;
+
+  if (!email) {
+    return res.status(400).send('Invalid verification request');
+  }
+
+  // Add email to verifiedEmails set
+  verifiedEmails.add(email);
+  res.send(`<h1>Email Verified Successfully!</h1><p>Your email (${email}) has been verified.</p>`);
+});
 
 
 app.post('/api/contact', async (req, res) => {
   const { name, email, phone, message } = req.body;
 
+  if (!name || !email || !phone || !message) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  if (!verifiedEmails.has(email)) {
+    return res.status(403).json({ message: 'Email not verified' });
+  }
+
   // Email options
   const mailOptions = {
     from: email, // Your email address
-    to: 'siddhivinayakengineers19@gmail.com', // Your email address to receive the message
+    to: 'adityakhandare8320@gmail.com', // Your email address to receive the message
     replyTo: email, // User's email address for replies
     subject: `Contact Form Submission from ${name}`, // Subject line
     text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}` // Email body
@@ -400,7 +447,9 @@ app.post('/api/contact', async (req, res) => {
 });
 
 
-cron.schedule('0 * * * *', async () => {
+
+
+cron.schedule('* * * * *', async () => {
   console.log('Running scheduled data update task...');
   await updateAllData();  // Call your update function periodically
 });

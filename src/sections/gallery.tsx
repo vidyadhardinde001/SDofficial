@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
 
+const CACHE_EXPIRATION_MS = 60 * 60 * 1000;
+
 const Gallery: React.FC = () => {
   const initialGalleryImages = [
     {
@@ -66,23 +68,23 @@ const Gallery: React.FC = () => {
   } | null>(null);
 
   // Fetch gallery images from the database
-  const CACHE_EXPIRATION_MS = 60 * 60 * 1000; // 1 hour
+   // 1 hour
 
   useEffect(() => {
     const fetchGalleryImages = async () => {
       const cachedGalleryImages = localStorage.getItem("galleryImages");
       const cachedTimestamp = localStorage.getItem("cacheTimestamp");
 
-      if (cachedGalleryImages && cachedTimestamp) {
-        const now = new Date().getTime();
-        const cacheAge = now - parseInt(cachedTimestamp, 10);
+      // if (cachedGalleryImages && cachedTimestamp) {
+      //   const now = new Date().getTime();
+      //   const cacheAge = now - parseInt(cachedTimestamp, 10);
 
-        if (cacheAge < CACHE_EXPIRATION_MS) {
-          setGalleryImages(JSON.parse(cachedGalleryImages));
-          setLoading(false);
-          return;
-        }
-      }
+      //   if (cacheAge < CACHE_EXPIRATION_MS) {
+      //     setGalleryImages(JSON.parse(cachedGalleryImages));
+      //     setLoading(false);
+      //     return;
+      //   }
+      // }
 
       try {
         const response = await axios.get("/api/content/gallery");

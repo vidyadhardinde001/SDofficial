@@ -41,7 +41,7 @@ const ContactSection: React.FC = () => {
       console.log(data);
     if (data.message === 'Verification email sent') {
       alert("Verification email sent. Please check your inbox.");
-      // setEmailVerified(true);
+      setEmailVerified(true);
       // setEmailVerified(true);
       // setErrorMessage(null); 
       // alert("Email Verified Successfully!");
@@ -51,6 +51,7 @@ const ContactSection: React.FC = () => {
     }
     if (data.verified) {
       setEmailVerified(true);
+      console.log("Email Verified:", emailVerified);
       alert("Email successfully verified! You can now submit the form.");
     } 
     } catch (error) {
@@ -158,7 +159,7 @@ const ContactSection: React.FC = () => {
                   }`}
                   disabled={emailVerified}
                 >
-                  {emailVerified ? "Email Verified" : "Verify Email"}
+                  Verify Email
                 </button>
                 <input
                   type="text"

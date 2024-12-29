@@ -23,6 +23,7 @@ const ContactSection: React.FC = () => {
   };
 
   const sendVerificationEmail = async () => {
+    setErrorMessage(null);
     try {
       const response = await fetch(
         "https://sdofficial-r1zr.onrender.com/api/verify-email",
@@ -40,7 +41,7 @@ const ContactSection: React.FC = () => {
       console.log(data);
     if (data.success) {
       setEmailVerified(true);
-      setErrorMessage(null); 
+      // setErrorMessage(null); 
       alert("Email Verified Successfully!");
     } else {
       throw new Error(data.message || "Verification failed");
@@ -77,7 +78,7 @@ const ContactSection: React.FC = () => {
 
       setMessageSent(true);
       setFormData({ name: "", email: "", phone: "", message: "" });
-      setEmailVerified(false);
+      // setEmailVerified(false);
     } catch (error) {
       setErrorMessage("Failed to send message. Please try again later.");
     } finally {

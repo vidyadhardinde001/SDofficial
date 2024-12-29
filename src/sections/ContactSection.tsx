@@ -41,7 +41,7 @@ const ContactSection: React.FC = () => {
       console.log(data);
     if (data.message === 'Verification email sent') {
       alert("Verification email sent. Please check your inbox.");
-      setEmailVerified(true);
+      // setEmailVerified(true);
       // setEmailVerified(true);
       // setErrorMessage(null); 
       // alert("Email Verified Successfully!");

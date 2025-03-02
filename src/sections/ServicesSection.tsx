@@ -26,7 +26,7 @@ const ServicesSection: React.FC = () => {
     },
     {
       image: "/assets/maintanance.jpg",
-      name: "Maintenance Services",
+      name: "Upgrading, Maintenance, and Repair Services",
       description:
         "Maintenance is the service done by technicians or mechanics to manage machinery and equipment to increase uptime in order to meet business objectives. It is used across multiple industries and can involve troubleshooting, fixing, and replacing equipment to improve asset performance.",
       read_more_path: "/maintainence",

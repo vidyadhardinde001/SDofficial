@@ -67,41 +67,42 @@ const ProductGrid: React.FC = () => {
   const [error, setError] = useState<string | null>(null); // Error state
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const cachedData = localStorage.getItem(CACHE_KEY);
-        const cacheTimestamp = localStorage.getItem(`${CACHE_KEY}_timestamp`);
+//    const fetchProducts = async () => {
+//      try {
+  //      const cachedData = localStorage.getItem(CACHE_KEY);
+    //    const cacheTimestamp = localStorage.getItem(`${CACHE_KEY}_timestamp`);
 
-        if (cachedData && cacheTimestamp) {
-          const isCacheValid =
-            Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
-          if (isCacheValid) {
-            setProducts(JSON.parse(cachedData));
-            return;
-          }
-        }
+//        if (cachedData && cacheTimestamp) {
+//          const isCacheValid =
+//            Date.now() - parseInt(cacheTimestamp) < CACHE_EXPIRATION;
+//          if (isCacheValid) {
+//            setProducts(JSON.parse(cachedData));
+//            return;
+//          }
+//        }
 
-        const response = await axios.get("/api/content/products");
-        const productsData: Product[] = response.data.content.productsList;
+//        const response = await axios.get("/api/content/products");
+//        const productsData: Product[] = response.data.content.productsList;
 
         // Ensure the response data is an array of products
-        if (Array.isArray(productsData)) {
-          setProducts(productsData);
-        } else {
-          console.error("Received data is not an array:", productsData);
-          setError("");
-        }
-        localStorage.setItem(CACHE_KEY, JSON.stringify(productsData));
-        localStorage.setItem(`${CACHE_KEY}_timestamp`, Date.now().toString());
-      } catch (err) {
-        console.error("", err);
-        setError("");
-      } finally {
-        setLoading(false);
-      }
-    };
+//        if (Array.isArray(productsData)) {
+  //        setProducts(productsData);
+  //      } else {
+  //        console.error("Received data is not an array:", productsData);
+ //         setError("");
+//        }
+//        localStorage.setItem(CACHE_KEY, JSON.stringify(productsData));
+//        localStorage.setItem(`${CACHE_KEY}_timestamp`, Date.now().toString());
+//      } catch (err) {
+//        console.error("", err);
+//        setError("");
+//      } finally {
+//        setLoading(false);
+//      }
+//    };
 
-    fetchProducts();
+//    fetchProducts();
+      setLoading(false); // Set loading to false after initial mount
   }, []);
 
   const handleProductClick = (product: Product) => {

@@ -29,7 +29,7 @@ const hardcodedData: Product[] = [
   {
     name: "VFD",
     image: "https://drive.google.com/uc?export=view&id=18m72OxcU5DUxYuNqkEj_p-UWUckE88RF",
-    pdf: "https://drive.google.com/file/d/1M1lMP0ZpbDmFptjNPu7ieDgGt5HDOfVg/view?usp=sharing",  // Open PDF in browser
+    pdf: "https://drive.google.com/file/d/1iXGcv59W4uFG1R6UV5FDANP_dCd_KBOT/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "SERVO",

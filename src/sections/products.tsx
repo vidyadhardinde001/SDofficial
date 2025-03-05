@@ -19,7 +19,7 @@ const hardcodedData: Product[] = [
   {
     name: "PLC",
     image: "https://drive.google.com/uc?export=view&id=1B_luix_ZiNqFvloy4RkbEJKbnKahfAmq",
-    pdf: "https://drive.google.com/file/d/1M1lMP0ZpbDmFptjNPu7ieDgGt5HDOfVg/view?usp=sharing",  // Open PDF in browser
+    pdf: "https://drive.google.com/file/d/1W1NrDeHl9Nga-eBmyngkBuVLTmUKTZ3o/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "SMPS",

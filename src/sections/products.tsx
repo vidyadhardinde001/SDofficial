@@ -37,14 +37,14 @@ const hardcodedData: Product[] = [
     pdf: "https://drive.google.com/file/d/1M1lMP0ZpbDmFptjNPu7ieDgGt5HDOfVg/view?usp=sharing",  // Open PDF in browser
   },
   {
-    name: "Temperature Controller",
-    image: "https://drive.google.com/uc?export=view&id=1O8-5YAl9MFmL9CdnGzoGm3zgbQaUO_pc",
-    pdf: "https://drive.google.com/file/d/1M1lMP0ZpbDmFptjNPu7ieDgGt5HDOfVg/view?usp=sharing",  // Open PDF in browser
+    name: "SERVO",
+    image: "https://drive.google.com/uc?export=view&id=1tLIvPwNl-nvdjAVk4DMrVigQKMhuEzoJ",
+    pdf: "https://drive.google.com/file/d/1eweqLTHNcHlGtnk-tcAHo618f-mjKoPx/view?usp=sharing",  // Open PDF in browser
   },
   {
-    name: "PLC",
-    image: "https://drive.google.com/uc?export=view&id=1B_luix_ZiNqFvloy4RkbEJKbnKahfAmq",
-    pdf: "https://drive.google.com/file/d/1M1lMP0ZpbDmFptjNPu7ieDgGt5HDOfVg/view?usp=sharing",  // Open PDF in browser
+    name: "Temperature Controller",
+    image: "https://drive.google.com/uc?export=view&id=1O8-5YAl9MFmL9CdnGzoGm3zgbQaUO_pc",
+    pdf: "https://drive.google.com/file/d/1XBr9a-plFoDl_sq1QfOXJaz2jVLO6Bbg/view?usp=sharing",  // Open PDF in browser
   },
   {
     name: "Encoders",
@@ -52,8 +52,8 @@ const hardcodedData: Product[] = [
     pdf: "https://drive.google.com/file/d/1M1lMP0ZpbDmFptjNPu7ieDgGt5HDOfVg/view?usp=sharing",  // Open PDF in browser
   },
   {
-    name: "HMI",
-    image: "https://drive.google.com/uc?export=view&id=1yUosAAeAGk3OIlATMktF0L_uiHbRyj0F",
+    name: "SE",
+    image: "https://drive.google.com/uc?export=view&id=1o2tvjWRD8mYVHzgjtjmll7xt0uf-s1CK",
     pdf: "https://drive.google.com/file/d/1M1lMP0ZpbDmFptjNPu7ieDgGt5HDOfVg/view?usp=sharing",  // Open PDF in browser
   },
 ];

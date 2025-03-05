@@ -22,13 +22,8 @@ const hardcodedData: Product[] = [
     pdf: "https://drive.google.com/file/d/1W1NrDeHl9Nga-eBmyngkBuVLTmUKTZ3o/view?usp=sharing",  // Open PDF in browser
   },
   {
-    name: "SMPS",
-    image: "https://drive.google.com/uc?export=view&id=1eRy-FPqDGC_aom09Co2p-M2ORrBL4Ki3",
-    pdf: "https://drive.google.com/file/d/1M1lMP0ZpbDmFptjNPu7ieDgGt5HDOfVg/view?usp=sharing",  // Open PDF in browser
-  },
-  {
-    name: "Motors",
-    image: "https://drive.google.com/uc?export=view&id=1_7J20t1NUY8oTX5g6_O7U0E7QNVzontL",
+    name: "SCADA SOFTWARE",
+    image: "https://drive.google.com/uc?export=view&id=1WMcJ_Zy80eAqc6tvXoJHgxNNBT2U4cKI",
     pdf: "https://drive.google.com/file/d/1M1lMP0ZpbDmFptjNPu7ieDgGt5HDOfVg/view?usp=sharing",  // Open PDF in browser
   },
   {
@@ -42,6 +37,16 @@ const hardcodedData: Product[] = [
     pdf: "https://drive.google.com/file/d/1eweqLTHNcHlGtnk-tcAHo618f-mjKoPx/view?usp=sharing",  // Open PDF in browser
   },
   {
+    name: "SMPS",
+    image: "https://drive.google.com/uc?export=view&id=1eRy-FPqDGC_aom09Co2p-M2ORrBL4Ki3",
+    pdf: "https://drive.google.com/file/d/1M1lMP0ZpbDmFptjNPu7ieDgGt5HDOfVg/view?usp=sharing",  // Open PDF in browser
+  },
+  {
+    name: "Motors",
+    image: "https://drive.google.com/uc?export=view&id=1_7J20t1NUY8oTX5g6_O7U0E7QNVzontL",
+    pdf: "https://drive.google.com/file/d/1M1lMP0ZpbDmFptjNPu7ieDgGt5HDOfVg/view?usp=sharing",  // Open PDF in browser
+  },
+  {
     name: "Temperature Controller",
     image: "https://drive.google.com/uc?export=view&id=1O8-5YAl9MFmL9CdnGzoGm3zgbQaUO_pc",
     pdf: "https://drive.google.com/file/d/1XBr9a-plFoDl_sq1QfOXJaz2jVLO6Bbg/view?usp=sharing",  // Open PDF in browser
@@ -51,11 +56,7 @@ const hardcodedData: Product[] = [
     image: "https://drive.google.com/uc?export=view&id=1yEbNjc5GYdD9HIY8W67_wfhRh5crx6QK",
     pdf: "https://drive.google.com/file/d/1M1lMP0ZpbDmFptjNPu7ieDgGt5HDOfVg/view?usp=sharing",  // Open PDF in browser
   },
-  {
-    name: "SE",
-    image: "https://drive.google.com/uc?export=view&id=1o2tvjWRD8mYVHzgjtjmll7xt0uf-s1CK",
-    pdf: "https://drive.google.com/file/d/1M1lMP0ZpbDmFptjNPu7ieDgGt5HDOfVg/view?usp=sharing",  // Open PDF in browser
-  },
+  
 ];
 
 const CACHE_KEY = "productsCache";

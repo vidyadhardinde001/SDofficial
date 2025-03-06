@@ -54,7 +54,7 @@ export const ProductShowcase = () => {
           <motion.img
             src={tubeImage}
             alt="3D tube shape floating animation"
-            height={248}
+            height={268}
             width={248}
             className="hidden md:block absolute bottom-24 -left-36"
             style={{ translateY: translateYSecondary }}

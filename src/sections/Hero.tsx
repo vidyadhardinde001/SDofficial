@@ -5,8 +5,6 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import axios from "axios";
 
-const CACHE_EXPIRATION_MS = 60 * 60 * 1000;
-
 export const Hero = () => {
   const heroRef = useRef(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -21,10 +19,10 @@ export const Hero = () => {
   const translateY = useTransform(scrollYProgress, [0, 1], [150, -150]);
 
   const [heroContent, setHeroContent] = useState({
-    welcomeMessage: "",
-    mainHeading: "",
-    subHeading: "",
-    videoUrl: "",
+    welcomeMessage: "Welcome to",
+    mainHeading: "Siddhivinayak Engineers",
+    subHeading: "One Stop Solution for All your Electric & Automation Needs.",
+    videoUrl: "/assets/bg-video.mp4",
   });
 
   useEffect(() => {
@@ -93,7 +91,7 @@ export const Hero = () => {
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
           <video ref={videoRef} className="w-full h-full object-cover" autoPlay loop muted>
-            <source src={heroContent.videoUrl || "/assets/bg-video.mp4"} type="video/mp4" />
+            <source src={heroContent.videoUrl} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -122,15 +120,15 @@ export const Hero = () => {
           <div className="h-2 bg-orange-500 rounded-full" style={{ width: `${progress}%` }}></div>
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 flex flex-col w-full px-6 lg:px-[50px] items-center text-center">
+        {/* Content (Left Side) */}
+        <div className="relative z-10 flex flex-col w-full px-6 lg:px-[50px] items-start text-left max-w-[50%]">
           <motion.h2
             className="text-2xl lg:text-5xl text-white tracking-tight mt-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            Welcome to
+            {heroContent.welcomeMessage}
           </motion.h2>
 
           <motion.h1
@@ -139,7 +137,7 @@ export const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.1 }}
           >
-            {heroContent.mainHeading || "Siddhivinayak Engineers"}
+            {heroContent.mainHeading}
           </motion.h1>
 
           <motion.p
@@ -148,7 +146,7 @@ export const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            {heroContent.subHeading || "One Stop Solution for All your Automation Needs."}
+            {heroContent.subHeading}
           </motion.p>
 
           <div className="flex flex-col sm:flex-row gap-4 mt-6">

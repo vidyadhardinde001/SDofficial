@@ -164,10 +164,10 @@ export const Hero = () => {
           </div>
         </div>
 
-        <div className="absolute top-10 left-10 text-white text-sm">
-          <p className="flex items-center text-xs"><span className="text-orange-500 mr-2">&#8226;</span> We Are Manufacturers Of Custom made Industrial Control Panels And Industrial Automation.</p>
-          <p className="flex items-center text-xs"><span className="text-orange-500 mr-2">&#8226;</span> We Offer Factory Automation Products (PLC, SCADA, HMI, VFD, AC Servo) of world-renowned brands.</p>
-          <p className="flex items-center text-xs"><span className="text-orange-500 mr-2">&#8226;</span> Custom Software development & On-site commissioning services.</p>
+        <div className="absolute top-10 left-10 text-white text-xs">
+          <p className="flex items-center text-[10px]"><span className="text-orange-500 mr-2">&#8226;&#8226;&#8226;</span> We Are Manufacturers Of Custom made Industrial Control Panels And Industrial Automation.</p>
+          <p className="flex items-center text-[10px]"><span className="text-orange-500 mr-2">&#8226;&#8226;&#8226;</span> We Offer Factory Automation Products (PLC, SCADA, HMI, VFD, AC Servo) of world-renowned brands.</p>
+          <p className="flex items-center text-[10px]"><span className="text-orange-500 mr-2">&#8226;&#8226;&#8226;</span> Custom Software development & On-site commissioning services.</p>
         </div>
       </section>
     </>

@@ -5,121 +5,95 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import axios from "axios";
 
-declare global {
-  interface Window {
-    botpressWebChat: any;
-  }
-}
-
-interface HeroContent {
-  welcomeMessage: string;
-  mainHeading: string;
-  subHeading: string;
-  videoUrl: string;
-}
-
 const CACHE_EXPIRATION_MS = 60 * 60 * 1000;
 
 export const Hero = () => {
   const heroRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [progress, setProgress] = useState(0);
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start end", "end start"],
   });
   const translateY = useTransform(scrollYProgress, [0, 1], [150, -150]);
 
-  const flipVariant = {
-    hidden: { rotateX: 90, opacity: 0 },
-    visible: { rotateX: 0, opacity: 1 },
-  };
-
-  const [heroContent, setHeroContent] = useState<HeroContent>({
+  const [heroContent, setHeroContent] = useState({
     welcomeMessage: "",
     mainHeading: "",
     subHeading: "",
     videoUrl: "",
   });
 
-  const [isPortrait, setIsPortrait] = useState(false);
-
   useEffect(() => {
     const fetchHeroContent = async () => {
-      const cachedHeroContent = localStorage.getItem("heroContent");
-      const cachedTimestamp = localStorage.getItem("heroCacheTimestamp");
-
-      if (cachedHeroContent && cachedTimestamp) {
-        const now = new Date().getTime();
-        const cacheAge = now - parseInt(cachedTimestamp, 10);
-
-        if (cacheAge < CACHE_EXPIRATION_MS) {
-          setHeroContent(JSON.parse(cachedHeroContent));
-          return;
-        }
-      }
-
       try {
         const response = await axios.get("/api/content/heroSection");
-        const data = response.data.content;
-        setHeroContent(data);
-
-        localStorage.setItem("heroContent", JSON.stringify(data));
-        localStorage.setItem(
-          "heroCacheTimestamp",
-          new Date().getTime().toString()
-        );
+        setHeroContent(response.data.content);
       } catch (error) {
-        const response = await axios.get("https://script.googleusercontent.com/macros/echo?user_content_key=yIf-C8I1vOPKOskf4jp7kVUTG7mpBLmSb3_HFPvEwkpOpR3ncZau8PmWyC0iGGJCf_18hywsRE2UfI1h8vsc29XncDIATNFJm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPSes8K7rVC4cBQF2LqNz5wTxp2unB-jQa368GhxUbYHGxZqVBdM0i6thF3ZyONz4XQJmmtVdaPpBUVnQgDnpzCJuDlzVxqDkQ&lib=MhOghx2ivbIsU-792mgpTLfZ1uKL4_q0K");
-        const data = response.data.content;
-        setHeroContent(data);
         console.error("Error fetching Hero content:", error);
       }
     };
 
-    const updateOrientation = () => {
-      setIsPortrait(window.innerHeight > window.innerWidth);
+    fetchHeroContent();
+  }, []);
+
+  useEffect(() => {
+    const updateProgress = () => {
+      if (videoRef.current) {
+        const percent =
+          (videoRef.current.currentTime / videoRef.current.duration) * 100;
+        setProgress(percent);
+      }
     };
 
-    fetchHeroContent();
-    updateOrientation();
-
-    window.addEventListener("resize", updateOrientation);
+    if (videoRef.current) {
+      videoRef.current.addEventListener("timeupdate", updateProgress);
+    }
 
     return () => {
-      window.removeEventListener("resize", updateOrientation);
+      if (videoRef.current) {
+        videoRef.current.removeEventListener("timeupdate", updateProgress);
+      }
     };
   }, []);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play();
+        setIsPlaying(true);
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
 
   return (
     <>
       <Head>
-        <title>
-          Siddhivinayak Engineers - Your Automation Solutions Partner
-        </title>
+        <title>Siddhivinayak Engineers - Your Automation Solutions Partner</title>
         <meta
           name="description"
           content="Siddhivinayak Engineers specializes in control panel manufacturing, PLC, HMI, and SCADA software development, offering top-notch services across various industries."
         />
       </Head>
 
-      <section
-        ref={heroRef}
-        className={`relative overflow-hidden flex items-center min-h-[70vh] sm:min-h-[90vh] ${
-          isPortrait ? "justify-center text-center" : "justify-start text-left"
-        }`}
-      >
+      <section ref={heroRef} className="relative overflow-hidden flex items-center min-h-[90vh]">
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-            <source
-              src={heroContent.videoUrl || "/assets/bg-video.mp4"}
-              type="video/mp4"
-            />
+          <video ref={videoRef} className="w-full h-full object-cover" autoPlay loop muted>
+            <source src={heroContent.videoUrl || "/assets/bg-video.mp4"} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -127,80 +101,61 @@ export const Hero = () => {
         {/* Black Gradient Overlay */}
         <div className="absolute inset-0 w-full h-full opacity-70 bg-gradient-to-r from-black via-black/60 to-black/0 -z-10"></div>
 
-        {/* Content */}
-        <div
-          className={`relative z-10 flex flex-col w-full px-4 sm:px-6 lg:px-[50px] ${
-            isPortrait ? "items-center" : "items-start"
-          }`}
+        {/* Play/Pause Button (Bottom Left) */}
+        <button
+          onClick={togglePlay}
+          className="absolute bottom-5 left-5 bg-white text-black p-2 rounded-full shadow-md"
         >
+          {isPlaying ? "⏸" : "▶️"}
+        </button>
+
+        {/* Mute/Unmute Button (Bottom Right) */}
+        <button
+          onClick={toggleMute}
+          className="absolute bottom-5 right-5 bg-white text-black p-2 rounded-full shadow-md"
+        >
+          {isMuted ? "🔇" : "🔊"}
+        </button>
+
+        {/* Video Progress Bar (Bottom Center) */}
+        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-3/4 h-2 bg-gray-700 rounded-full">
+          <div className="h-2 bg-orange-500 rounded-full" style={{ width: `${progress}%` }}></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col w-full px-6 lg:px-[50px] items-center text-center">
           <motion.h2
-            className="text-lg sm:text-2xl md:text-3xl lg:text-5xl text-white tracking-tight mt-2"
-            initial="hidden"
-            animate="visible"
-            variants={flipVariant}
-            transition={{ duration: 1, delay: 0.1 }}
+            className="text-2xl lg:text-5xl text-white tracking-tight mt-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
           >
             Welcome to
           </motion.h2>
 
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter bg-gradient-to-b from-white to-white/70 text-transparent bg-clip-text mt-2 mb-5 sm:mb-1 pb-1"
-            initial="hidden"
-            animate="visible"
-            variants={flipVariant}
+            className="text-4xl lg:text-6xl font-semibold text-white mt-2 mb-5"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.1 }}
-            style={{ lineHeight: "1.1" }}
           >
             {heroContent.mainHeading || "Siddhivinayak Engineers"}
           </motion.h1>
 
           <motion.p
-            className="text-lg sm:text-base md:text-lg lg:text-2xl text-white tracking-tight mt-1 sm:mt-6 leading-tight"
-            initial="hidden"
-            animate="visible"
-            variants={flipVariant}
-            transition={{ duration: 1, delay: 0.4 }}
+            className="text-lg lg:text-2xl text-white mt-1"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
           >
-            {heroContent.subHeading ||
-              "One Stop Solution for All your Electric & Automation Needs."}
+            {heroContent.subHeading || "One Stop Solution for All your Automation Needs."}
           </motion.p>
 
-          <motion.div
-            className="text-sm sm:text-base md:text-sm lg:text-sm text-white tracking-tight mt-1 sm:mt-6 leading-tight hidden lg:block"
-            initial="hidden"
-            animate="visible"
-            variants={flipVariant}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
-            <ul className="list-disc pl-5 space-y-2">
-              <li className="flex items-center">
-                <span className="w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
-                We Are Manufacturers Of Custom made Industrial Control Panels
-                And Industrial Automation.
-              </li>
-              <li className="flex items-center">
-                <span className="w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
-                We Offer Factory Automation Products (PLC, SCADA, HMI, VFD, AC
-                Servo) of world renowned brands.
-              </li>
-              <li className="flex items-center">
-                <span className="w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
-                Custom Software development & On site commissioning services.
-              </li>
-            </ul>
-          </motion.div>
-
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <Link
-              href="#services"
-              className="bg-orange-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md transition hover:bg-orange-600 text-sm sm:text-base"
-            >
+            <Link href="#services" className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600">
               Go to Services
             </Link>
-            <Link
-              href="/contactus"
-              className="bg-white text-orange-500 border border-orange-500 px-3 py-1.5 sm:px-4 sm:py-2 rounded-md transition hover:bg-orange-100 text-sm sm:text-base"
-            >
+            <Link href="/contactus" className="bg-white text-orange-500 border px-4 py-2 rounded-md hover:bg-orange-100">
               Contact Us
             </Link>
           </div>

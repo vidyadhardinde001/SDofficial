@@ -8,6 +8,7 @@ import axios from "axios";
 export const Hero = () => {
   const heroRef = useRef(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -22,6 +23,11 @@ export const Hero = () => {
     welcomeMessage: "Welcome to",
     mainHeading: "Siddhivinayak Engineers",
     subHeading: "One Stop Solution for All your Electric & Automation Needs.",
+    additionalInfo: [
+      "We Are Manufacturers Of Custom made Industrial Control Panels And Industrial Automation.",
+      "We Offer Factory Automation Products (PLC, SCADA, HMI, VFD, AC Servo) of world-renowned brands.",
+      "Custom Software development & On-site commissioning services.",
+    ],
     videoUrl: "/assets/bg-video.mp4",
   });
 
@@ -77,6 +83,15 @@ export const Hero = () => {
     }
   };
 
+  const seekVideo = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (videoRef.current && progressBarRef.current) {
+      const rect = progressBarRef.current.getBoundingClientRect();
+      const clickPosition = (e.clientX - rect.left) / rect.width;
+      videoRef.current.currentTime = clickPosition * videoRef.current.duration;
+      setProgress(clickPosition * 100);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -115,8 +130,12 @@ export const Hero = () => {
           {isMuted ? "🔇" : "🔊"}
         </button>
 
-        {/* Video Progress Bar (Bottom Center) */}
-        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-3/4 h-2 bg-gray-700 rounded-full">
+        {/* Video Progress Bar (Now Clickable) */}
+        <div
+          ref={progressBarRef}
+          onClick={seekVideo}
+          className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-3/4 h-2 bg-gray-700 rounded-full cursor-pointer"
+        >
           <div className="h-2 bg-orange-500 rounded-full" style={{ width: `${progress}%` }}></div>
         </div>
 
@@ -148,6 +167,21 @@ export const Hero = () => {
           >
             {heroContent.subHeading}
           </motion.p>
+
+          {/* Additional Information */}
+          <div className="mt-4 space-y-2">
+            {heroContent.additionalInfo.map((info, index) => (
+              <motion.p
+                key={index}
+                className="text-base lg:text-xl text-white"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.3 + index * 0.1 }}
+              >
+                {info}
+              </motion.p>
+            ))}
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link href="#services" className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600">

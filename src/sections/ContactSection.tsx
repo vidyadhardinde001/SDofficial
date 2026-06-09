@@ -113,7 +113,7 @@ const ContactSection: React.FC = () => {
                   📧 siddhivinayakengineers19@gmail.com
                 </p>
                 <p className="flex items-center justify-center md:justify-start">
-                  📍 Arjunwad, Tal-Shirol, Dist-Kolhapur 416120
+                  📍Chinchwad Road, Arjunwad. Tal-Shirol, Dist-Kolhapur 416120
                   Maharashtra, India
                 </p>
               </div>

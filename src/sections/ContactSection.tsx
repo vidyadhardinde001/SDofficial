@@ -119,7 +119,7 @@ const ContactSection: React.FC = () => {
               </div>
 
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d122237.18993477206!2d74.628396!3d16.781044!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc12102e1214d0b%3A0x1527ff323ff45359!2sSiddhivinayak%20Engineers!5e0!3m2!1sen!2sus!4v1727588966231!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26994.244874773372!2d74.60576111000078!3d16.78704887736327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc1212247f31fcd%3A0xe75784a767491054!2sSiddhivinayak%20Engineers!5e1!3m2!1sen!2sin!4v1780999324565!5m2!1sen!2sin"
                 width="100%"
                 height="250"
                 className="mt-8 border border-gray-300 rounded-lg"

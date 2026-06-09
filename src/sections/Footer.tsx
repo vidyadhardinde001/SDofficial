@@ -130,7 +130,7 @@ export const Footer = () => {
     <li className="flex items-start text-sm md:text-lg text-white">
       <span className="text-xl mr-3">📍</span>
       <div>
-        <span className="block font-semibold">Arjunwad, Tal-Shirol, Dist-Kolhapur 416120</span>
+        <span className="block font-semibold">Chinchwad Road, Arjunwad. Tal-Shirol, Dist-Kolhapur 416120</span>
         <span className="block font-semibold text-white">Maharashtra, India</span>
       </div>
     </li>

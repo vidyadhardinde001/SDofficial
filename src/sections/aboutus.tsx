@@ -27,7 +27,7 @@ const LearningTransformation: React.FC = () => {
   const placeholderContent: AboutUsContent = {
     heading: "About Us",
     description: [
-      "We are manufacturers of custom-made industrial control panels and industrial automation systems with over 3 years of expertise in system integration, plant automation, turnkey projects, and corrective and preventive maintenance.",
+      "We are manufacturers of custom-made industrial control panels and industrial automation systems with over 5 years of expertise in system integration, plant automation, turnkey projects, and corrective and preventive maintenance.",
       "We offer factory automation products (PLC, SCADA, HMI, VFD, AC Servo) of world-renowned brands, along with custom software development, energy monitoring, industrial safety solutions, and low-voltage distribution panels.",
       "Our focus on high-quality solutions ensures we meet customer needs efficiently with cutting-edge technology.",
     ],
@@ -42,7 +42,7 @@ const LearningTransformation: React.FC = () => {
       name: "Mr. Nikhil Sutar",
       role: "Founder & CEO",
       description:
-        "With a Diploma and Bachelor's Degree in Electrical Engineering and over 9 years of industry experience, he brings specialized skills in PLC programming and a dedication to precision that have positioned Siddhivinayak Engineers as a trusted provider of automation solutions. Since establishing the firm in 2021, he has focused on delivering reliable and innovative solutions tailored to diverse industrial needs.",
+        "With a Diploma and Bachelor's Degree in Electrical Engineering and over 10 years of industry experience, he brings specialized skills in PLC programming and a dedication to precision that have positioned Siddhivinayak Engineers as a trusted provider of automation solutions. Since establishing the firm in 2021, he has focused on delivering reliable and innovative solutions tailored to diverse industrial needs.",
       imageUrl: "/assets/Nikhil_Sutar.jpg",
     },
   };
